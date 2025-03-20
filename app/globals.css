@@ -4,9 +4,155 @@
 
 @layer base {
   body {
-    @apply font-primary bg-white text-white w-screen m-0 p-0 overflow-x-hidden leading-loose;
+    @apply font-primary bg-[#F9F9F9] text-black w-screen m-0 p-0 overflow-x-hidden leading-loose scroll-smooth scroll-pt-[-100px];
   }
+
+  .title {
+    @apply text-4xl tracking-widest font-semibold;
+  }
+
   :root {
     --radius: 0.5rem;
+  }
+
+  .blogtitle {
+    @apply text-center text-2xl xl:text-4xl mb-3;
+  }
+
+  .blogcontent {
+    @apply indent-10 text-lg xl:text-xl mb-5;
+  }
+
+  .bloglist {
+    @apply indent-7 mt-3 text-xl list-disc pl-5;
+  }
+  .new-gradient {
+    @apply bg-gradient-to-br from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white;
+  }
+}
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 12px;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #210535;
+    border-radius: 10px;
+    border: 3px solid #f3f4f6;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a58ec5;
+  }
+  .gradient {
+    background: rgb(144, 4, 183);
+    background: linear-gradient(
+      -90deg,
+      rgba(144, 4, 183, 1) 0%,
+      rgba(184, 39, 169, 1) 49%,
+      rgba(235, 75, 147, 1) 95%
+    );
+    opacity: 20%;
+  }
+
+  .gradient-90 {
+    background: linear-gradient(to right, #a855f7, #ec4899, #f43f5e);
+  }
+
+  .terms {
+    height: calc(100vh - 100px);
+  }
+
+  .noScrollBar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .margin-container {
+    max-height: calc(100% - 150px);
+  }
+
+  .custom-shadow {
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+      rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  }
+
+  .custom-shadow1 {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+      rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  }
+}
+
+.animate-spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-wave {
+  animation: wave 6s ease-in-out infinite;
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    d: path("M0,60 C360,120 1080,0 1440,60 L1440,120 H0 Z");
+  }
+  50% {
+    d: path("M0,80 C360,20 1080,100 1440,40 L1440,120 H0 Z");
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float 5s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.animate-rotate-circle {
+  animation: rotateCircle 15s linear infinite;
+}
+
+@keyframes rotateCircle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-counter-rotate {
+  animation: counterRotate 15s linear infinite;
+}
+
+@keyframes counterRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
   }
 }
