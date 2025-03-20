@@ -151,7 +151,7 @@ const NewPage = () => {
           <h1 className="italic text-center leading-[1.2] font-semibold text-[40px] px-3 md:text-[48px]">
             Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
             <span className="text-[#2DB787]">Confident</span> Kids <br />
-            Holistically
+            Holisticallys
           </h1>
           <div className="flex flex-col md:flex-row gap-5">
             <button className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent">
