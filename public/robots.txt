@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.astrokids.ai/
+
+# Sitemaps
+Sitemap: https://www.astrokids.ai/sitemap.xml
