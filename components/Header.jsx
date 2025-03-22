@@ -9,11 +9,11 @@ const Header = () => {
   const pathName = usePathname().split("/")[1];
 
   return (
-    <div className="w-screen fixed z-[1000] bg-[#02030B] flex px-5 md:px-14 py-4">
-      <div className="flex items-center justify-between w-full">
-        <h1 className="font-bold text-white text-2xl">
+    <div className="w-screen fixed z-[1000] bg-transparent md:bg-[#02030B] flex px-3 md:px-14 py-4">
+      <div className="flex max-md:bg-[#0E0C15]/60 p-2 md:p-0 rounded-xl items-center justify-between w-full">
+        <Link href={"/"} className="font-bold text-white text-2xl">
           astrokids<span className="text-xs px-0.5 text-[#5DF2CF]">✦</span>ai
-        </h1>
+        </Link>
 
         <div className="hidden md:flex flex-1 items-center justify-center gap-4">
           {navItems.map((item, index) => (

@@ -1,9 +1,15 @@
 "use client";
-import Carousel from "@/components/Carousel";
+import CustomCarousel from "@/components/CustomCarousel";
 import CustomVideoPlayer from "@/components/CustomVideoPlayer";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
-import NewNavBar from "@/components/NewNavBar";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { ArrowRightIcon, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
@@ -143,15 +149,15 @@ const NewPage = () => {
           <Image
             src={`/images/new/hero${imageIndex}.png`}
             fill
-            className="object-cover mt-16"
+            className="object-cover mt-0 md:mt-16"
             alt="Hero image"
           />
         </div>
-        <div className="absolute top-0 text-white w-screen h-screen flex flex-col gap-6 justify-center items-center">
-          <h1 className="italic text-center leading-[1.2] font-semibold text-[40px] px-3 md:text-[48px]">
+        <div className="absolute top-0 text-white w-screen h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
+          <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
             Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
             <span className="text-[#2DB787]">Confident</span> Kids <br />
-            Holisticallys
+            Holistically
           </h1>
           <div className="flex flex-col md:flex-row gap-5">
             <button className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent">
@@ -191,14 +197,14 @@ const NewPage = () => {
         )}
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-[40px] font-semibold leading-[1.2] text-center capitalize">
+        <h1 className="text-[24px] md:text-[40px] font-semibold leading-[1.2] text-center capitalize">
           What parents say
         </h1>
-        <div className="flex w-full flex-col md:flex-row justify-around gap-10 py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
           {[...Array(4)].map((_, index) => (
             <div
               key={index}
-              className={`w-[60%] mx-auto md:w-[20%] ${
+              className={`w-[100%] mx-auto ${
                 index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
               } ${
                 shapes[index]
@@ -220,35 +226,37 @@ const NewPage = () => {
                   index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
                 } ${shapes[index]} justify-between py-10`}
               >
-                <div className="bg-white text-black px-2 rounded-xl">
+                <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
                   <span>⭐</span> 4.8
                 </div>
-                <h1 className="font-normal leading-[1.2] text-[18px]">
+                <h1 className="font-normal leading-[1.2] text-[12px] md:text-[18px]">
                   “Astrokids is the one of our best desicion”
                 </h1>
-                <h1 className="font-normal text-[18px]">- Arun</h1>
+                <h1 className="font-normal text-[12px] md:text-[18px]">
+                  - Arun
+                </h1>
               </div>
             </div>
           ))}
         </div>
         <div>
-          <h1 className="text-[24px] leading-[1.2] font-[500] text-center capitalize">
+          <h1 className="text-[16px] md:text-[24px] leading-[1.2] font-[500] text-center capitalize">
             Join <span className="text-[#2DB787]">1,232 parents</span> this
             month who've <span className="text-[#2DB787]">transformed</span>{" "}
             their parenting journey.
           </h1>
-          <button className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5">
+          <button className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5">
             Start Your journey Now
             <ArrowUpRight size={20} className="group-hover:animate-intro" />
           </button>
         </div>
       </div>
-      <div className="bg-[#02030B] text-white p-10">
-        <h1 className="text-[40px] leading-[1.2] font-semibold text-center capitalize">
+      <div className="bg-[#02030B] text-white md:p-10">
+        <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
           Astrokids Membership Benefits
         </h1>
-        <div className="flex justify-center items-center flex-wrap py-5 gap-10">
-          <div className="w-[95%] md:w-[45%] py-8 group cursor-pointer overflow-hidden px-6 new-gradient rounded-2xl relative group">
+        <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
+          <div className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -270,21 +278,21 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 1800+
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="w-[80%] text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Happy Kids & Parents
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
               />
             </button>
           </div>
-          <div className="w-[95%] group md:w-[45%] py-8 cursor-pointer overflow-hidden px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
+          <div className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -306,21 +314,21 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
                 95%
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Parents See Happier Kids
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
               />
             </button>
           </div>
-          <div className="w-[95%] md:w-[50%] py-8 overflow-hidden cursor-pointer px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
+          <div className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -342,21 +350,21 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 5,000-year-old
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Ancient Wisdom + Modern Science
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
               />
             </button>
           </div>
-          <div className="w-[95%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
+          <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -378,10 +386,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] leading-[1.2] font-bold">
-                15-Minute
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                15-Mins
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Insights, Lifetime Impact
               </p>
             </div>
@@ -396,7 +404,7 @@ const NewPage = () => {
               </div>
             </div>
           </div>
-          <div className="w-[95%] md:w-[30%] py-8 overflow-hidden cursor-pointer px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
+          <div className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -425,14 +433,14 @@ const NewPage = () => {
                 Better Academic
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
               />
             </button>
           </div>
-          <div className="w-[95%] md:w-[32.5%] py-8 overflow-hidden cursor-pointer px-6 new-gradient rounded-2xl relative group">
+          <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden cursor-pointer md:px-6 new-gradient rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -454,21 +462,21 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 24/7
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Expert Support
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
               />
             </button>
           </div>
-          <div className="w-[95%] md:w-[25%] py-8 overflow-hidden cursor-pointer px-6 bg-white text-black rounded-2xl relative group">
+          <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col cursor-pointer md:px-6 bg-white text-black rounded-2xl relative group">
             <div className="absolute top-0 right-0">
               <div className="relative w-[60px] h-[60px]">
                 <Image
@@ -480,14 +488,14 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[40px] md:text-[60px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 100%
               </h1>
-              <p className="text-[26px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Data Security
               </p>
             </div>
-            <button className="absolute bottom-5 right-5 p-1 group-hover:bg-black group-hover:text-white bg-black/30 rounded-full">
+            <button className="relative self-end md:absolute md:bottom-5 md:right-5 p-1 group-hover:bg-black group-hover:text-white bg-black/30 rounded-full">
               <ArrowUpRight
                 size={30}
                 className="group-hover:rotate-45 transition duration-200"
@@ -503,7 +511,7 @@ const NewPage = () => {
         <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Simple <span className="text-[#2DB787]">3-Step</span> Process
         </h1>
-        <div className="flex flex-col p-5 mt-5 md:flex-row gap-10 justify-center items-center">
+        <div className="hidden md:flex flex-col p-5 mt-5 md:flex-row gap-10 justify-center items-center">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -537,6 +545,49 @@ const NewPage = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="block md:hidden p-5 w-[90%] mx-auto my-5">
+          <Carousel opts={{ align: "start" }}>
+            <CarouselContent>
+              {steps.map((step, index) => (
+                <CarouselItem key={index}>
+                  <div
+                    key={index}
+                    className="p-0.5 w-[90%] mx-auto rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
+                  >
+                    <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
+                      <div className="flex gap-2 justify-start w-full items-end">
+                        <div className="text-[#2DB787] text-[30px] leading-[0.8]">
+                          0<span>{index + 1}</span>
+                        </div>
+                        {[...Array(3)].map((_, i) => (
+                          <div
+                            key={i}
+                            className={`w-2 h-2 rounded-full ${
+                              i <= index ? "bg-[#2DB787]" : "bg-black"
+                            }`}
+                          ></div>
+                        ))}
+                      </div>
+                      <h1 className="text-[23px] font-semibold leading-[1.2] capitalize">
+                        {step.title}
+                      </h1>
+                      <div className="relative w-[100px] self-end h-[100px]">
+                        <Image
+                          src={step.image}
+                          fill
+                          alt={step.title}
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="translate-x-[50%]" />
+            <CarouselNext className="translate-x-[-50%]" />
+          </Carousel>
         </div>
         <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           It's like having a parenting manual written{" "}
@@ -670,7 +721,7 @@ const NewPage = () => {
           </span>{" "}
           ✨
         </h1>
-        <Carousel slides={slides} />
+        <CustomCarousel slides={slides} />
       </div>
       <NewFooter />
     </div>

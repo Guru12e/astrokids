@@ -4,7 +4,7 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
-const Carousel = ({ slides }) => {
+const CustomCarousel = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextRatio, setNextRatio] = useState(80);
 
@@ -41,7 +41,7 @@ const Carousel = ({ slides }) => {
             className="flex-shrink-0 p-5 relative rounded-xl bg-[#2DB787] max-md:w-[100%] w-[80%]"
           >
             <div className="flex flex-col md:flex-row md:gap-10 max-md:mb-4">
-              <div className="w-[260px] max-md:mt-8 mx-auto aspect-square relative rounded-t-2xl rounded-b-none">
+              <div className="w-[260px] max-md:mt-8 aspect-square relative rounded-t-2xl rounded-b-none">
                 <Image
                   fill
                   src={slide.image}
@@ -104,4 +104,4 @@ const Carousel = ({ slides }) => {
   );
 };
 
-export default Carousel;
+export default CustomCarousel;

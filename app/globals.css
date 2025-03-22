@@ -156,3 +156,15 @@
     transform: rotate(-360deg);
   }
 }
+
+#otp {
+  appearance: textfield;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+#otp::-webkit-inner-spin-button,
+#otp::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
