@@ -1,6 +1,6 @@
-// components/Carousel.js
 "use client";
 
+import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -8,18 +8,9 @@ const CustomCarousel = ({ slides }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [nextRatio, setNextRatio] = useState(80);
 
-  //   useEffect(() => {
-  //     const timer = setInterval(() => {
-  //       setCurrentSlide((prev) => (prev + 1) % slides.length);
-  //     }, 5000);
-  //     return () => clearInterval(timer);
-  //   }, [slides.length]);
-
-  // when mobile next ratio is 100
-
   useEffect(() => {
     if (window.innerWidth < 768) {
-      setNextRatio(110);
+      setNextRatio(90);
     } else {
       setNextRatio(80);
     }
@@ -30,59 +21,94 @@ const CustomCarousel = ({ slides }) => {
   };
 
   return (
-    <div className="relative w-full mt-5 px-10 mx-auto overflow-hidden">
+    <div className="relative w-full mt-5 md:px-10 mx-auto overflow-hidden">
       <div
-        className="flex transition-transform duration-500 gap-10 ease-in-out"
+        className="flex transition-transform duration-500 gap-2 md:gap-10 ease-in-out"
         style={{ transform: `translateX(-${currentSlide * nextRatio}%)` }}
       >
         {slides.map((slide, index) => (
           <div
             key={index}
-            className="flex-shrink-0 p-5 relative rounded-xl bg-[#2DB787] max-md:w-[100%] w-[80%]"
+            className="flex-shrink-0 max-md:px-3 max-md:pt-3 md:p-5 relative rounded-xl bg-[#2DB787] max-md:w-[90%] w-[80%]"
           >
-            <div className="flex flex-col md:flex-row md:gap-10 max-md:mb-4">
-              <div className="w-[260px] max-md:mt-8 aspect-square relative rounded-t-2xl rounded-b-none">
-                <Image
-                  fill
-                  src={slide.image}
-                  alt={slide.title}
-                  className="object-cover rounded-t-2xl rounded-b-none"
-                />
+            <div className="hidden md:block">
+              <div className="flex flex-col md:flex-row md:gap-10 max-md:mb-4">
+                <div className="w-[260px] max-md:mt-8 aspect-square relative rounded-t-2xl rounded-b-none">
+                  <Image
+                    fill
+                    src={slide.image}
+                    alt={slide.title}
+                    className="object-cover rounded-t-2xl rounded-b-none"
+                  />
+                </div>
+                <div className="flex flex-col justify-start items-start">
+                  <h3 className="text-[30px] font-bold text-white">
+                    {slide.title}
+                  </h3>
+                  <p className="text-[20px] h-max font-bold bg-[#FFEB3B] leading-[1.3] max-md:py-2 text-black px-3 my-2 rounded-lg">
+                    Concern: {slide.concern}
+                  </p>
+                  <p className="capitalize text-[20px] font-bold text-white mt-2">
+                    <span className="text-[#FFEB3B]">Pro Parenting Plan </span>
+                    report revealed:
+                  </p>
+                  <ul className="list-disc list-inside marker:text-[#FFEB3B]">
+                    {slide.points.map((bullet, index) => (
+                      <li
+                        key={index}
+                        className="text-white text-[20px] leading-[1.5] font-normal"
+                      >
+                        <span className="text-[#FFEB3B] font-semibold">
+                          {bullet.hilight}
+                        </span>{" "}
+                        {bullet.text}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="flex flex-col justify-start items-start">
-                <h3 className="text-[30px] font-bold text-white">
-                  {slide.title}
-                </h3>
-                <p className="text-[20px] h-max font-bold bg-[#FFEB3B] leading-[1.3] max-md:py-2 text-black px-3 my-2 rounded-lg">
-                  Concern: {slide.concern}
+              <div className="bg-[#FFEB3B] flex flex-col md:flex-row leading-[1.3] text-[20px] justify-end items-end p-3 md:rounded-b-xl md:rounded-tr-xl max-md:rounded-xl">
+                <p className="w-full md:w-[80%] font-[500]">{slide.parent}</p>
+                <p className="w-full md:w-[20%] max-md:mt-3 text-end font-semibold">
+                  -{slide.parentName}
                 </p>
-                <p className="capitalize text-[20px] font-bold text-white mt-2">
-                  <span className="text-[#FFEB3B]">Pro Parenting Plan </span>
-                  report revealed:
-                </p>
-                <ul className="list-disc list-inside marker:text-[#FFEB3B]">
-                  {slide.points.map((bullet, index) => (
-                    <li
-                      key={index}
-                      className="text-white text-[20px] leading-[1.5] font-normal"
-                    >
-                      <span className="text-[#FFEB3B] font-semibold">
-                        {bullet.hilight}
-                      </span>{" "}
-                      {bullet.text}
-                    </li>
-                  ))}
-                </ul>
+              </div>
+              <div className="absolute top-0 right-0 new-gradient py-1 px-3 rounded-tr-xl rounded-bl-xl">
+                Try {slide.title.split("-")[0]} Plan
               </div>
             </div>
-            <div className="bg-[#FFEB3B] flex flex-col md:flex-row leading-[1.3] text-[20px] justify-end items-end p-3 md:rounded-b-xl md:rounded-tr-xl max-md:rounded-xl">
-              <p className="w-full md:w-[80%] font-[500]">{slide.parent}</p>
-              <p className="w-full md:w-[20%] max-md:mt-3 text-end font-semibold">
-                -{slide.parentName}
-              </p>
-            </div>
-            <div className="absolute top-0 right-0 new-gradient py-1 px-3 rounded-tr-xl rounded-bl-xl">
-              Try {slide.title.split("-")[0]} Plan
+            <div className="block md:hidden">
+              <div className="flex w-full md:gap-10 relative">
+                <div className="w-[50%] aspect-square relative rounded-t-2xl rounded-b-none">
+                  <Image
+                    fill
+                    src={slide.image}
+                    alt={slide.title}
+                    className="object-cover rounded-t-2xl rounded-b-none"
+                  />
+                </div>
+                <div className="flex w-[50%] flex-col justify-start items-start">
+                  <h3 className="text-[16px] text-center py-3 w-full md:text-[30px] font-bold text-white leading-[1.2]">
+                    {slide.title}
+                  </h3>
+                  <p className="text-[14px] md:text-[20px] w-full flex-1 flex flex-col justify-center items-start font-semibold bg-white leading-[1.3] max-md:py-2 text-black px-3 rounded-tr-lg">
+                    <span className="font-bold inline text-start">
+                      Concern:
+                    </span>{" "}
+                    {slide.concern}
+                  </p>
+                </div>
+              </div>
+              <div className="bg-[#FFEB3B] flex flex-col md:flex-row leading-[1.3] text-[13px] md:text-[20px] justify-end items-end p-3 rounded-b-xl md:rounded-tr-xl">
+                <p className="w-full md:w-[80%] font-[500]">{slide.parent}</p>
+                <p className="w-full md:w-[20%] max-md:mt-3 text-end font-semibold">
+                  -{slide.parentName}
+                </p>
+              </div>
+              <div className="new-gradient mt-5 w-max mx-auto flex justify-center items-center gap-4 self-end py-3 px-8 text-[18px] font-semibold rounded-t-2xl">
+                Try {slide.title.split("-")[0]} Plan
+                <ArrowUpRight size={25} />
+              </div>
             </div>
           </div>
         ))}

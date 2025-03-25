@@ -7,9 +7,8 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = ["home", "about", "plans", "blogs", "contact"];
   const pathName = usePathname().split("/")[1];
-
   return (
-    <div className="w-screen fixed z-[1000] bg-transparent md:bg-[#02030B] flex px-3 md:px-14 py-4">
+    <div className="w-screen fixed top-0 z-[1000] bg-transparent md:bg-[#02030B] px-3 md:px-14 py-4">
       <div className="flex max-md:bg-[#0E0C15]/60 p-2 md:p-0 rounded-xl items-center justify-between w-full">
         <Link href={"/"} className="font-bold text-white text-2xl">
           astrokids<span className="text-xs px-0.5 text-[#5DF2CF]">✦</span>ai
@@ -45,7 +44,8 @@ const Header = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
+                color="#2DB787"
+                d="M4 6h16M4 12h16M4 18h16"
               />
             ) : (
               <path
@@ -63,25 +63,28 @@ const Header = () => {
         </button>
       </div>
 
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[#02030B] px-5 py-4 flex flex-col gap-4">
-          {navItems.map((item, index) => (
-            <Link
-              key={index}
-              href={`/${item}`}
-              className={`${
-                pathName === item ? "text-[#2DB787]" : "text-white"
-              } cursor-pointer capitalize font-semibold py-2`}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              {item.split("-")[1]}
-            </Link>
-          ))}
-          <button className="w-full px-6 py-1 font-bold rounded-lg new-gradient hover:brightness-110 transition-all mt-2">
-            Get Started
-          </button>
-        </div>
-      )}
+      <div className="md:hidden">
+        {isMobileMenuOpen && (
+          <div className="mt-3 rounded-xl w-full bg-[#0E0C15]/60 px-5 py-4 flex flex-col gap-4">
+            {navItems.map((item, index) => (
+              <Link
+                key={index}
+                href={`/${item == "home" ? "" : item}`}
+                className={`${
+                  pathName === "" && item === "home"
+                    ? "text-[#2DB787]"
+                    : pathName === item
+                    ? "text-[#2DB787]"
+                    : "text-white"
+                } cursor-pointer text-[16px] capitalize font-bold text-center py-2`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {item}
+              </Link>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

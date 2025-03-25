@@ -197,7 +197,7 @@ const NewPage = () => {
         )}
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-[24px] md:text-[40px] font-semibold leading-[1.2] text-center capitalize">
+        <h1 className="title font-semibold leading-[1.2] text-center capitalize">
           What parents say
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
@@ -589,7 +589,7 @@ const NewPage = () => {
             <CarouselNext className="translate-x-[-50%]" />
           </Carousel>
         </div>
-        <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           It's like having a parenting manual written{" "}
           <span className="text-[#2DB787]"> just for your child.</span>
         </h1>
@@ -599,15 +599,15 @@ const NewPage = () => {
         </button>
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
+        <h1 className="title  font-bold leading-[1.2] text-center capitalize">
           Choose your plan
         </h1>
-        <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Because{" "}
           <span className="text-[#2DB787]">Every Child's Path is Written</span>{" "}
           in the Stars 🌟
         </h1>
-        <div className="grid px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
+        <div className="grid  px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
           {plans.map((p, ind) => (
             <div
               key={ind}
@@ -650,16 +650,16 @@ const NewPage = () => {
         </div>
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
+        <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Freebie for better parenting
         </h1>
-        <h1 className="text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Because{" "}
           <span className="text-[#2DB787] font-bold">Great Parenting </span>{" "}
           Starts with{" "}
           <span className="text-[#2DB787] font-bold">Small Steps</span> 🌟
         </h1>
-        <div className="grid grid-cols-1 mt-7 mb-8 xl:mt-14 xl:mb-16 px-8 xl:px-16 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10">
+        <div className="hidden md:grid grid-cols-1 mt-7 mb-8 xl:mt-14 xl:mb-16 px-8 xl:px-16 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10">
           {blogs.map((blog, index) => (
             <div
               key={index}
@@ -706,12 +706,50 @@ const NewPage = () => {
             </div>
           ))}
         </div>
+        <Carousel opts={{ align: "start" }} className="block md:hidden mt-5">
+          <CarouselContent>
+            {blogs.map((blog, index) => (
+              <CarouselItem key={index} className="w-[90%]">
+                <div className="relative max-md:w-full max-md:aspect-video">
+                  <Image
+                    src={`/images/new/blog${index + 1}.png`}
+                    fill
+                    alt={blog}
+                    className="object-cover rounded-xl"
+                  />
+                  {index === 0 && (
+                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                      Popular
+                    </div>
+                  )}
+                  {index === 1 && (
+                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                      Most Viewed
+                    </div>
+                  )}
+                  {index === 4 && (
+                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                      Recently Added
+                    </div>
+                  )}
+                </div>
+                <h1
+                  className={`text-[20px] font-normal leading-[1.2] mt-2 ${
+                    index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
+                  }`}
+                >
+                  {blog}
+                </h1>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+        </Carousel>
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
+        <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Real Stories from AstroKids Families
         </h1>
-        <h1 className="text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
           See How{" "}
           <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
           Found{" "}
