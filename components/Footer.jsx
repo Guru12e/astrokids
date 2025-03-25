@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { CiInstagram } from "react-icons/ci";
 import {
   IoLogoFacebook,
   IoLogoInstagram,
@@ -42,15 +41,15 @@ const Footer = ({ isTrue = false }) => {
 
   const logoImage = [
     [
-      <IoLogoInstagram size={40} className='text-black hover:text-accent' />,
+      <IoLogoInstagram size={40} className="text-black hover:text-accent" />,
       "https://www.instagram.com/the_astro_kids/",
     ],
     [
-      <IoLogoFacebook size={40} className='text-black hover:text-accent' />,
+      <IoLogoFacebook size={40} className="text-black hover:text-accent" />,
       "https://www.facebook.com/profile.php?id=61568876184036",
     ],
     [
-      <IoLogoLinkedin size={40} className='text-black hover:text-accent' />,
+      <IoLogoLinkedin size={40} className="text-black hover:text-accent" />,
       "https://www.linkedin.com/company/astrokids/",
     ],
   ];
@@ -73,40 +72,40 @@ const Footer = ({ isTrue = false }) => {
     return () => window.removeEventListener("resize", updateRadius);
   }, []);
   return (
-    <div className='py-6 bg-[#FFE9D0]'>
-      <div className='flex-col flex xl:flex-row h-max w-full items-center'>
-        <div className='flex-1 flex flex-col justify-center items-center'>
+    <div className="py-6 bg-[#FFE9D0]">
+      <div className="flex-col flex xl:flex-row h-max w-full items-center">
+        <div className="flex-1 flex flex-col justify-center items-center">
           <div>
-            <div className='w-[120px] h-[80px] xl:w-[150px] xl:aspect-video outline-none'>
-              <Link href='/'>
+            <div className="w-[120px] h-[80px] xl:w-[150px] xl:aspect-video outline-none">
+              <Link href="/">
                 <Image
-                  alt='logo'
+                  alt="logo"
                   src={`/images/logo.png`}
                   width={200}
                   height={40}
                   quality={100}
-                  className='object-cover pointer-events-none'
+                  className="object-cover pointer-events-none"
                 />
               </Link>
             </div>
           </div>
-          <ul className='text-black text-center flex flex-wrap justify-center xl:flex-col gap-4 xl:gap-2'>
+          <ul className="text-black text-center flex flex-wrap justify-center xl:flex-col gap-4 xl:gap-2">
             {contactContent.map((content, index) => (
-              <li key={index} className='hover:text-accent cursor-pointer'>
+              <li key={index} className="hover:text-accent cursor-pointer">
                 {content}
               </li>
             ))}
           </ul>
         </div>
-        <div className='flex-1'>
-          <ul className=' text-center flex justify-center  flex-wrap xl:flex-col gap-4 xl:gap-2 text-black'>
+        <div className="flex-1">
+          <ul className=" text-center flex justify-center  flex-wrap xl:flex-col gap-4 xl:gap-2 text-black">
             {links.map((content, index) =>
               isTrue ? (
                 (content.name === "Home" || content.name === "Products") && (
                   <button
                     onClick={() => scrollToSection(content.path)}
                     key={index}
-                    className='hover:text-accent cursor-pointer'
+                    className="hover:text-accent cursor-pointer"
                   >
                     {content.name}
                   </button>
@@ -115,7 +114,7 @@ const Footer = ({ isTrue = false }) => {
                 <button
                   onClick={() => scrollToSection(content.path)}
                   key={index}
-                  className='hover:text-accent cursor-pointer'
+                  className="hover:text-accent cursor-pointer"
                 >
                   {content.name}
                 </button>
@@ -123,12 +122,12 @@ const Footer = ({ isTrue = false }) => {
             )}
           </ul>
         </div>
-        <div className='flex-1'>
-          <ul className='text-black text-center flex justify-center flex-wrap xl:flex-col gap-x-4 xl:gap-2'>
+        <div className="flex-1">
+          <ul className="text-black text-center flex justify-center flex-wrap xl:flex-col gap-x-4 xl:gap-2">
             {companyDetails.map((content, index) => (
               <li
                 key={index}
-                className='hover:text-accent cursor-pointer'
+                className="hover:text-accent cursor-pointer"
                 onClick={() =>
                   router.push(`/details?content=${content.toLowerCase()}`)
                 }
@@ -138,11 +137,11 @@ const Footer = ({ isTrue = false }) => {
             ))}
           </ul>
         </div>
-        <div className='flex-1 flex flex-col justify-center items-center gap-2'>
-          <p className='text-black'>Follow Us</p>
-          <div className='w-full flex justify-center gap-3 items-center'>
+        <div className="flex-1 flex flex-col justify-center items-center gap-2">
+          <p className="text-black">Follow Us</p>
+          <div className="w-full flex justify-center gap-3 items-center">
             {logoImage.map((logo, index) => (
-              <Link href={logo[1]} key={index} className='p-3 cursor-pointer'>
+              <Link href={logo[1]} key={index} className="p-3 cursor-pointer">
                 {logo[0]}
               </Link>
             ))}

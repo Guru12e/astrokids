@@ -429,7 +429,7 @@ const NewPage = () => {
               <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
                 78%
               </h1>
-              <p className="text-[22px] md:text-[30px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Better Academic
               </p>
             </div>
