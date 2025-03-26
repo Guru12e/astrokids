@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/carousel";
 import { ArrowRightIcon, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaRegCirclePlay, FaXmark } from "react-icons/fa6";
 
@@ -141,6 +142,8 @@ const NewPage = () => {
     return () => clearInterval(interval);
   }, []);
 
+  const router = useRouter();
+
   return (
     <div>
       <Header />
@@ -160,7 +163,12 @@ const NewPage = () => {
             Holistically
           </h1>
           <div className="flex flex-col md:flex-row gap-5">
-            <button className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent">
+            <button
+              className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
+              onClick={() => {
+                router.push("/products");
+              }}
+            >
               <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
 
               <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">

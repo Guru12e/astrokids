@@ -536,7 +536,6 @@ const NewChildDetails = () => {
   };
 
   const handleSubmit = async () => {
-    console.log("Hiiiii");
     setEditLoading(true);
     const res = await fetch("/api/updateChild", {
       method: "POST",
