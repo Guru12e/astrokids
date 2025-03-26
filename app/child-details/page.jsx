@@ -535,6 +535,35 @@ const NewChildDetails = () => {
     }
   };
 
+  const handleSubmit = async () => {
+    console.log("Hiiiii");
+    setEditLoading(true);
+    const res = await fetch("/api/updateChild", {
+      method: "POST",
+      body: JSON.stringify({
+        email: parentEmail,
+        name: name,
+        dob: dob,
+        time: time,
+        place: place,
+        gender: gender,
+        number: number,
+        orderId: orderId,
+      }),
+    });
+
+    if (res.status == 200) {
+      toast.success("Child Details Updated", {
+        position: "top-right",
+      });
+      router.push("/");
+    } else {
+      toast.error("Error Updating Child Details", {
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <>
       {loading ? (
