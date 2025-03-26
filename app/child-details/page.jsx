@@ -56,6 +56,74 @@ const NewChildDetails = () => {
   const product = useSearchParams().get("product") || false;
   const [currentIndex, setCurrentIndex] = useState(orderIndex);
 
+  const paymentFunction = async () => {
+    let res;
+
+    res = await fetch("/api/createOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        amount: parseInt(pricing[currentIndex].price) * 100,
+        currency: "INR",
+      }),
+    });
+
+    const dataId = await res.json();
+
+    const paymentData = {
+      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+      order_id: dataId.id,
+
+      handler: async function (response) {
+        setLoading(true);
+        const res = await fetch("/api/verifyOrder", {
+          method: "POST",
+          body: JSON.stringify({
+            orderId: response.razorpay_order_id,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpaySignature: response.razorpay_signature,
+          }),
+        });
+
+        const res1 = await fetch("/api/addChildDetails", {
+          method: "POST",
+          body: JSON.stringify({
+            email: parentEmail,
+            name: name,
+            dob: dob,
+            time: time,
+            place: place,
+            gender: gender,
+            number: number,
+            lat: latLon.lat,
+            lon: latLon.lon,
+            orderId: dataId.id,
+            plan: pricing[currentIndex].title,
+          }),
+        });
+
+        if (res1.status === 200) {
+          localStorage.removeItem("childDetails");
+          toast.success("Payment Success Check Mail For Updates", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+          router.replace("/");
+        }
+      },
+
+      prefill: {
+        name: name,
+        email: parentEmail,
+        contact: number,
+      },
+    };
+
+    const payment = new window.Razorpay(paymentData);
+
+    setLoading(false);
+    payment.open();
+  };
+
   const createOrder = async () => {
     setLoading(true);
 
@@ -128,71 +196,8 @@ const NewChildDetails = () => {
               lon: latLon.lon,
             })
           );
-          let res;
 
-          res = await fetch("/api/createOrder", {
-            method: "POST",
-            body: JSON.stringify({
-              amount: parseInt(pricing[currentIndex].price) * 100,
-              currency: "INR",
-            }),
-          });
-
-          const dataId = await res.json();
-
-          const paymentData = {
-            key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-            order_id: dataId.id,
-
-            handler: async function (response) {
-              setLoading(true);
-              const res = await fetch("/api/verifyOrder", {
-                method: "POST",
-                body: JSON.stringify({
-                  orderId: response.razorpay_order_id,
-                  razorpayPaymentId: response.razorpay_payment_id,
-                  razorpaySignature: response.razorpay_signature,
-                }),
-              });
-
-              const res1 = await fetch("/api/addChildDetails", {
-                method: "POST",
-                body: JSON.stringify({
-                  email: parentEmail,
-                  name: name,
-                  dob: dob,
-                  time: time,
-                  place: place,
-                  gender: gender,
-                  number: number,
-                  lat: latLon.lat,
-                  lon: latLon.lon,
-                  orderId: dataId.id,
-                  plan: pricing[currentIndex].title,
-                }),
-              });
-
-              if (res1.status === 200) {
-                localStorage.removeItem("childDetails");
-                toast.success("Payment Success Check Mail For Updates", {
-                  position: "top-right",
-                  autoClose: 3000,
-                });
-                router.replace("/");
-              }
-            },
-
-            prefill: {
-              name: name,
-              email: parentEmail,
-              contact: number,
-            },
-          };
-
-          const payment = new window.Razorpay(paymentData);
-
-          setLoading(false);
-          payment.open();
+          paymentFunction();
         } else {
           toast.error("Child Details with this Name is Already found", {
             position: "top-right",
@@ -521,12 +526,8 @@ const NewChildDetails = () => {
         })
       );
       setOtpVerifyLoading(false);
-      if (product) {
-        router.push(`/confirm-order?product=true&productIndex=${orderIndex}`);
-      } else {
-        router.push("/confirm-order");
-      }
       toast.success("Email Verified", { position: "top-right" });
+      paymentFunction();
     } else {
       setOtpVerifyLoading(false);
       setEmailVerified(false);
