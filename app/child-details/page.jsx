@@ -14,6 +14,7 @@ import Image from "next/image";
 import { pricing } from "@/constant/constant";
 import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
+import Script from "next/script";
 
 const NewChildDetails = () => {
   const [loading, setLoading] = useState(false);
@@ -31,7 +32,6 @@ const NewChildDetails = () => {
   const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
   const [latLon, setLatLon] = useState({ lat: 0, lon: 0 });
-  const [currentIndex, setCurrentIndex] = useState(0);
   const router = useRouter();
   const edit = useSearchParams().get("fieldEdit") || false;
   const paymentEdit = useSearchParams().get("paymentEdit") || false;
@@ -52,13 +52,172 @@ const NewChildDetails = () => {
   const formRef = useRef(null);
   const inputsRef = useRef([]);
   const [api, setApi] = useState(null);
-
-  const orderIndex = useSearchParams().get("productIndex") || null;
+  const orderIndex = useSearchParams().get("productIndex") || 0;
   const product = useSearchParams().get("product") || false;
+  const [currentIndex, setCurrentIndex] = useState(orderIndex);
+
+  const createOrder = async () => {
+    setLoading(true);
+
+    if (emailVerified) {
+      if (
+        !name.trim() ||
+        !dob.trim() ||
+        !time.trim() ||
+        !gender.trim() ||
+        !number.trim()
+      ) {
+        toast.error("Please fill all fields", { position: "top-right" });
+        setLoading(false);
+        return;
+      }
+      if (!place.trim()) {
+        toast.error("Select Place From the Dropdown", {
+          position: "top-right",
+        });
+        setLoading(false);
+        return;
+      }
+      setEditLoading(true);
+      if (paymentEdit) {
+        const res = await fetch("/api/updateChild", {
+          method: "POST",
+          body: JSON.stringify({
+            email: parentEmail,
+            name,
+            dob,
+            time,
+            place,
+            gender,
+            number,
+            orderId,
+          }),
+        });
+        if (res.status === 200) {
+          toast.success("Child Details Updated", { position: "top-right" });
+          router.push("/");
+        } else {
+          toast.error("Error Updating Child Details", {
+            position: "top-right",
+          });
+        }
+      } else {
+        const res = await fetch("/api/checkChildDetails", {
+          method: "POST",
+          body: JSON.stringify({
+            email: parentEmail,
+            name,
+            dob,
+            time,
+            place,
+            gender,
+            number,
+          }),
+        });
+        if (res.status === 200) {
+          localStorage.setItem(
+            "childDetails",
+            JSON.stringify({
+              name,
+              dob,
+              time,
+              place,
+              gender,
+              number,
+              lat: latLon.lat,
+              lon: latLon.lon,
+            })
+          );
+          let res;
+
+          res = await fetch("/api/createOrder", {
+            method: "POST",
+            body: JSON.stringify({
+              amount: parseInt(pricing[currentIndex].price) * 100,
+              currency: "INR",
+            }),
+          });
+
+          const dataId = await res.json();
+
+          const paymentData = {
+            key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+            order_id: dataId.id,
+
+            handler: async function (response) {
+              setLoading(true);
+              const res = await fetch("/api/verifyOrder", {
+                method: "POST",
+                body: JSON.stringify({
+                  orderId: response.razorpay_order_id,
+                  razorpayPaymentId: response.razorpay_payment_id,
+                  razorpaySignature: response.razorpay_signature,
+                }),
+              });
+
+              const res1 = await fetch("/api/addChildDetails", {
+                method: "POST",
+                body: JSON.stringify({
+                  email: parentEmail,
+                  name: name,
+                  dob: dob,
+                  time: time,
+                  place: place,
+                  gender: gender,
+                  number: number,
+                  lat: latLon.lat,
+                  lon: latLon.lon,
+                  orderId: dataId.id,
+                  plan: pricing[currentIndex].title,
+                }),
+              });
+
+              if (res1.status === 200) {
+                localStorage.removeItem("childDetails");
+                toast.success("Payment Success Check Mail For Updates", {
+                  position: "top-right",
+                  autoClose: 3000,
+                });
+                router.replace("/");
+              }
+            },
+
+            prefill: {
+              name: name,
+              email: parentEmail,
+              contact: number,
+            },
+          };
+
+          const payment = new window.Razorpay(paymentData);
+
+          setLoading(false);
+          payment.open();
+        } else {
+          toast.error("Child Details with this Name is Already found", {
+            position: "top-right",
+          });
+        }
+      }
+      setEditLoading(false);
+    } else {
+      toast.error("Please Verify Email", { position: "top-right" });
+    }
+    setLoading(false);
+  };
 
   useEffect(() => {
     if (!api) return;
 
+    const initialIndex = parseInt(orderIndex, 10);
+    if (
+      !isNaN(initialIndex) &&
+      initialIndex >= 0 &&
+      initialIndex < pricing.length
+    ) {
+      setCurrentIndex(initialIndex);
+      api.scrollTo(initialIndex);
+    }
     setCurrentIndex(api.selectedScrollSnap());
 
     api.on("select", () => {
@@ -271,99 +430,6 @@ const NewChildDetails = () => {
     }
   }, [edit]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    if (emailVerified) {
-      if (
-        !name.trim() ||
-        !dob.trim() ||
-        !time.trim() ||
-        !gender.trim() ||
-        !number.trim()
-      ) {
-        toast.error("Please fill all fields", { position: "top-right" });
-        setLoading(false);
-        return;
-      }
-      if (!place.trim()) {
-        toast.error("Select Place From the Dropdown", {
-          position: "top-right",
-        });
-        setLoading(false);
-        return;
-      }
-      setEditLoading(true);
-      if (paymentEdit) {
-        const res = await fetch("/api/updateChild", {
-          method: "POST",
-          body: JSON.stringify({
-            email: parentEmail,
-            name,
-            dob,
-            time,
-            place,
-            gender,
-            number,
-            orderId,
-          }),
-        });
-        if (res.status === 200) {
-          toast.success("Child Details Updated", { position: "top-right" });
-          router.push("/");
-        } else {
-          toast.error("Error Updating Child Details", {
-            position: "top-right",
-          });
-        }
-      } else {
-        const res = await fetch("/api/checkChildDetails", {
-          method: "POST",
-          body: JSON.stringify({
-            email: parentEmail,
-            name,
-            dob,
-            time,
-            place,
-            gender,
-            number,
-          }),
-        });
-        if (res.status === 200) {
-          localStorage.setItem(
-            "childDetails",
-            JSON.stringify({
-              name,
-              dob,
-              time,
-              place,
-              gender,
-              number,
-              lat: latLon.lat,
-              lon: latLon.lon,
-            })
-          );
-          if (product) {
-            router.push(
-              `/confirm-order?product=true&productIndex=${orderIndex}`
-            );
-          } else {
-            router.push("/confirm-order");
-          }
-        } else {
-          toast.error("Child Details with this Name is Already found", {
-            position: "top-right",
-          });
-        }
-      }
-      setEditLoading(false);
-    } else {
-      toast.error("Please Verify Email", { position: "top-right" });
-    }
-    setLoading(false);
-  };
-
   const handleEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -556,7 +622,7 @@ const NewChildDetails = () => {
                         ? handleSubmit
                         : !emailVerified
                         ? handleEmail
-                        : handleSubmit
+                        : createOrder
                     }
                     className="w-full flex flex-col"
                   >
@@ -769,6 +835,10 @@ const NewChildDetails = () => {
                           </div>
                         </div>
                       ))}
+                    <Script
+                      type="text/javascript"
+                      src="https://checkout.razorpay.com/v1/checkout.js"
+                    />
                     <button
                       type="submit"
                       disabled={loading}
@@ -854,7 +924,7 @@ const NewChildDetails = () => {
                     Total
                   </h1>
                   <p className="text-[16px] text-[#111729] font-semibold">
-                    {parseInt(pricing[currentIndex].price) + 200}.00
+                    {parseInt(pricing[currentIndex].price)}.00
                   </p>
                 </div>
               </div>

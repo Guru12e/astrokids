@@ -4,10 +4,12 @@ import NewFooter from "@/components/NewFooter";
 import NewNavBar from "@/components/NewNavBar";
 import { ArrowUpRight, Check, MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AboutPage = () => {
   const [isOpen, setIsOpen] = useState(0);
+  const router = useRouter();
   const newPricing = [
     {
       title: "Starter Parenting",
@@ -206,7 +208,14 @@ const AboutPage = () => {
                   </li>
                 ))}
               </ul>
-              <button className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 bg-[#2DB787] transition-all text-white mt-5">
+              <button
+                className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 bg-[#2DB787] transition-all text-white mt-5"
+                onClick={() => {
+                  router.push(
+                    `/child-details?product=true&productIndex=${ind}`
+                  );
+                }}
+              >
                 Start the plan
                 <ArrowUpRight size={20} />
               </button>
