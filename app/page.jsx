@@ -148,7 +148,7 @@ const NewPage = () => {
     <div>
       <Header />
       <div className="w-screen h-max md:h-screen">
-        <div className="w-screen h-[50vh] relative">
+        <div className="w-screen h-[60vh] relative">
           <div className="w-screen h-full md:h-screen overflow-hidden relative">
             <Image
               src={`/images/new/hero${imageIndex}.png`}
@@ -157,7 +157,7 @@ const NewPage = () => {
               alt="Hero image"
             />
           </div>
-          <div className="absolute top-0 text-white w-screen h-[50vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
+          <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
             <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
               Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
               <span className="text-[#2DB787]">Confident</span> Kids <br />
@@ -650,7 +650,9 @@ const NewPage = () => {
               key={ind}
               className="bg-[#FFEB3B] relative p-5 rounded-xl border border-black"
             >
-              <h1 className="text-[24px] font-bold leading-[1.2]">{p.title}</h1>
+              <h1 className="text-[24px] font-bold leading-[1.2] mt-4">
+                {p.title}
+              </h1>
               <div className="my-3 flex items-center gap-2">
                 <h2 className="text-[26px] font-bold leading-[1.2]">
                   ₹{p.price}

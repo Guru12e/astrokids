@@ -223,7 +223,7 @@ const AboutPage = () => {
                   Start the plan
                   <ArrowUpRight size={20} />
                 </button>
-                {ind === 1 && (
+                {ind === 2 && (
                   <p className="absolute px-3 rounded-b-xl top-0 w-max font-medium translate-x-[50%] right-[50%] new-gradient text-white text-[12px]">
                     Most Loved by Parents ✨
                   </p>
