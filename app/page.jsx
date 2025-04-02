@@ -30,7 +30,7 @@ const NewPage = () => {
       image: "/images/new/step1.png",
     },
     {
-      title: "Share Birth Details",
+      title: "Input Birth Details",
       image: "/images/new/step2.png",
     },
     {
@@ -147,62 +147,64 @@ const NewPage = () => {
   return (
     <div>
       <Header />
-      <div className="w-screen h-screen">
-        <div className="w-screen h-screen overflow-hidden relative">
-          <Image
-            src={`/images/new/hero${imageIndex}.png`}
-            fill
-            className="object-cover mt-0 md:mt-16"
-            alt="Hero image"
-          />
-        </div>
-        <div className="absolute top-0 text-white w-screen h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
-          <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
-            Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
-            <span className="text-[#2DB787]">Confident</span> Kids <br />
-            Holistically
-          </h1>
-          <div className="flex flex-col md:flex-row gap-5">
-            <button
-              className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
-              onClick={() => {
-                router.push("/plans");
-              }}
-            >
-              <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
-
-              <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                Discover Your Child Plan
-              </span>
-
-              <ArrowRightIcon
-                className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
-                size={30}
-              />
-            </button>
-
-            <button
-              className="px-3 py-1 flex gap-2 justify-center border border-white bg-white/10 items-center text-white font-bold rounded-full transition-all"
-              onClick={() => setIsVedioPlay(true)}
-            >
-              <FaRegCirclePlay className="font-normal" />
-              <span>What is Astrokids.ai?</span>
-            </button>
+      <div className="w-screen h-max md:h-screen">
+        <div className="w-screen h-[50vh] relative">
+          <div className="w-screen h-full md:h-screen overflow-hidden relative">
+            <Image
+              src={`/images/new/hero${imageIndex}.png`}
+              fill
+              className="object-cover mt-0 md:mt-16"
+              alt="Hero image"
+            />
           </div>
-        </div>
-        {isVideoPlay && (
-          <div className="fixed px-3 inset-0 bg-[#02030B]/60 flex flex-col z-[1100] gap-5 items-center justify-center">
-            <button
-              className="p-2 mx-auto bg-white rounded-full"
-              onClick={() => setIsVedioPlay(false)}
-            >
-              <FaXmark size={30} />
-            </button>
-            <div className="relative">
-              <CustomVideoPlayer />
+          <div className="absolute top-0 text-white w-screen h-[50vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
+            <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
+              Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
+              <span className="text-[#2DB787]">Confident</span> Kids <br />
+              Holistically
+            </h1>
+            <div className="flex flex-col md:flex-row gap-5">
+              <button
+                className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
+                onClick={() => {
+                  router.push("/plans");
+                }}
+              >
+                <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+
+                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Discover Your Child Plan
+                </span>
+
+                <ArrowRightIcon
+                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
+                  size={30}
+                />
+              </button>
+
+              <button
+                className="px-3 py-1 flex gap-2 justify-center border border-white bg-white/10 items-center text-white font-bold rounded-full transition-all"
+                onClick={() => setIsVedioPlay(true)}
+              >
+                <FaRegCirclePlay className="font-normal" />
+                <span>What is Astrokids.ai?</span>
+              </button>
             </div>
           </div>
-        )}
+          {isVideoPlay && (
+            <div className="fixed px-3 inset-0 bg-[#02030B]/60 flex flex-col z-[1100] gap-5 items-center justify-center">
+              <button
+                className="p-2 mx-auto bg-white rounded-full"
+                onClick={() => setIsVedioPlay(false)}
+              >
+                <FaXmark size={30} />
+              </button>
+              <div className="relative">
+                <CustomVideoPlayer />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
       <div className="p-5 md:p-10">
         <h1 className="title font-semibold leading-[1.2] text-center capitalize">
@@ -673,7 +675,7 @@ const NewPage = () => {
                 Compare Plans
                 <ArrowUpRight size={20} />
               </button>
-              {ind === 1 && (
+              {ind === 2 && (
                 <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
                   Popular
                 </div>

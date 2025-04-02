@@ -1,7 +1,6 @@
 "use client";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
-import NewNavBar from "@/components/NewNavBar";
 import { ArrowUpRight, Check, MinusIcon, PlusIcon } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -13,7 +12,7 @@ const AboutPage = () => {
   const newPricing = [
     {
       title: "Starter Parenting",
-      price: "Free",
+      price: "₹199",
       what: [
         {
           title: "Astrological Profile",
@@ -151,20 +150,20 @@ const AboutPage = () => {
   return (
     <div>
       <Header />
-      <div className="w-screen h-screen">
+      <div className="w-screen h-[70vh] md:h-screen relative">
         <div
-          className="w-screen h-screen overflow-hidden relative"
+          className="w-screen h-[70vh] md:h-screen overflow-hidden relative"
           id="choose-your-plan"
         >
           <Image
             src={`/images/new/plans-hero.png`}
             fill
-            className="object-cover mt-16"
+            className="object-cover"
             alt="Hero image"
           />
-          <div className="w-screen h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
+          <div className="w-screen h-[70vh] md:h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
         </div>
-        <div className="absolute top-0 text-white w-screen h-screen flex flex-col gap-3 justify-center items-center">
+        <div className="absolute top-0 text-white w-screen h-[70vh] md:h-screen flex flex-col gap-3 justify-center pb-4 items-center">
           <h1 className="text-center leading-[1.2] font-bold text-[40px] px-3 md:text-[28px]">
             Simple Plans, Tailored to Your Parenting Journey 🌟
           </h1>
