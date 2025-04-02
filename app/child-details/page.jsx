@@ -926,7 +926,7 @@ const NewChildDetails = () => {
               className={`${
                 otpSend
                   ? "w-full md:w-1/2 aspect-square md:h-screen"
-                  : "w-1/3 aspect-auto"
+                  : "w-full md:w-1/3 aspect-auto"
               } md:mt-0 flex justify-center items-center`}
             >
               {otpSend ? (

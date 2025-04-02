@@ -7,7 +7,6 @@ const client = new MongoClient(uri);
 export async function POST(request) {
   try {
     const { email, name, type } = await request.json();
-
     await client.connect();
     const database = client.db("AstroKids");
     const collection = database.collection("Resources");
@@ -27,6 +26,7 @@ export async function POST(request) {
 
     return NextResponse.json({ message: "Report Send" }, { status: 200 });
   } catch (error) {
+    console.log(error);
     return NextResponse.json(
       { message: "Internal server error" },
       { status: 500 }
