@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navItems = ["home", "about", "plans", "blogs", "contact"];
+  const navItems = ["home", "about", "plans", "resources", "contact"];
   const pathName = usePathname().split("/")[1];
+  const router = useRouter();
   return (
     <div className="w-screen fixed top-0 z-[1000] bg-transparent md:bg-[#02030B] px-3 md:px-14 py-4">
       <div className="flex max-md:bg-[#0E0C15]/60 p-2 md:p-0 rounded-xl items-center justify-between w-full">
@@ -58,7 +59,10 @@ const Header = () => {
           </svg>
         </button>
 
-        <button className="hidden md:block px-6 py-1 font-bold rounded-lg new-gradient hover:brightness-110 transition-all">
+        <button
+          className="hidden md:block px-6 py-1 font-bold rounded-lg new-gradient hover:brightness-110 transition-all"
+          onClick={() => router.push("/plans")}
+        >
           Get Started
         </button>
       </div>

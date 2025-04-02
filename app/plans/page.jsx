@@ -13,7 +13,7 @@ const AboutPage = () => {
   const newPricing = [
     {
       title: "Starter Parenting",
-      price: "199",
+      price: "Free",
       what: [
         {
           title: "Astrological Profile",
@@ -43,7 +43,7 @@ const AboutPage = () => {
     },
     {
       title: "Pro Parenting",
-      price: "499",
+      price: "₹499",
       what: [
         {
           title: "Health & Wellness Guidance",
@@ -69,7 +69,7 @@ const AboutPage = () => {
     },
     {
       title: "Ultimate Parenting",
-      price: "999",
+      price: "₹999",
       what: [
         {
           title: "Education Insights",
@@ -99,7 +99,7 @@ const AboutPage = () => {
     },
     {
       title: "Master Parenting",
-      price: "1499",
+      price: "₹1299",
       what: [
         {
           title: "Five-Year Growth Predictions",
@@ -152,7 +152,10 @@ const AboutPage = () => {
     <div>
       <Header />
       <div className="w-screen h-screen">
-        <div className="w-screen h-screen overflow-hidden relative">
+        <div
+          className="w-screen h-screen overflow-hidden relative"
+          id="choose-your-plan"
+        >
           <Image
             src={`/images/new/plans-hero.png`}
             fill
@@ -174,61 +177,66 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-      <div className="grid px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
-        {newPricing.map((p, ind) => (
-          <div
-            key={ind}
-            className="p-0.5 w-full rounded-3xl hover:shadow-2xl hover:-translate-y-5 bg-gradient-to-br from-[#2DB787] to-[#FFEB3B] transition-all duration-1000 ease-in-out"
-          >
-            <div className="flex px-5 py-3 h-full bg-white rounded-3xl flex-col relative gap-5">
-              <h1 className="text-[24px] font-bold leading-[1.2] mt-7">
-                {p.title}
-              </h1>
-              <div className="my-3 flex items-center gap-2">
-                <h2 className="text-[26px] font-bold leading-[1.2]">
-                  ₹{p.price}
-                </h2>
-                <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
-              </div>
-              <ul className="flex flex-col flex-1 gap-5">
-                {ind !== 0 && (
-                  <li className="flex gap-2 items-center">
-                    <Check className="bg-[#2DB787] rounded-full text-white p-1" />
-                    <span className="text-[14px] font-semibold leading-[1.2]">
-                      Everything in {newPricing[ind - 1].title}
-                    </span>
-                  </li>
+      <div id="plan-benefits">
+        <div className="w-full h-10"></div>
+        <div className="grid px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
+          {newPricing.map((p, ind) => (
+            <div
+              key={ind}
+              className="p-0.5 w-full rounded-3xl hover:shadow-2xl hover:-translate-y-5 bg-gradient-to-br from-[#2DB787] to-[#FFEB3B] transition-all duration-1000 ease-in-out"
+            >
+              <div className="flex px-5 py-3 h-full bg-white rounded-3xl flex-col relative gap-5">
+                <h1 className="text-[24px] font-bold leading-[1.2] mt-7">
+                  {p.title}
+                </h1>
+                <div className="my-3 flex items-center gap-2">
+                  <h2 className="text-[26px] font-bold leading-[1.2]">
+                    {p.price}
+                  </h2>
+                  <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
+                </div>
+                <ul className="flex flex-col flex-1 gap-5">
+                  {ind !== 0 && (
+                    <li className="flex gap-2 items-center">
+                      <Check className="bg-[#2DB787] rounded-full text-white p-1" />
+                      <span className="text-[14px] font-semibold leading-[1.2]">
+                        Everything in {newPricing[ind - 1].title}
+                      </span>
+                    </li>
+                  )}
+                  {p.what.map((i, index) => (
+                    <li key={index} className="flex gap-2 items-center">
+                      <Check className="bg-[#EBEFF0] rounded-full text-[#2DB787] p-1" />
+                      <span className="text-[14px] font-light leading-[1.2]">
+                        {i.title}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 bg-[#2DB787] transition-all text-white mt-5"
+                  onClick={() => {
+                    router.push(
+                      `/child-details?product=true&productIndex=${ind}`
+                    );
+                  }}
+                >
+                  Start the plan
+                  <ArrowUpRight size={20} />
+                </button>
+                {ind === 1 && (
+                  <p className="absolute px-3 rounded-b-xl top-0 w-max font-medium translate-x-[50%] right-[50%] new-gradient text-white text-[12px]">
+                    Most Loved by Parents ✨
+                  </p>
                 )}
-                {p.what.map((i, index) => (
-                  <li key={index} className="flex gap-2 items-center">
-                    <Check className="bg-[#EBEFF0] rounded-full text-[#2DB787] p-1" />
-                    <span className="text-[14px] font-light leading-[1.2]">
-                      {i.title}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 bg-[#2DB787] transition-all text-white mt-5"
-                onClick={() => {
-                  router.push(
-                    `/child-details?product=true&productIndex=${ind}`
-                  );
-                }}
-              >
-                Start the plan
-                <ArrowUpRight size={20} />
-              </button>
-              {ind === 1 && (
-                <p className="absolute px-3 rounded-b-xl top-0 w-max font-medium translate-x-[50%] right-[50%] new-gradient text-white text-[12px]">
-                  Most Loved by Parents ✨
-                </p>
-              )}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      <div className="p-5 md:p-16 w-full">
+
+      <div className="p-5 md:p-16 w-full" id="faq">
+        <div className="w-full h-5"></div>
         <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
           Frequently Asked Questions
         </h1>

@@ -1,5 +1,4 @@
 "use client";
-import CustomCarousel from "@/components/CustomCarousel";
 import CustomVideoPlayer from "@/components/CustomVideoPlayer";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
@@ -205,7 +204,7 @@ const NewPage = () => {
           </div>
         )}
       </div>
-      <div className="p-5 md:p-10">
+      <div className="p-5 md:p-10" id="why-astroKids">
         <h1 className="title font-semibold leading-[1.2] text-center capitalize">
           What parents say
         </h1>
@@ -254,7 +253,10 @@ const NewPage = () => {
             month who've <span className="text-[#2DB787]">transformed</span>{" "}
             their parenting journey.
           </h1>
-          <button className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5">
+          <button
+            className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+            onClick={() => router.push("/plans")}
+          >
             Start Your journey Now
             <ArrowUpRight size={20} className="group-hover:animate-intro" />
           </button>
@@ -265,7 +267,10 @@ const NewPage = () => {
           Astrokids Membership Benefits
         </h1>
         <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
-          <div className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group">
+          <div
+            className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -301,7 +306,10 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group">
+          <div
+            className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -337,7 +345,10 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
+          <div
+            className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -373,7 +384,10 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
+          <div
+            className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -413,7 +427,10 @@ const NewPage = () => {
               </div>
             </div>
           </div>
-          <div className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group">
+          <div
+            className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -449,7 +466,10 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden cursor-pointer md:px-6 new-gradient rounded-2xl relative group">
+          <div
+            className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden cursor-pointer md:px-6 new-gradient rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -485,7 +505,10 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col cursor-pointer md:px-6 bg-white text-black rounded-2xl relative group">
+          <div
+            className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col cursor-pointer md:px-6 bg-white text-black rounded-2xl relative group"
+            onClick={() => router.push("/plans")}
+          >
             <div className="absolute top-0 right-0">
               <div className="relative w-[60px] h-[60px]">
                 <Image
@@ -602,7 +625,10 @@ const NewPage = () => {
           It's like having a parenting manual written{" "}
           <span className="text-[#2DB787]"> just for your child.</span>
         </h1>
-        <button className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5">
+        <button
+          className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5"
+          onClick={() => router.push("/plans")}
+        >
           Unlock Their Potential
           <ArrowUpRight size={20} />
         </button>
@@ -640,11 +666,9 @@ const NewPage = () => {
               </div>
               <div className="py-2"></div>
               <button
-                className={`absolute rounded-xl flex justify-center text-white py-2 items-center gap-2 ${
-                  ind != 1
-                    ? "bg-black"
-                    : "new-gradient text-[18px] font-semibold hover:brightness-110 transition-all"
-                } w-max px-5 h-max -translate-y-1 left-1/2 -translate-x-1/2`}
+                className={`absolute rounded-xl flex justify-center text-white py-2 items-center gap-2 bg-black
+                    hover:new-gradient text-[18px] font-semibold hover:brightness-110 transition-all w-max px-5 h-max -translate-y-1 left-1/2 -translate-x-1/2`}
+                onClick={() => router.push("/plans")}
               >
                 Compare Plans
                 <ArrowUpRight size={20} />
