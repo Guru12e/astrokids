@@ -204,7 +204,7 @@ const NewPage = () => {
           </div>
         )}
       </div>
-      <div className="p-5 md:p-10" id="why-astroKids">
+      <div className="p-5 md:p-10">
         <h1 className="title font-semibold leading-[1.2] text-center capitalize">
           What parents say
         </h1>
@@ -262,7 +262,7 @@ const NewPage = () => {
           </button>
         </div>
       </div>
-      <div className="bg-[#02030B] text-white md:p-10">
+      <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
         <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
           Astrokids Membership Benefits
         </h1>
@@ -536,7 +536,7 @@ const NewPage = () => {
           </div>
         </div>
       </div>
-      <div className="p-5 md:p-10">
+      <div className="p-5 md:p-10" id="how-it-works">
         <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
           How It Works
         </h1>
@@ -633,7 +633,7 @@ const NewPage = () => {
           <ArrowUpRight size={20} />
         </button>
       </div>
-      <div className="p-5 md:p-10">
+      <div className="p-5 md:p-10" id="choose-your-plan">
         <h1 className="title  font-bold leading-[1.2] text-center capitalize">
           Choose your plan
         </h1>
@@ -682,7 +682,7 @@ const NewPage = () => {
           ))}
         </div>
       </div>
-      <div className="p-5 md:p-10">
+      <div className="p-5 md:p-10" id="blog">
         <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Freebie for better parenting
         </h1>

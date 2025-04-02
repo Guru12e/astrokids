@@ -62,7 +62,10 @@ const NewFooter = () => {
               className="object-cover"
             />
           </div>
-          <div className="flex justify-center items-center text-[16px] font-[550] gap-2 mt-5 relative">
+          <div
+            className="flex justify-center items-center text-[16px] cursor-pointer font-[550] gap-2 mt-5 relative"
+            onClick={() => router.push("contact")}
+          >
             <p>Contact Us</p>
             <ArrowUpRight />
             <div className="absolute w-full h-0.5 rounded-full bg-white bottom-0"></div>

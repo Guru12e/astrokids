@@ -107,7 +107,9 @@ const NewChildDetails = () => {
             position: "top-right",
             autoClose: 3000,
           });
-          router.replace("/");
+          router.push(
+            `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
+          );
         }
       },
 
@@ -568,60 +570,89 @@ const NewChildDetails = () => {
       {loading ? (
         <Loader />
       ) : (
-        <>
-          <div className="w-screen min-h-screen flex flex-col items-center justify-center md:flex-row md:justify-between">
-            <div className="w-full md:w-2/3 min-h-screen flex-col gap-4 bg-gradient-to-b from-[#2DB787]/20 to-[#FFEB3B]/20 p-5 md:p-8 flex items-start justify-center">
+        <div>
+          {!otpSend && (
+            <div className="p-5 md:absolute">
               <ArrowLeft
                 className="w-9 h-9 p-2 text-black bg-white rounded-full cursor-pointer"
                 onClick={() => router.back()}
               />
-              <div className="flex-1 w-[90%] mx-auto flex flex-col gap-4 justify-center">
-                <h1 className="text-[24px] font-bold leading-[1.2]">
-                  Join our community of 10,000+ super parents
-                </h1>
+            </div>
+          )}
+          <div
+            className={`w-screen min-h-screen flex flex-col-reverse items-center justify-center ${
+              otpSend ? "md:flex-row-reverse" : "md:flex-row"
+            } md:justify-between`}
+          >
+            <div
+              className={`w-full py-5 ${
+                otpSend ? "md:w-1/2" : "md:w-2/3 min-h-screen"
+              } flex-col gap-4 ${
+                otpSend
+                  ? ""
+                  : "bg-gradient-to-b from-[#2DB787]/20 to-[#FFEB3B]/20 p-5 md:p-8 flex items-end justify-end"
+              }`}
+            >
+              <div className="flex-1 w-[90%] mx-auto flex flex-col gap-4">
+                {otpSend ? (
+                  <h1 className="font-extrabold text-center text-black text-4xl">
+                    astrokids
+                    <span className="text-xs px-0.5 text-[#5DF2CF]">✦</span>ai
+                  </h1>
+                ) : (
+                  <h1 className="mt-0 md:mt-5 text-[24px] font-bold leading-[1.2]">
+                    Join our community of 10,000+ super parents
+                  </h1>
+                )}
                 {otpSend ? (
                   <div className="w-full flex flex-col gap-4">
-                    <h1 className="text-xl text-center text-gray-700">
-                      Check Mail For OTP
+                    <h1 className="text-[24px] leading-[1.1] text-center text-[#02030B] font-bold">
+                      Enter OTP
                     </h1>
-                    <div
-                      className="flex gap-1 items-center cursor-pointer hover:underline self-center"
-                      onClick={() => setOtpSend(false)}
-                    >
-                      <p className="text-sm">Edit Details</p>
-                      <Pencil size={15} />
-                    </div>
+                    <p className="text-[18px] leading-[1.2] text-center text-[#475467] font-normal">
+                      We have sent a OTP to your email
+                    </p>
+
                     <form
                       onSubmit={handleOtpVerify}
                       className="w-full flex flex-col gap-4"
                     >
-                      <div className="flex w-full gap-2 justify-center">
+                      <div className="flex w-[80%] mx-auto justify-center items-center">
                         {[...Array(4)].map((_, index) => (
-                          <input
+                          <div
                             key={index}
-                            ref={(el) => (inputsRef.current[index] = el)}
-                            type="text"
-                            id="otp"
-                            value={otp[index]}
-                            onChange={(e) =>
-                              handleChange(e.target.value, index)
-                            }
-                            onKeyDown={(e) => handleKeyDown(e, index)}
-                            className="w-12 h-12 text-center border rounded-lg text-2xl text-gray-700 bg-white outline-none border-gray-300 focus:ring focus:ring-purple-300 transition-all"
-                            maxLength="1"
-                            required
-                          />
+                            className={`grid ${
+                              index === 3 ? "grid-cols-1" : "grid-cols-2"
+                            } place-items-center`}
+                          >
+                            <input
+                              ref={(el) => (inputsRef.current[index] = el)}
+                              type="text"
+                              id="otp"
+                              value={otp[index]}
+                              onChange={(e) =>
+                                handleChange(e.target.value, index)
+                              }
+                              onKeyDown={(e) => handleKeyDown(e, index)}
+                              className="w-full h-12 text-center border rounded-lg text-2xl text-gray-700 bg-white outline-none border-gray-300 focus:ring focus:ring-purple-300 transition-all"
+                              maxLength="1"
+                              required
+                            />
+                            {index !== 3 && (
+                              <div className="w-8 rounded-xl h-1 bg-[#98A2B3]"></div>
+                            )}
+                          </div>
                         ))}
                       </div>
                       <button
                         type="submit"
                         disabled={otpVerifyLoading}
-                        className="px-4 w-max mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all capitalize"
+                        className="px-4 py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all capitalize"
                       >
-                        {otpVerifyLoading ? "Loading..." : "Verify OTP"}
-                        <ArrowRight size={20} />
+                        {otpVerifyLoading ? "Loading..." : "Verify"}
                       </button>
                       <div className="self-center">
+                        Didn’t receive code?
                         <button
                           onClick={(e) => {
                             setResendTimer(30);
@@ -629,16 +660,21 @@ const NewChildDetails = () => {
                             handleEmail(e);
                           }}
                           disabled={resendTimer > 0}
-                          className={`p-2 text-sm w-max mx-auto font-bold rounded ${
+                          className={`pl-1 text-[18px] w-max mx-auto font-bold rounded ${
                             resendTimer > 0
-                              ? "bg-gray-300 text-gray-500"
-                              : "bg-pink-500 text-white hover:bg-pink-600"
+                              ? "text-black"
+                              : "text-[#2DB787] underline"
                           }`}
                         >
-                          {resendTimer > 0
-                            ? `Resend OTP in ${resendTimer}s`
-                            : "Resend OTP"}
+                          {resendTimer > 0 ? `${resendTimer}s` : "Resend OTP"}
                         </button>
+                        <div
+                          className="flex gap-1 justify-center mt-4 items-center cursor-pointer hover:underline self-center"
+                          onClick={() => setOtpSend(false)}
+                        >
+                          <p className="text-sm">Edit Details</p>
+                          <Pencil size={15} />
+                        </div>
                       </div>
                     </form>
                   </div>
@@ -886,80 +922,97 @@ const NewChildDetails = () => {
                 )}
               </div>
             </div>
-            <div className="w-full md:w-1/3 mt-5 md:mt-0 h-full flex justify-center items-center">
-              <div className="w-[70%]">
-                <h1 className="text-[#111729] font-semibold text-[24px] leading-[1.2]">
-                  Your Order
-                </h1>
-                <div className="bg-[#2DB787] rounded-xl mt-4 pb-1">
-                  <Carousel
-                    opts={{ align: "start", loop: true }}
-                    setApi={setApi}
-                  >
-                    <CarouselContent>
-                      {pricing.map((_, index) => (
-                        <CarouselItem key={index}>
-                          <div className="w-[120px] aspect-[9/16] mx-auto relative">
-                            <Image
-                              src={`/images/book-cover${index}.png`}
-                              alt={`book-cover`}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        </CarouselItem>
-                      ))}
-                    </CarouselContent>
-                    <CarouselPrevious className="translate-x-[80%]" />
-                    <CarouselNext className="-translate-x-[80%]" />
-                  </Carousel>
-                  <div className="flex justify-center my-2 space-x-2">
-                    {pricing.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`w-2 h-2 rounded-full ${
-                          index === currentIndex ? "bg-white" : "bg-white/50"
-                        }`}
-                        onClick={() => handleSlideChange(index)}
-                      />
-                    ))}
-                  </div>
+            <div
+              className={`${
+                otpSend
+                  ? "w-full md:w-1/2 aspect-square md:h-screen"
+                  : "w-1/3 aspect-auto"
+              } md:mt-0 flex justify-center items-center`}
+            >
+              {otpSend ? (
+                <div className="relative w-full h-full">
+                  <Image
+                    src={"/images/new/otp.png"}
+                    fill
+                    alt="otp-screen"
+                    className="object-cover"
+                  />
                 </div>
-                <h1 className="text-[16px] font-bold leading-[1.2] text-[#111729] my-5">
-                  {pricing[currentIndex].title}
-                </h1>
-                <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
-                <div className="my-5 flex flex-col gap-3">
-                  <div className="flex w-full justify-between">
-                    <h1 className="text-[16px] font-normal text-[#677489]">
-                      Subtotal
-                    </h1>
-                    <p className="text-[16px] text-[#111729] font-normal">
-                      {parseInt(pricing[currentIndex].price) + 200}.00
-                    </p>
-                  </div>
-                  <div className="flex w-full justify-between">
-                    <h1 className="text-[16px] font-normal text-[#677489]">
-                      Discount (30%)
-                    </h1>
-                    <p className="text-[16px] text-[#111729] font-normal">
-                      200.00
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
-                <div className="flex w-full mt-4 justify-between">
-                  <h1 className="text-[16px] font-bold text-[#111729]">
-                    Total
+              ) : (
+                <div className="w-[70%]">
+                  <h1 className="text-[#111729] font-semibold text-[24px] leading-[1.2]">
+                    Your Order
                   </h1>
-                  <p className="text-[16px] text-[#111729] font-semibold">
-                    {parseInt(pricing[currentIndex].price)}.00
-                  </p>
+                  <div className="bg-[#2DB787] rounded-xl mt-4 pb-1">
+                    <Carousel
+                      opts={{ align: "start", loop: true }}
+                      setApi={setApi}
+                    >
+                      <CarouselContent>
+                        {pricing.map((_, index) => (
+                          <CarouselItem key={index}>
+                            <div className="w-[120px] aspect-[9/16] mx-auto relative">
+                              <Image
+                                src={`/images/book-cover${index}.png`}
+                                alt={`book-cover`}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                          </CarouselItem>
+                        ))}
+                      </CarouselContent>
+                      <CarouselPrevious className="translate-x-[80%]" />
+                      <CarouselNext className="-translate-x-[80%]" />
+                    </Carousel>
+                    <div className="flex justify-center my-2 space-x-2">
+                      {pricing.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full ${
+                            index === currentIndex ? "bg-white" : "bg-white/50"
+                          }`}
+                          onClick={() => handleSlideChange(index)}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                  <h1 className="text-[16px] font-bold leading-[1.2] text-[#111729] my-5">
+                    {pricing[currentIndex].title}
+                  </h1>
+                  <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
+                  <div className="my-5 flex flex-col gap-3">
+                    <div className="flex w-full justify-between">
+                      <h1 className="text-[16px] font-normal text-[#677489]">
+                        Subtotal
+                      </h1>
+                      <p className="text-[16px] text-[#111729] font-normal">
+                        {parseInt(pricing[currentIndex].price) + 200}.00
+                      </p>
+                    </div>
+                    <div className="flex w-full justify-between">
+                      <h1 className="text-[16px] font-normal text-[#677489]">
+                        Discount (30%)
+                      </h1>
+                      <p className="text-[16px] text-[#111729] font-normal">
+                        200.00
+                      </p>
+                    </div>
+                  </div>
+                  <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
+                  <div className="flex w-full mt-4 justify-between">
+                    <h1 className="text-[16px] font-bold text-[#111729]">
+                      Total
+                    </h1>
+                    <p className="text-[16px] text-[#111729] font-semibold">
+                      {parseInt(pricing[currentIndex].price)}.00
+                    </p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
-        </>
+        </div>
       )}
     </>
   );
