@@ -9,9 +9,12 @@ export async function POST(request) {
     const { email, name, dob, time, place, gender, number } =
       await request.json();
 
+    console.log(email, name);
     await client.connect();
     const database = client.db("AstroKids");
     const collection = database.collection("childDetails");
+
+    console.log(dob, time);
 
     const user = await collection.findOne({ email });
 
