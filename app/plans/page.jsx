@@ -1,14 +1,16 @@
 "use client";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
-import { ArrowUpRight, Check, MinusIcon, PlusIcon } from "lucide-react";
+import { ArrowUpRight, Check, MinusIcon, PlusIcon, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const AboutPage = () => {
   const [isOpen, setIsOpen] = useState(0);
+  const [detailsOpen, setDetailsOpen] = useState(-1);
   const router = useRouter();
+
   const newPricing = [
     {
       title: "Starter Parenting",
@@ -147,6 +149,7 @@ const AboutPage = () => {
       content: "",
     },
   ];
+
   return (
     <div>
       <Header />
@@ -176,6 +179,7 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
+
       <div id="plan-benefits">
         <div className="w-full h-10"></div>
         <div className="grid px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
@@ -194,7 +198,7 @@ const AboutPage = () => {
                   </h2>
                   <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
                 </div>
-                <ul className="flex flex-col flex-1 gap-5">
+                <ul className="flex flex-col gap-5">
                   {ind !== 0 && (
                     <li className="flex gap-2 items-center">
                       <Check className="bg-[#2DB787] rounded-full text-white p-1" />
@@ -223,6 +227,18 @@ const AboutPage = () => {
                   Start the plan
                   <ArrowUpRight size={20} />
                 </button>
+                <button
+                  className="px-4 mx-auto py-2 font-medium rounded-lg flex justify-center items-center gap-2 border border-[#2DB787] text-[#2DB787] transition-all hover:bg-[#2DB787] hover:text-white"
+                  onClick={() => setDetailsOpen(detailsOpen === ind ? -1 : ind)}
+                >
+                  {detailsOpen === ind ? "Hide Details" : "See Details"}
+                  {detailsOpen === ind ? (
+                    <MinusIcon size={20} />
+                  ) : (
+                    <PlusIcon size={20} />
+                  )}
+                </button>
+
                 {ind === 2 && (
                   <p className="absolute px-3 rounded-b-xl top-0 w-max font-medium translate-x-[50%] right-[50%] new-gradient text-white text-[12px]">
                     Most Loved by Parents ✨
@@ -233,6 +249,72 @@ const AboutPage = () => {
           ))}
         </div>
       </div>
+
+      {detailsOpen !== -1 && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-6 w-[95%] md:w-[60%] max-w-3xl max-h-[80vh] overflow-y-auto relative shadow-2xl border border-gray-100">
+            <div className="sticky flex justify-end top-0">
+              <button
+                className="text-gray-500 hover:text-gray-800 transition-colors duration-200 z-20"
+                onClick={() => setDetailsOpen(-1)}
+              >
+                <X size={28} className="p-1 bg-gray-100 rounded-full" />
+              </button>
+            </div>
+
+            <div className="border-b border-gray-200 pb-4 mb-6">
+              <h2 className="text-[28px] md:text-[32px] font-bold leading-tight text-gray-800">
+                {newPricing[detailsOpen].title}
+              </h2>
+              <p className="text-[16px] text-gray-500 mt-1">
+                Comprehensive Details & Features
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {newPricing.slice(0, detailsOpen + 1).map((plan, planIndex) => (
+                <div key={planIndex}>
+                  {planIndex > 0 && (
+                    <div className="text-sm text-gray-500 italic mb-4">
+                      Includes everything from {newPricing[planIndex - 1].title}
+                    </div>
+                  )}
+                  {plan.what.map((i, index) => (
+                    <div
+                      key={index}
+                      className="group relative flex items-start gap-3 py-2 hover:bg-gray-50 transition-colors duration-200 rounded-lg"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-[#2DB787] mt-2 flex-shrink-0" />
+                      <div>
+                        <p className="text-[18px] font-semibold text-[#2DB787] leading-tight group-hover:text-[#239670] transition-colors duration-200">
+                          {i.title}
+                        </p>
+                        <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
+                          {i.content}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 pt-6 border-t border-gray-200 sticky bg-white bottom-0">
+              <button
+                className="w-full px-6 py-3 bg-gradient-to-r from-[#2DB787] to-[#239670] text-white font-semibold rounded-lg hover:from-[#239670] hover:to-[#1D7A5A] transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
+                onClick={() => {
+                  router.push(
+                    `/child-details?product=true&productIndex=${detailsOpen}`
+                  );
+                }}
+              >
+                Get Started with this Plan
+                <ArrowUpRight size={20} />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="p-5 md:p-16 w-full" id="faq">
         <div className="w-full h-5"></div>
@@ -248,7 +330,7 @@ const AboutPage = () => {
             onClick={() => {
               setIsOpen(index);
             }}
-            className={` max-w-4xl mt-5 rounded-xl border border-[#8F8F8F] mx-auto px-4 py-3 ${
+            className={`max-w-4xl mt-5 rounded-xl border border-[#8F8F8F] mx-auto px-4 py-3 ${
               isOpen === index &&
               "bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] relative"
             }`}
@@ -267,7 +349,7 @@ const AboutPage = () => {
             )}
             <div className="flex justify-between items-center z-10 relative">
               <h1
-                className={` font-medium leading-[1.2] capitalize ${
+                className={`font-medium leading-[1.2] capitalize ${
                   isOpen === index
                     ? "text-white text-[18px]"
                     : "text-[16px] text-[#8F8F8F]"
@@ -289,6 +371,7 @@ const AboutPage = () => {
           </div>
         ))}
       </div>
+
       <NewFooter />
     </div>
   );
