@@ -10,6 +10,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import EmblaCarousel from "@/components/ui/EmblaCarousel";
 import { ArrowRightIcon, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,7 +24,7 @@ const NewPage = () => {
     "rounded-xl",
     "rounded-full",
   ];
-
+  const OPTIONS = { containScroll: false };
   const steps = [
     {
       title: "Select Your Plan",
@@ -166,7 +167,7 @@ const NewPage = () => {
             <button
               className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
               onClick={() => {
-                router.push("/products");
+                router.push("/plans");
               }}
             >
               <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
@@ -757,7 +758,7 @@ const NewPage = () => {
         <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Real Stories from AstroKids Families
         </h1>
-        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
           See How{" "}
           <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
           Found{" "}
@@ -767,7 +768,7 @@ const NewPage = () => {
           </span>{" "}
           ✨
         </h1>
-        <CustomCarousel slides={slides} />
+        <EmblaCarousel slides={slides} options={OPTIONS} />
       </div>
       <NewFooter />
     </div>
