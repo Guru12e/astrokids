@@ -96,8 +96,8 @@ const BlogFormatContent = ({ content }) => {
                     {item.image != "none" && (
                       <div className="w-[60%] aspect-video relative mb-2">
                         <Image
-                          src={`https://drive.usercontent.google.com/download?id=${point.image}`}
-                          alt={point.title}
+                          src={`https://drive.usercontent.google.com/download?id=${item.image}`}
+                          alt={item.title}
                           fill
                           className="rounded-lg shadow-md mb-2"
                         />
