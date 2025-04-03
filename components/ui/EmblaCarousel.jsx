@@ -108,7 +108,7 @@ const EmblaCarousel = (props) => {
                     </div>
                   </div>
                   <div className="bg-[#FFEB3B] flex-1 h-full flex flex-col md:flex-row leading-[1.3] text-[13px] md:text-[20px] p-3 rounded-b-xl md:rounded-tr-xl">
-                    <p className="w-full md:w-[80%] font-[500]">
+                    <p className="w-full md:w-[80%] flex-1 font-[500]">
                       {slide.parent}
                     </p>
                     <p className="w-full md:w-[20%] max-md:mt-3 text-end font-semibold">
