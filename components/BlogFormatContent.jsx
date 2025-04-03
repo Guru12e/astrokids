@@ -23,7 +23,6 @@ const BlogFormatContent = ({ content }) => {
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 3);
 
-        console.log(sortedPosts[0]);
         setRecentPosts(sortedPosts);
       } catch (error) {
         console.log("Error fetching posts:", error);
@@ -74,7 +73,7 @@ const BlogFormatContent = ({ content }) => {
                   <div key={index} className="my-6">
                     <div className="w-[80%] mx-auto aspect-video relative rounded-xl overflow-hidden">
                       <Image
-                        src={`https://drive.usercontent.google.com/download?id=${block.image}`}
+                        src={`https://drive.usercontent.google.com/download?id=${block.image.trim()}`}
                         alt={block.content}
                         fill
                         className="object-cover transition-transform duration-300 hover:scale-105"
