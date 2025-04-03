@@ -1,6 +1,7 @@
 "use client";
-import { DeleteIcon, Trash2 } from "lucide-react";
-import React, { useState } from "react";
+import { DeleteIcon, Pencil, Trash2 } from "lucide-react";
+import { set } from "mongoose";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 const Admin = () => {
@@ -25,6 +26,106 @@ const Admin = () => {
   const [blogContent, setBlogContent] = useState([
     { type: "title", content: "" },
   ]);
+  const [insertIndex, setInsertIndex] = useState(blogContent.length);
+
+  useEffect(() => {
+    setInsertIndex(blogContent.length + 1);
+  }, [blogContent]);
+
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [deletingBlog, setDeletingBlog] = useState(null);
+
+  const fetchAllBlogs = async () => {
+    try {
+      const res = await fetch("/api/getAllPosts", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      if (res.status === 200) {
+        const data = await res.json();
+        setAllBlogs(data);
+      }
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  };
+
+  const handleDeleteBlog = async (slug) => {
+    try {
+      setLoading(true);
+      const res = await fetch("/api/deletePost", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug }),
+      });
+
+      if (res.status === 200) {
+        setAllBlogs(allBlogs.filter((blog) => blog.slug !== slug));
+        setDeletingBlog(null);
+        alert("Blog deleted successfully!");
+      } else {
+        alert("Failed to delete blog");
+      }
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      alert("Error deleting blog");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleUpdateBlog = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const updatedBlog = {
+        title: blogTitle,
+        slug: blogSlug,
+        type: blogType,
+        content: blogContent,
+        createdAt: editingBlog.createdAt,
+      };
+
+      const res = await fetch("/api/updatePost", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedBlog),
+      });
+
+      if (res.status === 200) {
+        setAllBlogs(
+          allBlogs.map((b) => (b.slug === blogSlug ? updatedBlog : b))
+        );
+        setEditingBlog(null);
+        setBlogTitle("");
+        setBlogSlug("");
+        setBlogType(1);
+        setBlogContent([{ type: "title", content: "" }]);
+        setInsertIndex(0);
+        toast.success("Blog updated successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      } else {
+        toast.error("Failed to update blog", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      }
+    } catch (error) {
+      console.error("Error updating blog:", error);
+      alert("Error updating blog");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isAdmin) {
+      fetchAllBlogs();
+    }
+  }, [isAdmin]);
 
   const typesOfBlogs = [
     "Parenting Tips",
@@ -277,6 +378,7 @@ const Admin = () => {
         setBlogSlug("");
         setBlogType(1);
         setBlogContent([{ type: "title", content: "" }]);
+        setInsertIndex(blogContent.length - 1);
       } else {
         toast.error("Failed to add blog post. Please try again.", {
           position: "top-right",
@@ -441,9 +543,650 @@ const Admin = () => {
               >
                 Add Blog
               </button>
+              <button
+                onClick={() => {
+                  setDisplayIndex(7);
+                  setDisplayData(allBlogs);
+                  fetchAllBlogs();
+                }}
+                className={`${
+                  displayIndex === 7 ? "text-blue-500" : "text-black"
+                }`}
+              >
+                All Blogs ({allBlogs.length})
+              </button>
             </div>
             <div className="overflow-y-scroll flex-1 pb-10 flex flex-col">
-              {displayIndex === 6 ? (
+              {displayIndex === 7 ? (
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold mb-4">All Blogs</h2>
+                  {editingBlog ? (
+                    <form onSubmit={handleUpdateBlog} className="space-y-4">
+                      <div>
+                        <label className="block text-gray-700">Title</label>
+                        <input
+                          type="text"
+                          value={blogTitle}
+                          onChange={(e) => setBlogTitle(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700">Slug</label>
+                        <input
+                          type="text"
+                          value={blogSlug}
+                          onChange={(e) => setBlogSlug(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700">Type</label>
+                        <input
+                          type="number"
+                          value={blogType}
+                          onChange={(e) =>
+                            setBlogType(parseInt(e.target.value))
+                          }
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          min="1"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700 mb-2">
+                          Content Sections
+                        </label>
+                        {blogContent.map((section, index) => (
+                          <div key={index} className="border p-4 mb-4 rounded">
+                            <div className="mb-2">
+                              <label className="block text-gray-700">
+                                Section Type
+                              </label>
+                              <select
+                                value={section.type}
+                                onChange={(e) => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].type = e.target.value;
+                                  if (
+                                    e.target.value === "title" ||
+                                    e.target.value === "subtitle" ||
+                                    e.target.value === "para"
+                                  ) {
+                                    newContent[index] = {
+                                      type: e.target.value,
+                                      content: "",
+                                    };
+                                  } else if (e.target.value === "image") {
+                                    newContent[index] = {
+                                      type: "image",
+                                      content: "",
+                                      image: "",
+                                      alt: "",
+                                    };
+                                  } else if (e.target.value === "points") {
+                                    newContent[index] = {
+                                      type: "points",
+                                      points: [{ title: "", content: "" }],
+                                    };
+                                  } else if (
+                                    e.target.value === "points-points"
+                                  ) {
+                                    newContent[index] = {
+                                      type: "points-points",
+                                      content: [
+                                        {
+                                          title: "",
+                                          content: "",
+                                          subtitle: "",
+                                          points: [""],
+                                        },
+                                      ],
+                                    };
+                                  } else if (
+                                    e.target.value ===
+                                    "points-points-with-image"
+                                  ) {
+                                    newContent[index] = {
+                                      type: "points-points-with-image",
+                                      content: [
+                                        {
+                                          title: "",
+                                          image: "",
+                                          content: "",
+                                          subtitle: "",
+                                          points: [""],
+                                        },
+                                      ],
+                                    };
+                                  }
+                                  setBlogContent(newContent);
+                                }}
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                              >
+                                <option value="title">Title</option>
+                                <option value="subtitle">Subtitle</option>
+                                <option value="para">Paragraph</option>
+                                <option value="image">Image</option>
+                                <option value="points">Points</option>
+                                <option value="points-points">
+                                  Points-Points
+                                </option>
+                                <option value="points-points-with-image">
+                                  Points-Points with Image
+                                </option>
+                              </select>
+                            </div>
+                            {(section.type === "title" ||
+                              section.type === "subtitle" ||
+                              section.type === "para") && (
+                              <div>
+                                <label className="block text-gray-700">
+                                  Content
+                                </label>
+                                <input
+                                  type="text"
+                                  value={section.content}
+                                  onChange={(e) => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].content = e.target.value;
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                                  required
+                                />
+                              </div>
+                            )}
+                            {section.type === "image" && (
+                              <>
+                                <div>
+                                  <label className="block text-gray-700">
+                                    Caption
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={section.content}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    required
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-gray-700">
+                                    Image URL
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={section.image}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].image = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    required
+                                  />
+                                </div>
+                                <div>
+                                  <label className="block text-gray-700">
+                                    Alt Text
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={section.alt}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].alt = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                  />
+                                </div>
+                              </>
+                            )}
+                            {section.type === "points" && (
+                              <div>
+                                {section.points.map((point, pIndex) => (
+                                  <div key={pIndex} className="mb-2">
+                                    <label className="block text-gray-700">
+                                      Point {pIndex + 1}
+                                    </label>
+                                    <input
+                                      type="text"
+                                      value={point.title}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].points[pIndex].title =
+                                          e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Title"
+                                      required
+                                    />
+                                    <textarea
+                                      value={point.content}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].points[
+                                          pIndex
+                                        ].content = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Content"
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].points.push({
+                                      title: "",
+                                      content: "",
+                                    });
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Point
+                                </button>
+                              </div>
+                            )}
+                            {section.type === "points-points" && (
+                              <div>
+                                {section.content.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-4 border p-2 rounded"
+                                  >
+                                    <label className="block text-gray-700">
+                                      Item {iIndex + 1}
+                                    </label>
+                                    <input
+                                      type="text"
+                                      value={item.title}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].title = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Title"
+                                      required
+                                    />
+                                    <textarea
+                                      value={item.content}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].content = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Content"
+                                      required
+                                    />
+                                    <input
+                                      type="text"
+                                      value={item.subtitle}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].subtitle = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Subtitle"
+                                      required
+                                    />
+                                    {item.points.map((point, pIndex) => (
+                                      <div key={pIndex} className="ml-4 mt-2">
+                                        <input
+                                          type="text"
+                                          value={point}
+                                          onChange={(e) => {
+                                            const newContent = [...blogContent];
+                                            newContent[index].content[
+                                              iIndex
+                                            ].points[pIndex] = e.target.value;
+                                            setBlogContent(newContent);
+                                          }}
+                                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                                          placeholder={`Point ${pIndex + 1}`}
+                                          required
+                                        />
+                                      </div>
+                                    ))}
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].points.push("");
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-blue-500 mt-2 ml-4"
+                                    >
+                                      Add Point
+                                    </button>
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].content.push({
+                                      title: "",
+                                      content: "",
+                                      subtitle: "",
+                                      points: [""],
+                                    });
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Item
+                                </button>
+                              </div>
+                            )}
+                            {section.type === "points-points-with-image" && (
+                              <div>
+                                {section.content.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-4 border p-2 rounded"
+                                  >
+                                    <div className="flex justify-between">
+                                      <label className="block text-gray-700">
+                                        Item {iIndex + 1}
+                                      </label>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content.splice(
+                                            iIndex,
+                                            1
+                                          );
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      value={item.title}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].title = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Title"
+                                      required
+                                    />
+                                    <input
+                                      type="text"
+                                      value={item.image}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].image = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Image URL"
+                                      required
+                                    />
+                                    <textarea
+                                      value={item.content}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].content = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Content"
+                                      required
+                                    />
+                                    <input
+                                      type="text"
+                                      value={item.subtitle}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].subtitle = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Subtitle"
+                                      required
+                                    />
+                                    {item.points.map((point, pIndex) => (
+                                      <div
+                                        key={pIndex}
+                                        className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                      >
+                                        <input
+                                          type="text"
+                                          value={point}
+                                          onChange={(e) => {
+                                            const newContent = [...blogContent];
+                                            newContent[index].content[
+                                              iIndex
+                                            ].points[pIndex] = e.target.value;
+                                            setBlogContent(newContent);
+                                          }}
+                                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                                          placeholder={`Point ${pIndex + 1}`}
+                                          required
+                                        />
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            const newContent = [...blogContent];
+                                            newContent[index].content[
+                                              iIndex
+                                            ].points.splice(pIndex, 1);
+                                            setBlogContent(newContent);
+                                          }}
+                                          className="text-red-500 mt-2"
+                                        >
+                                          <Trash2 />
+                                        </button>
+                                      </div>
+                                    ))}
+
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content[
+                                          iIndex
+                                        ].points.push("");
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-blue-500 mt-2 ml-4"
+                                    >
+                                      Add Point
+                                    </button>
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].content.push({
+                                      title: "",
+                                      content: "",
+                                      subtitle: "",
+                                      points: [""],
+                                    });
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Item
+                                </button>
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                        <div className="flex items-center gap-4 mt-4">
+                          <div className="flex gap-2 justify-center items-center">
+                            <label className="block text-gray-700">
+                              Insert at Index
+                            </label>
+                            <input
+                              type="number"
+                              min="0"
+                              max={blogContent.length}
+                              value={insertIndex}
+                              onChange={(e) =>
+                                setInsertIndex(
+                                  Math.min(
+                                    Math.max(0, parseInt(e.target.value) || 0),
+                                    blogContent.length
+                                  )
+                                )
+                              }
+                              className="w-20 p-2 border border-gray-300 rounded mt-1"
+                              placeholder={`0-${blogContent.length}`}
+                            />
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              const newContent = [...blogContent];
+                              newContent.splice(insertIndex, 0, {
+                                type: "title",
+                                content: "",
+                              });
+                              setBlogContent(newContent);
+                              setInsertIndex(blogContent.length);
+                            }}
+                            className="text-blue-500"
+                          >
+                            Add Section
+                          </button>
+                        </div>
+                      </div>
+                      <div className="flex gap-4 mt-4">
+                        <button
+                          type="submit"
+                          className="bg-blue-500 text-white p-2 rounded w-full"
+                          disabled={loading}
+                        >
+                          {loading ? "Updating..." : "Update Blog"}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingBlog(null);
+                            setBlogTitle("");
+                            setBlogSlug("");
+                            setBlogType(1);
+                            setBlogContent([{ type: "title", content: "" }]);
+                          }}
+                          className="bg-gray-500 text-white p-2 rounded w-full"
+                          disabled={loading}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  ) : (
+                    <div>
+                      {allBlogs.length > 0 ? (
+                        allBlogs.map((blog) => (
+                          <div
+                            key={blog._id}
+                            className="p-4 border-b border-gray-300 flex justify-between items-center"
+                          >
+                            <h3 className="text-lg font-semibold">
+                              {blog.title}
+                            </h3>
+                            <div className="flex gap-4">
+                              <button
+                                onClick={() => {
+                                  setEditingBlog(blog);
+                                  setBlogTitle(blog.title);
+                                  setBlogSlug(blog.slug);
+                                  setBlogType(blog.type);
+                                  setBlogContent(blog.content);
+                                }}
+                                className="text-blue-500"
+                              >
+                                <Pencil />
+                              </button>
+                              <button
+                                onClick={() => setDeletingBlog(blog)}
+                                className="text-red-500"
+                                disabled={loading}
+                              >
+                                <Trash2 />
+                              </button>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="w-full text-center">
+                          No blogs available.
+                        </p>
+                      )}
+                      {deletingBlog && (
+                        <div className="mt-4 p-4 border border-red-300 rounded">
+                          <p>
+                            Are you sure you want to delete "
+                            {deletingBlog.title}"?
+                          </p>
+                          <div className="flex gap-4 mt-2">
+                            <button
+                              onClick={() =>
+                                handleDeleteBlog(deletingBlog.slug)
+                              }
+                              className="bg-red-500 text-white px-4 py-2 rounded"
+                              disabled={loading}
+                            >
+                              {loading ? "Deleting..." : "Confirm Delete"}
+                            </button>
+                            <button
+                              onClick={() => setDeletingBlog(null)}
+                              className="bg-gray-500 text-white px-4 py-2 rounded"
+                              disabled={loading}
+                            >
+                              Cancel
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              ) : displayIndex === 6 ? (
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-4">Add New Blog Post</h2>
                   <form onSubmit={handleAddBlog} className="space-y-4">
@@ -995,18 +1738,44 @@ const Admin = () => {
                           )}
                         </div>
                       ))}
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setBlogContent([
-                            ...blogContent,
-                            { type: "title", content: "" },
-                          ]);
-                        }}
-                        className="text-blue-500 mt-4"
-                      >
-                        Add Section
-                      </button>
+                      <div className="flex items-center gap-4 mt-4">
+                        <div className="flex gap-2 justify-center items-center">
+                          <label className="block text-gray-700">
+                            Insert at Index
+                          </label>
+                          <input
+                            type="text"
+                            min="0"
+                            max={blogContent.length}
+                            value={insertIndex}
+                            onChange={(e) =>
+                              setInsertIndex(
+                                Math.min(
+                                  Math.max(0, parseInt(e.target.value) || 0),
+                                  blogContent.length
+                                )
+                              )
+                            }
+                            className="w-20 p-2 border-b outline-none border-gray-300 rounded mt-1"
+                            placeholder={`0-${blogContent.length}`}
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            const newContent = [...blogContent];
+                            newContent.splice(insertIndex, 0, {
+                              type: "title",
+                              content: "",
+                            });
+                            setBlogContent(newContent);
+                            setInsertIndex(blogContent.length - 1);
+                          }}
+                          className="text-blue-500"
+                        >
+                          Add Section
+                        </button>
+                      </div>
                     </div>
                     <button
                       type="submit"

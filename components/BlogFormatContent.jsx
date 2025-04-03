@@ -93,6 +93,17 @@ const BlogFormatContent = ({ content }) => {
                       {item.title}
                     </h3>
 
+                    {item.image != "none" && (
+                      <div className="w-[60%] aspect-video relative mb-2">
+                        <Image
+                          src={`https://drive.usercontent.google.com/download?id=${point.image}`}
+                          alt={point.title}
+                          fill
+                          className="rounded-lg shadow-md mb-2"
+                        />
+                      </div>
+                    )}
+
                     <p className="text-gray-600 leading-relaxed mb-3">
                       {item.content}
                     </p>
@@ -104,16 +115,8 @@ const BlogFormatContent = ({ content }) => {
                     <ul className="list-disc pl-6 space-y-2 text-gray-600">
                       {item.points.map((point, i) => (
                         <li key={i}>
-                          <div className="w-[60%] aspect-video relative mb-2">
-                            <Image
-                              src={`https://drive.usercontent.google.com/download?id=${point.image}`}
-                              alt={point.title}
-                              fill
-                              className="rounded-lg shadow-md mb-2"
-                            />
-                          </div>
                           <p className="text-gray-600 leading-relaxed mt-3">
-                            {point.title}
+                            {point}
                           </p>
                         </li>
                       ))}
