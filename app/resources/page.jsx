@@ -34,10 +34,10 @@ const BlogsPage = () => {
           setIsSelect(0);
           setDisplayBlogs(data);
         } else {
-          console.error("Failed to fetch blogs");
+          console.log("Failed to fetch blogs");
         }
       } catch (error) {
-        console.error("Error fetching blogs:", error);
+        console.log("Error fetching blogs:", error);
       } finally {
         setIsLoading(false);
       }
