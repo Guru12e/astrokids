@@ -573,6 +573,16 @@ const Admin = () => {
                         />
                       </div>
                       <div>
+                        <label className="block text-gray-700">Image</label>
+                        <input
+                          type="text"
+                          value={blogImage}
+                          onChange={(e) => setBlogImage(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          required
+                        />
+                      </div>
+                      <div>
                         <label className="block text-gray-700">Slug</label>
                         <input
                           type="text"
