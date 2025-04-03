@@ -84,6 +84,44 @@ const BlogFormatContent = ({ content }) => {
                 ))}
               </div>
             );
+          case "points-points-with-image":
+            return (
+              <div key={index} className="my-8">
+                {block.content.map((item, index) => (
+                  <div key={index} className="mb-6">
+                    <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                      {item.title}
+                    </h3>
+
+                    <p className="text-gray-600 leading-relaxed mb-3">
+                      {item.content}
+                    </p>
+
+                    <h4 className="text-lg font-medium text-gray-700 mt-4 mb-2">
+                      {item.subtitle}
+                    </h4>
+
+                    <ul className="list-disc pl-6 space-y-2 text-gray-600">
+                      {item.points.map((point, i) => (
+                        <li key={i}>
+                          <div className="w-[60%] aspect-video relative mb-2">
+                            <Image
+                              src={`https://drive.usercontent.google.com/download?id=${point.image}`}
+                              alt={point.title}
+                              fill
+                              className="rounded-lg shadow-md mb-2"
+                            />
+                          </div>
+                          <p className="text-gray-600 leading-relaxed mt-3">
+                            {point.title}
+                          </p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            );
           default:
             return null;
         }

@@ -556,6 +556,21 @@ const Admin = () => {
                                       },
                                     ],
                                   };
+                                } else if (
+                                  e.target.value === "points-points-with-image"
+                                ) {
+                                  newContent[index] = {
+                                    type: "points-points-with-image",
+                                    content: [
+                                      {
+                                        title: "",
+                                        image: "",
+                                        content: "",
+                                        subtitle: "",
+                                        points: [""],
+                                      },
+                                    ],
+                                  };
                                 }
                                 setBlogContent(newContent);
                               }}
@@ -568,6 +583,9 @@ const Admin = () => {
                               <option value="points">Points</option>
                               <option value="points-points">
                                 Points-Points
+                              </option>
+                              <option value="points-points-with-image">
+                                Points-Points with Image
                               </option>
                             </select>
                           </div>
@@ -795,6 +813,153 @@ const Admin = () => {
                                       </button>
                                     </div>
                                   ))}
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].points.push("");
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="text-blue-500 mt-2 ml-4"
+                                  >
+                                    Add Point
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].content.push({
+                                    title: "",
+                                    content: "",
+                                    subtitle: "",
+                                    points: [""],
+                                  });
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Item
+                              </button>
+                            </div>
+                          )}
+                          {section.type === "points-points-with-image" && (
+                            <div>
+                              {section.content.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-4 border p-2 rounded"
+                                >
+                                  <div className="flex justify-between">
+                                    <label className="block text-gray-700">
+                                      Item {iIndex + 1}
+                                    </label>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    value={item.title}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[iIndex].title =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Title"
+                                    required
+                                  />
+                                  <input
+                                    type="text"
+                                    value={item.image}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[iIndex].image =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Image URL"
+                                    required
+                                  />
+                                  <textarea
+                                    value={item.content}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].content = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Content"
+                                    required
+                                  />
+                                  <input
+                                    type="text"
+                                    value={item.subtitle}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].subtitle = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Subtitle"
+                                    required
+                                  />
+                                  {item.points.map((point, pIndex) => (
+                                    <div
+                                      key={pIndex}
+                                      className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                    >
+                                      <input
+                                        type="text"
+                                        value={point}
+                                        onChange={(e) => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content[
+                                            iIndex
+                                          ].points[pIndex] = e.target.value;
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                                        placeholder={`Point ${pIndex + 1}`}
+                                        required
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content[
+                                            iIndex
+                                          ].points.splice(pIndex, 1);
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500 mt-2"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
+                                  ))}
+
                                   <button
                                     type="button"
                                     onClick={() => {
