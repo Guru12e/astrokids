@@ -49,9 +49,7 @@ export default function BlogPage({ params }) {
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
-      <article className="container mx-auto px-4">
-        <BlogFormatContent content={blogData} />
-      </article>
+      <BlogFormatContent content={blogData} />
     </div>
   );
 }
