@@ -1,8 +1,10 @@
 "use client";
-import { set } from "mongoose";
+import { DeleteIcon, Trash2 } from "lucide-react";
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+
 const Admin = () => {
-  const [loading, setloading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [pageLoading, setPageLoading] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   const [username, setUsername] = useState("");
@@ -11,11 +13,26 @@ const Admin = () => {
   const [finishedOrder, setFinishedOrder] = useState([]);
   const [requestOrders, setRequestOrders] = useState([]);
   const [resourcesOrders, setResourcesOrders] = useState([]);
-  const [filterIndex, setFilterInedx] = useState(5);
+  const [filterIndex, setFilterIndex] = useState(5);
   const [quizEmail, setQuizEmail] = useState([]);
   const [confirming, setConfirming] = useState({ email: "", orderId: "" });
   const [displayIndex, setDisplayIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
+  const [blogTitle, setBlogTitle] = useState("");
+  const [blogImage, setBlogImage] = useState("");
+  const [blogSlug, setBlogSlug] = useState("");
+  const [blogType, setBlogType] = useState(1);
+  const [blogContent, setBlogContent] = useState([
+    { type: "title", content: "" },
+  ]);
+
+  const typesOfBlogs = [
+    "Parenting Tips",
+    "Astrology Basics",
+    "Ayurveda",
+    "Wellness",
+    "Success Stories",
+  ];
 
   const ageOption = [
     "Age (0 - 4 Years)",
@@ -37,28 +54,16 @@ const Admin = () => {
 
   const getChildDetails = async () => {
     setPageLoading(true);
-
     setPendingOrder([]);
     setFinishedOrder([]);
     setRequestOrders([]);
     setQuizEmail([]);
     setResourcesOrders([]);
 
-    const res = await fetch("/api/getChildDetails", {
-      method: "POST",
-    });
-
-    const res1 = await fetch("/api/getrequestDetails", {
-      method: "POST",
-    });
-
-    const res3 = await fetch("/api/getQuizEmail", {
-      method: "POST",
-    });
-
-    const res4 = await fetch("/api/getSampleReports", {
-      method: "POST",
-    });
+    const res = await fetch("/api/getChildDetails", { method: "POST" });
+    const res1 = await fetch("/api/getrequestDetails", { method: "POST" });
+    const res3 = await fetch("/api/getQuizEmail", { method: "POST" });
+    const res4 = await fetch("/api/getSampleReports", { method: "POST" });
 
     const details = await res.json();
     const details1 = await res1.json();
@@ -152,19 +157,16 @@ const Admin = () => {
         createdAt: item.addedAt,
       });
     });
-
     setResourcesOrders(resources);
   };
 
   const adminLogin = async (e) => {
     e.preventDefault();
-    setloading(true);
-
+    setLoading(true);
     const res = await fetch("/api/adminLogin", {
       method: "POST",
       body: JSON.stringify({ username, password }),
     });
-
     if (res.status === 200) {
       setIsAdmin(true);
       getChildDetails();
@@ -173,47 +175,36 @@ const Admin = () => {
     } else {
       alert("Invalid Credentials");
     }
-
-    setloading(false);
+    setLoading(false);
   };
 
   const handleConfirm = async (email, orderId) => {
     try {
-      setloading(true);
+      setLoading(true);
       const res = await fetch("/api/updateChildDetails", {
         method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          isChecked: true,
-          orderId,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, isChecked: true, orderId }),
       });
-
       if (res.status === 200) {
         getChildDetails();
         setConfirming({ email: "", orderId: "" });
       } else {
         console.log("Failed to update child status");
       }
-
-      setloading(false);
+      setLoading(false);
     } catch (error) {
       console.log("Error updating child status:", error);
     }
   };
 
   const HandleReport = async (item) => {
-    setloading(true);
+    setLoading(true);
     const res = await fetch(
       "https://report-api-0fic.onrender.com/generate_report",
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           dob: `${item.dob} ${item.time}:00`,
           location: item.place.split(",")[0],
@@ -225,25 +216,18 @@ const Admin = () => {
         }),
       }
     );
-
-    setloading(false);
+    setLoading(false);
     if (res.status == 200) {
       alert("Check Mail");
     }
   };
 
   const processState = (time, status) => {
-    if (displayData == 1) {
-      return "Report Generated";
-    }
+    if (displayData == 1) return "Report Generated";
     const date = new Date(time);
     const today = new Date();
     const diffTime = Math.abs(today - date);
-
-    if (status) {
-      return "Generate Report";
-    }
-
+    if (status) return "Generate Report";
     return diffTime < 10800000 ? "Wait For Update" : "Generate Report";
   };
 
@@ -259,36 +243,80 @@ const Admin = () => {
     const hours = String(date.getHours()).padStart(2, "0");
     const minutes = String(date.getMinutes()).padStart(2, "0");
     const seconds = String(date.getSeconds()).padStart(2, "0");
-
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  };
+
+  const handleAddBlog = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const blogData = {
+        title: blogTitle,
+        image: blogImage,
+        slug: blogSlug,
+        type: blogType,
+        content: blogContent,
+        createdAt: new Date(),
+      };
+
+      const res = await fetch("/api/addPost", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(blogData),
+      });
+
+      if (res.status === 201) {
+        toast.success("Blog post added successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+
+        setBlogTitle("");
+        setBlogImage("");
+        setBlogSlug("");
+        setBlogType(1);
+        setBlogContent([{ type: "title", content: "" }]);
+      } else {
+        toast.error("Failed to add blog post. Please try again.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      }
+    } catch (error) {
+      console.error("Error adding blog post:", error);
+      alert("An error occurred while adding the blog post");
+    }
+
+    setLoading(false);
   };
 
   return (
     <div>
       {pageLoading ? (
-        <div className='w-screen h-screen bg-black bg-opacity-40 flex justify-center items-center'>
+        <div className="w-screen h-screen bg-black bg-opacity-40 flex justify-center items-center">
           loading....
         </div>
       ) : isAdmin ? (
-        <div className='w-screen h-screen overflow-hidden bg-white text-black pt-5'>
-          <div className='flex justify-center items-center mb-4 px-6'>
-            <h1 className='text-2xl md:flex-1 font-bold xl:text-center flex-1'>
+        <div className="w-screen h-screen overflow-hidden bg-white text-black pt-5">
+          <div className="flex justify-center items-center mb-4 px-6">
+            <h1 className="text-2xl md:flex-1 font-bold xl:text-center flex-1">
               Report Progress
             </h1>
             <button
-              className='text-blue-400 text-end'
+              className="text-blue-400 text-end"
               onClick={getChildDetails}
             >
               Refresh
             </button>
           </div>
-          <div className='flex xl:flex-row flex-col w-full h-full overflow-hidden'>
-            <div className='flex flex-col px-10'>
+          <div className="flex xl:flex-row flex-col w-full h-full overflow-hidden">
+            <div className="flex flex-col px-10">
               <button
                 onClick={() => {
                   setDisplayData(pendingOrder);
                   setDisplayIndex(0);
-                  setFilterInedx(5);
+                  setFilterIndex(5);
                 }}
                 className={`${
                   displayIndex == 0 ? "text-blue-500" : "text-black"
@@ -304,7 +332,7 @@ const Admin = () => {
                         setDisplayData(
                           pendingOrder.filter((item) => item.plan == plan)
                         );
-                        setFilterInedx(index);
+                        setFilterIndex(index);
                       }}
                       className={`w-full text-black text-center ${
                         pendingOrder.length > 0 ? "block" : "hidden"
@@ -320,7 +348,7 @@ const Admin = () => {
                 onClick={() => {
                   setDisplayData(finishedOrder);
                   setDisplayIndex(1);
-                  setFilterInedx(5);
+                  setFilterIndex(5);
                 }}
                 className={`${
                   displayIndex == 1 ? "text-blue-500" : "text-black"
@@ -336,7 +364,7 @@ const Admin = () => {
                         setDisplayData(
                           finishedOrder.filter((item) => item.plan == plan)
                         );
-                        setFilterInedx(index);
+                        setFilterIndex(index);
                       }}
                       className={`w-full text-black text-center ${
                         finishedOrder.length > 0 ? "block" : "hidden"
@@ -363,7 +391,7 @@ const Admin = () => {
                 onClick={() => {
                   setDisplayData(quizEmail);
                   setDisplayIndex(4);
-                  setFilterInedx(5);
+                  setFilterIndex(5);
                 }}
                 className={`${
                   displayIndex == 4 ? "text-blue-500" : "text-black"
@@ -379,10 +407,10 @@ const Admin = () => {
                         setDisplayData(
                           quizEmail.filter((item) => item.age == age)
                         );
-                        setFilterInedx(index);
+                        setFilterIndex(index);
                       }}
                       className={`w-full text-black text-center ${
-                        quizEmail.length > 0 ? "block" : "hidden "
+                        quizEmail.length > 0 ? "block" : "hidden"
                       } ${
                         filterIndex == index ? "text-blue-500" : "text-black"
                       }`}
@@ -400,22 +428,442 @@ const Admin = () => {
                   displayIndex == 5 ? "text-blue-500" : "text-black"
                 }`}
               >
-                Resourses ({resourcesOrders.length})
+                Resources ({resourcesOrders.length})
+              </button>
+              <button
+                onClick={() => {
+                  setDisplayIndex(6);
+                  setDisplayData([]);
+                }}
+                className={`${
+                  displayIndex == 6 ? "text-blue-500" : "text-black"
+                }`}
+              >
+                Add Blog
               </button>
             </div>
-            <div className='overflow-y-scroll flex-1 pb-10 flex flex-col'>
-              {displayData.length > 0 ? (
+            <div className="overflow-y-scroll flex-1 pb-10 flex flex-col">
+              {displayIndex === 6 ? (
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold mb-4">Add New Blog Post</h2>
+                  <form onSubmit={handleAddBlog} className="space-y-4">
+                    <div>
+                      <label className="block text-gray-700">Title</label>
+                      <input
+                        type="text"
+                        value={blogTitle}
+                        onChange={(e) => setBlogTitle(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Image</label>
+                      <input
+                        type="text"
+                        value={blogImage}
+                        onChange={(e) => setBlogImage(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Slug</label>
+                      <input
+                        type="text"
+                        value={blogSlug}
+                        onChange={(e) => setBlogSlug(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Type</label>
+
+                      <select
+                        value={blogType}
+                        onChange={(e) => setBlogType(parseInt(e.target.value))}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                      >
+                        {typesOfBlogs.map((type, index) => (
+                          <option key={index} value={index + 1}>
+                            {type}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-gray-700 mb-2">
+                        Content Sections
+                      </label>
+                      {blogContent.map((section, index) => (
+                        <div key={index} className="border p-4 mb-4 rounded">
+                          <div className="flex justify-between items-center mb-2">
+                            <h3 className="text-lg font-semibold">
+                              Section {index + 1}
+                            </h3>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                const newContent = [...blogContent];
+                                newContent.splice(index, 1);
+                                setBlogContent(newContent);
+                              }}
+                              className="text-red-500"
+                            >
+                              <Trash2 />
+                            </button>
+                          </div>
+                          <div className="mb-2">
+                            <label className="block text-gray-700">
+                              Section Type
+                            </label>
+                            <select
+                              value={section.type}
+                              onChange={(e) => {
+                                const newContent = [...blogContent];
+                                newContent[index].type = e.target.value;
+                                if (
+                                  e.target.value === "title" ||
+                                  e.target.value === "subtitle" ||
+                                  e.target.value === "para"
+                                ) {
+                                  newContent[index] = {
+                                    type: e.target.value,
+                                    content: "",
+                                  };
+                                } else if (e.target.value === "image") {
+                                  newContent[index] = {
+                                    type: "image",
+                                    content: "",
+                                    image: "",
+                                    alt: "",
+                                  };
+                                } else if (e.target.value === "points") {
+                                  newContent[index] = {
+                                    type: "points",
+                                    points: [{ title: "", content: "" }],
+                                  };
+                                } else if (e.target.value === "points-points") {
+                                  newContent[index] = {
+                                    type: "points-points",
+                                    content: [
+                                      {
+                                        title: "",
+                                        content: "",
+                                        subtitle: "",
+                                        points: [""],
+                                      },
+                                    ],
+                                  };
+                                }
+                                setBlogContent(newContent);
+                              }}
+                              className="w-full p-2 border border-gray-300 rounded mt-1"
+                            >
+                              <option value="title">Title</option>
+                              <option value="subtitle">Subtitle</option>
+                              <option value="para">Paragraph</option>
+                              <option value="image">Image</option>
+                              <option value="points">Points</option>
+                              <option value="points-points">
+                                Points-Points
+                              </option>
+                            </select>
+                          </div>
+
+                          {(section.type === "title" ||
+                            section.type === "subtitle" ||
+                            section.type === "para") && (
+                            <div>
+                              <label className="block text-gray-700">
+                                Content
+                              </label>
+                              <input
+                                type="text"
+                                value={section.content}
+                                onChange={(e) => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].content = e.target.value;
+                                  setBlogContent(newContent);
+                                }}
+                                className="w-full p-2 border border-gray-300 rounded mt-1"
+                                required
+                              />
+                            </div>
+                          )}
+
+                          {section.type === "image" && (
+                            <>
+                              <div>
+                                <label className="block text-gray-700">
+                                  Caption
+                                </label>
+                                <input
+                                  type="text"
+                                  value={section.content}
+                                  onChange={(e) => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].content = e.target.value;
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-gray-700">
+                                  Image URL
+                                </label>
+                                <input
+                                  type="text"
+                                  value={section.image}
+                                  onChange={(e) => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].image = e.target.value;
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                                  required
+                                />
+                              </div>
+                              <div>
+                                <label className="block text-gray-700">
+                                  Alt Text
+                                </label>
+                                <input
+                                  type="text"
+                                  value={section.alt}
+                                  onChange={(e) => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].alt = e.target.value;
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="w-full p-2 border border-gray-300 rounded mt-1"
+                                />
+                              </div>
+                            </>
+                          )}
+
+                          {section.type === "points" && (
+                            <div>
+                              {section.points.map((point, pIndex) => (
+                                <div key={pIndex} className="mb-2">
+                                  <label className="block text-gray-700">
+                                    Point {pIndex + 1}
+                                  </label>
+                                  <input
+                                    type="text"
+                                    value={point.title}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].points[pIndex].title =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Title"
+                                    required
+                                  />
+                                  <textarea
+                                    value={point.content}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].points[pIndex].content =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Content"
+                                    required
+                                  />
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].points.push({
+                                    title: "",
+                                    content: "",
+                                  });
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Point
+                              </button>
+                            </div>
+                          )}
+                          {section.type === "points-points" && (
+                            <div>
+                              {section.content.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-4 border p-2 rounded"
+                                >
+                                  <div className="flex justify-between">
+                                    <label className="block text-gray-700">
+                                      Item {iIndex + 1}
+                                    </label>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].content.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    value={item.title}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[iIndex].title =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Title"
+                                    required
+                                  />
+                                  <textarea
+                                    value={item.content}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].content = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Content"
+                                    required
+                                  />
+                                  <input
+                                    type="text"
+                                    value={item.subtitle}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].subtitle = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Subtitle"
+                                    required
+                                  />
+                                  {item.points.map((point, pIndex) => (
+                                    <div
+                                      key={pIndex}
+                                      className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                    >
+                                      <input
+                                        type="text"
+                                        value={point}
+                                        onChange={(e) => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content[
+                                            iIndex
+                                          ].points[pIndex] = e.target.value;
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                                        placeholder={`Point ${pIndex + 1}`}
+                                        required
+                                      />
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content[
+                                            iIndex
+                                          ].points.splice(pIndex, 1);
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500 mt-2"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
+                                  ))}
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].content[
+                                        iIndex
+                                      ].points.push("");
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="text-blue-500 mt-2 ml-4"
+                                  >
+                                    Add Point
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].content.push({
+                                    title: "",
+                                    content: "",
+                                    subtitle: "",
+                                    points: [""],
+                                  });
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Item
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setBlogContent([
+                            ...blogContent,
+                            { type: "title", content: "" },
+                          ]);
+                        }}
+                        className="text-blue-500 mt-4"
+                      >
+                        Add Section
+                      </button>
+                    </div>
+                    <button
+                      type="submit"
+                      className="bg-blue-500 text-white p-2 rounded w-full"
+                      disabled={loading}
+                    >
+                      {loading ? "Adding..." : "Add Blog Post"}
+                    </button>
+                  </form>
+                </div>
+              ) : displayData.length > 0 ? (
                 displayData.map((item, index) => (
-                  <div key={index} className='p-4 border-b border-gray-300'>
+                  <div key={index} className="p-4 border-b border-gray-300">
                     {displayIndex != 3 && displayIndex != 4 && (
-                      <h2 className='font-semibold text-xl'>{item.name}</h2>
+                      <h2 className="font-semibold text-xl">{item.name}</h2>
                     )}
-                    <div className='mt-2'>
+                    <div className="mt-2">
                       {displayIndex != 3 &&
                         displayIndex != 4 &&
                         displayIndex != 5 && (
                           <p>
-                            <span className='font-semibold'>
+                            <span className="font-semibold">
                               Date of Birth:{" "}
                             </span>
                             {item.dob} {item.time}:00
@@ -425,7 +873,7 @@ const Admin = () => {
                         displayIndex != 4 &&
                         displayIndex != 5 && (
                           <p>
-                            <span className='font-semibold'>
+                            <span className="font-semibold">
                               Place of Birth:{" "}
                             </span>
                             {item.place}
@@ -435,47 +883,46 @@ const Admin = () => {
                         displayIndex != 4 &&
                         displayIndex != 5 && (
                           <p>
-                            <span className='font-semibold'>Gender: </span>
+                            <span className="font-semibold">Gender: </span>
                             {item.gender}
                           </p>
                         )}
                       {displayIndex == 0 && (
                         <p>
-                          <span className='font-semibold'>lat & lon: </span>
+                          <span className="font-semibold">lat & lon: </span>
                           {item.lat} & {item.lon}
                         </p>
                       )}
-
                       <p>
-                        <span className='font-semibold'>Email: </span>
+                        <span className="font-semibold">Email: </span>
                         {item.email}
                       </p>
                       {displayIndex != 5 && (
                         <p>
-                          <span className='font-semibold'>Number: </span>
+                          <span className="font-semibold">Number: </span>
                           {item.number}
                         </p>
                       )}
                       {displayIndex == 5 && (
                         <p>
-                          <span className='font-semibold'>Type: </span>
+                          <span className="font-semibold">Type: </span>
                           {item.type}
                         </p>
                       )}
                       {(displayIndex == 0 || displayIndex == 1) && (
                         <p>
-                          <span className='font-semibold'>Plan: </span>
+                          <span className="font-semibold">Plan: </span>
                           {item.plan}
                         </p>
                       )}
                       {displayIndex == 4 && (
                         <p>
-                          <span className='font-semibold'>Age: </span>
+                          <span className="font-semibold">Age: </span>
                           {item.age}
                         </p>
                       )}
                       <p>
-                        <span className='font-semibold'>Created At: </span>
+                        <span className="font-semibold">Created At: </span>
                         {foramtDate(new Date(item.createdAt))}
                       </p>
                       {displayIndex !== 2 &&
@@ -484,44 +931,42 @@ const Admin = () => {
                         displayIndex != 5 && (
                           <>
                             <p>
-                              <span className='font-semibold'>
+                              <span className="font-semibold">
                                 Data Changes:{" "}
                               </span>
                               {item?.changes.toString()}
                             </p>
-
                             <p>
-                              <span className='font-semibold'>Order Id: </span>
+                              <span className="font-semibold">Order Id: </span>
                               {item.orderId}
                             </p>
-
                             <p>
-                              <span className='font-semibold'>Process: </span>
+                              <span className="font-semibold">Process: </span>
                               {processState(item.createdAt, item.changes)}
                             </p>
                           </>
                         )}
                       {displayIndex == 0 && (
                         <div>
-                          <div className='mt-4'>
-                            <label className='flex items-center space-x-2'>
+                          <div className="mt-4">
+                            <label className="flex items-center space-x-2">
                               <input
-                                type='checkbox'
+                                type="checkbox"
                                 disabled={loading}
                                 checked={item.isChecked}
                                 onChange={() =>
                                   handleCheckboxChange(item.email, item.orderId)
                                 }
-                                className='form-checkbox'
+                                className="form-checkbox"
                               />
-                              <span className='text-sm'>Mark as checked</span>
+                              <span className="text-sm">Mark as checked</span>
                             </label>
                             {loading ? (
                               <div>loading...</div>
                             ) : (
                               confirming.email == item.email &&
                               confirming.orderId == item.orderId && (
-                                <div className='mt-2'>
+                                <div className="mt-2">
                                   <button
                                     onClick={() =>
                                       handleConfirm(
@@ -529,13 +974,13 @@ const Admin = () => {
                                         confirming.orderId
                                       )
                                     }
-                                    className='bg-green-500 text-white px-4 py-2 rounded mr-2'
+                                    className="bg-green-500 text-white px-4 py-2 rounded mr-2"
                                   >
                                     Confirm
                                   </button>
                                   <button
                                     onClick={handleCancel}
-                                    className='bg-red-500 text-white px-4 py-2 rounded'
+                                    className="bg-red-500 text-white px-4 py-2 rounded"
                                   >
                                     Cancel
                                   </button>
@@ -543,13 +988,10 @@ const Admin = () => {
                               )
                             )}
                           </div>
-
-                          <div className='mt-5'>
+                          <div className="mt-5">
                             <button
-                              className='py-2 px-4 border border-black rounded-xl'
-                              onClick={() => {
-                                HandleReport(item);
-                              }}
+                              className="py-2 px-4 border border-black rounded-xl"
+                              onClick={() => HandleReport(item)}
                               disabled={loading}
                             >
                               {loading ? "Loading.." : "Generate Report"}
@@ -561,7 +1003,7 @@ const Admin = () => {
                   </div>
                 ))
               ) : (
-                <p className='w-full text-center'>
+                <p className="w-full text-center">
                   No child details available.
                 </p>
               )}
@@ -569,35 +1011,35 @@ const Admin = () => {
           </div>
         </div>
       ) : (
-        <div className='w-screen h-screen flex justify-center text-black items-center'>
+        <div className="w-screen h-screen flex justify-center text-black items-center">
           <form
             onSubmit={adminLogin}
-            className='bg-white px-12 py-5 rounded shadow-lg'
+            className="bg-white px-12 py-5 rounded shadow-lg"
           >
-            <h2 className='text-2xl mb-4 text-center'>Admin Login</h2>
-            <div className='mb-4'>
-              <label className='block text-gray-700'>Username</label>
+            <h2 className="text-2xl mb-4 text-center">Admin Login</h2>
+            <div className="mb-4">
+              <label className="block text-gray-700">Username</label>
               <input
-                type='text'
+                type="text"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className='w-full p-2 border border-gray-300 rounded mt-1'
+                className="w-full p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
-            <div className='mb-4'>
-              <label className='block text-gray-700'>Password</label>
+            <div className="mb-4">
+              <label className="block text-gray-700">Password</label>
               <input
-                type='password'
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className='w-full p-2 border border-gray-300 rounded mt-1'
+                className="w-full p-2 border border-gray-300 rounded mt-1"
                 required
               />
             </div>
             <button
-              type='submit'
-              className='w-full bg-blue-500 text-white p-2 rounded mt-4'
+              type="submit"
+              className="w-full bg-blue-500 text-white p-2 rounded mt-4"
               disabled={loading}
             >
               {loading ? "Logging in..." : "Login"}

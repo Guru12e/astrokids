@@ -1,10 +1,10 @@
 "use client";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
-import NewNavBar from "@/components/NewNavBar";
-import { ArrowRight, ChevronRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import Link from "next/link";
+import React, { useState, useEffect } from "react";
 
 const BlogsPage = () => {
   const buttons = [
@@ -16,6 +16,48 @@ const BlogsPage = () => {
     "Success Stories",
   ];
   const [isSelect, setIsSelect] = useState(0);
+  const [blogs, setBlogs] = useState([]);
+  const [displayBlogs, setDisplayBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const res = await fetch("/api/getAllPosts", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (res.status === 200) {
+          const data = await res.json();
+          setBlogs(data);
+          setIsSelect(0);
+          setDisplayBlogs(data);
+        } else {
+          console.error("Failed to fetch blogs");
+        }
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchBlogs();
+  }, []);
+
+  const getBlogImage = (content) => {
+    const imageSection = content.find((section) => section.type === "image");
+    return imageSection ? imageSection.image : "/images/new/blog.png";
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-600">Loading blogs...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -33,7 +75,17 @@ const BlogsPage = () => {
           {buttons.map((button, index) => (
             <button
               key={index}
-              onClick={() => setIsSelect(index)}
+              onClick={() => {
+                setIsSelect(index);
+                if (index === 0) {
+                  setDisplayBlogs(blogs);
+                } else {
+                  const filteredBlogs = blogs.filter(
+                    (blog) => blog.type === index
+                  );
+                  setDisplayBlogs(filteredBlogs);
+                }
+              }}
               className={`px-4 md:px-6 py-2 font-semibold rounded-3xl ${
                 isSelect === index
                   ? "bg-[#02030B] text-white"
@@ -46,124 +98,43 @@ const BlogsPage = () => {
         </div>
 
         <div>
-          <div className="flex justify-between items-center mt-10">
-            <h1 className="text-[#02030B] font-semibold leading-[1.2] text-[24px]">
-              Recent Blogs
-            </h1>
-            <button className="text-[#2DB787] text-[16px] font-semibold flex items-center gap-1">
-              View All (16){" "}
-              <span>
-                <ChevronRight />
-              </span>
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-5">
-            {Array(3)
-              .fill()
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center"
+          {displayBlogs.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-5">
+              {displayBlogs.map((blog) => (
+                <Link
+                  key={blog._id}
+                  href={`/blogs/${blog.slug}`}
+                  className="w-full"
                 >
-                  <div className="w-full aspect-video relative rounded-t-xl">
-                    <Image
-                      src={`/images/new/blog.png`}
-                      alt={`blog`}
-                      fill
-                      className="object-cover"
-                    />
+                  <div className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center">
+                    <div className="w-full aspect-video relative rounded-t-xl">
+                      <Image
+                        src={`https://drive.usercontent.google.com/download?id=${getBlogImage(
+                          blog.content
+                        )}`}
+                        alt={blog.title}
+                        fill
+                        className="object-cover rounded-t-xl"
+                      />
+                    </div>
+                    <div className="bg-[#F2F2F2] px-3 py-2 rounded-b-xl w-full">
+                      <h1 className="text-[18px] font-normal leading-[1.2] text-start text-[#9396A3]">
+                        {buttons.find((_, idx) => blog.type === idx) ||
+                          "Topic Of Interest"}
+                      </h1>
+                      <h1 className="text-[#02030B] font-semibold leading-[1.2] text-start my-3 text-[18px]">
+                        {blog.title}
+                      </h1>
+                    </div>
                   </div>
-                  <div className="bg-[#F2F2F2] px-3 py-2 rounded-b-xl w-full">
-                    <h1 className="text-[18px] font-normal leading-[1.2] text-start text-[#9396A3]">
-                      Topic Of Interest
-                    </h1>
-                    <h1 className="text-[#02030B] font-semibold leading-[1.2] text-start my-3 text-[18px]">
-                      How to raise a confident child?
-                    </h1>
-                  </div>
-                </div>
+                </Link>
               ))}
-          </div>
-        </div>
-        <div>
-          <div className="flex justify-between items-center mt-10">
-            <h1 className="text-[#02030B] font-semibold leading-[1.2] text-[24px]">
-              Parenting Tips
+            </div>
+          ) : (
+            <h1 className="w-full text-gray-500 text-lg mt-5 font-semibold text-center">
+              No blogs available for this category.
             </h1>
-            <button className="text-[#2DB787] text-[16px] font-semibold flex items-center gap-1">
-              View All (16){" "}
-              <span>
-                <ChevronRight />
-              </span>
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-5">
-            {Array(3)
-              .fill()
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center"
-                >
-                  <div className="w-full aspect-video relative rounded-t-xl">
-                    <Image
-                      src={`/images/new/blog.png`}
-                      alt={`blog`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="bg-[#F2F2F2] px-3 py-2 rounded-b-xl w-full">
-                    <h1 className="text-[18px] font-normal leading-[1.2] text-start text-[#9396A3]">
-                      Topic Of Interest
-                    </h1>
-                    <h1 className="text-[#02030B] font-semibold leading-[1.2] text-start my-3 text-[18px]">
-                      How to raise a confident child?
-                    </h1>
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
-        <div>
-          <div className="flex justify-between items-center mt-10">
-            <h1 className="text-[#02030B] font-semibold leading-[1.2] text-[24px]">
-              Astrology Basics
-            </h1>
-            <button className="text-[#2DB787] text-[16px] font-semibold flex items-center gap-1">
-              View All (16){" "}
-              <span>
-                <ChevronRight />
-              </span>
-            </button>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-5">
-            {Array(3)
-              .fill()
-              .map((_, index) => (
-                <div
-                  key={index}
-                  className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center"
-                >
-                  <div className="w-full aspect-video relative rounded-t-xl">
-                    <Image
-                      src={`/images/new/blog.png`}
-                      alt={`blog`}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="bg-[#F2F2F2] px-3 py-2 rounded-b-xl w-full">
-                    <h1 className="text-[18px] font-normal leading-[1.2] text-start text-[#9396A3]">
-                      Topic Of Interest
-                    </h1>
-                    <h1 className="text-[#02030B] font-semibold leading-[1.2] text-start my-3 text-[18px]">
-                      How to raise a confident child?
-                    </h1>
-                  </div>
-                </div>
-              ))}
-          </div>
+          )}
         </div>
       </div>
       <div className="mb-8"></div>

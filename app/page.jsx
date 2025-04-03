@@ -173,7 +173,7 @@ const NewPage = () => {
                 <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
 
                 <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Discover Your Child Plan
+                  Discover your child Potential
                 </span>
 
                 <ArrowRightIcon
@@ -266,7 +266,7 @@ const NewPage = () => {
       </div>
       <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
         <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
-          Astrokids Membership Benefits
+          Astrokids Report Benefits
         </h1>
         <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
           <div

@@ -9,7 +9,6 @@ const Header = () => {
   const pathName = usePathname().split("/")[1];
   const router = useRouter();
 
-  console.log(pathName);
   return (
     <div className="w-screen fixed top-0 z-[1000] bg-transparent md:bg-[#02030B] px-3 md:px-14 py-4">
       <div className="flex max-md:bg-[#0E0C15]/60 p-2 md:p-0 rounded-xl items-center justify-between w-full">

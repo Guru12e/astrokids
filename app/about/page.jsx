@@ -1,10 +1,13 @@
+"use client";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const AboutPage = () => {
+  const router = useRouter();
   const about = [
     {
       title: "No Generic Advice",
@@ -35,7 +38,7 @@ const AboutPage = () => {
       desc: "Technology should empower, not complicate. Our AI models make Vedic astrology accessible to every family.",
     },
     {
-      title: "Nallaneram Nagaraj",
+      title: "Nagaraj",
       con: "Lead Vedic Astrologer",
       desc: "Your child’s birth chart isn’t their destiny — it’s a roadmap to their strengths. Let’s walk this journey together.",
     },
@@ -43,17 +46,17 @@ const AboutPage = () => {
   return (
     <div className="w-full h-full">
       <Header />
-      <div className="w-screen h-screen">
-        <div className="w-screen h-screen overflow-hidden relative">
+      <div className="w-screen h-[70vh] md:h-screen">
+        <div className="w-screen h-[70vh] md:h-screen overflow-hidden relative">
           <Image
             src={`/images/new/about-hero.png`}
             fill
             className="object-cover mt-16"
             alt="Hero image"
           />
-          <div className="w-screen h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
+          <div className="w-screen h-[70vh] md:h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
         </div>
-        <div className="absolute top-0 text-white w-screen h-screen flex flex-col gap-3 justify-center items-center">
+        <div className="absolute top-0 text-white w-screen h-[70vh] md:h-screen flex flex-col gap-3 justify-center items-center">
           <p className="text-[14px] bg-white text-[#09090B] font-semibold px-4 py-1 rounded-xl">
             Based in Madurai, India
           </p>
@@ -170,7 +173,10 @@ const AboutPage = () => {
         <h1 className="text-[40px] font-bold text-[#02030B] leading-[1.2] text-center capitalize">
           Ready to Start Your Journey?
         </h1>
-        <button className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5">
+        <button
+          className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5"
+          onClick={() => router.push("/plans")}
+        >
           Explore Plans Tailored to Your Child
           <ArrowUpRight size={20} />
         </button>
