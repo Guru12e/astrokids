@@ -22,7 +22,7 @@ const Admin = () => {
   const [blogTitle, setBlogTitle] = useState("");
   const [blogImage, setBlogImage] = useState("");
   const [blogSlug, setBlogSlug] = useState("");
-  const [blogType, setBlogType] = useState(1);
+  const [blogType, setBlogType] = useState(0);
   const [blogContent, setBlogContent] = useState([
     { type: "title", content: "" },
   ]);
