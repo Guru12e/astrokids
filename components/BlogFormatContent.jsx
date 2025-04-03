@@ -6,7 +6,14 @@ import Link from "next/link";
 
 const BlogFormatContent = ({ content }) => {
   const [recentPosts, setRecentPosts] = useState([]);
-
+  const buttons = [
+    "Recents",
+    "Parenting Tips",
+    "Astrology Basics",
+    "Ayurveda",
+    "Wellness",
+    "Success Stories",
+  ];
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
