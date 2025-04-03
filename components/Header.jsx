@@ -19,9 +19,11 @@ const Header = () => {
           {navItems.map((item, index) => (
             <Link
               key={index}
-              href={`${item == "home" ? "/" : `/${item}`}`}
+              href={`${item === "home" ? "/" : `/${item}`}`}
               className={`${
-                pathName === item ? "text-[#2DB787]" : "text-white"
+                pathName === item && pathName === "home"
+                  ? "text-[#2DB787]"
+                  : "text-white"
               } cursor-pointer border-b-0 hover:border-b-2 capitalize border-[#5DF2CF] font-semibold px-4`}
             >
               {item}
