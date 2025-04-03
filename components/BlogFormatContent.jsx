@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Header from "./Header";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const BlogFormatContent = ({ content }) => {
   const [recentPosts, setRecentPosts] = useState([]);
@@ -174,7 +175,7 @@ const BlogFormatContent = ({ content }) => {
           </h2>
           <div className="space-y-6">
             {recentPosts.length > 0 ? (
-              recentPosts.map((post, index) => (
+              recentPosts.map((blog, index) => (
                 <Link
                   key={blog._id}
                   href={`/blogs/${blog.slug}`}
@@ -183,9 +184,7 @@ const BlogFormatContent = ({ content }) => {
                   <div className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center">
                     <div className="w-full aspect-video relative rounded-t-xl">
                       <Image
-                        src={`https://drive.usercontent.google.com/download?id=${getBlogImage(
-                          blog.content
-                        )}`}
+                        src={`https://drive.usercontent.google.com/download?id=${blog.image}`}
                         alt={blog.title}
                         fill
                         className="object-cover rounded-t-xl"
