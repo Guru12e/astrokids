@@ -743,10 +743,13 @@ const NewPage = () => {
             </div>
           ))}
         </div>
-        <Carousel opts={{ align: "start" }} className="block md:hidden mt-5">
-          <CarouselContent>
+        <Carousel
+          opts={{ align: "start" }}
+          className="w-[90%] mx-auto block md:hidden mt-5"
+        >
+          <CarouselContent className="w-[90%] mx-auto">
             {blogs.map((blog, index) => (
-              <CarouselItem key={index} className="w-[90%]">
+              <CarouselItem key={index} className="w-[80%] relative">
                 <div className="relative max-md:w-full max-md:aspect-video">
                   <Image
                     src={`/images/new/blog${index + 1}.png`}
@@ -780,6 +783,8 @@ const NewPage = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+          <CarouselPrevious className="translate-x-[50%]" />
+          <CarouselNext className="translate-x-[-50%]" />
         </Carousel>
       </div>
       <div className="p-5 md:p-10">

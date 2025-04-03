@@ -1,9 +1,10 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {
+  FaFacebook,
   FaInstagram,
   FaLinkedin,
   FaXTwitter,
@@ -11,6 +12,7 @@ import {
 } from "react-icons/fa6";
 
 const NewFooter = () => {
+  const pathName = usePathname().split("/")[1];
   const footerItems = [
     {
       title: "home",
@@ -33,19 +35,19 @@ const NewFooter = () => {
   const media = [
     {
       media: <FaLinkedin />,
-      link: "https://www.linkedin.com/",
+      link: "https://www.linkedin.com/company/astrokids/",
     },
     {
-      media: <FaXTwitter />,
-      link: "https://www.x.com/",
+      media: <FaFacebook />,
+      link: "https://www.facebook.com/profile.php?id=61568876184036",
     },
     {
       media: <FaYoutube />,
-      link: "https://www.youtube.com/",
+      link: "https://www.youtube.com/@the_astro_kids",
     },
     {
       media: <FaInstagram />,
-      link: "https://www.instagram.com/",
+      link: "https://www.instagram.com/the_astro_kids/",
     },
   ];
 
@@ -75,7 +77,12 @@ const NewFooter = () => {
           {footerItems.map((item, index) => (
             <div key={index} className="flex-1/4 flex flex-col gap-3 md:gap-5">
               <h1
-                className="text-[18px] font-[550] cursor-pointer text-[#9396A3] capitalize hover:text-[#FFEB3B]"
+                className={`text-[18px] font-[550] cursor-pointer capitalize ${
+                  pathName === item.title ||
+                  (pathName === "" && item.title == "home")
+                    ? "text-[#2DB787]"
+                    : "text-[#9396A3]"
+                } hover:text-[#FFEB3B]`}
                 onClick={() =>
                   router.push(`${item.title === "home" ? "/" : item.title}`)
                 }
