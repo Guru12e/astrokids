@@ -20,8 +20,10 @@ const BlogFormatContent = ({ content }) => {
         const response = await fetch("/api/getAllPosts");
         const data = await response.json();
         const sortedPosts = data
-          .sort((a, b) => new Date(b.date) - new Date(a.date))
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 3);
+
+        console.log(sortedPosts[0]);
         setRecentPosts(sortedPosts);
       } catch (error) {
         console.log("Error fetching posts:", error);
