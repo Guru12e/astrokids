@@ -131,6 +131,36 @@ const NewPage = () => {
     },
   ];
 
+  //   Practical  remedies improved my child’s learning, emotional balance, and daily habits.
+  // Noticed a big difference in my child’s behavior—more discipline, better focus, and a positive attitude.
+  // Sleep issues and concentration struggles are gone! My child is more energetic and engaged.
+  const reviews = [
+    {
+      rating: 4.8,
+      review:
+        "My child sleeps better, stays focused longer, and is much calmer throughout the day.",
+      name: "Ravi",
+    },
+    {
+      rating: 4.9,
+      review:
+        "Practical remedies improved my child’s learning, emotional balance, and daily habits.",
+      name: "Priya",
+    },
+    {
+      rating: 4.7,
+      review:
+        "Noticed a big difference in my child’s behavior—more discipline, better focus, and a positive attitude.",
+      name: "Arun",
+    },
+    {
+      rating: 4.6,
+      review:
+        "Sleep issues and concentration struggles are gone! My child is more energetic and engaged.",
+      name: "Sita",
+    },
+  ];
+
   const [isVideoPlay, setIsVedioPlay] = useState(false);
   const [imageIndex, setImageIndex] = useState(1);
 
@@ -211,7 +241,7 @@ const NewPage = () => {
           What parents say
         </h1>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
-          {[...Array(4)].map((_, index) => (
+          {reviews.map((review, index) => (
             <div
               key={index}
               className={`w-[100%] mx-auto ${
@@ -237,13 +267,13 @@ const NewPage = () => {
                 } ${shapes[index]} justify-between py-10`}
               >
                 <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
-                  <span>⭐</span> 4.8
+                  <span>⭐</span> {review.rating}
                 </div>
                 <h1 className="font-normal leading-[1.2] text-[12px] md:text-[18px]">
-                  “Astrokids is the one of our best desicion”
+                  {review.review}
                 </h1>
                 <h1 className="font-normal text-[12px] md:text-[18px]">
-                  - Arun
+                  - {review.name}
                 </h1>
               </div>
             </div>

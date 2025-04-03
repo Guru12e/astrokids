@@ -8,10 +8,12 @@ import {
 import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const EmblaCarousel = (props) => {
   const { slides, options } = props;
   const [emblaRef, emblaApi] = useEmblaCarousel(options);
+  const router = useRouter();
 
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
@@ -32,7 +34,7 @@ const EmblaCarousel = (props) => {
               className="embla__slide max-md:px-3 max-md:pt-3 md:p-5 relative rounded-xl bg-[#2DB787] max-md:w-[90%] w-[80%]"
               key={index}
             >
-              <div className="embla__slide__number">
+              <div className="embla__slide__number w-full h-full">
                 <div className="hidden md:block relative w-full h-full">
                   <div className="flex flex-col md:flex-row md:gap-10 max-md:mb-4">
                     <div className="w-[260px] max-md:mt-8 aspect-square relative rounded-t-2xl rounded-b-none">
@@ -83,8 +85,8 @@ const EmblaCarousel = (props) => {
                     Try {slide.title.split("-")[0]} Plan
                   </div>
                 </div>
-                <div className="block md:hidden">
-                  <div className="flex w-full md:gap-10 relative">
+                <div className="w-full h-full flex flex-col md:hidden">
+                  <div className="flex flex-1 w-full md:gap-10 relative">
                     <div className="w-[50%] aspect-square relative rounded-t-2xl rounded-b-none">
                       <Image
                         fill
@@ -105,7 +107,7 @@ const EmblaCarousel = (props) => {
                       </p>
                     </div>
                   </div>
-                  <div className="bg-[#FFEB3B] flex flex-col md:flex-row leading-[1.3] text-[13px] md:text-[20px] justify-end items-end p-3 rounded-b-xl md:rounded-tr-xl">
+                  <div className="bg-[#FFEB3B] flex-1 h-full flex flex-col md:flex-row leading-[1.3] text-[13px] md:text-[20px] p-3 rounded-b-xl md:rounded-tr-xl">
                     <p className="w-full md:w-[80%] font-[500]">
                       {slide.parent}
                     </p>
@@ -113,10 +115,13 @@ const EmblaCarousel = (props) => {
                       -{slide.parentName}
                     </p>
                   </div>
-                  <div className="new-gradient mt-5 w-max mx-auto flex justify-center items-center gap-4 self-end py-3 px-8 text-[18px] font-semibold rounded-t-2xl">
+                  <button
+                    onClick={() => router.push("/plans")}
+                    className="new-gradient self-end w-max mx-auto flex mt-5 justify-center cursor-pointer items-center gap-4 py-3 px-8 text-[18px] font-semibold rounded-t-2xl"
+                  >
                     Try {slide.title.split("-")[0]} Plan
                     <ArrowUpRight size={25} />
-                  </div>
+                  </button>
                 </div>
               </div>
             </div>

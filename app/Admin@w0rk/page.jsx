@@ -601,6 +601,22 @@ const Admin = () => {
                         </label>
                         {blogContent.map((section, index) => (
                           <div key={index} className="border p-4 mb-4 rounded">
+                            <div className="flex justify-between items-center mb-2">
+                              <h3 className="text-lg font-semibold">
+                                Section {index + 1}
+                              </h3>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent.splice(index, 1);
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-red-500"
+                              >
+                                <Trash2 />
+                              </button>
+                            </div>
                             <div className="mb-2">
                               <label className="block text-gray-700">
                                 Section Type
