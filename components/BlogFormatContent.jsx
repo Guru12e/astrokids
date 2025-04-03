@@ -175,43 +175,33 @@ const BlogFormatContent = ({ content }) => {
           <div className="space-y-6">
             {recentPosts.length > 0 ? (
               recentPosts.map((post, index) => (
-                <div
-                  key={index}
-                  className="p-4 rounded-xl bg-gradient-to-br from-[#FFEB3B]/20 to-[#2DB787]/20 transition-all hover:shadow-lg hover:brightness-110"
+                <Link
+                  key={blog._id}
+                  href={`/blogs/${blog.slug}`}
+                  className="w-full"
                 >
-                  {post.image && (
-                    <div className="w-full aspect-video relative rounded-xl overflow-hidden mb-4">
+                  <div className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center">
+                    <div className="w-full aspect-video relative rounded-t-xl">
                       <Image
-                        src={post.image}
-                        alt={post.title}
+                        src={`https://drive.usercontent.google.com/download?id=${getBlogImage(
+                          blog.content
+                        )}`}
+                        alt={blog.title}
                         fill
-                        className="object-cover transition-transform duration-300 hover:scale-105"
+                        className="object-cover rounded-t-xl"
                       />
                     </div>
-                  )}
-                  <h3 className="text-lg font-semibold text-[#02030B] leading-[1.2] mb-2">
-                    {post.title}
-                  </h3>
-                  <a
-                    href={`/blog/${post.id}`}
-                    className="text-[#2DB787] font-medium text-[16px] hover:underline flex items-center gap-1"
-                  >
-                    Read More
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
+                    <div className="bg-[#F2F2F2] px-3 py-2 rounded-b-xl w-full">
+                      <h1 className="text-[18px] font-normal leading-[1.2] text-start text-[#9396A3]">
+                        {buttons.find((_, idx) => blog.type === idx) ||
+                          "Topic Of Interest"}
+                      </h1>
+                      <h1 className="text-[#02030B] font-semibold leading-[1.2] text-start my-3 text-[18px]">
+                        {blog.title}
+                      </h1>
+                    </div>
+                  </div>
+                </Link>
               ))
             ) : (
               <p className="text-[#6F6C90] text-[16px]">
