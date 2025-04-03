@@ -1066,12 +1066,7 @@ const Admin = () => {
                               max={blogContent.length}
                               value={insertIndex}
                               onChange={(e) =>
-                                setInsertIndex(
-                                  Math.min(
-                                    Math.max(0, parseInt(e.target.value) || 0),
-                                    blogContent.length
-                                  )
-                                )
+                                setInsertIndex(parseInt(e.target.value) || 0)
                               }
                               className="w-20 p-2 border border-gray-300 rounded mt-1"
                               placeholder={`0-${blogContent.length}`}
@@ -1749,12 +1744,7 @@ const Admin = () => {
                             max={blogContent.length}
                             value={insertIndex}
                             onChange={(e) =>
-                              setInsertIndex(
-                                Math.min(
-                                  Math.max(0, parseInt(e.target.value) || 0),
-                                  blogContent.length
-                                )
-                              )
+                              setInsertIndex(parseInt(e.target.value) || 0)
                             }
                             className="w-20 p-2 border-b outline-none border-gray-300 rounded mt-1"
                             placeholder={`0-${blogContent.length}`}
