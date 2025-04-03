@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Header from "./Header";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BlogFormatContent = ({ content }) => {
   const [recentPosts, setRecentPosts] = useState([]);
