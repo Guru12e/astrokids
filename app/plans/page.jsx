@@ -244,6 +244,11 @@ const AboutPage = () => {
                     Most Loved by Parents ✨
                   </p>
                 )}
+                {ind === 1 && (
+                  <p className="absolute px-3 rounded-b-xl top-0 w-max font-medium translate-x-[50%] right-[50%] new-gradient text-white text-[12px]">
+                    Popular ✨
+                  </p>
+                )}
               </div>
             </div>
           ))}

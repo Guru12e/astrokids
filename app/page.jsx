@@ -148,9 +148,6 @@ const NewPage = () => {
     },
   ];
 
-  //   Practical  remedies improved my child’s learning, emotional balance, and daily habits.
-  // Noticed a big difference in my child’s behavior—more discipline, better focus, and a positive attitude.
-  // Sleep issues and concentration struggles are gone! My child is more energetic and engaged.
   const reviews = [
     {
       rating: 4.8,
@@ -726,7 +723,7 @@ const NewPage = () => {
               </button>
               {ind === 2 && (
                 <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
-                  Parent's Choice
+                  Parents' Choice
                 </div>
               )}
               {ind === 1 && (
