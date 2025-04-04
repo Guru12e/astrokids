@@ -355,34 +355,6 @@ export const blogs = [
   },
 ];
 
-export const bonusDetails = [
-  {
-    title: "Powerful Manifestation Techniques",
-    content:
-      "Help your child break free from limiting beliefs with powerful meditations and affirmations for their subconscious mind.",
-  },
-  {
-    title: "Personalized Energy Healing Practices",
-    content:
-      "Balance your child’s body energy centers with tailored healing techniques designed just for them.",
-  },
-  {
-    title: "Mudra Techniques for Holistic Balance",
-    content:
-      "Learn easy mudras to harmonize your child’s body constitution naturally.",
-  },
-  {
-    title: "Quantum Physics-Inspired Emotional Harmony",
-    content:
-      "Discover transformative practices to align your child’s thoughts and emotions for inner peace.",
-  },
-  {
-    title: "Mastermind Strategies for Personal Growth",
-    content:
-      "Boost your child’s behavior and personality development with proven mastermind techniques.",
-  },
-];
-
 export const QuizQuestions = [
   [
     {
