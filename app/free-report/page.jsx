@@ -1,16 +1,50 @@
 "use client";
 
+import Header from "@/components/Header";
+import { lagnaIdentity, moonIdentity, sunIdentity } from "@/constant/constant";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function PanchangDisplay() {
+const PanchangDisplay = () => {
   const [panchangData, setPanchangData] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+  const [name, setName] = useState(null);
+  const [content, setContent] = useState(null);
 
   useEffect(() => {
-    const storedData = localStorage.getItem("freeReport");
-    if (storedData) {
-      setPanchangData(JSON.parse(storedData));
+    const storedData = JSON.parse(localStorage.getItem("freeReport"));
+    const childDetails = JSON.parse(localStorage.getItem("childDetails"));
+    if (storedData && childDetails) {
+      setUserDetails(childDetails);
+      setPanchangData(storedData);
+      setName(childDetails.name.split(" ")[0]);
     }
+    setDisplayContent();
   }, []);
+
+  const setDisplayContent = () => {
+    setContent({
+      name: panchangData.name,
+      dob: panchangData.dob,
+      time: panchangData.time,
+      place: panchangData.place,
+      nakshatra: panchangData.panchang.nakshatra,
+      rasi: panchangData.panchang.sign,
+      lagna: `${panchangData.plants[0].sign} , ${panchangData.planets[0].zodiacLord}`,
+      tithi: panchangData.panchang.tithi,
+      nithyaYogam: panchangData.panchang.yoga,
+      karanam: panchangData.panchang.karanam,
+      weekDay: panchangData.panchang.week,
+    });
+  };
+
+  //   Atma Karagam, Lord : Venus,Goddess Lakshmi
+  // Ishta Devata : Lord Hanuman
+  // Benefic Stars : Krittika, Uttara Phalguni, Uttara Ashadha,
+  // Benefic Number : 2,6
+  // Life Stone : Diamond
+  // Benefictical Stone : Blue Sapphire
+  // Lucky Stone : Emerald
 
   if (!panchangData) {
     return (
@@ -20,81 +54,119 @@ export default function PanchangDisplay() {
     );
   }
 
-  return (
-    <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold mb-6 text-gray-800">Panchang Report</h1>
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-        <div className="bg-gray-50 p-4 rounded">
-          <p>
-            <span className="font-semibold">Ganam:</span>{" "}
-            {panchangData.panchang.ganam}
-          </p>
-          <p>
-            <span className="font-semibold">Karanam:</span>{" "}
-            {panchangData.panchang.karanam} (
-            {panchangData.panchang.karanam_number})
-          </p>
-          <p>
-            <span className="font-semibold">Nakshatra:</span>{" "}
-            {panchangData.panchang.nakshatra} (
-            {panchangData.panchang.nakshatra_number})
-          </p>
-          <p>
-            <span className="font-semibold">Paksha:</span>{" "}
-            {panchangData.panchang.paksha}
-          </p>
-        </div>
-        <div className="bg-gray-50 p-4 rounded">
-          <p>
-            <span className="font-semibold">Sunrise:</span>{" "}
-            {panchangData.panchang.sunrise}
-          </p>
-          <p>
-            <span className="font-semibold">Sunset:</span>{" "}
-            {panchangData.panchang.sunset}
-          </p>
-          <p>
-            <span className="font-semibold">Thithi:</span>{" "}
-            {panchangData.panchang.thithi} (
-            {panchangData.panchang.thithi_number})
-          </p>
-          <p>
-            <span className="font-semibold">Weekday:</span>{" "}
-            {panchangData.panchang.week_day}
-          </p>
-        </div>
-      </div>
-
-      <div className="bg-gray-50 p-4 rounded mb-6">
-        <p>
-          <span className="font-semibold">Yoga:</span>{" "}
-          {panchangData.panchang.yoga} ({panchangData.panchang.yoga_index})
-        </p>
-        <p>
-          <span className="font-semibold">Yoni:</span>{" "}
-          {panchangData.panchang.yoni}
-        </p>
-      </div>
-
-      <div>
-        <h2 className="text-xl font-semibold mb-4 text-gray-700">
-          Planetary Positions
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {panchangData.planets.map((planet, index) => (
-            <div key={index} className="bg-gray-50 p-4 rounded border">
-              <p>
-                <span className="font-semibold">{planet.Name}:</span>
-              </p>
-              <p>Degree: {planet.full_degree.toFixed(2)}</p>
-              <p>Sign: {planet.sign}</p>
-              <p>Nakshatra: {planet.nakshatra}</p>
-              <p>Retrograde: {planet.isRetro ? "Yes" : "No"}</p>
+  content.return(
+    <>
+      <Header />
+      <div className="w-screen flex flex-col md:flex-row mt-16 gap-5">
+        <div className="w-full md:w-2/3">
+          <h1>
+            The Precious Child Born on the auspicious day{" "}
+            {userDetails.dob.split("-")[2]}{" "}
+            {months[parseInt(userDetails.dob.split("-")[1]) - 1]}{" "}
+            {userDetails.dob.split("-")[0]} at{" "}
+            {parseInt(userDetails.time.split(":")[0]) > 12
+              ? `${parseInt(userDetails.time.split(":")[0]) - 12}:${
+                  userDetails.time.split(":")[1]
+                } PM`
+              : `${parseInt(userDetails.time.split(":")[0])} : ${
+                  userDetails.time.split(":")[1]
+                } AM`}
+            . Place of birth is {userDetails.place}.
+          </h1>
+          <h1>{name}'s True Self</h1>
+          <h2>
+            Let's take a look at the three most influential and important sign
+            for {name}!
+          </h2>
+          <p>As per {name}'s kundli,</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 mt-4">
+            <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4">
+              <h1>Ascendant</h1>
+              <div className="w-[60%] mx-auto aspect-square relative">
+                <Image
+                  src={`/images/new/${panchangData.planets[0].sign}.png`}
+                  alt="Ascendant"
+                  fill
+                />
+              </div>
+              <p>{panchangData.planets[0].sign}</p>
             </div>
-          ))}
+            <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4">
+              <h1>Moon</h1>
+              <div className="w-[60%] mx-auto aspect-square relative">
+                <Image
+                  src={`/images/new/${panchangData.planets[2].sign}.png`}
+                  alt="Ascendant"
+                  fill
+                />
+              </div>
+              <p>{panchangData.planets[2].sign}</p>
+            </div>
+            <div className="flex flex-col items-center justify-center bg-white shadow-md rounded-lg p-4">
+              <h1>Sun</h1>
+              <div className="w-[60%] mx-auto aspect-square relative">
+                <Image
+                  src={`/images/new/${panchangData.planets[1].sign}.png`}
+                  alt="Ascendant"
+                  fill
+                />
+              </div>
+              <p>{panchangData.planets[1].sign}</p>
+            </div>
+          </div>
+          <div>
+            <h1>{name}'s Personality</h1>
+            <p>
+              {lagnaIdentity[panchangData.planets[0].sign]
+                .replaceAll("child", name.toLowerCase())
+                .replaceAll("Child", name)}
+            </p>
+          </div>
+          <div>
+            <h1>{name}'s Emotions</h1>
+            <p>
+              {moonIdentity[panchangData.planets[2].sign]
+                .replaceAll("child", name.toLowerCase())
+                .replaceAll("Child", name)}
+            </p>
+          </div>
+          <div>
+            <h1>{name}'s Core Identity</h1>
+            <p>
+              {sunIdentity[panchangData.planets[1].sign]
+                .replaceAll("child", name.toLowerCase())
+                .replaceAll("Child", name)}
+            </p>
+          </div>
+          <div>
+            {Object.keys(content).map((key, index) => (
+              <div key={index} className="flex flex-col mt-4">
+                <h1>
+                  {key} : {content[key]}
+                </h1>
+              </div>
+            ))}
+          </div>
         </div>
+        <div className="w-full md:w-1/3"></div>
       </div>
-    </div>
+    </>
   );
-}
+};
+
+export default PanchangDisplay;

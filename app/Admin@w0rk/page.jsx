@@ -98,7 +98,7 @@ const Admin = () => {
         setEditingBlog(null);
         setBlogTitle("");
         setBlogSlug("");
-        setBlogType(1);
+        setBlogType(0);
         setBlogContent([{ type: "title", content: "" }]);
         setInsertIndex(0);
         toast.success("Blog updated successfully!", {
@@ -565,6 +565,7 @@ const Admin = () => {
                                   if (
                                     e.target.value === "title" ||
                                     e.target.value === "subtitle" ||
+                                    e.target.value === "subtitle1" ||
                                     e.target.value === "para"
                                   ) {
                                     newContent[index] = {
@@ -620,6 +621,7 @@ const Admin = () => {
                               >
                                 <option value="title">Title</option>
                                 <option value="subtitle">Subtitle</option>
+                                <option value="subtitle1">Subtitle1</option>
                                 <option value="para">Paragraph</option>
                                 <option value="image">Image</option>
                                 <option value="points">Points</option>
@@ -633,6 +635,7 @@ const Admin = () => {
                             </div>
                             {(section.type === "title" ||
                               section.type === "subtitle" ||
+                              section.type === "subtitle1" ||
                               section.type === "para") && (
                               <div>
                                 <label className="block text-gray-700">
@@ -1081,6 +1084,7 @@ const Admin = () => {
                                 onClick={() => {
                                   setEditingBlog(blog);
                                   setBlogTitle(blog.title);
+                                  setBlogImage(blog.image);
                                   setBlogSlug(blog.slug);
                                   setBlogType(blog.type);
                                   setBlogContent(blog.content);
@@ -1216,6 +1220,7 @@ const Admin = () => {
                                 if (
                                   e.target.value === "title" ||
                                   e.target.value === "subtitle" ||
+                                  e.target.value === "subtitle1" ||
                                   e.target.value === "para"
                                 ) {
                                   newContent[index] = {

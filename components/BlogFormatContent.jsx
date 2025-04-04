@@ -59,6 +59,15 @@ const BlogFormatContent = ({ content }) => {
                     {block.content}
                   </h2>
                 );
+              case "subtitle1":
+                return (
+                  <h2
+                    key={index}
+                    className="text-xl font-semibold mt-8 mb-4 leading-[1.2]"
+                  >
+                    {block.content}
+                  </h2>
+                );
               case "para":
                 return (
                   <p
