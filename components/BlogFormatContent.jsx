@@ -101,7 +101,7 @@ const BlogFormatContent = ({ content }) => {
                   >
                     {block.items.map((item, i) => (
                       <li key={i} className="text-[16px] md:text-[18px]">
-                        <span className="font-semibold text-black">{item}</span>
+                        <span className="text-black">{item}</span>
                       </li>
                     ))}
                   </ol>
