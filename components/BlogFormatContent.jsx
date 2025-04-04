@@ -179,9 +179,7 @@ const BlogFormatContent = ({ content }) => {
                   >
                     {block.points.map((point, i) => (
                       <li key={i} className="text-[16px] md:text-[18px]">
-                        <span className="font-semibold text-[#2DB787]">
-                          {point.title}:
-                        </span>{" "}
+                        <span className="font-semibold">{point.title}:</span>{" "}
                         {point.content}
                       </li>
                     ))}
