@@ -13,9 +13,7 @@ const Admin = () => {
   const [pendingOrder, setPendingOrder] = useState([]);
   const [finishedOrder, setFinishedOrder] = useState([]);
   const [requestOrders, setRequestOrders] = useState([]);
-  const [resourcesOrders, setResourcesOrders] = useState([]);
   const [filterIndex, setFilterIndex] = useState(5);
-  const [quizEmail, setQuizEmail] = useState([]);
   const [confirming, setConfirming] = useState({ email: "", orderId: "" });
   const [displayIndex, setDisplayIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
@@ -158,24 +156,16 @@ const Admin = () => {
     setPendingOrder([]);
     setFinishedOrder([]);
     setRequestOrders([]);
-    setQuizEmail([]);
-    setResourcesOrders([]);
 
     const res = await fetch("/api/getChildDetails", { method: "POST" });
     const res1 = await fetch("/api/getrequestDetails", { method: "POST" });
-    const res3 = await fetch("/api/getQuizEmail", { method: "POST" });
-    const res4 = await fetch("/api/getSampleReports", { method: "POST" });
 
     const details = await res.json();
     const details1 = await res1.json();
-    const details3 = await res3.json();
-    const details4 = await res4.json();
 
     const pendingOrderRes = [];
     const finishedOrderRes = [];
     const requestOrders = [];
-    const quizEmail = [];
-    const resources = [];
 
     details.map((item) => {
       item.childDetails.map((child) => {
@@ -237,28 +227,6 @@ const Admin = () => {
       });
     });
     setRequestOrders(requestOrders);
-
-    details3.map((item) => {
-      quizEmail.unshift({
-        id: item.id,
-        email: item.email,
-        number: item.number ? item.number : "-",
-        age: item.age ? item.age : "-",
-        createdAt: item.addedAt,
-      });
-    });
-    setQuizEmail(quizEmail);
-
-    details4.map((item) => {
-      resources.unshift({
-        id: item.id,
-        email: item.email,
-        name: item.name,
-        type: item.type,
-        createdAt: item.addedAt,
-      });
-    });
-    setResourcesOrders(resources);
   };
 
   const adminLogin = async (e) => {
@@ -489,49 +457,7 @@ const Admin = () => {
               >
                 Non Payment Orders ({requestOrders.length})
               </button>
-              <button
-                onClick={() => {
-                  setDisplayData(quizEmail);
-                  setDisplayIndex(4);
-                  setFilterIndex(5);
-                }}
-                className={`${
-                  displayIndex == 4 ? "text-blue-500" : "text-black"
-                }`}
-              >
-                Quiz ({quizEmail.length})
-              </button>
-              {displayIndex == 4 &&
-                ageOption.map((age, index) => (
-                  <div key={index}>
-                    <button
-                      onClick={() => {
-                        setDisplayData(
-                          quizEmail.filter((item) => item.age == age)
-                        );
-                        setFilterIndex(index);
-                      }}
-                      className={`w-full text-black text-center ${
-                        quizEmail.length > 0 ? "block" : "hidden"
-                      } ${
-                        filterIndex == index ? "text-blue-500" : "text-black"
-                      }`}
-                    >
-                      {age}
-                    </button>
-                  </div>
-                ))}
-              <button
-                onClick={() => {
-                  setDisplayData(resourcesOrders);
-                  setDisplayIndex(5);
-                }}
-                className={`${
-                  displayIndex == 5 ? "text-blue-500" : "text-black"
-                }`}
-              >
-                Resources ({resourcesOrders.length})
-              </button>
+
               <button
                 onClick={() => {
                   setDisplayIndex(6);
