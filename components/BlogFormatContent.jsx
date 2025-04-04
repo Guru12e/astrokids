@@ -37,7 +37,6 @@ const BlogFormatContent = ({ content }) => {
       <div className="px-5 mt-12 flex flex-col md:flex-row gap-10">
         <div className="px-5 flex-2/3 w-full md:px-0">
           {content.map((block, index) => {
-            console.log(block);
             switch (block.type) {
               case "title":
                 return (
@@ -163,7 +162,7 @@ const BlogFormatContent = ({ content }) => {
                       <div key={i} className="mb-4">
                         <h4 className="text-lg font-semibold">{item.title}</h4>
                         <p className="text-[#6F6C90] text-[16px] md:text-[18px] mt-1">
-                          {item.description}
+                          {item.content}
                         </p>
                       </div>
                     ))}

@@ -2273,8 +2273,6 @@ const Admin = () => {
                               </button>
                             </div>
                           )}
-
-                          {/* Highlight List Type */}
                           {section.type === "highlight-list" && (
                             <div>
                               {section.items.map((item, iIndex) => (
