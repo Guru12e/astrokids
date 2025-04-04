@@ -206,6 +206,9 @@ const NewChildDetails = () => {
               "https://report-api-0fic.onrender.com/freeReport",
               {
                 method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
                 body: JSON.stringify({
                   dob: `${dob} ${time}:00`,
                   location: place.split(",")[0],
@@ -554,6 +557,9 @@ const NewChildDetails = () => {
           "https://report-api-0fic.onrender.com/freeReport",
           {
             method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
             body: JSON.stringify({
               dob: `${dob} ${time}:00`,
               location: place.split(",")[0],
