@@ -161,9 +161,7 @@ const BlogFormatContent = ({ content }) => {
                   <div key={index} className="my-6">
                     {block.items.map((item, i) => (
                       <div key={i} className="mb-4">
-                        <h4 className="text-lg font-semibold text-[#2DB787]">
-                          {item.title}
-                        </h4>
+                        <h4 className="text-lg font-semibold">{item.title}</h4>
                         <p className="text-[#6F6C90] text-[16px] md:text-[18px] mt-1">
                           {item.description}
                         </p>
@@ -179,7 +177,9 @@ const BlogFormatContent = ({ content }) => {
                   >
                     {block.points.map((point, i) => (
                       <li key={i} className="text-[16px] md:text-[18px]">
-                        <span className="font-semibold">{point.title}:</span>{" "}
+                        <span className="font-semibold text-[#2DB787]">
+                          {point.title}:
+                        </span>{" "}
                         {point.content}
                       </li>
                     ))}
