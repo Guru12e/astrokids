@@ -35,7 +35,7 @@ const BlogFormatContent = ({ content }) => {
     <div className="w-screen h-full">
       <Header />
       <div className="px-5 mt-12 flex flex-col md:flex-row gap-10">
-        <div className="px-5 flex-2/3 w-full md:px-0">
+        <div className="px-10 flex-2/3 w-full md:px-0">
           {content.map((block, index) => {
             switch (block.type) {
               case "title":
@@ -101,7 +101,7 @@ const BlogFormatContent = ({ content }) => {
                   >
                     {block.items.map((item, i) => (
                       <li key={i} className="text-[16px] md:text-[18px]">
-                        <span className="font-semibold">{item}</span>
+                        <span className="font-semibold text-black">{item}</span>
                       </li>
                     ))}
                   </ol>
