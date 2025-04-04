@@ -1,6 +1,5 @@
 "use client";
 import NewFooter from "@/components/NewFooter";
-import NewNavBar from "@/components/NewNavBar";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "react-toastify";
