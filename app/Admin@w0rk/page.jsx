@@ -645,7 +645,7 @@ const Admin = () => {
                                   ) {
                                     newContent[index] = {
                                       type: "highlight-list",
-                                      items: [{ title: "", description: "" }],
+                                      items: [{ title: "", content: "" }],
                                     };
                                   }
                                   setBlogContent(newContent);
@@ -1326,16 +1326,16 @@ const Admin = () => {
                                       required
                                     />
                                     <textarea
-                                      value={item.description}
+                                      value={item.content}
                                       onChange={(e) => {
                                         const newContent = [...blogContent];
                                         newContent[index].items[
                                           iIndex
-                                        ].description = e.target.value;
+                                        ].content = e.target.value;
                                         setBlogContent(newContent);
                                       }}
                                       className="w-full p-2 border border-gray-300 rounded mt-1"
-                                      placeholder="Description"
+                                      placeholder="Content"
                                       required
                                     />
                                   </div>
@@ -1346,7 +1346,7 @@ const Admin = () => {
                                     const newContent = [...blogContent];
                                     newContent[index].items.push({
                                       title: "",
-                                      description: "",
+                                      content: "",
                                     });
                                     setBlogContent(newContent);
                                   }}
@@ -1646,7 +1646,7 @@ const Admin = () => {
                                 ) {
                                   newContent[index] = {
                                     type: "highlight-list",
-                                    items: [{ title: "", description: "" }],
+                                    items: [{ title: "", content: "" }],
                                   };
                                 }
                                 setBlogContent(newContent);
@@ -2315,16 +2315,15 @@ const Admin = () => {
                                     required
                                   />
                                   <textarea
-                                    value={item.description}
+                                    value={item.content}
                                     onChange={(e) => {
                                       const newContent = [...blogContent];
-                                      newContent[index].items[
-                                        iIndex
-                                      ].description = e.target.value;
+                                      newContent[index].items[iIndex].content =
+                                        e.target.value;
                                       setBlogContent(newContent);
                                     }}
                                     className="w-full p-2 border border-gray-300 rounded mt-1"
-                                    placeholder="Description"
+                                    placeholder="Content"
                                     required
                                   />
                                 </div>
@@ -2335,7 +2334,7 @@ const Admin = () => {
                                   const newContent = [...blogContent];
                                   newContent[index].items.push({
                                     title: "",
-                                    description: "",
+                                    content: "",
                                   });
                                   setBlogContent(newContent);
                                 }}
