@@ -675,7 +675,7 @@ const NewChildDetails = () => {
                           >
                             <input
                               ref={(el) => (inputsRef.current[index] = el)}
-                              type="text"
+                              type="number"
                               id="otp"
                               value={otp[index]}
                               onChange={(e) =>
