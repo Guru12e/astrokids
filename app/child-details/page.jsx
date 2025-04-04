@@ -556,25 +556,27 @@ const NewChildDetails = () => {
       if (currentIndex != 0) {
         paymentFunction();
       } else {
-        const res = await fetch(
-          "https://report-api-0fic.onrender.com/freeReport",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              dob: `${dob} ${time}:00`,
-              location: place.split(",")[0],
-              lat: parseFloat(latLon.lat),
-              lon: parseFloat(latLon.lon),
-              gender: gender,
-              name: name,
-            }),
-          }
-        );
+        await fetch("https://report-api-0fic.onrender.com/freeReport", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            dob: `${dob} ${time}:00`,
+            location: place.split(",")[0],
+            lat: parseFloat(latLon.lat),
+            lon: parseFloat(latLon.lon),
+            gender: gender,
+            name: name,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) =>
+            localStorage.setItem("freeReport", JSON.stringify(data))
+          )
+          .catch((error) => console.error("Error:", error));
 
-        console.log(res);
+        router.push("/free-report");
       }
     } else {
       setOtpVerifyLoading(false);
