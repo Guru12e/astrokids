@@ -43,22 +43,22 @@ const NewPage = () => {
   const plans = [
     {
       title: "Starter Parenting",
-      price: "199",
+      price: "Free",
       content: "Foundational astrology insights for new parents.",
     },
     {
       title: "Pro Parenting",
-      price: "499",
+      price: "₹499",
       content: "Nurture your child's cosmic well-being with deeper insights.",
     },
     {
       title: "Ultimate Parenting",
-      price: "999",
+      price: "₹999",
       content: "Academic, personal, and celestial growth for young minds.",
     },
     {
       title: "Master Parenting",
-      price: "1499",
+      price: "₹1499",
       content: "The ultimate roadmap for astrological success!",
     },
   ];
@@ -286,7 +286,7 @@ const NewPage = () => {
                 <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
                   <span>⭐</span> {review.rating}
                 </div>
-                <h1 className="font-normal leading-[1.2] text-[12px] md:text-[18px]">
+                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
                   {review.review}
                 </h1>
                 <h1 className="font-normal text-[12px] md:text-[18px]">
@@ -702,7 +702,7 @@ const NewPage = () => {
               </h1>
               <div className="my-3 flex items-center gap-2">
                 <h2 className="text-[26px] font-bold leading-[1.2]">
-                  ₹{p.price}
+                  {p.price}
                 </h2>
                 <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
               </div>
@@ -725,6 +725,11 @@ const NewPage = () => {
                 <ArrowUpRight size={20} />
               </button>
               {ind === 2 && (
+                <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
+                  Parent's Choice
+                </div>
+              )}
+              {ind === 1 && (
                 <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
                   Popular
                 </div>

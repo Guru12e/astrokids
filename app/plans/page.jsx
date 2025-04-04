@@ -14,7 +14,7 @@ const AboutPage = () => {
   const newPricing = [
     {
       title: "Starter Parenting",
-      price: "₹199",
+      price: "Free",
       what: [
         {
           title: "Astrological Profile",
