@@ -27,7 +27,11 @@ const Admin = () => {
   const [insertIndex, setInsertIndex] = useState(blogContent.length);
 
   useEffect(() => {
-    setInsertIndex(blogContent.length + 1);
+    if (editingBlog) {
+      setInsertIndex(blogContent.length);
+    } else {
+      setInsertIndex(blogContent.length + 1);
+    }
   }, [blogContent]);
 
   const [allBlogs, setAllBlogs] = useState([]);
@@ -487,7 +491,12 @@ const Admin = () => {
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-4">All Blogs</h2>
                   {editingBlog ? (
-                    <form onSubmit={handleUpdateBlog} className="space-y-4">
+                    <form
+                      onSubmit={
+                        displayIndex === 6 ? handleAddBlog : handleUpdateBlog
+                      }
+                      className="space-y-4"
+                    >
                       <div>
                         <label className="block text-gray-700">Title</label>
                         <input
@@ -520,16 +529,19 @@ const Admin = () => {
                       </div>
                       <div>
                         <label className="block text-gray-700">Type</label>
-                        <input
-                          type="number"
+                        <select
                           value={blogType}
                           onChange={(e) =>
                             setBlogType(parseInt(e.target.value))
                           }
                           className="w-full p-2 border border-gray-300 rounded mt-1"
-                          min="1"
-                          required
-                        />
+                        >
+                          {typesOfBlogs.map((type, index) => (
+                            <option key={index} value={index + 1}>
+                              {type}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                       <div>
                         <label className="block text-gray-700 mb-2">
@@ -566,7 +578,8 @@ const Admin = () => {
                                     e.target.value === "title" ||
                                     e.target.value === "subtitle" ||
                                     e.target.value === "subtitle1" ||
-                                    e.target.value === "para"
+                                    e.target.value === "para" ||
+                                    e.target.value === "summary"
                                   ) {
                                     newContent[index] = {
                                       type: e.target.value,
@@ -614,6 +627,26 @@ const Admin = () => {
                                         },
                                       ],
                                     };
+                                  } else if (
+                                    e.target.value === "numbered-list" ||
+                                    e.target.value === "checklist"
+                                  ) {
+                                    newContent[index] = {
+                                      type: e.target.value,
+                                      items: [""],
+                                    };
+                                  } else if (e.target.value === "faq") {
+                                    newContent[index] = {
+                                      type: "faq",
+                                      items: [{ question: "", answer: "" }],
+                                    };
+                                  } else if (
+                                    e.target.value === "highlight-list"
+                                  ) {
+                                    newContent[index] = {
+                                      type: "highlight-list",
+                                      items: [{ title: "", description: "" }],
+                                    };
                                   }
                                   setBlogContent(newContent);
                                 }}
@@ -631,12 +664,24 @@ const Admin = () => {
                                 <option value="points-points-with-image">
                                   Points-Points with Image
                                 </option>
+                                <option value="numbered-list">
+                                  Numbered List
+                                </option>
+                                <option value="summary">Summary</option>
+                                <option value="faq">FAQ</option>
+                                <option value="checklist">Checklist</option>
+                                <option value="highlight-list">
+                                  Highlight List
+                                </option>
                               </select>
                             </div>
+
+                            {/* Simple Text Input Types */}
                             {(section.type === "title" ||
                               section.type === "subtitle" ||
                               section.type === "subtitle1" ||
-                              section.type === "para") && (
+                              section.type === "para" ||
+                              section.type === "summary") && (
                               <div>
                                 <label className="block text-gray-700">
                                   Content
@@ -654,6 +699,8 @@ const Admin = () => {
                                 />
                               </div>
                             )}
+
+                            {/* Image Type */}
                             {section.type === "image" && (
                               <>
                                 <div>
@@ -706,10 +753,15 @@ const Admin = () => {
                                 </div>
                               </>
                             )}
+
+                            {/* Points Type */}
                             {section.type === "points" && (
                               <div>
                                 {section.points.map((point, pIndex) => (
-                                  <div key={pIndex} className="mb-2">
+                                  <div
+                                    key={pIndex}
+                                    className="mb-2 flex flex-col gap-2"
+                                  >
                                     <label className="block text-gray-700">
                                       Point {pIndex + 1}
                                     </label>
@@ -739,6 +791,20 @@ const Admin = () => {
                                       placeholder="Content"
                                       required
                                     />
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].points.splice(
+                                          pIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500 mt-2"
+                                    >
+                                      <Trash2 />
+                                    </button>
                                   </div>
                                 ))}
                                 <button
@@ -757,6 +823,8 @@ const Admin = () => {
                                 </button>
                               </div>
                             )}
+
+                            {/* Points-Points Type */}
                             {section.type === "points-points" && (
                               <div>
                                 {section.content.map((item, iIndex) => (
@@ -764,9 +832,25 @@ const Admin = () => {
                                     key={iIndex}
                                     className="mb-4 border p-2 rounded"
                                   >
-                                    <label className="block text-gray-700">
-                                      Item {iIndex + 1}
-                                    </label>
+                                    <div className="flex justify-between">
+                                      <label className="block text-gray-700">
+                                        Item {iIndex + 1}
+                                      </label>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].content.splice(
+                                            iIndex,
+                                            1
+                                          );
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
                                     <input
                                       type="text"
                                       value={item.title}
@@ -809,7 +893,10 @@ const Admin = () => {
                                       required
                                     />
                                     {item.points.map((point, pIndex) => (
-                                      <div key={pIndex} className="ml-4 mt-2">
+                                      <div
+                                        key={pIndex}
+                                        className="ml-4 mt-2 flex items-center gap-2"
+                                      >
                                         <input
                                           type="text"
                                           value={point}
@@ -824,6 +911,19 @@ const Admin = () => {
                                           placeholder={`Point ${pIndex + 1}`}
                                           required
                                         />
+                                        <button
+                                          type="button"
+                                          onClick={() => {
+                                            const newContent = [...blogContent];
+                                            newContent[index].content[
+                                              iIndex
+                                            ].points.splice(pIndex, 1);
+                                            setBlogContent(newContent);
+                                          }}
+                                          className="text-red-500"
+                                        >
+                                          <Trash2 />
+                                        </button>
                                       </div>
                                     ))}
                                     <button
@@ -859,6 +959,8 @@ const Admin = () => {
                                 </button>
                               </div>
                             )}
+
+                            {/* Points-Points with Image Type */}
                             {section.type === "points-points-with-image" && (
                               <div>
                                 {section.content.map((item, iIndex) => (
@@ -943,7 +1045,7 @@ const Admin = () => {
                                     {item.points.map((point, pIndex) => (
                                       <div
                                         key={pIndex}
-                                        className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                        className="ml-4 mt-2 flex items-center gap-2"
                                       >
                                         <input
                                           type="text"
@@ -968,13 +1070,12 @@ const Admin = () => {
                                             ].points.splice(pIndex, 1);
                                             setBlogContent(newContent);
                                           }}
-                                          className="text-red-500 mt-2"
+                                          className="text-red-500"
                                         >
                                           <Trash2 />
                                         </button>
                                       </div>
                                     ))}
-
                                     <button
                                       type="button"
                                       onClick={() => {
@@ -996,9 +1097,256 @@ const Admin = () => {
                                     const newContent = [...blogContent];
                                     newContent[index].content.push({
                                       title: "",
+                                      image: "",
                                       content: "",
                                       subtitle: "",
                                       points: [""],
+                                    });
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Item
+                                </button>
+                              </div>
+                            )}
+
+                            {/* Numbered List Type */}
+                            {section.type === "numbered-list" && (
+                              <div>
+                                {section.items.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-2 flex items-center gap-2"
+                                  >
+                                    <input
+                                      type="text"
+                                      value={item}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[iIndex] =
+                                          e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder={`Step ${iIndex + 1}`}
+                                      required
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].items.push("");
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Item
+                                </button>
+                              </div>
+                            )}
+
+                            {/* Checklist Type */}
+                            {section.type === "checklist" && (
+                              <div>
+                                {section.items.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-2 flex items-center gap-2"
+                                  >
+                                    <input
+                                      type="text"
+                                      value={item}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[iIndex] =
+                                          e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder={`Item ${iIndex + 1}`}
+                                      required
+                                    />
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].items.push("");
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add Item
+                                </button>
+                              </div>
+                            )}
+
+                            {/* FAQ Type */}
+                            {section.type === "faq" && (
+                              <div>
+                                {section.items.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-4 border p-2 rounded"
+                                  >
+                                    <div className="flex justify-between">
+                                      <label className="block text-gray-700">
+                                        FAQ {iIndex + 1}
+                                      </label>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].items.splice(
+                                            iIndex,
+                                            1
+                                          );
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      value={item.question}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[
+                                          iIndex
+                                        ].question = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Question"
+                                      required
+                                    />
+                                    <textarea
+                                      value={item.answer}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[iIndex].answer =
+                                          e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Answer"
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].items.push({
+                                      question: "",
+                                      answer: "",
+                                    });
+                                    setBlogContent(newContent);
+                                  }}
+                                  className="text-blue-500 mt-2"
+                                >
+                                  Add FAQ
+                                </button>
+                              </div>
+                            )}
+
+                            {/* Highlight List Type */}
+                            {section.type === "highlight-list" && (
+                              <div>
+                                {section.items.map((item, iIndex) => (
+                                  <div
+                                    key={iIndex}
+                                    className="mb-4 border p-2 rounded"
+                                  >
+                                    <div className="flex justify-between">
+                                      <label className="block text-gray-700">
+                                        Item {iIndex + 1}
+                                      </label>
+                                      <button
+                                        type="button"
+                                        onClick={() => {
+                                          const newContent = [...blogContent];
+                                          newContent[index].items.splice(
+                                            iIndex,
+                                            1
+                                          );
+                                          setBlogContent(newContent);
+                                        }}
+                                        className="text-red-500"
+                                      >
+                                        <Trash2 />
+                                      </button>
+                                    </div>
+                                    <input
+                                      type="text"
+                                      value={item.title}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[iIndex].title =
+                                          e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Title"
+                                      required
+                                    />
+                                    <textarea
+                                      value={item.description}
+                                      onChange={(e) => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items[
+                                          iIndex
+                                        ].description = e.target.value;
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="w-full p-2 border border-gray-300 rounded mt-1"
+                                      placeholder="Description"
+                                      required
+                                    />
+                                  </div>
+                                ))}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newContent = [...blogContent];
+                                    newContent[index].items.push({
+                                      title: "",
+                                      description: "",
                                     });
                                     setBlogContent(newContent);
                                   }}
@@ -1050,22 +1398,31 @@ const Admin = () => {
                           className="bg-blue-500 text-white p-2 rounded w-full"
                           disabled={loading}
                         >
-                          {loading ? "Updating..." : "Update Blog"}
+                          {loading
+                            ? displayIndex === 6
+                              ? "Adding..."
+                              : "Updating..."
+                            : displayIndex === 6
+                            ? "Add Blog Post"
+                            : "Update Blog"}
                         </button>
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setEditingBlog(null);
-                            setBlogTitle("");
-                            setBlogSlug("");
-                            setBlogType(1);
-                            setBlogContent([{ type: "title", content: "" }]);
-                          }}
-                          className="bg-gray-500 text-white p-2 rounded w-full"
-                          disabled={loading}
-                        >
-                          Cancel
-                        </button>
+                        {displayIndex === 7 && (
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setEditingBlog(null);
+                              setBlogTitle("");
+                              setBlogImage("");
+                              setBlogSlug("");
+                              setBlogType(1);
+                              setBlogContent([{ type: "title", content: "" }]);
+                            }}
+                            className="bg-gray-500 text-white p-2 rounded w-full"
+                            disabled={loading}
+                          >
+                            Cancel
+                          </button>
+                        )}
                       </div>
                     </form>
                   ) : (
@@ -1140,7 +1497,12 @@ const Admin = () => {
               ) : displayIndex === 6 ? (
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-4">Add New Blog Post</h2>
-                  <form onSubmit={handleAddBlog} className="space-y-4">
+                  <form
+                    onSubmit={
+                      displayIndex === 6 ? handleAddBlog : handleUpdateBlog
+                    }
+                    className="space-y-4"
+                  >
                     <div>
                       <label className="block text-gray-700">Title</label>
                       <input
@@ -1173,7 +1535,6 @@ const Admin = () => {
                     </div>
                     <div>
                       <label className="block text-gray-700">Type</label>
-
                       <select
                         value={blogType}
                         onChange={(e) => setBlogType(parseInt(e.target.value))}
@@ -1221,7 +1582,8 @@ const Admin = () => {
                                   e.target.value === "title" ||
                                   e.target.value === "subtitle" ||
                                   e.target.value === "subtitle1" ||
-                                  e.target.value === "para"
+                                  e.target.value === "para" ||
+                                  e.target.value === "summary"
                                 ) {
                                   newContent[index] = {
                                     type: e.target.value,
@@ -1266,6 +1628,26 @@ const Admin = () => {
                                       },
                                     ],
                                   };
+                                } else if (
+                                  e.target.value === "numbered-list" ||
+                                  e.target.value === "checklist"
+                                ) {
+                                  newContent[index] = {
+                                    type: e.target.value,
+                                    items: [""],
+                                  };
+                                } else if (e.target.value === "faq") {
+                                  newContent[index] = {
+                                    type: "faq",
+                                    items: [{ question: "", answer: "" }],
+                                  };
+                                } else if (
+                                  e.target.value === "highlight-list"
+                                ) {
+                                  newContent[index] = {
+                                    type: "highlight-list",
+                                    items: [{ title: "", description: "" }],
+                                  };
                                 }
                                 setBlogContent(newContent);
                               }}
@@ -1273,6 +1655,7 @@ const Admin = () => {
                             >
                               <option value="title">Title</option>
                               <option value="subtitle">Subtitle</option>
+                              <option value="subtitle1">Subtitle1</option>
                               <option value="para">Paragraph</option>
                               <option value="image">Image</option>
                               <option value="points">Points</option>
@@ -1282,12 +1665,24 @@ const Admin = () => {
                               <option value="points-points-with-image">
                                 Points-Points with Image
                               </option>
+                              <option value="numbered-list">
+                                Numbered List
+                              </option>
+                              <option value="summary">Summary</option>
+                              <option value="faq">FAQ</option>
+                              <option value="checklist">Checklist</option>
+                              <option value="highlight-list">
+                                Highlight List
+                              </option>
                             </select>
                           </div>
 
+                          {/* Simple Text Input Types */}
                           {(section.type === "title" ||
                             section.type === "subtitle" ||
-                            section.type === "para") && (
+                            section.type === "subtitle1" ||
+                            section.type === "para" ||
+                            section.type === "summary") && (
                             <div>
                               <label className="block text-gray-700">
                                 Content
@@ -1306,6 +1701,7 @@ const Admin = () => {
                             </div>
                           )}
 
+                          {/* Image Type */}
                           {section.type === "image" && (
                             <>
                               <div>
@@ -1358,10 +1754,14 @@ const Admin = () => {
                             </>
                           )}
 
+                          {/* Points Type */}
                           {section.type === "points" && (
                             <div>
                               {section.points.map((point, pIndex) => (
-                                <div key={pIndex} className="mb-2">
+                                <div
+                                  key={pIndex}
+                                  className="mb-2 flex flex-col gap-2"
+                                >
                                   <label className="block text-gray-700">
                                     Point {pIndex + 1}
                                   </label>
@@ -1390,6 +1790,20 @@ const Admin = () => {
                                     placeholder="Content"
                                     required
                                   />
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].points.splice(
+                                        pIndex,
+                                        1
+                                      );
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="text-red-500 mt-2"
+                                  >
+                                    <Trash2 />
+                                  </button>
                                 </div>
                               ))}
                               <button
@@ -1408,6 +1822,8 @@ const Admin = () => {
                               </button>
                             </div>
                           )}
+
+                          {/* Points-Points Type */}
                           {section.type === "points-points" && (
                             <div>
                               {section.content.map((item, iIndex) => (
@@ -1477,7 +1893,7 @@ const Admin = () => {
                                   {item.points.map((point, pIndex) => (
                                     <div
                                       key={pIndex}
-                                      className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                      className="ml-4 mt-2 flex items-center gap-2"
                                     >
                                       <input
                                         type="text"
@@ -1502,7 +1918,7 @@ const Admin = () => {
                                           ].points.splice(pIndex, 1);
                                           setBlogContent(newContent);
                                         }}
-                                        className="text-red-500 mt-2"
+                                        className="text-red-500"
                                       >
                                         <Trash2 />
                                       </button>
@@ -1541,6 +1957,8 @@ const Admin = () => {
                               </button>
                             </div>
                           )}
+
+                          {/* Points-Points with Image Type */}
                           {section.type === "points-points-with-image" && (
                             <div>
                               {section.content.map((item, iIndex) => (
@@ -1623,7 +2041,7 @@ const Admin = () => {
                                   {item.points.map((point, pIndex) => (
                                     <div
                                       key={pIndex}
-                                      className="ml-4 mt-2 flex justify-between items-center gap-2"
+                                      className="ml-4 mt-2 flex items-center gap-2"
                                     >
                                       <input
                                         type="text"
@@ -1648,13 +2066,12 @@ const Admin = () => {
                                           ].points.splice(pIndex, 1);
                                           setBlogContent(newContent);
                                         }}
-                                        className="text-red-500 mt-2"
+                                        className="text-red-500"
                                       >
                                         <Trash2 />
                                       </button>
                                     </div>
                                   ))}
-
                                   <button
                                     type="button"
                                     onClick={() => {
@@ -1676,9 +2093,249 @@ const Admin = () => {
                                   const newContent = [...blogContent];
                                   newContent[index].content.push({
                                     title: "",
+                                    image: "",
                                     content: "",
                                     subtitle: "",
                                     points: [""],
+                                  });
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Item
+                              </button>
+                            </div>
+                          )}
+
+                          {/* Numbered List Type */}
+                          {section.type === "numbered-list" && (
+                            <div>
+                              {section.items.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-2 flex items-center gap-2"
+                                >
+                                  <input
+                                    type="text"
+                                    value={item}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[iIndex] =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder={`Step ${iIndex + 1}`}
+                                    required
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items.splice(iIndex, 1);
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="text-red-500"
+                                  >
+                                    <Trash2 />
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].items.push("");
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Item
+                              </button>
+                            </div>
+                          )}
+
+                          {/* Checklist Type */}
+                          {section.type === "checklist" && (
+                            <div>
+                              {section.items.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-2 flex items-center gap-2"
+                                >
+                                  <input
+                                    type="text"
+                                    value={item}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[iIndex] =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder={`Item ${iIndex + 1}`}
+                                    required
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items.splice(iIndex, 1);
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="text-red-500"
+                                  >
+                                    <Trash2 />
+                                  </button>
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].items.push("");
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add Item
+                              </button>
+                            </div>
+                          )}
+
+                          {/* FAQ Type */}
+                          {section.type === "faq" && (
+                            <div>
+                              {section.items.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-4 border p-2 rounded"
+                                >
+                                  <div className="flex justify-between">
+                                    <label className="block text-gray-700">
+                                      FAQ {iIndex + 1}
+                                    </label>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    value={item.question}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[iIndex].question =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Question"
+                                    required
+                                  />
+                                  <textarea
+                                    value={item.answer}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[iIndex].answer =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Answer"
+                                    required
+                                  />
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].items.push({
+                                    question: "",
+                                    answer: "",
+                                  });
+                                  setBlogContent(newContent);
+                                }}
+                                className="text-blue-500 mt-2"
+                              >
+                                Add FAQ
+                              </button>
+                            </div>
+                          )}
+
+                          {/* Highlight List Type */}
+                          {section.type === "highlight-list" && (
+                            <div>
+                              {section.items.map((item, iIndex) => (
+                                <div
+                                  key={iIndex}
+                                  className="mb-4 border p-2 rounded"
+                                >
+                                  <div className="flex justify-between">
+                                    <label className="block text-gray-700">
+                                      Item {iIndex + 1}
+                                    </label>
+                                    <button
+                                      type="button"
+                                      onClick={() => {
+                                        const newContent = [...blogContent];
+                                        newContent[index].items.splice(
+                                          iIndex,
+                                          1
+                                        );
+                                        setBlogContent(newContent);
+                                      }}
+                                      className="text-red-500"
+                                    >
+                                      <Trash2 />
+                                    </button>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    value={item.title}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[iIndex].title =
+                                        e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Title"
+                                    required
+                                  />
+                                  <textarea
+                                    value={item.description}
+                                    onChange={(e) => {
+                                      const newContent = [...blogContent];
+                                      newContent[index].items[
+                                        iIndex
+                                      ].description = e.target.value;
+                                      setBlogContent(newContent);
+                                    }}
+                                    className="w-full p-2 border border-gray-300 rounded mt-1"
+                                    placeholder="Description"
+                                    required
+                                  />
+                                </div>
+                              ))}
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const newContent = [...blogContent];
+                                  newContent[index].items.push({
+                                    title: "",
+                                    description: "",
                                   });
                                   setBlogContent(newContent);
                                 }}
@@ -1696,14 +2353,14 @@ const Admin = () => {
                             Insert at Index
                           </label>
                           <input
-                            type="text"
+                            type="number"
                             min="0"
                             max={blogContent.length}
                             value={insertIndex}
                             onChange={(e) =>
                               setInsertIndex(parseInt(e.target.value) || 0)
                             }
-                            className="w-20 p-2 border-b outline-none border-gray-300 rounded mt-1"
+                            className="w-20 p-2 border border-gray-300 rounded mt-1"
                             placeholder={`0-${blogContent.length}`}
                           />
                         </div>
@@ -1716,7 +2373,7 @@ const Admin = () => {
                               content: "",
                             });
                             setBlogContent(newContent);
-                            setInsertIndex(blogContent.length - 1);
+                            setInsertIndex(blogContent.length);
                           }}
                           className="text-blue-500"
                         >
@@ -1724,13 +2381,38 @@ const Admin = () => {
                         </button>
                       </div>
                     </div>
-                    <button
-                      type="submit"
-                      className="bg-blue-500 text-white p-2 rounded w-full"
-                      disabled={loading}
-                    >
-                      {loading ? "Adding..." : "Add Blog Post"}
-                    </button>
+                    <div className="flex gap-4 mt-4">
+                      <button
+                        type="submit"
+                        className="bg-blue-500 text-white p-2 rounded w-full"
+                        disabled={loading}
+                      >
+                        {loading
+                          ? displayIndex === 6
+                            ? "Adding..."
+                            : "Updating..."
+                          : displayIndex === 6
+                          ? "Add Blog Post"
+                          : "Update Blog"}
+                      </button>
+                      {displayIndex === 7 && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setEditingBlog(null);
+                            setBlogTitle("");
+                            setBlogImage("");
+                            setBlogSlug("");
+                            setBlogType(1);
+                            setBlogContent([{ type: "title", content: "" }]);
+                          }}
+                          className="bg-gray-500 text-white p-2 rounded w-full"
+                          disabled={loading}
+                        >
+                          Cancel
+                        </button>
+                      )}
+                    </div>
                   </form>
                 </div>
               ) : displayData.length > 0 ? (

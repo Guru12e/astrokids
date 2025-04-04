@@ -37,6 +37,7 @@ const BlogFormatContent = ({ content }) => {
       <div className="px-5 mt-12 flex flex-col md:flex-row gap-10">
         <div className="px-5 flex-2/3 w-full md:px-0">
           {content.map((block, index) => {
+            console.log(block);
             switch (block.type) {
               case "title":
                 return (
@@ -91,6 +92,83 @@ const BlogFormatContent = ({ content }) => {
                     <p className="text-xl text-[#2DB787] mt-2 italic text-center">
                       {block.content}
                     </p>
+                  </div>
+                );
+              case "numbered-list":
+                return (
+                  <ol
+                    key={index}
+                    className="pl-6 mb-6 space-y-4 text-[#6F6C90] list-decimal"
+                  >
+                    {block.items.map((item, i) => (
+                      <li key={i} className="text-[16px] md:text-[18px]">
+                        <span className="font-semibold text-[#2DB787]">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                );
+              case "summary":
+                return (
+                  <div
+                    key={index}
+                    className="my-6 p-4 bg-[#F7F7F7] border-l-4 border-[#2DB787] text-[#6F6C90] text-[16px] md:text-[18px]"
+                  >
+                    <h3 className="text-lg font-semibold text-[#2DB787] mb-2">
+                      In Summary:
+                    </h3>
+                    <p>{block.content}</p>
+                  </div>
+                );
+              case "faq":
+                return (
+                  <div key={index} className="my-6">
+                    <h3 className="text-xl font-semibold text-[#2DB787] mb-4">
+                      Frequently Asked Questions
+                    </h3>
+                    <ul className="space-y-4 text-[#6F6C90]">
+                      {block.items.map((item, i) => (
+                        <li key={i} className="text-[16px] md:text-[18px]">
+                          <span className="font-semibold text-[#02030B]">
+                            {item.question}
+                          </span>
+                          <p className="mt-1">{item.answer}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              case "checklist":
+                return (
+                  <ul
+                    key={index}
+                    className="pl-6 mb-6 space-y-4 text-[#6F6C90] list-none"
+                  >
+                    {block.items.map((item, i) => (
+                      <li
+                        key={i}
+                        className="flex items-start text-[16px] md:text-[18px]"
+                      >
+                        <span className="text-[#2DB787] mr-2">✔</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                );
+              case "highlight-list":
+                return (
+                  <div key={index} className="my-6">
+                    {block.items.map((item, i) => (
+                      <div key={i} className="mb-4">
+                        <h4 className="text-lg font-semibold text-[#2DB787]">
+                          {item.title}
+                        </h4>
+                        <p className="text-[#6F6C90] text-[16px] md:text-[18px] mt-1">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 );
               case "points":
