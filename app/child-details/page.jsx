@@ -199,7 +199,25 @@ const NewChildDetails = () => {
             })
           );
 
-          paymentFunction();
+          if (currentIndex != 0) {
+            paymentFunction();
+          } else {
+            const res = await fetch(
+              "https://report-api-0fic.onrender.com/freeReport",
+              {
+                method: "POST",
+                body: JSON.stringify({
+                  dob: `${dob} ${time}:00`,
+                  location: place.split(",")[0],
+                  lat: parseFloat(latLon.lat),
+                  lon: parseFloat(latLon.lon),
+                  gender: gender,
+                  name: name,
+                }),
+              }
+            );
+            console.log(res);
+          }
         } else {
           toast.error("Child Details with this Name is Already found", {
             position: "top-right",
@@ -529,7 +547,26 @@ const NewChildDetails = () => {
       );
       setOtpVerifyLoading(false);
       toast.success("Email Verified", { position: "top-right" });
-      paymentFunction();
+      if (currentIndex != 0) {
+        paymentFunction();
+      } else {
+        const res = await fetch(
+          "https://report-api-0fic.onrender.com/freeReport",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              dob: `${dob} ${time}:00`,
+              location: place.split(",")[0],
+              lat: parseFloat(latLon.lat),
+              lon: parseFloat(latLon.lon),
+              gender: gender,
+              name: name,
+            }),
+          }
+        );
+
+        console.log(res);
+      }
     } else {
       setOtpVerifyLoading(false);
       setEmailVerified(false);
