@@ -12,6 +12,7 @@ import {
 import EmblaCarousel from "@/components/ui/EmblaCarousel";
 import { ArrowRightIcon, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { FaRegCirclePlay, FaXmark } from "react-icons/fa6";
@@ -63,11 +64,27 @@ const NewPage = () => {
   ];
 
   const blogs = [
-    "5-Minute Bedtime Yoga for Kids (Free Routine)",
-    "The Secret to Raising Confident Kids: Aligning Parenting Styles with Their Zodiac Sign",
-    "Pancha Bhoota Diet Cheat Sheet",
-    "Decode Your Child's Birth Chart in 3 Steps",
-    "Ayurvedic Remedies for Hyperactive Kids",
+    {
+      title: "5-Minute Bedtime Yoga for Kids (Free Routine)",
+      link: "5-minute-bedtime-yoga-for-kids",
+    },
+    {
+      title:
+        "The Secret to Raising Confident Kids: Aligning Parenting Styles with Their Zodiac Sign",
+      link: "the-secret-to-raising-confident-kids",
+    },
+    {
+      title: "Pancha Bhoota Diet Cheat Sheet",
+      link: "pancha-bhoota-diet-cheat-sheet",
+    },
+    {
+      title: "Decode Your Child's Birth Chart in 3 Steps",
+      link: "decode-your-childs-birth-chart-in-3-steps",
+    },
+    {
+      title: "Ayurvedic Remedies for Hyperactive Kids",
+      link: "ayurvedic-remedies-for-hyperactive-kids",
+    },
   ];
 
   const slides = [
@@ -734,57 +751,21 @@ const NewPage = () => {
                 index == 1 && "xl:row-span-2 xl:h-full"
               } relative w-full`}
             >
-              <div
-                className={`${
-                  index != 1
-                    ? "xl:w-[80%] aspect-video mx-auto"
-                    : "xl:w-full xl:h-full"
-                } relative max-md:w-full max-md:aspect-video`}
+              <Link
+                href={`/blogs/${blog.link}`}
+                className="w-full h-full relative group"
               >
-                <Image
-                  src={`/images/new/blog${index + 1}.png`}
-                  fill
-                  alt={blog}
-                  className="object-cover rounded-xl"
-                />
-                {index === 0 && (
-                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                    Popular
-                  </div>
-                )}
-                {index === 1 && (
-                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                    Most Viewed
-                  </div>
-                )}
-                {index === 4 && (
-                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                    Recently Added
-                  </div>
-                )}
-              </div>
-              <h1
-                className={`text-[20px] font-normal leading-[1.2] mt-2 ${
-                  index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
-                }`}
-              >
-                {blog}
-              </h1>
-            </div>
-          ))}
-        </div>
-        <Carousel
-          opts={{ align: "start" }}
-          className="w-[90%] mx-auto block md:hidden mt-5"
-        >
-          <CarouselContent className="w-[90%] mx-auto">
-            {blogs.map((blog, index) => (
-              <CarouselItem key={index} className="w-[80%] relative">
-                <div className="relative max-md:w-full max-md:aspect-video">
+                <div
+                  className={`${
+                    index != 1
+                      ? "xl:w-[80%] aspect-video mx-auto"
+                      : "xl:w-full xl:h-full"
+                  } relative max-md:w-full max-md:aspect-video`}
+                >
                   <Image
                     src={`/images/new/blog${index + 1}.png`}
                     fill
-                    alt={blog}
+                    alt={blog.title}
                     className="object-cover rounded-xl"
                   />
                   {index === 0 && (
@@ -808,8 +789,54 @@ const NewPage = () => {
                     index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
                   }`}
                 >
-                  {blog}
+                  {blog.title}
                 </h1>
+              </Link>
+            </div>
+          ))}
+        </div>
+        <Carousel
+          opts={{ align: "start" }}
+          className="w-[90%] mx-auto block md:hidden mt-5"
+        >
+          <CarouselContent className="w-[90%] mx-auto">
+            {blogs.map((blog, index) => (
+              <CarouselItem key={index} className="w-[80%] relative">
+                <Link
+                  href={`/blogs/${blog.link}`}
+                  className="w-full h-full relative group"
+                >
+                  <div className="relative max-md:w-full max-md:aspect-video">
+                    <Image
+                      src={`/images/new/blog${index + 1}.png`}
+                      fill
+                      alt={blog.title}
+                      className="object-cover rounded-xl"
+                    />
+                    {index === 0 && (
+                      <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                        Popular
+                      </div>
+                    )}
+                    {index === 1 && (
+                      <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                        Most Viewed
+                      </div>
+                    )}
+                    {index === 4 && (
+                      <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                        Recently Added
+                      </div>
+                    )}
+                  </div>
+                  <h1
+                    className={`text-[20px] font-normal leading-[1.2] mt-2 ${
+                      index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
+                    }`}
+                  >
+                    {blog.title}
+                  </h1>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
