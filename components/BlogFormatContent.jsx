@@ -63,7 +63,7 @@ const BlogFormatContent = ({ content }) => {
                 return (
                   <p
                     key={index}
-                    className="text-[#6F6C90] leading-relaxed mb-4 text-[16px] md:text-[18px]"
+                    className="text-[#6F6C90] indent-10 text-justify leading-relaxed mb-4 text-[16px] md:text-[18px]"
                   >
                     {block.content}
                   </p>
@@ -104,12 +104,12 @@ const BlogFormatContent = ({ content }) => {
                 return (
                   <div key={index} className="my-8">
                     {block.content.map((item, index) => (
-                      <div key={index} className="mb-6 p-4 relative">
+                      <div key={index} className="mb-6 relative">
                         <h3 className="text-xl font-semibold text-[#02030B] mb-2 leading-[1.2]">
                           {item.title}
                         </h3>
 
-                        <p className="text-[#6F6C90] leading-relaxed mb-3 text-[16px] md:text-[18px]">
+                        <p className="text-[#6F6C90] indent-10 text-justify leading-relaxed mb-3 text-[16px] md:text-[18px]">
                           {item.content}
                         </p>
 
@@ -148,7 +148,7 @@ const BlogFormatContent = ({ content }) => {
                           </div>
                         )}
 
-                        <p className="text-[#6F6C90] leading-relaxed mb-3 text-[16px] md:text-[18px]">
+                        <p className="text-[#6F6C90] indent-10 text-justify leading-relaxed mb-3 text-[16px] md:text-[18px]">
                           {item.content}
                         </p>
 
