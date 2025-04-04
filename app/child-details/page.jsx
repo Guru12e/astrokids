@@ -218,7 +218,10 @@ const NewChildDetails = () => {
                   name: name,
                 }),
               }
-            );
+            )
+              .then((response) => response.json())
+              .then((data) => console.log(data))
+              .catch((error) => console.error("Error:", error));
             console.log(res);
           }
         } else {
