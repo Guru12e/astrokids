@@ -58,7 +58,7 @@ const NewPage = () => {
     },
     {
       title: "Master Parenting",
-      price: "₹1499",
+      price: "₹1299",
       content: "The ultimate roadmap for astrological success!",
     },
   ];
