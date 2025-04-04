@@ -104,10 +104,7 @@ const BlogFormatContent = ({ content }) => {
                 return (
                   <div key={index} className="my-8">
                     {block.content.map((item, index) => (
-                      <div
-                        key={index}
-                        className="mb-6 p-4 rounded-xl bg-gradient-to-br from-[#FFEB3B]/20 to-[#2DB787]/20"
-                      >
+                      <div key={index} className="mb-6 p-4 relative">
                         <h3 className="text-xl font-semibold text-[#02030B] mb-2 leading-[1.2]">
                           {item.title}
                         </h3>
