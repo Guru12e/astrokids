@@ -70,7 +70,7 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-      <div className="p-5 md:p-16" id="our-mission">
+      <div className="px-5 md:p-16" id="our-mission">
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-col w-full md:w-1/2 justify-center">
             <h1 className="text-[60px] text-[#02030B] font-semibold leading-[1.2]">
@@ -107,10 +107,9 @@ const AboutPage = () => {
         </div>
       </div>
       <div
-        className="p-5 md:p-16 flex flex-col justify-center items-center"
+        className="px-5 pb-4 md:p-16 flex flex-col justify-center items-center"
         id="trust-us"
       >
-        <div className="w-full h-10"></div>
         <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
           Why Parents Trust Us
         </h1>
