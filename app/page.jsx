@@ -207,7 +207,7 @@ const NewPage = () => {
               <span className="text-[#FFEB3B]">Confident</span> Kids <br />
               Holistically
             </h1>
-            <div className="flex flex-col mt-4 md:flex-row gap-5">
+            <div className="flex flex-col justify-center items-center mt-4 md:flex-row gap-5">
               <button
                 className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                 onClick={() => {
@@ -227,11 +227,17 @@ const NewPage = () => {
               </button>
 
               <button
-                className="px-3 py-1 flex gap-2 justify-center border border-white bg-white/10 items-center text-white font-bold rounded-full transition-all"
+                className="relative w-max flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                 onClick={() => setIsVedioPlay(true)}
               >
-                <FaRegCirclePlay className="font-normal" />
-                <span>What is Astrokids.ai?</span>
+                <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
+                  What is Astrokids.ai?
+                </span>
+                <ArrowRightIcon
+                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
+                  size={30}
+                />
               </button>
             </div>
           </div>
