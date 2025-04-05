@@ -226,7 +226,7 @@ const PanchangDisplay = () => {
                         className="object-contain"
                       />
                     </div>
-                    <p className="text-[16px] font-medium text-[#6F6C90]">
+                    <p className="text-[16px] capitalize font-medium text-[#6F6C90]">
                       {item.sign}
                     </p>
                   </div>
@@ -290,14 +290,14 @@ const PanchangDisplay = () => {
                             className="object-contain"
                           />
                         </div>
-                        <p className="text-[16px] font-medium text-[#6F6C90]">
+                        <p className="text-[16px] capitalize font-medium text-[#6F6C90]">
                           {item.sign}
                         </p>
                         <div className="mt-4">
                           <h4 className="text-[16px] font-semibold text-[#6F8BEF] mb-2">
                             {name}'s {item.heading}
                           </h4>
-                          <p className="text-[14px] text-[#8F8F8F]">
+                          <p className="text-[14px] capitalize text-[#8F8F8F]">
                             {item.identity
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -365,12 +365,12 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-green-400">
+                          <h4 className="text-[16px] font-semibold capitalize text-green-400">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
                           </h4>
-                          <p className="text-[#6F6C90] mt-1">
+                          <p className="text-[#6F6C90] capitalize mt-1">
                             {item.con
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -394,19 +394,19 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-red-400">
+                          <h4 className="text-[16px] font-semibold capitalize text-red-400">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
                           </h4>
-                          <p className="text-[#6F6C90] mt-1">
+                          <p className="text-[#6F6C90] capitalize mt-1">
                             {item.con
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
                           </p>
                         </div>
                       ))}
-                      <p className="text-[#8F8F8F] italic mt-4">
+                      <p className="text-[#8F8F8F] italic capitalize mt-4">
                         {constitution.weaknessNote
                           .replaceAll("child", name.toLowerCase())
                           .replaceAll("Child", name)}
@@ -415,7 +415,7 @@ const PanchangDisplay = () => {
                   )}
                   {activeTab === "remedy" && (
                     <>
-                      <h3 className="text-[20px] font-semibold text-yellow-800 mb-4 text-center">
+                      <h3 className="text-[20px] font-semibold capitalize text-yellow-800 mb-4 text-center">
                         {constitution.remedyTitle
                           .replaceAll("child", name.toLowerCase())
                           .replaceAll("Child", name)}
@@ -425,12 +425,12 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-yellow-800">
+                          <h4 className="text-[16px] font-semibold capitalize text-yellow-800">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
                           </h4>
-                          <p className="text-[#6F6C90] mt-1">
+                          <p className="text-[#6F6C90] mt-1 capitalize">
                             {item.con
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -452,23 +452,6 @@ const PanchangDisplay = () => {
                 <span className="text-white">{name}</span> that can make your
                 parenting easier, smoother, and more fulfilling.
               </p>
-              <button
-                className="relative flex items-center mx-auto justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
-                onClick={() => {
-                  router.push("/plans");
-                }}
-              >
-                <div className="absolute  right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
-
-                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Discover your child Potential
-                </span>
-
-                <ArrowRightIcon
-                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
-                  size={30}
-                />
-              </button>
             </section>
           </div>
 
