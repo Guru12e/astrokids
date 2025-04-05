@@ -689,7 +689,7 @@ const NewPage = () => {
       </div>
       <div className="p-5 md:p-10" id="choose-your-plan">
         <h1 className="title  font-bold leading-[1.2] text-center capitalize">
-          Choose your plan
+          Choose your child's plan
         </h1>
         <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Because Every <span className="text-[#2DB787]"> Child's </span> Path

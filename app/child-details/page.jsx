@@ -1035,15 +1035,15 @@ const NewChildDetails = () => {
                         Subtotal
                       </h1>
                       <p className="text-[16px] text-[#111729] font-normal">
-                        {parseInt(pricing[currentIndex].price) + 200}.00
+                        ₹{parseInt(pricing[currentIndex].price) + 200}.00
                       </p>
                     </div>
                     <div className="flex w-full justify-between">
                       <h1 className="text-[16px] font-normal text-[#677489]">
-                        Discount (30%)
+                        Flat Discount
                       </h1>
-                      <p className="text-[16px] text-[#111729] font-normal">
-                        200.00
+                      <p className="text-[16px] text-red-400 font-normal">
+                        -₹{currentIndex === 0 ? "399.00" : "200.00"}
                       </p>
                     </div>
                   </div>
@@ -1053,7 +1053,9 @@ const NewChildDetails = () => {
                       Total
                     </h1>
                     <p className="text-[16px] text-[#111729] font-semibold">
-                      {parseInt(pricing[currentIndex].price)}.00
+                      {currentIndex === 0
+                        ? "Free"
+                        : `₹${parseInt(pricing[currentIndex].price)}.00`}
                     </p>
                   </div>
                 </div>
