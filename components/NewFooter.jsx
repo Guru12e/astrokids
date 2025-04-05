@@ -59,18 +59,20 @@ const NewFooter = () => {
           <div className="relative w-[150px] md:w-[200px] aspect-square">
             <Image
               fill
-              src={"/images/new/logo1.jpg"}
+              src={"/images/new/logo1.png"}
               alt="logo"
               className="object-cover"
             />
           </div>
           <div
-            className="flex justify-center items-center text-[16px] cursor-pointer font-[550] gap-2 mt-5 relative"
+            className="w-[150px] md:w-[200px] text-[16px] flex justify-center items-center cursor-pointer font-[550] mt-5 relative"
             onClick={() => router.push("contact")}
           >
-            <p>Contact Us</p>
-            <ArrowUpRight />
-            <div className="absolute w-full h-0.5 rounded-full bg-white bottom-0"></div>
+            <div className="w-max flex justify-center items-center gap-2 relative">
+              <p>Contact Us</p>
+              <ArrowUpRight />
+              <div className="absolute w-full h-0.5 rounded-full bg-white bottom-0"></div>
+            </div>
           </div>
         </div>
         <div className="flex-3/5 flex flex-wrap w-full justify-between gap-5">
