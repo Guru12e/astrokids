@@ -204,7 +204,7 @@ const NewPage = () => {
           <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
             <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
               Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
-              <span className="text-[#2DB787]">Confident</span> Kids <br />
+              <span className="text-[#2aac7e]">Confident</span> Kids <br />
               Holistically
             </h1>
             <div className="flex flex-col md:flex-row gap-5">

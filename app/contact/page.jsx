@@ -141,7 +141,7 @@ const ContactPage = () => {
               Email Support
             </h1>
             <div className="w-10 h-1 bg-white rounded-xl"></div>
-            <p className="text-[22px] font-semibold">help@info.com</p>
+            <p className="text-[22px] font-semibold">support@astrokids.ai</p>
             <p className="text-[20px] font-normal leading-[1.2]">
               Assistance hours: Monday - Friday 6 am to 8 pm EST
             </p>
