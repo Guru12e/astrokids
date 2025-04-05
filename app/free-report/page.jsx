@@ -447,7 +447,7 @@ const PanchangDisplay = () => {
               <p className="text-[26px] capitalize font-semibold text-center leading-[1.2] mb-6">
                 be the best mom and dad your child deserves 💛
               </p>
-              <p className="text-[18px] text-center capitalize font-semibold mb-6">
+              <p className="text-[20px] text-center capitalize font-semibold">
                 Discover 20+ surprising insights about your{" "}
                 <span className="text-white">{name}</span> that can make your
                 parenting easier, smoother, and more fulfilling.
