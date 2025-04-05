@@ -207,8 +207,7 @@ const AboutPage = () => {
       </div>
 
       <div id="plan-benefits">
-        <div className="w-full h-10"></div>
-        <div className="grid px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
+        <div className="grid px-10 py-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
           {newPricing.map((p, ind) => (
             <div
               key={ind}
