@@ -152,6 +152,7 @@ const AboutPage = () => {
                   src={"/images/new/no-image.png"}
                   alt={`team${index}`}
                   fill
+                  className="object-cover rounded-t-xl"
                 />
                 <div className="w-full p-3 h-max absolute left-0 bottom-0 z-10 bg-gradient-to-t from-[#151C52] to-transparent">
                   <h1 className="text-[30px] font-semibold text-white leading-[1.2] capitalize">
