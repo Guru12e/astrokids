@@ -243,8 +243,8 @@ const NewPage = () => {
               >
                 <FaXmark size={30} />
               </button>
-              <div className="relative bg-white p-3 w-[60%]">
-                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
+              <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[60%]">
+                <p className="text-[15px] md:text-[20px] indent-10 mt-1 leading-relaxed">
                   AstroKids.ai is a platform that integrates Vedic Astrology,
                   Ayurveda, and Yoga to provide parents with personalized
                   insights into their children’s unique potentials. By analyzing
@@ -252,16 +252,16 @@ const NewPage = () => {
                   nurturing a child’s mental, emotional, and physical
                   well-being.
                 </p>
-                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
-                  <span className="text-[#FFEB3B]">
+                <p className="text-[15px] md:text-[20px] mt-1 leading-relaxed">
+                  <span className="text-[#FFEB3B] font-semibold">
                     Personalized Astrology Reports
                   </span>
                   : Tailored to each child’s astrological profile, these reports
                   offer insights into personality traits, health predictions,
                   and developmental guidance.
                 </p>
-                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
-                  <span className="text-[#FFEB3B]">
+                <p className="text-[15px] md:text-[20px] mt-1 leading-relaxed">
+                  <span className="text-[#FFEB3B] font-semibold">
                     Holistic Parenting Guidance
                   </span>
                   : Combining ancient wisdom with modern practices, AstroKids.ai
