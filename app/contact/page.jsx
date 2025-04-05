@@ -40,11 +40,11 @@ const ContactPage = () => {
           <h1 className="text-[42px] leading-[1.2] text-[#02030B] font-bold capitalize">
             Need Personalized Advice? Let's Connect
           </h1>
-          <div className="w-full h-[320px] md:h-[400px] rounded-xl overflow-hidden relative">
+          <div className="w-full aspect-video mt-4 md:h-[400px] rounded-xl overflow-hidden relative">
             <Image
               src={`/images/new/contact-hero.png`}
               fill
-              className="object-contain rounded-xl mt-16"
+              className="object-cover rounded-xl"
               alt="Hero image"
             />
           </div>

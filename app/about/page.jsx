@@ -57,7 +57,7 @@ const AboutPage = () => {
             Based on Scientific Research
           </p>
           <h1 className="text-center leading-[1.2] font-bold text-[60px] px-3 md:text-[48px]">
-            Guiding Parents !
+            Guiding Parents
           </h1>
           <p className="font-bold text-[24px] uppercase tracking-[0] px-5 text-center leading-[1.2]">
             With <span className="text-[#FFEB3B]"> Wisdom, Science, </span>and{" "}

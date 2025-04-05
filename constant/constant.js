@@ -167,7 +167,7 @@ export const pricing = [
   },
   {
     title: "Master Parenting",
-    price: "1499",
+    price: "1299",
     content:
       "A complete guide for parents who want comprehensive insights into their child’s life journey and future milestones. Next 5 years Development Milestone Prediction, Child’s Life Insights.",
     what: [
@@ -469,4 +469,274 @@ export const planetGemstone = {
   Saturn: "Blue Sapphire",
   Rahu: "Hessonite Garnet",
   Ketu: "Cat's Eye",
+};
+
+export const bodyConsitutions = {
+  Pitta: {
+    strength: [
+      {
+        title: "Born to Lead",
+        con: "child naturally takes charge in school, games, and even at home.",
+      },
+      {
+        title: "Sharp and Smart",
+        con: "child thinks fast and understands logic and strategy better than most kids.",
+      },
+      {
+        title: "Strong Willpower",
+        con: "If child decides something, stepping back is not easy.",
+      },
+      {
+        title: "Fearless Heart",
+        con: "Challenges rarely scare child. Facing difficulties head-on is natural.",
+      },
+      {
+        title: "Focused on Goals",
+        con: "child doesn’t just dream but plans and works to make success happen.",
+      },
+    ],
+    strengthNote:
+      "📖 Psychologists say kids with strong “executive function” skills (planning, focusing, following through) often become future achievers if guided properly.",
+    weakness: [
+      {
+        title: "Fear of Failure",
+        con: "child may feel personal shame even after small failures.",
+      },
+      {
+        title: "Anger and Frustration",
+        con: "When things don’t go as expected, child may experience emotional outbursts.",
+      },
+      {
+        title: "Taking Criticism Too Personally",
+        con: "Even gentle advice can hurt child if not shared carefully.",
+      },
+      {
+        title: "Impatience",
+        con: "Waiting can feel like torture for child.",
+      },
+      {
+        title: "Over-Competition",
+        con: "Winning may matter too much for child, leading to unnecessary stress.",
+      },
+    ],
+    weaknessNote:
+      "📖 Research shows perfectionism in children (Journal of Child Psychology, 2023) is linked to high anxiety if not balanced early.",
+    remedyTitle: "💡 Cooling child's Inner Fire Naturally",
+    remedy: [
+      {
+        title: "Outdoor Play Therapy",
+        con: "Encourage activities like swimming, sand play, or evening cycling. Eco-Therapy studies prove that exposure to water and earth elements reduces stress and emotional buildup.",
+      },
+      {
+        title: "4-7-8 Breathing Technique",
+        con: "Teach child to inhale for 4 seconds, hold for 7 seconds, and exhale for 8 seconds. Harvard Medical School research shows this method slows the heart rate and reduces emotional outbursts.",
+      },
+      {
+        title: "Offer Pitta-Balancing Foods",
+        con: "Support child’s mood with sweet, cooling foods like cucumbers, melons, and coconut water. Both Ayurveda and modern nutrition agree that diet directly impacts emotional health.",
+      },
+      {
+        title: "Create a Safe Space for Mistakes",
+        con: "Instead of saying “Why did you do that?”, ask child, “What did you learn from that?” Growth Mindset Training in psychology proves this method builds emotional safety.",
+      },
+      {
+        title: "Evening De-Stress Routine",
+        con: "Use coconut oil for a calming head massage for child, play soothing music, and minimize homework stress at night. Research shows this activates the parasympathetic nervous system, promoting deep relaxation.",
+      },
+    ],
+  },
+  Kapha: {
+    strength: [
+      {
+        title: "Emotionally Strong",
+        con: "child has deep emotional intelligence and feels and cares deeply for others.",
+      },
+      {
+        title: "Patient and Steady",
+        con: "child does not rush. child builds skills slowly but masterfully.",
+      },
+      {
+        title: "Highly Loyal",
+        con: "Friends and family matter the most to child. child stays loyal no matter what.",
+      },
+      {
+        title: "Naturally Calm",
+        con: "child rarely panics, even in difficult situations.",
+      },
+      {
+        title: "Physically Strong",
+        con: "child usually has a strong, steady body with good endurance.",
+      },
+    ],
+    strengthNote:
+      "📖 Psychological studies show that emotionally stable kids often form healthier social bonds and perform better in teamwork (Child Development Journal, 2022).",
+    weakness: [
+      {
+        title: "Fear of Change",
+        con: "child can resist new environments, new teachers, or moving houses.",
+      },
+      {
+        title: "Emotional Overload",
+        con: "child holds emotions inside and feels heavy when stressed.",
+      },
+      {
+        title: "Procrastination",
+        con: "child prefers staying in comfort zones and delays tough tasks.",
+      },
+      {
+        title: "Over-Attachment",
+        con: "child struggles to let go of people, things, or habits.",
+      },
+      {
+        title: "Laziness and Low Motivation",
+        con: "If energy is not moved, child may become too passive.",
+      },
+    ],
+    weaknessNote:
+      "📖 Studies show that children with high attachment behaviors need structured routines to stay motivated and avoid emotional build-up (American Psychological Association, 2023).",
+    remedyTitle: "💡 Energizing child's Calm Nature",
+    remedy: [
+      {
+        title: "Morning Movement Ritual",
+        con: "Gentle yoga stretches or short morning walks activate both body and brain (proven by Pediatric Exercise Science research).",
+      },
+      {
+        title: "Teach '5-Minute Rule' to Beat Procrastination",
+        con: "Start any task just for 5 minutes. Often child continues beyond 5 without pressure — a method used in Cognitive Behavioral Therapy (CBT).",
+      },
+      {
+        title: "Include Light, Fresh Foods",
+        con: "Fruits, steamed vegetables, and light soups prevent sluggishness. Ayurveda and modern dietetics agree that heavy foods slow down motivation.",
+      },
+      {
+        title: "Encourage Emotional Talks",
+        con: "Give space for child to express feelings daily. Use prompts like, “Tell me one good and one tricky thing about your day.”",
+      },
+      {
+        title: "Creative Energizers",
+        con: "Dance, art projects, and role-plays are fun ways for child to move emotions and energy naturally.",
+      },
+    ],
+  },
+  Vatta: {
+    strength: [
+      {
+        title: "Emotionally Strong",
+        con: "child has deep emotional intelligence and feels and cares deeply for others.",
+      },
+      {
+        title: "Patient and Steady",
+        con: "child does not rush. child builds skills slowly but masterfully.",
+      },
+      {
+        title: "Highly Loyal",
+        con: "Friends and family matter the most to child. child stays loyal no matter what.",
+      },
+      {
+        title: "Naturally Calm",
+        con: "child rarely panics, even in difficult situations.",
+      },
+      {
+        title: "Physically Strong",
+        con: "child usually has a strong, steady body with good endurance.",
+      },
+    ],
+    strengthNote:
+      "📖 Psychological studies show that emotionally stable kids often form healthier social bonds and perform better in teamwork (Child Development Journal, 2022).",
+    weakness: [
+      {
+        title: "Fear of Change",
+        con: "child can resist new environments, new teachers, or moving houses.",
+      },
+      {
+        title: "Emotional Overload",
+        con: "child holds emotions inside and feels heavy when stressed.",
+      },
+      {
+        title: "Procrastination",
+        con: "child prefers staying in comfort zones and delays tough tasks.",
+      },
+      {
+        title: "Over-Attachment",
+        con: "child struggles to let go of people, things, or habits.",
+      },
+      {
+        title: "Laziness and Low Motivation",
+        con: "If energy is not moved, child may become too passive.",
+      },
+    ],
+    weaknessNote:
+      "📖 Studies show that children with high attachment behaviors need structured routines to stay motivated and avoid emotional build-up (American Psychological Association, 2023).",
+    remedyTitle: "💡 Energizing child's Calm Nature",
+    remedy: [
+      {
+        title: "Morning Movement Ritual",
+        con: "Gentle yoga stretches or short morning walks activate both body and brain (proven by Pediatric Exercise Science research).",
+      },
+      {
+        title: "Teach '5-Minute Rule' to Beat Procrastination",
+        con: "Start any task just for 5 minutes. Often child continues beyond 5 without pressure — a method used in Cognitive Behavioral Therapy (CBT).",
+      },
+      {
+        title: "Include Light, Fresh Foods",
+        con: "Fruits, steamed vegetables, and light soups prevent sluggishness. Ayurveda and modern dietetics agree that heavy foods slow down motivation.",
+      },
+      {
+        title: "Encourage Emotional Talks",
+        con: "Give space for child to express feelings daily. Use prompts like, “Tell me one good and one tricky thing about your day.”",
+      },
+      {
+        title: "Creative Energizers",
+        con: "Dance, art projects, and role-plays are fun ways for child to move emotions and energy naturally.",
+      },
+    ],
+  },
+};
+
+export const constitutionRatio = {
+  Sun: {
+    Pitta: 70,
+    Vata: 20,
+    Kapha: 10,
+  },
+  Moon: {
+    Kapha: 60,
+    Vata: 30,
+    Pitta: 10,
+  },
+  Mercury: {
+    Vata: 60,
+    Pitta: 30,
+    Kapha: 10,
+  },
+  Venus: {
+    Kapha: 50,
+    Pitta: 30,
+    Vata: 20,
+  },
+  Mars: {
+    Pitta: 80,
+    Vata: 15,
+    Kapha: 5,
+  },
+  Jupiter: {
+    Kapha: 60,
+    Pitta: 30,
+    Vata: 10,
+  },
+  Saturn: {
+    Vata: 70,
+    Kapha: 20,
+    Pitta: 10,
+  },
+  Rahu: {
+    Vata: 80,
+    Pitta: 15,
+    Kapha: 5,
+  },
+  Ketu: {
+    Pitta: 70,
+    Vata: 25,
+    Kapha: 5,
+  },
 };

@@ -196,7 +196,7 @@ const AboutPage = () => {
           <h1 className="text-center leading-[1.2] font-bold text-[40px] px-3 md:text-[28px]">
             Simple Plans, Tailored to Your Parenting Journey 🌟
           </h1>
-          <p className="font-medium text-[24px] tracking-[0] px-5 text-center leading-[1.2]">
+          <p className="font-medium text-[24px] tracking-[0] px-5 mt-5 text-center leading-[1.2]">
             Find{" "}
             <span className="text-[#FFEB3B] font-bold">
               Clarity Without Complexity

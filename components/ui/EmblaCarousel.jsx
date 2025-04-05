@@ -81,7 +81,10 @@ const EmblaCarousel = (props) => {
                       -{slide.parentName}
                     </p>
                   </div>
-                  <div className="absolute -top-[7%] -right-[2%] new-gradient py-1 px-3 rounded-tr-xl text-xl rounded-bl-xl">
+                  <div
+                    className="absolute -top-[7%] -right-[2%] new-gradient py-1 px-3 rounded-tr-xl text-xl rounded-bl-xl"
+                    onClick={() => router.push("/plans")}
+                  >
                     Try {slide.title.split("-")[0]} Plan
                   </div>
                 </div>

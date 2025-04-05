@@ -207,7 +207,7 @@ const NewPage = () => {
               <span className="text-[#FFEB3B]">Confident</span> Kids <br />
               Holistically
             </h1>
-            <div className="flex flex-col md:flex-row gap-5">
+            <div className="flex flex-col mt-4 md:flex-row gap-5">
               <button
                 className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                 onClick={() => {
@@ -252,7 +252,7 @@ const NewPage = () => {
                   nurturing a child’s mental, emotional, and physical
                   well-being.
                 </p>
-                <p className="text-[15px] md:text-[20px] mt-1 leading-relaxed">
+                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
                   <span className="text-[#FFEB3B] font-semibold">
                     Personalized Astrology Reports
                   </span>
@@ -260,7 +260,7 @@ const NewPage = () => {
                   offer insights into personality traits, health predictions,
                   and developmental guidance.
                 </p>
-                <p className="text-[15px] md:text-[20px] mt-1 leading-relaxed">
+                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
                   <span className="text-[#FFEB3B] font-semibold">
                     Holistic Parenting Guidance
                   </span>
