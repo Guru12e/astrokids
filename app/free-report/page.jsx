@@ -18,10 +18,10 @@ import {
   zodiac_lord,
 } from "@/constant/constant";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { X } from "lucide-react"; // Added for popup close button
+import { ArrowRightIcon, X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Loader from "@/components/Loader";
 
 const PanchangDisplay = () => {
   const [panchangData, setPanchangData] = useState(null);
@@ -132,15 +132,7 @@ const PanchangDisplay = () => {
   }, [userDetails, panchangData]);
 
   if (!panchangData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-[#1B1F3B]">
-        <div className="text-center p-8 bg-white rounded-3xl shadow-2xl animate-pulse">
-          <p className="text-xl font-semibold text-[#2DB787]">
-            Loading Your Cosmic Profile...
-          </p>
-        </div>
-      </div>
-    );
+    return <Loader />;
   }
 
   const months = [
@@ -186,20 +178,11 @@ const PanchangDisplay = () => {
               <h1 className="text-[40px] font-bold text-center leading-[1.2] text-[#6F8BEF]">
                 {name}'s Celestial Journey
               </h1>
-              <p className="text-[16px] text-[#6F6C90] mt-4 text-center leading-[1.2]">
+              <p className="text-[16px] text-black mt-4 text-center leading-[1.2]">
                 The Precious Child Born on the auspicious day{" "}
-                <span className="font-bold text-[#6F8BEF]">
-                  {formatDob(userDetails.dob)}
-                </span>{" "}
-                at{" "}
-                <span className="font-bold text-[#6F8BEF]">
-                  {formatTime(userDetails.time)}
-                </span>
-                , in{" "}
-                <span className="font-bold text-[#6F8BEF]">
-                  {userDetails.place}
-                </span>
-                .
+                <span>{formatDob(userDetails.dob)}</span> at{" "}
+                <span>{formatTime(userDetails.time)}</span>, in{" "}
+                <span>{userDetails.place}</span>.
               </p>
             </section>
 
@@ -462,19 +445,30 @@ const PanchangDisplay = () => {
 
             <section className="new-gradient text-white rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
               <p className="text-[26px] capitalize font-semibold text-center leading-[1.2] mb-6">
-                be the best mom or dad your child deserves 💛
+                be the best mom and dad your child deserves 💛
               </p>
-              <p className="text-[18px] text-center font-semibold mb-6">
-                👉 Get Your Personalized Plan Today and Transform{" "}
-                <span className="text-white">{name}</span>’s Future!
+              <p className="text-[18px] text-center capitalize font-semibold mb-6">
+                Discover 20+ surprising insights about your{" "}
+                <span className="text-white">{name}</span> that can make your
+                parenting easier, smoother, and more fulfilling.
               </p>
-              <div className="flex justify-center">
-                <Link href="/plans">
-                  <button className=" text-white px-8 py-3 rounded-lg font-semibold text-[16px] bg-[#2DB787] hover:scale-105 transition-all duration-300 shadow-md">
-                    Explore Astro Kids Plans
-                  </button>
-                </Link>
-              </div>
+              <button
+                className="relative flex items-center mx-auto justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
+                onClick={() => {
+                  router.push("/plans");
+                }}
+              >
+                <div className="absolute  right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+
+                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
+                  Discover your child Potential
+                </span>
+
+                <ArrowRightIcon
+                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
+                  size={30}
+                />
+              </button>
             </section>
           </div>
 
@@ -486,7 +480,7 @@ const PanchangDisplay = () => {
               {pricing.slice(1, 4).map((item, index) => (
                 <div
                   key={index}
-                  className="p-0.5 w-full rounded-3xl hover:shadow-2xl hover:-translate-y-5 bg-gradient-to-br from-[#2DB787] to-[#FFEB3B] transition-all duration-1000"
+                  className="p-0.5 w-full rounded-3xl relative hover:shadow-2xl hover:-translate-y-5 bg-gradient-to-br from-[#2DB787] to-[#FFEB3B] transition-all duration-1000"
                 >
                   <div className="bg-white rounded-3xl p-6 shadow-md">
                     <div className="relative w-48 h-48 mx-auto mb-4">
@@ -519,6 +513,17 @@ const PanchangDisplay = () => {
                       Buy Now
                     </button>
                   </div>
+
+                  {index === 1 && (
+                    <p className="absolute px-3 rounded-tr-xl rounded-bl-xl top-0 w-max font-medium right-0 new-gradient text-white text-[16px]">
+                      Most Loved by Parents ✨
+                    </p>
+                  )}
+                  {index === 0 && (
+                    <p className="absolute px-3 rounded-tr-xl rounded-bl-xl top-0 w-max font-medium right-0 new-gradient text-white text-[16px]">
+                      Popular ✨
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
