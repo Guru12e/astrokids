@@ -173,6 +173,9 @@ const PanchangDisplay = () => {
 
   const router = useRouter();
 
+  const colors = ["text-green-500", "text-red-500", "text-yellow-500"];
+  const bgs = ["bg-green-400", "bg-red-400", "bg-yellow-400"];
+
   return (
     <>
       <Header />
@@ -180,20 +183,20 @@ const PanchangDisplay = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
           <div className="w-full md:w-2/3 space-y-12">
             <section className="bg-white rounded-3xl shadow-2xl p-8 hover:shadow-2xl transition-all duration-1000">
-              <h1 className="text-[40px] font-bold text-center leading-[1.2] text-[#2DB787]">
-                {name}'s Celestial Journey 🌟
+              <h1 className="text-[40px] font-bold text-center leading-[1.2] text-[#6F8BEF]">
+                {name}'s Celestial Journey
               </h1>
               <p className="text-[16px] text-[#6F6C90] mt-4 text-center leading-[1.2]">
                 The Precious Child Born on the auspicious day{" "}
-                <span className="font-bold text-[#FFEB3B]">
+                <span className="font-bold text-[#6F8BEF]">
                   {formatDob(userDetails.dob)}
                 </span>{" "}
                 at{" "}
-                <span className="font-bold text-[#FFEB3B]">
+                <span className="font-bold text-[#6F8BEF]">
                   {formatTime(userDetails.time)}
                 </span>
                 , in{" "}
-                <span className="font-bold text-[#FFEB3B]">
+                <span className="font-bold text-[#6F8BEF]">
                   {userDetails.place}
                 </span>
                 .
@@ -201,7 +204,7 @@ const PanchangDisplay = () => {
             </section>
 
             <section className="bg-white rounded-3xl shadow-2xl p-8">
-              <h2 className="text-[24px] font-bold text-[#2DB787] mb-6 text-center">
+              <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                 {name}'s True Self
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -229,7 +232,7 @@ const PanchangDisplay = () => {
                     key={index}
                     className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                   >
-                    <h3 className="text-[18px] font-semibold text-[#2DB787] mb-3">
+                    <h3 className="text-[18px] font-semibold text-[#6F8BEF] mb-3">
                       {item.title}
                     </h3>
                     <div className="relative w-36 h-36 mx-auto mb-4">
@@ -247,7 +250,7 @@ const PanchangDisplay = () => {
                 ))}
               </div>
               <button
-                className="px-4 py-2 mt-5 mx-auto font-medium rounded-lg flex justify-center items-center gap-2 border border-[#2DB787] text-[#2DB787] hover:bg-[#2DB787] hover:text-white transition-all duration-300"
+                className="px-4 py-2 mt-5 mx-auto font-medium rounded-lg flex justify-center items-center gap-2 border border-[#6F8BEF] text-[#6F8BEF] hover:bg-[#6F8BEF] hover:text-white transition-all duration-300"
                 onClick={() => setIsTrueSelfOpen(true)}
               >
                 Explore True Self
@@ -257,18 +260,18 @@ const PanchangDisplay = () => {
             {isTrueSelfOpen && (
               <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
                 <div className="bg-white rounded-3xl p-8 w-[95%] md:w-[60%] max-h-[80vh] overflow-y-auto relative shadow-2xl border border-gray-100">
-                  <div className="sticky top-0 flex justify-end">
+                  <div className="sticky top-0 flex justify-end z-10">
                     <button
-                      className="text-[#6F6C90] hover:text-[#2DB787] transition-colors duration-200"
+                      className="text-[#6F6C90] hover:text-[#6F8BEF] transition-colors duration-200"
                       onClick={() => setIsTrueSelfOpen(false)}
                     >
                       <X size={28} className="p-1 bg-gray-100 rounded-full" />
                     </button>
                   </div>
-                  <h2 className="text-[28px] font-bold text-[#2DB787] mb-6 text-center">
+                  <h2 className="text-[28px] font-bold text-[#6F8BEF] mb-6 text-center">
                     {name}'s True Self 🌟
                   </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 z-5">
                     {[
                       {
                         title: "Ascendant (Lagna)",
@@ -293,7 +296,7 @@ const PanchangDisplay = () => {
                         key={index}
                         className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
                       >
-                        <h3 className="text-[18px] font-semibold text-[#2DB787] mb-3">
+                        <h3 className="text-[18px] font-semibold text-[#6F8BEF] mb-3">
                           {item.title}
                         </h3>
                         <div className="relative w-36 h-36 mx-auto mb-4">
@@ -308,7 +311,7 @@ const PanchangDisplay = () => {
                           {item.sign}
                         </p>
                         <div className="mt-4">
-                          <h4 className="text-[16px] font-semibold text-[#2DB787] mb-2">
+                          <h4 className="text-[16px] font-semibold text-[#6F8BEF] mb-2">
                             {name}'s {item.heading}
                           </h4>
                           <p className="text-[14px] text-[#8F8F8F]">
@@ -325,7 +328,7 @@ const PanchangDisplay = () => {
             )}
 
             <section className="bg-white rounded-3xl shadow-2xl p-8">
-              <h2 className="text-[24px] font-bold text-[#2DB787] mb-6 text-center">
+              <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                 Astrological Insights
               </h2>
               {content && (
@@ -335,10 +338,10 @@ const PanchangDisplay = () => {
                       key={index}
                       className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
-                      <span className="font-semibold text-[#2DB787] capitalize">
+                      <span className="font-semibold text-[#6F8BEF] capitalize">
                         {key.replace(/([A-Z])/g, " $1").trim()}:
                       </span>{" "}
-                      <span className="text-[#6F6C90]">{value}</span>
+                      <span className="text-black">{value}</span>
                     </div>
                   ))}
                 </div>
@@ -347,21 +350,21 @@ const PanchangDisplay = () => {
 
             {constitution && (
               <section className="bg-white rounded-3xl shadow-2xl p-8">
-                <h2 className="text-[24px] font-bold text-[#2DB787] mb-6 text-center">
+                <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                   {name}'s Body is Dominated By {constitutionType} Nature
                 </h2>
                 <div className="flex flex-wrap gap-4 mb-6 justify-center">
-                  {["strength", "weakness", "remedie"].map((tab) => (
+                  {["strength", "weakness", "remedie"].map((tab, index) => (
                     <button
                       key={tab}
                       onClick={() =>
                         setActiveTab("remedie" === tab ? "remedy" : tab)
                       }
-                      className={`px-6 py-3 rounded-lg font-semibold text-white transition-all duration-300 hover:shadow-md ${
+                      className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:shadow-md ${
                         (activeTab === "remedy" && tab === "remedie") ||
                         activeTab === tab
-                          ? "bg-[#2DB787] shadow-lg"
-                          : "bg-[#6F6C90] hover:bg-[#2DB787]"
+                          ? `${bgs[index]} shadow-lg text-black`
+                          : "bg-[#6F6C90] hover:bg-[#6F8BEF] text-white"
                       }`}
                     >
                       {tab.charAt(0).toUpperCase() + tab.slice(1)}s
@@ -371,7 +374,7 @@ const PanchangDisplay = () => {
                 <div className="space-y-6">
                   {activeTab === "strength" && (
                     <>
-                      <h3 className="text-[20px] font-semibold text-[#2DB787] mb-4 text-center">
+                      <h3 className="text-[20px] font-semibold text-green-400 mb-4 text-center">
                         {name}'s Biggest Strengths
                       </h3>
                       {constitution.strength.map((item, index) => (
@@ -379,7 +382,7 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-[#2DB787]">
+                          <h4 className="text-[16px] font-semibold text-green-400">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -400,7 +403,7 @@ const PanchangDisplay = () => {
                   )}
                   {activeTab === "weakness" && (
                     <>
-                      <h3 className="text-[20px] font-semibold text-[#2DB787] mb-4 text-center">
+                      <h3 className="text-[20px] font-semibold text-red-400 mb-4 text-center">
                         ⚖️ Areas to Balance
                       </h3>
                       {constitution.weakness.map((item, index) => (
@@ -408,7 +411,7 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-[#2DB787]">
+                          <h4 className="text-[16px] font-semibold text-red-400">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -429,7 +432,7 @@ const PanchangDisplay = () => {
                   )}
                   {activeTab === "remedy" && (
                     <>
-                      <h3 className="text-[20px] font-semibold text-[#2DB787] mb-4 text-center">
+                      <h3 className="text-[20px] font-semibold text-yellow-800 mb-4 text-center">
                         {constitution.remedyTitle
                           .replaceAll("child", name.toLowerCase())
                           .replaceAll("Child", name)}
@@ -439,7 +442,7 @@ const PanchangDisplay = () => {
                           key={index}
                           className="bg-[#EBEFF0] rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow duration-300"
                         >
-                          <h4 className="text-[16px] font-semibold text-[#2DB787]">
+                          <h4 className="text-[16px] font-semibold text-yellow-800">
                             {item.title
                               .replaceAll("child", name.toLowerCase())
                               .replaceAll("Child", name)}
@@ -457,15 +460,9 @@ const PanchangDisplay = () => {
               </section>
             )}
 
-            <section className="bg-gradient-to-br from-[#2DB787] to-[#FFEB3B] text-white rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
-              <h2 className="text-[24px] font-bold text-center mb-4">
-                Unlock <span className="text-white">{name}</span>’s Full
-                Potential ✨
-              </h2>
-              <p className="text-[16px] text-center leading-[1.2] mb-6">
-                Discover <span className="font-semibold">{name}</span>’s hidden
-                talents, emotional needs, and growth pathways — be the best mom
-                or dad your child deserves 💛
+            <section className="new-gradient text-white rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
+              <p className="text-[26px] capitalize font-semibold text-center leading-[1.2] mb-6">
+                be the best mom or dad your child deserves 💛
               </p>
               <p className="text-[18px] text-center font-semibold mb-6">
                 👉 Get Your Personalized Plan Today and Transform{" "}
@@ -473,7 +470,7 @@ const PanchangDisplay = () => {
               </p>
               <div className="flex justify-center">
                 <Link href="/plans">
-                  <button className="bg-white text-[#2DB787] px-8 py-3 rounded-lg font-semibold text-[16px] hover:bg-[#FFEB3B] hover:scale-105 transition-all duration-300 shadow-md">
+                  <button className=" text-white px-8 py-3 rounded-lg font-semibold text-[16px] bg-[#2DB787] hover:scale-105 transition-all duration-300 shadow-md">
                     Explore Astro Kids Plans
                   </button>
                 </Link>
@@ -510,7 +507,7 @@ const PanchangDisplay = () => {
                       ₹{item.price}
                     </p>
                     <button
-                      className="w-full bg-[#2DB787] text-white py-3 rounded-lg cursor-pointer hover:bg-[#239670] transition-all duration-300"
+                      className="w-full bg-[#2DB787] text-white py-3 rounded-lg cursor-pointer transition-all duration-300"
                       onClick={() =>
                         router.push(
                           `/child-details?product=true&productIndex=${
