@@ -204,7 +204,7 @@ const NewPage = () => {
           <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
             <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
               Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
-              <span className="text-[#2aac7e]">Confident</span> Kids <br />
+              <span className="text-[#FFEB3B]">Confident</span> Kids <br />
               Holistically
             </h1>
             <div className="flex flex-col md:flex-row gap-5">
@@ -243,8 +243,31 @@ const NewPage = () => {
               >
                 <FaXmark size={30} />
               </button>
-              <div className="relative">
-                <CustomVideoPlayer />
+              <div className="relative bg-white p-3 w-[60%]">
+                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
+                  AstroKids.ai is a platform that integrates Vedic Astrology,
+                  Ayurveda, and Yoga to provide parents with personalized
+                  insights into their children’s unique potentials. By analyzing
+                  astrological profiles, the platform offers guidance on
+                  nurturing a child’s mental, emotional, and physical
+                  well-being.
+                </p>
+                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
+                  <span className="text-[#FFEB3B]">
+                    Personalized Astrology Reports
+                  </span>
+                  : Tailored to each child’s astrological profile, these reports
+                  offer insights into personality traits, health predictions,
+                  and developmental guidance.
+                </p>
+                <p className="text-[15px] text-gray-600 mt-1 leading-relaxed">
+                  <span className="text-[#FFEB3B]">
+                    Holistic Parenting Guidance
+                  </span>
+                  : Combining ancient wisdom with modern practices, AstroKids.ai
+                  provides advice on nutrition, sleep routines, and activities
+                  aligned with a child’s astrological makeup.
+                </p>
               </div>
             </div>
           )}
@@ -430,10 +453,7 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div
-            className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
+          <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -512,10 +532,7 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div
-            className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden cursor-pointer md:px-6 new-gradient rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
+          <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden md:px-6 new-gradient rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -544,17 +561,8 @@ const NewPage = () => {
                 Expert Support
               </p>
             </div>
-            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
           </div>
-          <div
-            className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col cursor-pointer md:px-6 bg-white text-black rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
+          <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col md:px-6 bg-white text-black rounded-2xl relative group">
             <div className="absolute top-0 right-0">
               <div className="relative w-[60px] h-[60px]">
                 <Image
@@ -573,12 +581,6 @@ const NewPage = () => {
                 Data Security
               </p>
             </div>
-            <button className="relative self-end md:absolute md:bottom-5 md:right-5 p-1 group-hover:bg-black group-hover:text-white bg-black/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
           </div>
         </div>
       </div>

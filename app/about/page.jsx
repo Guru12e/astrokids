@@ -58,13 +58,14 @@ const AboutPage = () => {
         </div>
         <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-3 justify-center items-center">
           <p className="text-[14px] bg-white text-[#09090B] font-semibold px-4 py-1 rounded-xl">
-            Based in Madurai, India
+            Based on Scientific Research
           </p>
           <h1 className="text-center leading-[1.2] font-bold text-[60px] px-3 md:text-[48px]">
             Guiding Parents !
           </h1>
           <p className="font-bold text-[24px] uppercase tracking-[0] px-5 text-center leading-[1.2]">
-            <span className="text-[#2DB787]">with Wisdom, Science, and </span>
+            With <span className="text-[#FFEB3B]"> Wisdom, Science, </span>and{" "}
+            {""}
             <span className="text-[#FFEB3B]">Heart💛</span>
           </p>
         </div>

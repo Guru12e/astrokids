@@ -198,10 +198,10 @@ const AboutPage = () => {
           </h1>
           <p className="font-medium text-[24px] tracking-[0] px-5 text-center leading-[1.2]">
             Find{" "}
-            <span className="text-[#2DB787] font-bold">
+            <span className="text-[#FFEB3B] font-bold">
               Clarity Without Complexity
-            </span>
-            — Because Every Child’s Needs Are Unique.
+            </span>{" "}
+            Because Every Child’s Needs Are Unique.
           </p>
         </div>
       </div>
