@@ -31,6 +31,7 @@ const BlogsPage = () => {
         if (res.status === 200) {
           const data = await res.json();
           setBlogs(data);
+          setIsLoading(false);
           setIsSelect(0);
           setDisplayBlogs(data);
         } else {
@@ -38,7 +39,6 @@ const BlogsPage = () => {
         }
       } catch (error) {
         console.log("Error fetching blogs:", error);
-      } finally {
         setIsLoading(false);
       }
     };
