@@ -251,6 +251,44 @@ const BlogFormatContent = ({ content }) => {
                     ))}
                   </div>
                 );
+              case "table":
+                return (
+                  <div key={index} className="my-8 overflow-x-auto">
+                    <table className="w-full border-collapse border border-[#2DB787] shadow-md">
+                      <thead>
+                        <tr className="bg-[#F7F7F7]">
+                          {block.headers.map((header, i) => (
+                            <th
+                              key={i}
+                              className="border border-[#2DB787] p-3 text-[#02030B] font-semibold text-[16px] md:text-[18px]"
+                            >
+                              {header}
+                            </th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {block.rows.map((row, rowIndex) => (
+                          <tr
+                            key={rowIndex}
+                            className={
+                              rowIndex % 2 === 0 ? "bg-white" : "bg-[#F7F7F7]"
+                            }
+                          >
+                            {row.map((cell, cellIndex) => (
+                              <td
+                                key={cellIndex}
+                                className="border border-[#2DB787] p-3 text-[#6F6C90] text-[16px] md:text-[18px]"
+                              >
+                                {cell}
+                              </td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                );
               default:
                 return null;
             }

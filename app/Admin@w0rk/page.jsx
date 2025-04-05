@@ -319,6 +319,52 @@ const Admin = () => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   };
 
+  const handleBlogTableAddColumn = (tableIndex) => {
+    const newContent = [...blogContent];
+    newContent[tableIndex] = {
+      ...newContent[tableIndex],
+      headers: [
+        ...newContent[tableIndex].headers,
+        `Column ${newContent[tableIndex].headers.length + 1}`,
+      ],
+      rows: newContent[tableIndex].rows.map((row) => [...row, ""]),
+    };
+    setBlogContent(newContent);
+  };
+
+  const handleBlogTableAddRow = (tableIndex) => {
+    const newContent = [...blogContent];
+    newContent[tableIndex] = {
+      ...newContent[tableIndex],
+      rows: [
+        ...newContent[tableIndex].rows,
+        Array(newContent[tableIndex].headers.length).fill(""),
+      ],
+    };
+    setBlogContent(newContent);
+  };
+
+  const handleBlogTableCellChange = (tableIndex, rowIndex, colIndex, value) => {
+    const newContent = [...blogContent];
+    const newRows = [...newContent[tableIndex].rows];
+    newRows[rowIndex][colIndex] = value;
+    newContent[tableIndex] = {
+      ...newContent[tableIndex],
+      rows: newRows,
+    };
+    setBlogContent(newContent);
+  };
+
+  const handleBlogTableHeaderChange = (tableIndex, colIndex, value) => {
+    const newContent = [...blogContent];
+    const newHeaders = [...newContent[tableIndex].headers];
+    newHeaders[colIndex] = value;
+    newContent[tableIndex] = {
+      ...newContent[tableIndex],
+      headers: newHeaders,
+    };
+    setBlogContent(newContent);
+  };
   const handleAddBlog = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -574,7 +620,13 @@ const Admin = () => {
                                 onChange={(e) => {
                                   const newContent = [...blogContent];
                                   newContent[index].type = e.target.value;
-                                  if (
+                                  if (e.target.value === "table") {
+                                    newContent[index] = {
+                                      type: "table",
+                                      headers: ["Column 1"],
+                                      rows: [[""]],
+                                    };
+                                  } else if (
                                     e.target.value === "title" ||
                                     e.target.value === "subtitle" ||
                                     e.target.value === "subtitle1" ||
@@ -673,10 +725,10 @@ const Admin = () => {
                                 <option value="highlight-list">
                                   Highlight List
                                 </option>
+                                <option value="table">Table</option>
                               </select>
                             </div>
 
-                            {/* Simple Text Input Types */}
                             {(section.type === "title" ||
                               section.type === "subtitle" ||
                               section.type === "subtitle1" ||
@@ -700,7 +752,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Image Type */}
                             {section.type === "image" && (
                               <>
                                 <div>
@@ -754,7 +805,84 @@ const Admin = () => {
                               </>
                             )}
 
-                            {/* Points Type */}
+                            {section.type === "table" && (
+                              <div>
+                                <div className="mb-4 flex gap-4">
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleBlogTableAddColumn(index)
+                                    }
+                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                  >
+                                    Add Column
+                                  </button>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleBlogTableAddRow(index)}
+                                    className="bg-blue-500 text-white px-4 py-2 rounded"
+                                  >
+                                    Add Row
+                                  </button>
+                                </div>
+                                <div className="overflow-x-auto">
+                                  <table className="w-full border-collapse border border-gray-300">
+                                    <thead>
+                                      <tr>
+                                        {section.headers.map(
+                                          (header, colIndex) => (
+                                            <th
+                                              key={colIndex}
+                                              className="border border-gray-300 p-2"
+                                            >
+                                              <input
+                                                type="text"
+                                                value={header}
+                                                onChange={(e) =>
+                                                  handleBlogTableHeaderChange(
+                                                    index,
+                                                    colIndex,
+                                                    e.target.value
+                                                  )
+                                                }
+                                                className="w-full p-1 border-none focus:outline-none"
+                                              />
+                                            </th>
+                                          )
+                                        )}
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      {section.rows.map((row, rowIndex) => (
+                                        <tr key={rowIndex}>
+                                          {row.map((cell, colIndex) => (
+                                            <td
+                                              key={colIndex}
+                                              className="border border-gray-300 p-2"
+                                            >
+                                              <input
+                                                type="text"
+                                                value={cell}
+                                                onChange={(e) =>
+                                                  handleBlogTableCellChange(
+                                                    index,
+                                                    rowIndex,
+                                                    colIndex,
+                                                    e.target.value
+                                                  )
+                                                }
+                                                className="w-full p-1 border-none focus:outline-none"
+                                              />
+                                            </td>
+                                          ))}
+                                        </tr>
+                                      ))}
+                                    </tbody>
+                                  </table>
+                                </div>
+                              </div>
+                            )}
+
                             {section.type === "points" && (
                               <div>
                                 {section.points.map((point, pIndex) => (
@@ -824,7 +952,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Points-Points Type */}
                             {section.type === "points-points" && (
                               <div>
                                 {section.content.map((item, iIndex) => (
@@ -960,7 +1087,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Points-Points with Image Type */}
                             {section.type === "points-points-with-image" && (
                               <div>
                                 {section.content.map((item, iIndex) => (
@@ -1111,7 +1237,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Numbered List Type */}
                             {section.type === "numbered-list" && (
                               <div>
                                 {section.items.map((item, iIndex) => (
@@ -1162,7 +1287,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Checklist Type */}
                             {section.type === "checklist" && (
                               <div>
                                 {section.items.map((item, iIndex) => (
@@ -1213,7 +1337,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* FAQ Type */}
                             {section.type === "faq" && (
                               <div>
                                 {section.items.map((item, iIndex) => (
@@ -1285,7 +1408,6 @@ const Admin = () => {
                               </div>
                             )}
 
-                            {/* Highlight List Type */}
                             {section.type === "highlight-list" && (
                               <div>
                                 {section.items.map((item, iIndex) => (
@@ -1578,7 +1700,13 @@ const Admin = () => {
                               onChange={(e) => {
                                 const newContent = [...blogContent];
                                 newContent[index].type = e.target.value;
-                                if (
+                                if (e.target.value === "table") {
+                                  newContent[index] = {
+                                    type: "table",
+                                    headers: ["Column 1"],
+                                    rows: [[""]],
+                                  };
+                                } else if (
                                   e.target.value === "title" ||
                                   e.target.value === "subtitle" ||
                                   e.target.value === "subtitle1" ||
@@ -1674,10 +1802,10 @@ const Admin = () => {
                               <option value="highlight-list">
                                 Highlight List
                               </option>
+                              <option value="table">Table</option>
                             </select>
                           </div>
 
-                          {/* Simple Text Input Types */}
                           {(section.type === "title" ||
                             section.type === "subtitle" ||
                             section.type === "subtitle1" ||
@@ -1701,7 +1829,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* Image Type */}
                           {section.type === "image" && (
                             <>
                               <div>
@@ -1754,7 +1881,84 @@ const Admin = () => {
                             </>
                           )}
 
-                          {/* Points Type */}
+                          {section.type === "table" && (
+                            <div>
+                              <div className="mb-4 flex gap-4">
+                                <button
+                                  type="button"
+                                  onClick={() =>
+                                    handleBlogTableAddColumn(index)
+                                  }
+                                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                                >
+                                  Add Column
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => handleBlogTableAddRow(index)}
+                                  className="bg-blue-500 text-white px-4 py-2 rounded"
+                                >
+                                  Add Row
+                                </button>
+                              </div>
+                              <div className="overflow-x-auto">
+                                <table className="w-full border-collapse border border-gray-300">
+                                  <thead>
+                                    <tr>
+                                      {section.headers.map(
+                                        (header, colIndex) => (
+                                          <th
+                                            key={colIndex}
+                                            className="border border-gray-300 p-2"
+                                          >
+                                            <input
+                                              type="text"
+                                              value={header}
+                                              onChange={(e) =>
+                                                handleBlogTableHeaderChange(
+                                                  index,
+                                                  colIndex,
+                                                  e.target.value
+                                                )
+                                              }
+                                              className="w-full p-1 border-none focus:outline-none"
+                                            />
+                                          </th>
+                                        )
+                                      )}
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {section.rows.map((row, rowIndex) => (
+                                      <tr key={rowIndex}>
+                                        {row.map((cell, colIndex) => (
+                                          <td
+                                            key={colIndex}
+                                            className="border border-gray-300 p-2"
+                                          >
+                                            <input
+                                              type="text"
+                                              value={cell}
+                                              onChange={(e) =>
+                                                handleBlogTableCellChange(
+                                                  index,
+                                                  rowIndex,
+                                                  colIndex,
+                                                  e.target.value
+                                                )
+                                              }
+                                              className="w-full p-1 border-none focus:outline-none"
+                                            />
+                                          </td>
+                                        ))}
+                                      </tr>
+                                    ))}
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          )}
+
                           {section.type === "points" && (
                             <div>
                               {section.points.map((point, pIndex) => (
@@ -1823,7 +2027,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* Points-Points Type */}
                           {section.type === "points-points" && (
                             <div>
                               {section.content.map((item, iIndex) => (
@@ -1958,7 +2161,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* Points-Points with Image Type */}
                           {section.type === "points-points-with-image" && (
                             <div>
                               {section.content.map((item, iIndex) => (
@@ -2107,7 +2309,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* Numbered List Type */}
                           {section.type === "numbered-list" && (
                             <div>
                               {section.items.map((item, iIndex) => (
@@ -2155,7 +2356,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* Checklist Type */}
                           {section.type === "checklist" && (
                             <div>
                               {section.items.map((item, iIndex) => (
@@ -2203,7 +2403,6 @@ const Admin = () => {
                             </div>
                           )}
 
-                          {/* FAQ Type */}
                           {section.type === "faq" && (
                             <div>
                               {section.items.map((item, iIndex) => (
