@@ -135,7 +135,7 @@ const ContactPage = () => {
         <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
           We are always happy to assist you
         </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 place-items-center mt-10">
           <div className="w-[100%] md:w-[70%] h-full p-5 bg-[#2DB787] rounded-xl text-white flex flex-col gap-5">
             <h1 className="text-[22px] font-semibold leading-[1.2]">
               Email Support
@@ -154,16 +154,6 @@ const ContactPage = () => {
             <p className="text-[22px] font-semibold">+91 98765 43210</p>
             <p className="text-[20px] font-normal leading-[1.2]">
               Assistance hours: Monday - Friday 6 am to 8 pm EST
-            </p>
-          </div>
-          <div className="w-[100%] md:w-[70%] p-5 h-full bg-[#2DB787] rounded-xl text-white flex flex-col gap-5">
-            <h1 className="text-[22px] font-semibold leading-[1.2]">
-              Visit Us
-            </h1>
-            <div className="w-10 h-1 bg-white rounded-xl"></div>
-            <p className="text-[22px] font-semibold">AstroKids Headquarters</p>
-            <p className="text-[20px] font-normal leading-[1.2]">
-              Bhama Nagar, 2nd St, Park Town, Extension, Madurai - 625017
             </p>
           </div>
         </div>
