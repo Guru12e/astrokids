@@ -7,13 +7,13 @@ const client = new MongoClient(uri);
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
-    const type = searchParams.get("type");
+
     await client.connect();
     const database = client.db("AstroKids");
     const collection = database.collection("blogs");
 
     const query = type ? { type: parseInt(type) } : {};
-    const blogs = (await collection.find(query).toArray()).reverse();
+    const blogs = collection.find(query);
 
     return NextResponse.json(blogs, { status: 200 });
   } catch (error) {
