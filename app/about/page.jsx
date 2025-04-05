@@ -46,17 +46,17 @@ const AboutPage = () => {
   return (
     <div className="w-full h-full">
       <Header />
-      <div className="w-screen h-[70vh] md:h-screen">
-        <div className="w-screen h-[70vh] md:h-screen overflow-hidden relative">
+      <div className="w-screen h-[60vh] md:h-screen">
+        <div className="w-screen h-[60vh] md:h-screen overflow-hidden relative">
           <Image
             src={`/images/new/about-hero.png`}
             fill
             className="object-cover mt-16"
             alt="Hero image"
           />
-          <div className="w-screen h-[70vh] md:h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
+          <div className="w-screen h-[60vh] md:h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
         </div>
-        <div className="absolute top-0 text-white w-screen h-[70vh] md:h-screen flex flex-col gap-3 justify-center items-center">
+        <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-3 justify-center items-center">
           <p className="text-[14px] bg-white text-[#09090B] font-semibold px-4 py-1 rounded-xl">
             Based in Madurai, India
           </p>
