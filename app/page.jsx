@@ -31,7 +31,7 @@ const NewPage = () => {
       image: "/images/new/step1.png",
     },
     {
-      title: "Input Birth Details",
+      title: "Input Child's Birth Details",
       image: "/images/new/step2.png",
     },
     {
@@ -318,9 +318,9 @@ const NewPage = () => {
         </div>
         <div>
           <h1 className="text-[16px] md:text-[24px] leading-[1.2] font-[500] text-center capitalize">
-            Join <span className="text-[#2DB787]">1,232 parents</span>
-            who <span className="text-[#2DB787]">transformed</span> their
-            parenting journey last year.
+            Join the <span className="text-[#2DB787]">1,232 parents</span> who{" "}
+            <span className="text-[#2DB787]">Transformed</span> their parenting
+            journey last year.
           </h1>
           <button
             className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
@@ -686,9 +686,8 @@ const NewPage = () => {
           Choose your plan
         </h1>
         <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          Because{" "}
-          <span className="text-[#2DB787]">Every Child's Path is Written</span>{" "}
-          in the Stars 🌟
+          Because Every <span className="text-[#2DB787]"> Child's </span> Path
+          is <span className="text-[#2DB787]">Diffirent</span> 🌟
         </h1>
         <div className="grid  px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
           {plans.map((p, ind) => (

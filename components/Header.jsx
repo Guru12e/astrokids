@@ -1,13 +1,34 @@
 "use client";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navItems = ["home", "about", "plans", "resources", "contact"];
   const pathName = usePathname().split("/")[1];
   const router = useRouter();
+
+  const menuRef = useRef(null);
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        menuRef.current &&
+        !menuRef.current.contains(event.target) &&
+        isMobileMenuOpen
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   return (
     <div className="w-screen fixed top-0 z-[1000] bg-transparent md:bg-[#02030B] px-3 md:px-14 py-4">
@@ -72,7 +93,10 @@ const Header = () => {
 
       <div className="md:hidden">
         {isMobileMenuOpen && (
-          <div className="mt-3 rounded-xl w-full bg-[#0E0C15] px-5 py-4 flex flex-col gap-4">
+          <div
+            ref={menuRef}
+            className="mt-3 rounded-xl w-full bg-[#0E0C15] px-5 py-4 flex flex-col gap-4"
+          >
             {navItems.map((item, index) => (
               <Link
                 key={index}
