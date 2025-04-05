@@ -9,7 +9,7 @@ export async function GET() {
     await client.connect();
     const database = client.db("AstroKids");
     const collection = database.collection("blogs");
-    const blogs = (await collection.find(query).toArray()).reverse();
+    const blogs = (await collection.find().toArray()).reverse();
 
     return NextResponse.json(blogs, { status: 200 });
   } catch (error) {
