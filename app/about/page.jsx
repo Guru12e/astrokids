@@ -14,10 +14,6 @@ const AboutPage = () => {
       con: "Every report is personalized to your child's birth chart, body type, and planetary influences.",
     },
     {
-      title: "Ethical & Secure",
-      con: "We're GDPR-compliant and partner with certified child psychologists.",
-    },
-    {
       title: "Real Results",
       con: "93% of parents report better communication with their kids after using AstroKids.",
     },
@@ -116,7 +112,7 @@ const AboutPage = () => {
         <h1 className="text-[24px] mt-5 font-medium leading-[1.2] text-center capitalize">
           Always put your <span className="text-[#2DB787]">child first</span>
         </h1>
-        <div className="flex flex-wrap gap-5 justify-center md:justify-between mt-7 items-center">
+        <div className="flex flex-wrap gap-5 justify-center md:justify-around mt-7 items-center">
           {about.map((item, index) => (
             <div
               key={index}
