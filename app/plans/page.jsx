@@ -131,22 +131,48 @@ const AboutPage = () => {
     },
   ];
 
+  const [showMore, setShowMore] = useState(false);
+
   const faq = [
     {
-      title: "Is astrology safe for kids?",
-      content: "We focus on strengths, never fear. 100% positive insights.",
+      title: "How does Astro Kids create a child’s astrology report?",
+      content:
+        "Astro Kids uses your child’s birth details—date, time, and place—to generate a personalized Vedic astrology chart. This helps decode your child’s personality, emotions, learning style, strengths, and growth path.",
     },
     {
-      title: "How are reports delivered?",
-      content: "",
+      title: "When will I receive the report after purchase?",
+      content:
+        "You will receive your child’s personalized astrology report within 12 to 24 hours of placing your order. The report will be sent to your email.",
     },
     {
-      title: "Can I switch plans later?",
-      content: "",
+      title: "Is this suitable for children of all age groups?",
+      content:
+        "Yes. Whether your child is an infant, toddler, school-age, or teenager, the insights are tailored to support their specific developmental stage and emotional needs.",
     },
     {
-      title: "How are reports delivered?",
-      content: "",
+      title: "Do I need astrology knowledge to understand the report?",
+      content:
+        "Not at all. The report is written in clear, easy-to-understand language for modern parents. No astrology background is required—just a desire to connect more deeply with your child.",
+    },
+    {
+      title: "How is healing incorporated into the report?",
+      content:
+        "Each report integrates personalized healing techniques like affirmations, yoga-inspired practices, and mindful parenting tools aligned with your child’s birth chart to nurture their emotional and energetic balance.",
+    },
+    {
+      title: "Can I order reports for more than one child?",
+      content:
+        "Absolutely. Each child’s report is uniquely crafted. Just submit the birth details individually to receive personalized insights for each child.",
+    },
+    {
+      title: "Does Astro Kids offer continuing parenting guidance?",
+      content:
+        "Yes! With select packages, you can receive ongoing daily or weekly WhatsApp affirmations and mindful parenting tips, aligned with your child’s evolving astrological phases.",
+    },
+    {
+      title: "Is the Astro Kids report scientifically validated?",
+      content:
+        "Astro Kids is based on the Vedic astrology system, a centuries-old wisdom tradition. While it is not a science in the modern sense, it provides time-tested insights for parenting with intuition, empathy, and awareness.",
     },
   ];
 
@@ -329,7 +355,7 @@ const AboutPage = () => {
         <h1 className="text-[24px] mt-5 mb-8 font-medium leading-[1.2] text-[#8F8F8F] text-center capitalize">
           Find questions and answers related to the plans
         </h1>
-        {faq.map((f, index) => (
+        {faq.slice(0, showMore ? 3 : faq.length).map((f, index) => (
           <div
             key={index}
             onClick={() => {
@@ -375,6 +401,14 @@ const AboutPage = () => {
             )}
           </div>
         ))}
+        <div className="flex justify-center mt-5">
+          <button
+            className="text-[#2DB787] border border-[#2DB787] px-3 py-2 rounded-2xl font-semibold"
+            onClick={() => setShowMore(!showMore)}
+          >
+            {showMore ? "Show More" : "Show Less"}
+          </button>
+        </div>
       </div>
 
       <NewFooter />

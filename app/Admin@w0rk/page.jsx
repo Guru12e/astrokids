@@ -573,6 +573,7 @@ const Admin = () => {
                           required
                         />
                       </div>
+
                       <div>
                         <label className="block text-gray-700">Type</label>
                         <select
