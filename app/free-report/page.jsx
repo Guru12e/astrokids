@@ -269,7 +269,7 @@ const PanchangDisplay = () => {
                         identity: moonIdentity[panchangData.planets[2].sign],
                       },
                       {
-                        title: "Sun (Atma)",
+                        title: "Sun (Identity)",
                         sign: panchangData.planets[1].sign,
                         heading: "Core Identity",
                         identity: sunIdentity[panchangData.planets[1].sign],
