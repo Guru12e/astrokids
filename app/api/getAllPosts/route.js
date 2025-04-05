@@ -13,10 +13,7 @@ export async function GET(request) {
     const collection = database.collection("blogs");
 
     const query = type ? { type: parseInt(type) } : {};
-    const blogs = await collection
-      .find(query)
-      .sort({ createdAt: -1 })
-      .toArray();
+    const blogs = (await collection.find(query).toArray()).reverse();
 
     return NextResponse.json(blogs, { status: 200 });
   } catch (error) {
