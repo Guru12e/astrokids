@@ -41,7 +41,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/logo.png" type="image/png" />
+        <link rel="icon" href="/images/new/logo1.png" type="image/png" />
         <GoogleAnalytics gtmId="G-82PQ2WCYGX" />
         <GoogleTagManager gtmId="GTM-MDK2KCGP" />
         <script type="application/ld+json">
