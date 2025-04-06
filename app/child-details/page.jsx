@@ -991,14 +991,17 @@ const NewChildDetails = () => {
                   <h1 className="text-[#111729] font-semibold text-[24px] leading-[1.2]">
                     Your Order
                   </h1>
-                  <div className="bg-[#2DB787] rounded-xl mt-4 pb-1 relative">
+                  <div className="bg-[#2DB787] rounded-xl mt-4 pb-1">
                     <Carousel
                       opts={{ align: "start", loop: true }}
                       setApi={setApi}
                     >
                       <CarouselContent>
                         {pricing.map((_, index) => (
-                          <CarouselItem key={index}>
+                          <CarouselItem
+                            key={index}
+                            className="w-full h-full relative"
+                          >
                             <div className="w-[120px] aspect-[9/16] mx-auto relative">
                               <Image
                                 src={`/images/book-cover${index}.png`}
@@ -1008,9 +1011,31 @@ const NewChildDetails = () => {
                               />
                             </div>
                             {index == 0 && (
-                              <div className="absolute top-0 right-0 text-[#2DB787] bg-white text-[14px] font-bold px-3 py-1 rounded-tr-lg rounded-bl-lg">
+                              <p
+                                className={`absolute ${
+                                  currentIndex == index ? "block" : "hidden"
+                                } px-3 rounded-bl-xl rounded-tr-xl top-0 w-max font-medium right-0 new-gradient text-white text-[12px]`}
+                              >
                                 Free
-                              </div>
+                              </p>
+                            )}
+                            {index == 1 && (
+                              <p
+                                className={`absolute ${
+                                  currentIndex == index ? "block" : "hidden"
+                                } px-3 rounded-bl-xl rounded-tr-xl top-0 w-max font-medium right-0 new-gradient text-white text-[12px]`}
+                              >
+                                Popular
+                              </p>
+                            )}
+                            {index == 2 && (
+                              <p
+                                className={`absolute ${
+                                  currentIndex == index ? "block" : "hidden"
+                                } px-3 rounded-bl-xl rounded-tr-xl top-0 w-max font-medium right-0 new-gradient text-white text-[12px]`}
+                              >
+                                Parents' Choice
+                              </p>
                             )}
                           </CarouselItem>
                         ))}
