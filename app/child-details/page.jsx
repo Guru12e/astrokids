@@ -988,8 +988,8 @@ const NewChildDetails = () => {
                 </div>
               ) : (
                 <div className="w-[70%]">
-                  <h1 className="text-[#111729] font-semibold text-[24px] leading-[1.2]">
-                    Your Order
+                  <h1 className="text-[#111729]  font-semibold text-[24px] leading-[1.2]">
+                    Your Ordee
                   </h1>
                   <div className="bg-[#2DB787] rounded-xl mt-4 pb-1">
                     <Carousel
