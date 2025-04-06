@@ -8,115 +8,46 @@ export async function POST(request) {
 
     const client = await clientPromise;
     const database = client.db("AstroKids");
-    const collection = database.collection("childDetails");
 
-    const user = await collection.findOne({ email });
+    const childCollection = database.collection("childDetails");
+    const requestCollection = database.collection("requestDetails");
+
+    const user = await childCollection.findOne({ email });
 
     if (user) {
-      let status = user.childDetails.some(
+      const childExists = user.childDetails.some(
         (child) =>
           child.name === name && child.dob === dob && child.time === time
       );
 
-      if (status) {
+      if (childExists) {
         return NextResponse.json(
-          { message: "Child details found" },
+          { message: "Child details already exist" },
           { status: 400 }
         );
-      } else {
-        const collection1 = database.collection("requestDetails");
+      }
+    }
 
-        const requestUser = await collection1.findOne({ email });
+    const requestUser = await requestCollection.findOne({ email });
 
-        if (requestUser) {
-          const childExists = requestUser.childDetails.some(
-            (child) => child.name === name
-          );
+    if (requestUser) {
+      const childExists = requestUser.childDetails.some(
+        (child) =>
+          child.name === name && child.dob === dob && child.time === time
+      );
 
-          if (childExists) {
-            return NextResponse.json(
-              { message: "Child already exists" },
-              { status: 400 }
-            );
-          } else {
-            await collection1.updateOne(
-              { email },
-              {
-                $push: {
-                  childDetails: {
-                    name,
-                    dob,
-                    time,
-                    place,
-                    gender,
-                    number,
-                    addedAt: new Date(),
-                  },
-                },
-              }
-            );
-          }
-        } else {
-          await collection1.insertOne({
-            email,
-            childDetails: [
-              {
-                name,
-                dob,
-                time,
-                place,
-                gender,
-                number,
-                addedAt: new Date(),
-              },
-            ],
-          });
-        }
-
+      if (childExists) {
         return NextResponse.json(
-          { message: "Child details not found" },
-          { status: 200 }
+          { message: "Child already exists in request" },
+          { status: 400 }
         );
       }
-    } else {
-      const collection1 = database.collection("requestDetails");
 
-      const requestUser = await collection1.findOne({ email });
-
-      if (requestUser) {
-        const childExists = requestUser.childDetails.some(
-          (child) =>
-            child.name === name && child.dob === dob && child.time === time
-        );
-
-        if (childExists) {
-          return NextResponse.json(
-            { message: "Child already exists" },
-            { status: 200 }
-          );
-        } else {
-          await collection1.updateOne(
-            { email },
-            {
-              $push: {
-                childDetails: {
-                  name,
-                  dob,
-                  time,
-                  place,
-                  gender,
-                  number,
-                  addedAt: new Date(),
-                },
-              },
-            }
-          );
-        }
-      } else {
-        await collection1.insertOne({
-          email,
-          childDetails: [
-            {
+      await requestCollection.updateOne(
+        { email },
+        {
+          $push: {
+            childDetails: {
               name,
               dob,
               time,
@@ -125,16 +56,34 @@ export async function POST(request) {
               number,
               addedAt: new Date(),
             },
-          ],
-        });
-      }
-
-      return NextResponse.json({ message: "User not found" }, { status: 200 });
+          },
+        }
+      );
+    } else {
+      await requestCollection.insertOne({
+        email,
+        childDetails: [
+          {
+            name,
+            dob,
+            time,
+            place,
+            gender,
+            number,
+            addedAt: new Date(),
+          },
+        ],
+      });
     }
-  } catch (error) {
-    console.error("Error Check child details:", error);
+
     return NextResponse.json(
-      { message: "Error Check child details" },
+      { message: "Child details added successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error checking child details:", error);
+    return NextResponse.json(
+      { message: "Error checking child details" },
       { status: 500 }
     );
   }
