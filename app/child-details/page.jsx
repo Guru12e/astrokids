@@ -991,7 +991,7 @@ const NewChildDetails = () => {
                   <h1 className="text-[#111729] font-semibold text-[24px] leading-[1.2]">
                     Your Order
                   </h1>
-                  <div className="bg-[#2DB787] rounded-xl mt-4 pb-1">
+                  <div className="bg-[#2DB787] rounded-xl mt-4 pb-1 relative">
                     <Carousel
                       opts={{ align: "start", loop: true }}
                       setApi={setApi}
@@ -1007,6 +1007,11 @@ const NewChildDetails = () => {
                                 className="object-cover"
                               />
                             </div>
+                            {index == 0 && (
+                              <div className="absolute top-0 right-0 text-[#2DB787] bg-white text-[14px] font-bold px-3 py-1 rounded-tr-lg rounded-bl-lg">
+                                Free
+                              </div>
+                            )}
                           </CarouselItem>
                         ))}
                       </CarouselContent>
