@@ -54,7 +54,6 @@ const PanchangDisplay = () => {
       nakshatrasOrder.split(",").forEach((nakshatra, index) => {
         if (index % 9 === 1) favourableNakshatra.push(nakshatra);
       });
-      const luckyNumber = nakshatraNumber[panchangData.planets[2].nakshatra];
       const fiveHouseLord =
         zodiac_lord[
           ((zodiac.indexOf(panchangData.planets[0].sign) + 5) % 12) - 1
@@ -77,8 +76,6 @@ const PanchangDisplay = () => {
         weekDay: panchangData.panchang.week_day,
         AtmaKaragam: `${atma} , ${atma_names[atma]}`,
         ishtaDevatha: ista_devatas[isthadevathaLord],
-        favourableNakshatra: favourableNakshatra.join(", "),
-        luckyNumber: luckyNumber.join(", "),
         lifeStone: planetGemstone[panchangData.planets[0].zodiac_lord],
         beneficialStone: planetGemstone[fiveHouseLord],
         luckyStone: planetGemstone[ninthHouseLord],
