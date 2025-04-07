@@ -31,7 +31,7 @@ const PanchangDisplay = () => {
   const [constitution, setConstitution] = useState(null);
   const [constitutionType, setConstitutionType] = useState(null);
   const [activeTab, setActiveTab] = useState("strength");
-  const [isTrueSelfOpen, setIsTrueSelfOpen] = useState(false); // State for True Self popup
+  const [isTrueSelfOpen, setIsTrueSelfOpen] = useState(false);
 
   const setDisplayContent = () => {
     if (userDetails && panchangData) {
@@ -42,17 +42,15 @@ const PanchangDisplay = () => {
       const isthadevathaLord = panchangData.planets.filter(
         (planet) => planet.Name === ninthHouseLord
       )[0].nakshatra_lord;
-      const nakshatrasOrder =
-        nakshatras.splice(
-          nakshatras.indexOf(panchangData.planets[2].nakshatra)
-        ) +
-        nakshatras.splice(
-          0,
-          nakshatras.indexOf(panchangData.planets[2].nakshatra)
-        );
+
+      let start = panchangData.panchang.nakshatra_number;
       const favourableNakshatra = [];
-      nakshatrasOrder.split(",").forEach((nakshatra, index) => {
-        if (index % 9 === 1) favourableNakshatra.push(nakshatra);
+
+      const luckyNumber =
+        nakshatraNumber[panchangData.planets[2].nakshatra.split(" ").join("")];
+      [(0, 1, 2)].forEach((_) => {
+        favourableNakshatra.push(nakshatras[start % 27]);
+        start += 9;
       });
       const fiveHouseLord =
         zodiac_lord[
@@ -76,6 +74,8 @@ const PanchangDisplay = () => {
         weekDay: panchangData.panchang.week_day,
         AtmaKaragam: `${atma} , ${atma_names[atma]}`,
         ishtaDevatha: ista_devatas[isthadevathaLord],
+        favourableNakshatra: favourableNakshatra.join(", "),
+        luckyNumber: luckyNumber.join(", "),
         lifeStone: planetGemstone[panchangData.planets[0].zodiac_lord],
         beneficialStone: planetGemstone[fiveHouseLord],
         luckyStone: planetGemstone[ninthHouseLord],
