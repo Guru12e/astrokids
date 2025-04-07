@@ -110,6 +110,11 @@ const NewChildDetails = () => {
           router.push(
             `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
           );
+        } else {
+          toast.error("Error. Try Again", {
+            position: "top-right",
+            autoClose: 3000,
+          });
         }
       },
 
