@@ -728,6 +728,11 @@ const NewPage = () => {
                 Compare Plans
                 <ArrowUpRight size={20} />
               </button>
+              {ind === 0 && (
+                <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
+                  Parent's Most Explored
+                </div>
+              )}
               {ind === 2 && (
                 <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
                   Parents' Choice
