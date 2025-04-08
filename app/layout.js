@@ -5,6 +5,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Montserrat, Quicksand } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -93,6 +95,8 @@ export default function RootLayout({ children }) {
         <Suspense>
           {children}
           <ToastContainer />
+          <Analytics />
+          <SpeedInsights />
         </Suspense>
       </body>
     </html>
