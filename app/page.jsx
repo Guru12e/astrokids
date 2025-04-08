@@ -192,17 +192,17 @@ const NewPage = () => {
     <div>
       <Header />
       <div className="w-screen h-max md:h-screen">
-        <div className="w-screen h-[60vh] relative md:h-[80vh]">
+        <div className="w-screen h-[60vh] relative">
           <div className="w-screen h-full md:h-screen overflow-hidden relative">
             <Image
               src={`/images/new/hero${imageIndex}.png`}
               fill
-              className="object-cover mt-0 xl:mt-16"
+              className="object-cover mt-0 md:mt-16"
               alt="Hero image"
             />
           </div>
-          <div className="absolute top-0 text-white w-screen h-[60vh] md:h-[80vh] flex flex-col gap-6 justify-end md:justify-center items-center py-8">
-            <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[42px]">
+          <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
+            <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
               Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
               <span className="text-[#FFEB3B]">Confident</span> Kids <br />
               Holistically
@@ -215,14 +215,17 @@ const NewPage = () => {
                 }}
               >
                 <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+
                 <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
                   Discover your child Potential
                 </span>
+
                 <ArrowRightIcon
                   className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
                   size={30}
                 />
               </button>
+
               <button
                 className="relative w-max flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                 onClick={() => setIsVedioPlay(true)}
@@ -246,8 +249,8 @@ const NewPage = () => {
               >
                 <FaXmark size={30} />
               </button>
-              <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[70%]">
-                <p className="text-[15px] md:text-[18px] indent-10 mt-1 leading-relaxed">
+              <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[60%]">
+                <p className="text-[15px] md:text-[20px] indent-10 mt-1 leading-relaxed">
                   AstroKids.ai is a platform that integrates Vedic Astrology,
                   Ayurveda, and Yoga to provide parents with personalized
                   insights into their children’s unique potentials. By analyzing
@@ -255,7 +258,7 @@ const NewPage = () => {
                   nurturing a child’s mental, emotional, and physical
                   well-being.
                 </p>
-                <p className="text-[15px] md:text-[18px] mt-3 leading-relaxed">
+                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
                   <span className="text-[#FFEB3B] font-semibold">
                     Personalized Astrology Reports
                   </span>
@@ -263,7 +266,7 @@ const NewPage = () => {
                   offer insights into personality traits, health predictions,
                   and developmental guidance.
                 </p>
-                <p className="text-[15px] md:text-[18px] mt-3 leading-relaxed">
+                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
                   <span className="text-[#FFEB3B] font-semibold">
                     Holistic Parenting Guidance
                   </span>
@@ -280,7 +283,7 @@ const NewPage = () => {
         <h1 className="title font-semibold leading-[1.2] text-center capitalize">
           What parents say
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-10 py-10">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
           {reviews.map((review, index) => (
             <div
               key={index}
@@ -298,6 +301,7 @@ const NewPage = () => {
                   className="object-contain absolute translate-y-[5%]"
                 />
               </div>
+
               <div
                 className={`opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0 flex flex-col justify-center p-4 text-center items-center gap-2 translate-y-[-100%] ${
                   index % 2 == 0 ? "text-white" : "text-black"
@@ -305,13 +309,13 @@ const NewPage = () => {
                   index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
                 } ${shapes[index]} justify-between py-10`}
               >
-                <div className="bg-white text-[12px] md:text-[16px] text-black px-2 rounded-xl">
+                <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
                   <span>⭐</span> {review.rating}
                 </div>
-                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[16px]">
+                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
                   {review.review}
                 </h1>
-                <h1 className="font-normal text-[12px] md:text-[16px]">
+                <h1 className="font-normal text-[12px] md:text-[18px]">
                   - {review.name}
                 </h1>
               </div>
@@ -319,7 +323,7 @@ const NewPage = () => {
           ))}
         </div>
         <div>
-          <h1 className="text-[16px] md:text-[20px] leading-[1.2] font-[500] text-center capitalize">
+          <h1 className="text-[16px] md:text-[24px] leading-[1.2] font-[500] text-center capitalize">
             Join the <span className="text-[#2DB787]">1,232 parents</span> who{" "}
             <span className="text-[#2DB787]">Transformed</span> their parenting
             journey last year.
@@ -334,12 +338,12 @@ const NewPage = () => {
         </div>
       </div>
       <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
-        <h1 className="text-[24px] px-3 py-2 md:text-[36px] leading-[1.2] font-semibold text-center capitalize">
+        <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
           Astrokids Report Benefits
         </h1>
-        <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-8 px-2">
+        <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
           <div
-            className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden md:px-6 new-gradient rounded-2xl relative group"
+            className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group"
             onClick={() => router.push("/plans")}
           >
             <div className="absolute top-0 left-0 w-full h-full">
@@ -363,10 +367,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 1800+
               </h1>
-              <p className="w-[80%] text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="w-[80%] text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Happy Kids & Parents
               </p>
             </div>
@@ -378,7 +382,7 @@ const NewPage = () => {
             </button>
           </div>
           <div
-            className="w-[45%] md:w-[30%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group"
+            className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group"
             onClick={() => router.push("/plans")}
           >
             <div className="absolute top-0 left-0 w-full h-full">
@@ -402,10 +406,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
                 95%
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Parents See Happier Kids
               </p>
             </div>
@@ -417,7 +421,7 @@ const NewPage = () => {
             </button>
           </div>
           <div
-            className="w-[95%] md:w-[60%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
+            className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
             onClick={() => router.push("/plans")}
           >
             <div className="absolute top-0 left-0 w-full h-full">
@@ -441,10 +445,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 5,000-year-old
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Ancient Wisdom + Modern Science
               </p>
             </div>
@@ -455,7 +459,7 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] md:w-[30%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
+          <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -477,10 +481,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 15-Mins
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Insights, Lifetime Impact
               </p>
             </div>
@@ -520,10 +524,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] leading-[1.2] font-bold">
+              <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
                 78%
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Better Academic
               </p>
             </div>
@@ -534,7 +538,7 @@ const NewPage = () => {
               />
             </button>
           </div>
-          <div className="w-[45%] md:w-[30%] md:py-8 py-4 px-3 flex flex-col overflow-hidden md:px-6 new-gradient rounded-2xl relative group">
+          <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden md:px-6 new-gradient rounded-2xl relative group">
             <div className="absolute top-0 left-0 w-full h-full">
               <div className="relative w-full h-full">
                 <Image
@@ -556,15 +560,15 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 24/7
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Expert Support
               </p>
             </div>
           </div>
-          <div className="w-[45%] md:w-[30%] overflow-hidden md:py-8 py-4 px-3 flex flex-col md:px-6 bg-white text-black rounded-2xl relative group">
+          <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col md:px-6 bg-white text-black rounded-2xl relative group">
             <div className="absolute top-0 right-0">
               <div className="relative w-[60px] h-[60px]">
                 <Image
@@ -576,10 +580,10 @@ const NewPage = () => {
               </div>
             </div>
             <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[50px] font-bold leading-[1.2]">
+              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
                 100%
               </h1>
-              <p className="text-[16px] md:text-[24px] leading-[1.2] font-bold">
+              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
                 Data Security
               </p>
             </div>
@@ -593,15 +597,15 @@ const NewPage = () => {
         <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Simple <span className="text-[#2DB787]">3-Step</span> Process
         </h1>
-        <div className="hidden md:flex flex-col p-5 mt-5 md:flex-row md:flex-wrap gap-10 justify-center items-center">
+        <div className="hidden md:flex flex-col p-5 mt-5 md:flex-row gap-10 justify-center items-center">
           {steps.map((step, index) => (
             <div
               key={index}
-              className="p-0.5 w-[80%] md:w-[45%] xl:w-[30%] rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
+              className="p-0.5 w-[80%] md:w-[30%] rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
             >
               <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
                 <div className="flex gap-2 justify-start w-full items-end">
-                  <div className="text-[#2DB787] text-[50px] md:text-[55px] leading-[0.8]">
+                  <div className="text-[#2DB787] text-[50px] md:text-[60px] leading-[0.8]">
                     0<span>{index + 1}</span>
                   </div>
                   {[...Array(3)].map((_, i) => (
@@ -613,7 +617,7 @@ const NewPage = () => {
                     ></div>
                   ))}
                 </div>
-                <h1 className="text-[32px] md:text-[40px] font-semibold leading-[1.2] capitalize">
+                <h1 className="text-[32px] md:text-[46px] font-semibold leading-[1.2] capitalize">
                   {step.title}
                 </h1>
                 <div className="relative w-[100px] self-end h-[100px]">
@@ -671,7 +675,7 @@ const NewPage = () => {
             <CarouselNext className="translate-x-[-50%]" />
           </Carousel>
         </div>
-        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           It's like having a parenting manual written{" "}
           <span className="text-[#2DB787]"> just for your child.</span>
         </h1>
@@ -684,25 +688,24 @@ const NewPage = () => {
         </button>
       </div>
       <div className="p-5 md:p-10" id="choose-your-plan">
-        <h1 className="title font-bold leading-[1.2] text-center capitalize">
+        <h1 className="title  font-bold leading-[1.2] text-center capitalize">
           Choose your child's plan
         </h1>
-        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Because Every <span className="text-[#2DB787]"> Child's </span> Path
-          is <span className="text-[#2DB787]">Different</span> 🌟
+          is <span className="text-[#2DB787]">Diffirent</span> 🌟
         </h1>
-        <div className="grid px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 gap-10 mt-0 md:mt-10">
-          {" "}
+        <div className="grid  px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
           {plans.map((p, ind) => (
             <div
               key={ind}
               className="bg-[#FFEB3B] relative p-5 rounded-xl border border-black"
             >
-              <h1 className="text-[24px] md:text-[26px] font-bold leading-[1.2] mt-4">
+              <h1 className="text-[24px] font-bold leading-[1.2] mt-4">
                 {p.title}
               </h1>
               <div className="my-3 flex items-center gap-2">
-                <h2 className="text-[26px] md:text-[28px] font-bold leading-[1.2]">
+                <h2 className="text-[26px] font-bold leading-[1.2]">
                   {p.price}
                 </h2>
                 <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
@@ -743,13 +746,13 @@ const NewPage = () => {
         <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Freebie for better parenting
         </h1>
-        <h1 className="text-[16px] md:text-[20px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
           Because{" "}
           <span className="text-[#2DB787] font-bold">Great Parenting </span>{" "}
           Starts with{" "}
           <span className="text-[#2DB787] font-bold">Small Steps</span> 🌟
         </h1>
-        <div className="hidden md:grid grid-cols-1 mt-7 mb-8 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10 px-8 md:px-12">
+        <div className="hidden md:grid grid-cols-1 mt-7 mb-8 xl:mt-14 xl:mb-16 px-8 xl:px-16 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10">
           {blogs.map((blog, index) => (
             <div
               key={index}
@@ -854,7 +857,7 @@ const NewPage = () => {
         <h1 className="title font-bold leading-[1.2] text-center capitalize">
           Real Stories from AstroKids Families
         </h1>
-        <h1 className="text-[16px] mb-5 md:text-[20px] mt-2 font-medium leading-[1.2] text-center capitalize">
+        <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
           See How{" "}
           <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
           Found{" "}
