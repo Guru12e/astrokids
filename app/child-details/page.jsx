@@ -511,17 +511,41 @@ const NewChildDetails = () => {
     });
 
     if (checkRes.status === 200) {
-      const res = await fetch("/api/otpVerify", {
-        method: "POST",
-        body: JSON.stringify({ email: parentEmail }),
-      });
-      if (res.status === 200) {
-        setOtpSend(true);
-        const data = await res.json();
-        setAdminOtp(data.message);
-        setResendTimer(30);
+      if (currentIndex === 0) {
+        await fetch("https://report-api-0fic.onrender.com/freeReport", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            dob: `${dob} ${time}:00`,
+            location: place.split(",")[0],
+            lat: parseFloat(latLon.lat),
+            lon: parseFloat(latLon.lon),
+            gender: gender,
+            name: name,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) =>
+            localStorage.setItem("freeReport", JSON.stringify(data))
+          )
+          .catch((error) => console.error("Error:", error));
+
+        router.push("/free-report");
       } else {
-        toast.error("Check Email", { position: "top-right" });
+        const res = await fetch("/api/otpVerify", {
+          method: "POST",
+          body: JSON.stringify({ email: parentEmail }),
+        });
+        if (res.status === 200) {
+          setOtpSend(true);
+          const data = await res.json();
+          setAdminOtp(data.message);
+          setResendTimer(30);
+        } else {
+          toast.error("Check Email", { position: "top-right" });
+        }
       }
     }
     setLoading(false);
@@ -967,7 +991,11 @@ const NewChildDetails = () => {
                         : paymentEdit
                         ? "Update Details"
                         : emailVerified
-                        ? "Proceed to Pay"
+                        ? currentIndex == 0
+                          ? "Unlock Free Report"
+                          : "Proceed to Pay"
+                        : currentIndex == 0
+                        ? "Unlock Free Report"
                         : "Validate"}
                       <ArrowRight size={20} />
                     </button>

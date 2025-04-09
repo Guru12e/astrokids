@@ -1,7 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
-import NewFooter from "@/components/NewFooter"; // Added to match AboutPage
+import NewFooter from "@/components/NewFooter";
 import {
   atma_names,
   bodyConsitutions,
@@ -32,6 +32,7 @@ const PanchangDisplay = () => {
   const [constitutionType, setConstitutionType] = useState(null);
   const [activeTab, setActiveTab] = useState("strength");
   const [isTrueSelfOpen, setIsTrueSelfOpen] = useState(false);
+  const router = useRouter();
 
   const setDisplayContent = () => {
     if (userDetails && panchangData) {
@@ -115,13 +116,17 @@ const PanchangDisplay = () => {
   };
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("freeReport"));
-    const childDetails = JSON.parse(localStorage.getItem("childDetails"));
-    if (storedData && childDetails) {
-      setPanchangData(storedData);
-      setUserDetails(childDetails);
-      setName(childDetails.name.split(" ")[0]);
-    }
+    const fetchPanchang = () => {
+      const storedData = JSON.parse(localStorage.getItem("freeReport"));
+      const childDetails = JSON.parse(localStorage.getItem("childDetails"));
+      if (storedData && childDetails) {
+        setPanchangData(storedData);
+        setUserDetails(childDetails);
+        setName(childDetails.name.split(" ")[0]);
+      }
+    };
+
+    fetchPanchang();
   }, []);
 
   useEffect(() => {
@@ -160,9 +165,6 @@ const PanchangDisplay = () => {
     return `${day} ${months[parseInt(month) - 1]} ${year}`;
   };
 
-  const router = useRouter();
-
-  const colors = ["text-green-500", "text-red-500", "text-yellow-500"];
   const bgs = ["bg-green-400", "bg-red-400", "bg-yellow-400"];
 
   return (
