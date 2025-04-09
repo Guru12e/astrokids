@@ -49,7 +49,7 @@ const PanchangDisplay = () => {
 
       const luckyNumber =
         nakshatraNumber[panchangData.planets[2].nakshatra.split(" ").join("")];
-      [(0, 1, 2)].forEach((_) => {
+      [0, 1, 2].forEach((_) => {
         favourableNakshatra.push(nakshatras[start % 27]);
         start += 9;
       });
