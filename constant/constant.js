@@ -642,7 +642,7 @@ export const bodyConsitutions = {
       },
     ],
     strengthNote:
-      "📖 Psychological studies show that emotionally stable kids often form healthier social bonds and perform better in teamwork (Child Development Journal, 2022).",
+      "📖 Psychological studies show that emotionally stable kids often form healthier social bonds and perform better in teamwork.",
     weakness: [
       {
         title: "Fear of Change",
@@ -666,7 +666,7 @@ export const bodyConsitutions = {
       },
     ],
     weaknessNote:
-      "📖 Studies show that children with high attachment behaviors need structured routines to stay motivated and avoid emotional build-up (American Psychological Association, 2023).",
+      "📖 Studies show that children with high attachment behaviors need structured routines to stay motivated and avoid emotional build-up.",
     remedyTitle: "💡 Energizing child's Calm Nature",
     remedy: [
       {
