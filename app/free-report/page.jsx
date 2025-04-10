@@ -19,9 +19,68 @@ import {
 } from "@/constant/constant";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ArrowRightIcon, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Loader from "@/components/Loader";
+
+const Loader = ({ steps, onComplete }) => {
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(interval);
+          onComplete();
+          return 100;
+        }
+        return prev + 100 / steps.length;
+      });
+      setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [steps.length, onComplete]);
+
+  return (
+    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 bg-opacity-90 z-50">
+      <div className="flex flex-col items-center justify-center text-center p-8 bg-white rounded-2xl shadow-2xl animate-fadeIn">
+        <div className="relative w-48 h-48 mb-8">
+          <div className="absolute inset-0 bg-blue-200 rounded-full animate-pulse opacity-25"></div>
+          <video
+            src="/videos/loader.mp4"
+            loop
+            autoPlay
+            muted
+            className="w-full h-full object-cover rounded-full border-4 border-white shadow-lg"
+          />
+          <div className="absolute -inset-2 bg-blue-400 rounded-full opacity-10 animate-ping"></div>
+        </div>
+
+        <p className="text-xl text-gray-700 font-semibold mb-6 animate-slideUp">
+          {steps[currentStep]}
+          <span className="inline-block ml-2 animate-bounce">.</span>
+          <span className="inline-block animate-bounce delay-100">.</span>
+          <span className="inline-block animate-bounce delay-200">.</span>
+        </p>
+
+        <div className="w-80 h-3 bg-gray-200 rounded-full overflow-hidden relative">
+          <div
+            className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-full transition-all duration-1000 ease-out relative"
+            style={{ width: `${progress}%` }}
+          >
+            <div className="absolute inset-0 bg-white opacity-20 rounded-full animate-shimmer"></div>
+          </div>
+          <div className="absolute inset-0 shadow-inner rounded-full"></div>
+        </div>
+
+        <span className="mt-4 text-sm text-gray-500 font-medium animate-fadeIn">
+          {Math.round(progress)}%
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const PanchangDisplay = () => {
   const [panchangData, setPanchangData] = useState(null);
@@ -32,7 +91,16 @@ const PanchangDisplay = () => {
   const [constitutionType, setConstitutionType] = useState(null);
   const [activeTab, setActiveTab] = useState("strength");
   const [isTrueSelfOpen, setIsTrueSelfOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const router = useRouter();
+
+  const steps = [
+    "Fetching planet positions",
+    "Calculating houses",
+    "Analyzing aspects",
+    "Generating report",
+  ];
 
   const setDisplayContent = () => {
     if (userDetails && panchangData) {
@@ -116,13 +184,37 @@ const PanchangDisplay = () => {
   };
 
   useEffect(() => {
-    const fetchPanchang = () => {
-      const storedData = JSON.parse(localStorage.getItem("freeReport"));
+    const fetchPanchang = async () => {
       const childDetails = JSON.parse(localStorage.getItem("childDetails"));
-      if (storedData && childDetails) {
-        setPanchangData(storedData);
-        setUserDetails(childDetails);
-        setName(childDetails.name.split(" ")[0]);
+      if (childDetails) {
+        try {
+          const response = await fetch(
+            "https://report-api-0fic.onrender.com/freeReport",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                dob: `${childDetails.dob} ${childDetails.time}:00`,
+                location: childDetails.place.split(",")[0],
+                lat: parseFloat(childDetails.lat),
+                lon: parseFloat(childDetails.lon),
+                gender: childDetails.gender,
+                name: childDetails.name,
+              }),
+            }
+          );
+          const data = await response.json();
+          setPanchangData(data);
+          setUserDetails(childDetails);
+          setName(childDetails.name.split(" ")[0]);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      } else {
+        setLoading(false);
+        router.push("/child-detials");
       }
     };
 
@@ -133,8 +225,12 @@ const PanchangDisplay = () => {
     setDisplayContent();
   }, [userDetails, panchangData]);
 
-  if (!panchangData) {
-    return <Loader />;
+  const handleLoaderComplete = () => {
+    setLoading(false);
+  };
+
+  if (loading) {
+    return <Loader steps={steps} onComplete={handleLoaderComplete} />;
   }
 
   const months = [

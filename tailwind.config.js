@@ -51,15 +51,27 @@ module.exports = {
           "100%": { strokeDasharray: "0 400", strokeDashoffset: "400" },
         },
         intro: {
-          "0%": { 
+          "0%": {
             opacity: "0",
-            transform: "translateY(10px) translateX(-10px)", 
+            transform: "translateY(10px) translateX(-10px)",
           },
-          "100%": { 
-            opacity : "1",
-            transform: "translateY(0) translateX(0)", 
-          }
-        }
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0) translateX(0)",
+          },
+        },
+        fadeIn: {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
+        },
+        slideUp: {
+          "0%": { transform: "translateY(10px)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       animation: {
         pulseScale: "pulseScale 3s ease-in-out infinite",
@@ -67,6 +79,9 @@ module.exports = {
         "fade-in-up": "fadeInUp 0.6s ease-out",
         draw: "draw 4s infinite ease-in-out",
         intro: "intro 0.1s linear",
+        fadeIn: "fadeIn 0.5s ease-out",
+        slideUp: "slideUp 0.5s ease-out",
+        shimmer: "shimmer 2s infinite",
       },
       transitionDuration: {
         1: "5s",
