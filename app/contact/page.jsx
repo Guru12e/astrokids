@@ -35,7 +35,7 @@ const ContactPage = () => {
   return (
     <div>
       <Header />
-      <div className="w-screen min-h-screen flex flex-col md:flex-row gap-5 justify-center items-center px-5 xl:px-16">
+      <div className="w-screen min-h-screen flex flex-col md:flex-row gap-5 pt-10 justify-center items-center px-5 xl:px-16">
         <div className="w-full mt-20 md:mt-0 h-full relative md:w-1/2 flex flex-col justify-center items-center">
           <h1 className="text-[42px] leading-[1.2] text-[#02030B] font-bold capitalize">
             Need Personalized Advice? Let's Connect
