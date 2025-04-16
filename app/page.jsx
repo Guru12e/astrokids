@@ -324,9 +324,9 @@ const NewPage = () => {
         </div>
         <div>
           <h1 className="text-[16px] md:text-[24px] leading-[1.2] font-[500] text-center capitalize">
-            Join the <span className="text-[#2DB787]">1,232 parents</span> who{" "}
+            Join the <span className="text-[#2DB787]">232 parents</span> who{" "}
             <span className="text-[#2DB787]">Transformed</span> their parenting
-            journey last year.
+            journey last five months.
           </h1>
           <button
             className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
