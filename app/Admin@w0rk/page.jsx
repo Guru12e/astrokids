@@ -217,7 +217,7 @@ const Admin = () => {
 
     details1.map((item) => {
       item.childDetails.map((child) => {
-        requestOrders.unshift({
+        requestOrders.push({
           id: item.id,
           name: child.name,
           dob: child.dob,
@@ -230,7 +230,11 @@ const Admin = () => {
         });
       });
     });
-    setRequestOrders(requestOrders);
+    setRequestOrders(
+      requestOrders.sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      )
+    );
   };
 
   const adminLogin = async (e) => {
