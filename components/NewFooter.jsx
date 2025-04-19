@@ -1,6 +1,7 @@
 "use client";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 import {
@@ -56,14 +57,16 @@ const NewFooter = () => {
     <div>
       <div className="bg-[#02030B] p-5 md:p-20 flex flex-col md:flex-row text-white gap-5">
         <div className="w-full md:w-2/5 flex flex-col justify-between items-start">
-          <div className="relative w-[150px] md:w-[200px] aspect-square">
-            <Image
-              fill
-              src={"/images/new/logo1.png"}
-              alt="logo"
-              className="object-cover"
-            />
-          </div>
+          <Link href="/">
+            <div className="relative w-[150px] md:w-[200px] aspect-square">
+              <Image
+                fill
+                src={"/images/new/logo1.png"}
+                alt="logo"
+                className="object-cover"
+              />
+            </div>
+          </Link>
           <div
             className="w-[150px] md:w-[200px] text-[16px] flex justify-center items-center cursor-pointer font-[550] mt-5 relative"
             onClick={() => router.push("contact")}
