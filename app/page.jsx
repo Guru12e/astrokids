@@ -776,7 +776,13 @@ const NewPage = () => {
                     index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
                   }`}
                 >
-                  {blog.title}
+                  {blog.title}.{" "}
+                  <span
+                    className="text-sm text-gray-700
+                  "
+                  >
+                    Read More...
+                  </span>
                 </h1>
               </Link>
             </div>
@@ -821,7 +827,13 @@ const NewPage = () => {
                       index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
                     }`}
                   >
-                    {blog.title}
+                    {blog.title}.{" "}
+                    <span
+                      className="text-sm text-gray-700
+                  "
+                    >
+                      Read More...
+                    </span>
                   </h1>
                 </Link>
               </CarouselItem>
@@ -830,6 +842,13 @@ const NewPage = () => {
           <CarouselPrevious className="translate-x-[50%]" />
           <CarouselNext className="translate-x-[-50%]" />
         </Carousel>
+        <button
+          className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+          onClick={() => router.push("/resources")}
+        >
+          Explore More Resources
+          <ArrowUpRight size={20} className="group-hover:animate-intro" />
+        </button>
       </div>
       <div className="p-5 md:p-10">
         <h1 className="title font-semibold leading-[1.2] text-center capitalize">
