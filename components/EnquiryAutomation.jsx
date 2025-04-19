@@ -40,7 +40,7 @@ const EnquiryAutomation = () => {
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "+919597867340";
-    const message = encodeURIComponent("Hello! I have an enquiry.");
+    const message = encodeURIComponent("Hello!");
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     setIsMenuOpen(false);
   };
