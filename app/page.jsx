@@ -1,5 +1,6 @@
 "use client";
 import CustomVideoPlayer from "@/components/CustomVideoPlayer";
+import EnquiryAutomation from "@/components/EnquiryAutomation";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
 import {
@@ -280,50 +281,22 @@ const NewPage = () => {
         </div>
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="title font-semibold leading-[1.2] text-center capitalize">
-          What parents say
+        <h1 className="title font-bold leading-[1.2] text-center capitalize">
+          Real Stories from AstroKids Families
         </h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className={`w-[100%] mx-auto ${
-                index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
-              } ${
-                shapes[index]
-              } aspect-square overflow-hidden relative cursor-pointer group`}
-            >
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:translate-y-full">
-                <Image
-                  src={`/images/new/say${index}.png`}
-                  fill
-                  alt="Parent"
-                  className="object-contain absolute translate-y-[5%]"
-                />
-              </div>
-
-              <div
-                className={`opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0 flex flex-col justify-center p-4 text-center items-center gap-2 translate-y-[-100%] ${
-                  index % 2 == 0 ? "text-white" : "text-black"
-                } group-hover:translate-y-0 ${
-                  index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
-                } ${shapes[index]} justify-between py-10`}
-              >
-                <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
-                  <span>⭐</span> {review.rating}
-                </div>
-                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
-                  {review.review}
-                </h1>
-                <h1 className="font-normal text-[12px] md:text-[18px]">
-                  - {review.name}
-                </h1>
-              </div>
-            </div>
-          ))}
-        </div>
+        <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+          See How{" "}
+          <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
+          Found{" "}
+          <span className="text-[#2DB787] font-bold">
+            {" "}
+            Clarity in the Stars
+          </span>{" "}
+          ✨
+        </h1>
+        <EmblaCarousel slides={slides} options={OPTIONS} />
         <div>
-          <h1 className="text-[16px] md:text-[24px] leading-[1.2] font-[500] text-center capitalize">
+          <h1 className="text-[16px] md:text-[24px] leading-[1.2] mt-2 font-[500] text-center capitalize">
             Join the <span className="text-[#2DB787]">232 parents</span> who{" "}
             <span className="text-[#2DB787]">Transformed</span> their parenting
             journey last five months.
@@ -859,21 +832,57 @@ const NewPage = () => {
         </Carousel>
       </div>
       <div className="p-5 md:p-10">
-        <h1 className="title font-bold leading-[1.2] text-center capitalize">
-          Real Stories from AstroKids Families
+        <h1 className="title font-semibold leading-[1.2] text-center capitalize">
+          What parents say
         </h1>
-        <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          See How{" "}
-          <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
-          Found{" "}
-          <span className="text-[#2DB787] font-bold">
-            {" "}
-            Clarity in the Stars
-          </span>{" "}
-          ✨
-        </h1>
-        <EmblaCarousel slides={slides} options={OPTIONS} />
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
+          {reviews.map((review, index) => (
+            <div
+              key={index}
+              className={`w-[100%] mx-auto ${
+                index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
+              } ${
+                shapes[index]
+              } aspect-square overflow-hidden relative cursor-pointer group`}
+            >
+              <div className="absolute inset-0 transition-transform duration-500 group-hover:translate-y-full">
+                <Image
+                  src={`/images/new/say${index}.png`}
+                  fill
+                  alt="Parent"
+                  className="object-contain absolute translate-y-[5%]"
+                />
+              </div>
+
+              <div
+                className={`opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0 flex flex-col justify-center p-4 text-center items-center gap-2 translate-y-[-100%] ${
+                  index % 2 == 0 ? "text-white" : "text-black"
+                } group-hover:translate-y-0 ${
+                  index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
+                } ${shapes[index]} justify-between py-10`}
+              >
+                <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
+                  <span>⭐</span> {review.rating}
+                </div>
+                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
+                  {review.review}
+                </h1>
+                <h1 className="font-normal text-[12px] md:text-[18px]">
+                  - {review.name}
+                </h1>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button
+          className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+          onClick={() => router.push("/plans")}
+        >
+          Start Your journey Now
+          <ArrowUpRight size={20} className="group-hover:animate-intro" />
+        </button>
       </div>
+      <EnquiryAutomation />
       <NewFooter />
     </div>
   );
