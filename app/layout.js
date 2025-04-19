@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/logo1.png" type="image/png" />
+        <link rel="icon" href="/images/logo1.svg" type="image/svg" />
         <GoogleAnalytics gtmId="G-82PQ2WCYGX" />
         <GoogleTagManager gtmId="GTM-MDK2KCGP" />
         <script type="application/ld+json">
