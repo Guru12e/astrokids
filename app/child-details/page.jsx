@@ -602,6 +602,13 @@ const NewChildDetails = () => {
     }
   };
 
+  const handleWhatsAppClick = () => {
+    const phoneNumber = "+919597867340";
+    const message = encodeURIComponent("Hello!");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
+    setIsMenuOpen(false);
+  };
+
   return (
     <>
       {loading ? (
@@ -637,9 +644,21 @@ const NewChildDetails = () => {
                     <span className="text-xs px-0.5 text-[#5DF2CF]">✦</span>ai
                   </h1>
                 ) : (
-                  <h1 className="mt-0 md:mt-5 text-[24px] font-bold leading-[1.2]">
-                    Join our community of 10,000+ super parents
-                  </h1>
+                  <>
+                    <h1 className="mt-0 md:mt-5 text-[24px] font-bold leading-[1.2]">
+                      Join our community of 10,000+ super parents
+                    </h1>
+                    <h1>
+                      For Parents outside India, please connect with us on{" "}
+                      <span
+                        onClick={handleWhatsAppClick}
+                        className="underline cursor-pointer text-[#2DB787]"
+                      >
+                        Whatsapp
+                      </span>
+                      .
+                    </h1>
+                  </>
                 )}
                 {otpSend ? (
                   <div className="w-full flex flex-col gap-4">
