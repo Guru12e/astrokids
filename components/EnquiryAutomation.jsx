@@ -144,7 +144,7 @@ const EnquiryAutomation = () => {
   return (
     <div className="fixed z-[1000] flex justify-end flex-col items-end gap-3 bottom-4 right-4 font-sans">
       {isOpen && (
-        <div className="bg-gradient-to-b from-white to-gray-50 rounded-xl shadow-2xl w-[70vw] md:w-[40vw] h-[80vh] flex flex-col transform transition-all duration-300">
+        <div className="bg-gradient-to-b from-white to-gray-50 rounded-xl shadow-2xl w-[80vw] md:w-[40vw] h-[80vh] flex flex-col transform transition-all duration-300">
           <div className="bg-gradient-to-r from-[#2DB787] to-[#239c6b] text-white rounded-t-xl p-4 flex justify-between items-center shadow-md">
             <h2 className="text-lg font-bold tracking-tight">Enquiry Bot</h2>
             <button
