@@ -1,46 +1,130 @@
 "use client";
+import { MessageCircle, MessageCircleCodeIcon, ArrowLeft } from "lucide-react";
 import React, { useState, useEffect, useRef } from "react";
+import { MdClose, MdWhatsapp } from "react-icons/md";
 
 const EnquiryAutomation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);
 
-  const botResponses = [
-    "Hello! How can I assist you today?",
-    "Could you please provide more details?",
-    "Thanks for your message! I'll get back to you soon.",
-    "Our team is here to help. What's your question?",
+  // Predefined question categories and their respective questions
+  const qaCategories = {
+    report: [
+      {
+        question: "How do I generate my astrology report?",
+        answer:
+          "To generate your personalized astrology report, visit our 'Plans' section, enter your birth details (date, time, place), and select a report type. The report will be generated instantly after processing.",
+      },
+      {
+        question: "How do I buy the report?",
+        answer:
+          "After generating your report in the 'Plans' section, select your preferred plan and proceed to payment. We accept credit cards, UPI, and other secure payment methods.",
+      },
+      {
+        question: "What’s included in the astrology report?",
+        answer:
+          "The report includes your horoscope, planetary positions, dosha analysis, and personalized recommendations based on Vedic astrology principles.",
+      },
+    ],
+    refund: [
+      {
+        question: "What is your refund policy?",
+        answer:
+          "We offer a full refund within 7 days of purchase if you’re not satisfied with your astrology report. Contact our support team to initiate the process.",
+      },
+      {
+        question: "How long does it take to process a refund?",
+        answer:
+          "Refunds are typically processed within 3-5 business days after approval. You’ll receive a confirmation email once completed.",
+      },
+    ],
+    support: [
+      {
+        question: "How do I contact support?",
+        answer:
+          "You can reach our support team via email at support@astrologyplatform.com or through the 'Contact Us' section on our website.",
+      },
+      {
+        question: "What are your support hours?",
+        answer:
+          "Our support team is available 24/7 to assist you with any queries or issues.",
+      },
+    ],
+    general: [
+      {
+        question: "Can I get a sample report?",
+        answer:
+          "Yes, you can view a sample report in the 'Resources' section of our website to understand the format and details included.",
+      },
+      {
+        question: "Do you offer consultations?",
+        answer:
+          "Yes, we provide personalized astrology consultations. Book a session through the 'Consultations' page on our website.",
+      },
+    ],
+  };
+
+  // List of categories for initial selection
+  const categories = [
+    { id: "report", label: "Report Questions" },
+    { id: "refund", label: "Refund Questions" },
+    { id: "support", label: "Support Questions" },
+    { id: "general", label: "General Questions" },
   ];
 
   useEffect(() => {
+    // Initialize with a welcome message when chat opens
+    if (isOpen && messages.length === 0) {
+      setMessages([
+        {
+          text: "Welcome! Please select a category to ask about.",
+          sender: "bot",
+        },
+      ]);
+      setSelectedCategory(null);
+    }
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [isOpen, messages]);
 
-  const handleSendMessage = () => {
-    if (input.trim() === "") return;
-
-    setMessages([...messages, { text: input, sender: "user" }]);
-    setInput("");
-
-    setTimeout(() => {
-      const randomResponse =
-        botResponses[Math.floor(Math.random() * botResponses.length)];
-      setMessages((prev) => [...prev, { text: randomResponse, sender: "bot" }]);
-    }, 1000);
+  const handleCategoryClick = (categoryId) => {
+    setSelectedCategory(categoryId);
+    setMessages((prev) => [
+      ...prev,
+      {
+        text: `Selected: ${categories.find((c) => c.id === categoryId).label}`,
+        sender: "user",
+      },
+    ]);
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSendMessage();
-    }
+  const handleQuestionClick = (question, answer) => {
+    setMessages((prev) => [...prev, { text: question, sender: "user" }]);
+    setIsTyping(true);
+
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { text: answer, sender: "bot" }]);
+      setIsTyping(false);
+    }, 500);
+  };
+
+  const handleBackToCategories = () => {
+    setSelectedCategory(null);
+    setMessages((prev) => [
+      ...prev,
+      { text: "Back to categories", sender: "user" },
+      { text: "Please select a category to ask about.", sender: "bot" },
+    ]);
   };
 
   const handleWhatsAppClick = () => {
     const phoneNumber = "+919597867340";
-    const message = encodeURIComponent("Hello!");
+    const message = encodeURIComponent(
+      "Hello! I have a question about my astrology report."
+    );
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
     setIsMenuOpen(false);
   };
@@ -51,149 +135,116 @@ const EnquiryAutomation = () => {
   };
 
   const toggleMenu = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
     setIsMenuOpen((prev) => !prev);
   };
 
   return (
-    <div className="fixed z-[1000] bottom-4 right-4 font-sans">
+    <div className="fixed z-[1000] flex justify-end flex-col items-end gap-3 bottom-4 right-4 font-sans">
       {isOpen && (
-        <div className="bg-white rounded-lg shadow-xl w-80 sm:w-96 h-[400px] flex flex-col">
-          <div className="bg-[#2DB787] text-white rounded-t-lg p-4 flex justify-between items-center">
-            <h2 className="text-lg font-semibold">Enquiry Bot</h2>
+        <div className="bg-gradient-to-b from-white to-gray-50 rounded-xl shadow-2xl w-[70vw] md:w-[40vw] h-[80vh] flex flex-col transform transition-all duration-300">
+          <div className="bg-gradient-to-r from-[#2DB787] to-[#239c6b] text-white rounded-t-xl p-4 flex justify-between items-center shadow-md">
+            <h2 className="text-lg font-bold tracking-tight">Enquiry Bot</h2>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200"
+              className="text-white hover:text-gray-200 transition-transform duration-200 hover:scale-110"
             >
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M6 18L18 6M6 6l12 12"
-                ></path>
-              </svg>
+              <MdClose className="w-6 h-6" />
             </button>
           </div>
 
-          <div className="flex-1 p-4 overflow-y-auto bg-gray-100">
+          <div className="flex-1 p-4 overflow-y-auto bg-gray-100/50 backdrop-blur-sm scroll-smooth">
             {messages.map((msg, index) => (
               <div
                 key={index}
-                className={`mb-2 flex ${
+                className={`mb-3 flex animate-fade-in ${
                   msg.sender === "user" ? "justify-end" : "justify-start"
                 }`}
               >
                 <div
-                  className={`max-w-[70%] p-2 rounded-lg ${
+                  className={`max-w-[80%] p-3 rounded-2xl leading-[1.4] transition-all duration-200 ${
                     msg.sender === "user"
-                      ? "bg-[#2DB787] text-white"
-                      : "bg-white text-gray-800 shadow"
+                      ? "bg-gradient-to-r from-[#2DB787] to-[#239c6b] text-white shadow-md"
+                      : "bg-white text-gray-800 shadow-lg border border-gray-200"
                   }`}
                 >
                   {msg.text}
                 </div>
               </div>
             ))}
-            <div ref={messagesEndRef} />
-          </div>
-
-          <div className="p-4 border-t bg-white">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyPress}
-                placeholder="Type your message..."
-                className="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2DB787]"
-              />
-              <button
-                onClick={handleSendMessage}
-                className="bg-[#2DB787] text-white p-2 rounded-lg hover:bg-[#239c6b] transition"
-              >
-                <div className="rotate-90">
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
-                    ></path>
-                  </svg>
+            {isTyping && (
+              <div className="flex justify-start mb-3">
+                <div className="bg-white p-3 rounded-2xl shadow-lg flex items-center gap-1">
+                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-100"></div>
+                  <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce delay-200"></div>
                 </div>
-              </button>
-            </div>
+              </div>
+            )}
+            {!selectedCategory && (
+              <div className="mt-4 flex flex-col gap-3">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => handleCategoryClick(category.id)}
+                    className="w-max mx-auto text-left p-3 bg-gradient-to-r from-[#2DB787] to-[#239c6b] text-white rounded-xl transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] text-md font-medium"
+                  >
+                    {category.label}
+                  </button>
+                ))}
+              </div>
+            )}
+            {selectedCategory && (
+              <div className="mt-4 flex flex-col gap-3">
+                {qaCategories[selectedCategory].map((item, index) => (
+                  <button
+                    key={index}
+                    onClick={() =>
+                      handleQuestionClick(item.question, item.answer)
+                    }
+                    className="w-max mx-auto text-left p-3 text-white rounded-xl hover:text-black hover:bg-gray-200 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] text-sm font-medium bg-gradient-to-r from-[#2DB787] to-[#239c6b]"
+                  >
+                    {item.question}
+                  </button>
+                ))}
+                <button
+                  onClick={handleBackToCategories}
+                  className="w-max mx-auto flex items-center gap-2 p-3 text-white rounded-xl hover:text-black hover:bg-gray-200 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] text-sm font-medium bg-gradient-to-r from-[#2DB787] to-[#239c6b]"
+                >
+                  <ArrowLeft className="w-4 h-4" />
+                  Back to Categories
+                </button>
+              </div>
+            )}
+            <div ref={messagesEndRef} />
           </div>
         </div>
       )}
       <button
         onClick={toggleMenu}
-        className="bg-[#2DB787] text-white rounded-full p-4 shadow-lg right-0 hover:bg-[#239c6b] transition"
+        className="bg-gradient-to-r from-[#2DB787] to-[#239c6b] text-white rounded-full p-4 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-110"
       >
-        <svg
-          className="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-          ></path>
-        </svg>
+        <MessageCircle className="w-6 h-6" />
       </button>
 
       {isMenuOpen && (
-        <div className="absolute bottom-16 right-0 bg-white rounded-lg shadow-xl w-48 p-2">
+        <div className="absolute bottom-16 right-0 bg-white rounded-xl shadow-2xl w-48 p-3 animate-slide-in">
           <button
             onClick={handleWhatsAppClick}
-            className="w-full text-left px-4 py-2 text-gray-800 leading-[1.2] hover:bg-gray-100 rounded flex items-center gap-2"
+            className="w-full text-left px-4 py-2 text-gray-800 leading-[1.2] hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all duration-200 hover:scale-[1.02]"
           >
-            <svg
-              className="w-8 h-8"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.099-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-            </svg>
-            Chat with WhatsApp
+            <MdWhatsapp className="w-6 h-6 text-green-600" />
+            <span className="flex-1 font-medium">Chat with WhatsApp</span>
           </button>
-          {/* <button
+          <button
             onClick={handleAIChatClick}
-            className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded flex items-center gap-2"
+            className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100 rounded-lg flex items-center gap-2 transition-all duration-200 hover:scale-[1.02]"
           >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-              ></path>
-            </svg>
-            Chat with AI
-          </button> */}
+            <MessageCircleCodeIcon className="w-6 h-6 text-[#2DB787]" />
+            <span className="flex-1 font-medium">Chat with Bot</span>
+          </button>
         </div>
       )}
     </div>
