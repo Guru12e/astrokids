@@ -490,6 +490,20 @@ const NewChildDetails = () => {
       }),
     });
 
+    localStorage.setItem(
+      "childDetails",
+      JSON.stringify({
+        name,
+        dob,
+        time,
+        place,
+        gender,
+        number,
+        lat: latLon.lat,
+        lon: latLon.lon,
+      })
+    );
+
     if (checkRes.status === 200) {
       if (currentIndex === 0) {
         await fetch("https://report-api-0fic.onrender.com/freeReport", {

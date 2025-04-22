@@ -11,7 +11,6 @@ export async function POST(request) {
 
     const childCollection = database.collection("childDetails");
     const requestCollection = database.collection("requestDetails");
-
     const user = await childCollection.findOne({ email });
 
     if (user) {
