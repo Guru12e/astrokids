@@ -504,7 +504,10 @@ const NewChildDetails = () => {
       })
     );
 
-    if (checkRes.status === 200) {
+    if (
+      checkRes.status === 200 ||
+      (currentIndex === 0 && checkRes.status == 400)
+    ) {
       if (currentIndex === 0) {
         await fetch("https://report-api-0fic.onrender.com/freeReport", {
           method: "POST",
@@ -541,6 +544,8 @@ const NewChildDetails = () => {
           toast.error("Check Email", { position: "top-right" });
         }
       }
+    } else if (checkRes.status === 400) {
+      toast.error("Child already exists!");
     }
     setLoading(false);
   };
