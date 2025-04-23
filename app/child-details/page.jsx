@@ -545,7 +545,7 @@ const NewChildDetails = () => {
         }
       }
     } else if (checkRes.status === 400) {
-      toast.error("Child already exists!");
+      toast.error("Child Details already exists!");
     }
     setLoading(false);
   };
