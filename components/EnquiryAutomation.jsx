@@ -204,7 +204,7 @@ const EnquiryAutomation = () => {
                     onClick={() =>
                       handleQuestionClick(item.question, item.answer)
                     }
-                    className="w-max mx-auto text-left p-3 text-white rounded-xl hover:text-black hover:bg-gray-200 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] text-sm font-medium bg-gradient-to-r from-[#2DB787] to-[#239c6b]"
+                    className="mx-auto text-left p-3 text-white rounded-xl hover:text-black hover:bg-gray-200 transition-all duration-200 shadow-md hover:shadow-lg transform hover:scale-[1.02] text-sm font-medium bg-gradient-to-r from-[#2DB787] to-[#239c6b]"
                   >
                     {item.question}
                   </button>
