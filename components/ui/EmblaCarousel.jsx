@@ -120,7 +120,7 @@ const EmblaCarousel = (props) => {
                   </div>
                   <button
                     onClick={() => router.push("/plans")}
-                    className="new-gradient self-end w-max mx-auto flex mt-5 justify-center cursor-pointer items-center gap-4 py-3 px-8 text-[18px] font-semibold rounded-t-2xl"
+                    className="new-gradient self-end w-[90%] mx-auto flex mt-5 justify-center cursor-pointer items-center gap-4 py-3 text-sm font-semibold rounded-t-2xl"
                   >
                     Try {slide.title.split("-")[0]} Plan
                     <ArrowUpRight size={25} />

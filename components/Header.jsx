@@ -55,7 +55,7 @@ const Header = () => {
 
         <button
           className="xl:hidden text-white focus:outline-none"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          onClick={() => setIsMobileMenuOpen((prev) => !prev)}
         >
           <svg
             className="w-6 h-6"

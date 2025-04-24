@@ -192,7 +192,7 @@ const AboutPage = () => {
           />
           <div className="w-screen h-[60vh] md:h-screen absolute top-0 left-0 bg-[#1B1F3B]/60"></div>
         </div>
-        <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-3 justify-center pb-4 items-center">
+        <div className="absolute top-0 max-sm:mt-6 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-3 justify-center pb-4 items-center">
           <h1 className="text-center leading-[1.2] font-bold text-[40px] px-3 md:text-[28px]">
             Simple Plans, Tailored to Your Parenting Journey 🌟
           </h1>
