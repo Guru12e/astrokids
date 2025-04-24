@@ -43,7 +43,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/images/logo1.svg" type="image/svg" />
+        <link rel="icon" href="/images/logo3.png" type="image/png" />
         <GoogleAnalytics gtmId="G-82PQ2WCYGX" />
         <GoogleTagManager gtmId="GTM-MDK2KCGP" />
         <script type="application/ld+json">
@@ -76,7 +76,7 @@ export default function RootLayout({ children }) {
               "@type": "Organization",
               name: "AstroKids",
               url: "https://astrokids.ai",
-              logo: "https://astrokids.ai/logo.png",
+              logo: "https://astrokids.ai/logo1.png",
               sameAs: [
                 "https://www.facebook.com/profile.php?id=61568876184036",
                 "https://www.instagram.com/the_astro_kids/",
