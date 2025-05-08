@@ -189,61 +189,62 @@ const NewPage = () => {
   const router = useRouter();
 
   return (
-    <div>
-      <Header />
-      <div className="w-screen h-max md:h-screen">
-        <div className="w-screen h-[60vh] relative">
-          <div className="w-screen h-full md:h-screen overflow-hidden relative">
-            <Image
-              src={`/images/new/hero${imageIndex}.png`}
-              fill
-              className="object-cover mt-0 md:mt-16"
-              alt="Hero image"
-            />
-          </div>
-          <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
-            <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
-              Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
-              <span className="text-[#FFEB3B]">Confident</span> Kids <br />
-              Holistically
-            </h1>
-            <div className="flex flex-col justify-center items-center mt-4 md:flex-row gap-5">
-              <button
-                className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
-                onClick={() => {
-                  router.push("/plans");
-                }}
-              >
-                <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+    <>
+      <div>
+        <Header />
+        <div className="w-screen h-max md:h-screen">
+          <div className="w-screen h-[60vh] relative">
+            <div className="w-screen h-full md:h-screen overflow-hidden relative">
+              <Image
+                src={`/images/new/hero${imageIndex}.png`}
+                fill
+                className="object-cover mt-0 md:mt-16"
+                alt="Hero image"
+              />
+            </div>
+            <div className="absolute top-0 text-white w-screen h-[60vh] md:h-screen flex flex-col gap-6 justify-end md:justify-center items-center py-8">
+              <h1 className="italic text-center leading-[1.2] font-semibold text-[36px] px-3 md:text-[48px]">
+                Nurturing <span className="text-[#FFEB3B]">Happy</span> &{" "}
+                <span className="text-[#FFEB3B]">Confident</span> Kids <br />
+                Holistically
+              </h1>
+              <div className="flex flex-col justify-center items-center mt-4 md:flex-row gap-5">
+                <button
+                  className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
+                  onClick={() => {
+                    router.push("/plans");
+                  }}
+                >
+                  <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
 
-                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Discover your child Potential
-                </span>
+                  <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
+                    Discover your child Potential
+                  </span>
 
-                <ArrowRightIcon
-                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
-                  size={30}
-                />
-              </button>
-              <button
-                className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
-                onClick={() => {
-                  router.push("/child-details?product=true&productIndex=0");
-                }}
-              >
-                <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
+                  <ArrowRightIcon
+                    className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
+                    size={30}
+                  />
+                </button>
+                <button
+                  className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
+                  onClick={() => {
+                    router.push("/child-details?product=true&productIndex=0");
+                  }}
+                >
+                  <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
 
-                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                  Unloack Your Free Report
-                </span>
+                  <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
+                    Unloack Your Free Report
+                  </span>
 
-                <ArrowRightIcon
-                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
-                  size={30}
-                />
-              </button>
+                  <ArrowRightIcon
+                    className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
+                    size={30}
+                  />
+                </button>
 
-              {/* <button
+                {/* <button
                 className="relative w-max flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                 onClick={() => setIsVedioPlay(true)}
               >
@@ -256,566 +257,515 @@ const NewPage = () => {
                   size={30}
                 />
               </button> */}
-            </div>
-          </div>
-          {isVideoPlay && (
-            <div className="fixed px-3 inset-0 bg-[#02030B]/60 flex flex-col z-[1100] gap-5 items-center justify-center">
-              <button
-                className="p-2 mx-auto bg-white rounded-full"
-                onClick={() => setIsVedioPlay(false)}
-              >
-                <FaXmark size={30} />
-              </button>
-              <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[60%]">
-                <p className="text-[15px] md:text-[20px] indent-10 mt-1 leading-relaxed">
-                  AstroKids.ai is a platform that integrates Vedic Astrology,
-                  Ayurveda, and Yoga to provide parents with personalized
-                  insights into their children’s unique potentials. By analyzing
-                  astrological profiles, the platform offers guidance on
-                  nurturing a child’s mental, emotional, and physical
-                  well-being.
-                </p>
-                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
-                  <span className="text-[#FFEB3B] font-semibold">
-                    Personalized Astrology Reports
-                  </span>
-                  : Tailored to each child’s astrological profile, these reports
-                  offer insights into personality traits, health predictions,
-                  and developmental guidance.
-                </p>
-                <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
-                  <span className="text-[#FFEB3B] font-semibold">
-                    Holistic Parenting Guidance
-                  </span>
-                  : Combining ancient wisdom with modern practices, AstroKids.ai
-                  provides advice on nutrition, sleep routines, and activities
-                  aligned with a child’s astrological makeup.
-                </p>
               </div>
             </div>
-          )}
-        </div>
-      </div>
-      <div className="p-5 md:p-10">
-        <h1 className="title font-bold leading-[1.2] text-center capitalize">
-          Real Stories from AstroKids Families
-        </h1>
-        <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          See How{" "}
-          <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
-          Found{" "}
-          <span className="text-[#2DB787] font-bold">
-            {" "}
-            Clarity in the Stars
-          </span>{" "}
-          ✨
-        </h1>
-        <EmblaCarousel slides={slides} options={OPTIONS} />
-        <div>
-          <h1 className="text-[16px] md:text-[24px] leading-[1.2] mt-2 font-[500] text-center capitalize">
-            Join the <span className="text-[#2DB787]">232 parents</span> who{" "}
-            <span className="text-[#2DB787]">Transformed</span> their parenting
-            journey last five months.
-          </h1>
-          <button
-            className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
-            onClick={() => router.push("/plans")}
-          >
-            Start Your journey Now
-            <ArrowUpRight size={20} className="group-hover:animate-intro" />
-          </button>
-        </div>
-      </div>
-      <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
-        <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
-          Astrokids Report Benefits
-        </h1>
-        <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
-          <div
-            className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[80px] h-[80px]">
-                <Image
-                  src={"/images/new/why1.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
-                1800+
-              </h1>
-              <p className="w-[80%] text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Happy Kids & Parents
-              </p>
-            </div>
-            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
-          </div>
-          <div
-            className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[80px] h-[80px]">
-                <Image
-                  src={"/images/new/why2.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
-                95%
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Parents See Happier Kids
-              </p>
-            </div>
-            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
-          </div>
-          <div
-            className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[60px] h-[60px]">
-                <Image
-                  src={"/images/new/why3.png"}
-                  fill
-                  alt="Why 3"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
-                5,000-year-old
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Ancient Wisdom + Modern Science
-              </p>
-            </div>
-            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
-          </div>
-          <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[80px] h-[80px]">
-                <Image
-                  src={"/images/new/why4.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
-                15-Mins
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Insights, Lifetime Impact
-              </p>
-            </div>
-            <div className="absolute bottom-2 -right-5">
-              <div className="relative w-[80px] h-[80px]">
-                <Image
-                  src={"/images/new/why5.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-          </div>
-          <div
-            className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
-            onClick={() => router.push("/plans")}
-          >
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[60px] h-[60px]">
-                <Image
-                  src={"/images/new/why6.png"}
-                  fill
-                  alt="Why 3"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
-                78%
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Better Academic
-              </p>
-            </div>
-            <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
-              <ArrowUpRight
-                size={30}
-                className="group-hover:rotate-45 transition duration-200"
-              />
-            </button>
-          </div>
-          <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden md:px-6 new-gradient rounded-2xl relative group">
-            <div className="absolute top-0 left-0 w-full h-full">
-              <div className="relative w-full h-full">
-                <Image
-                  src={"/images/new/spark.png"}
-                  fill
-                  alt="Why 1"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="absolute top-0 -right-3">
-              <div className="relative w-[70px] h-[70px]">
-                <Image
-                  src={"/images/new/why7.png"}
-                  fill
-                  alt="Why 3"
-                  className="object-contain"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
-                24/7
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Expert Support
-              </p>
-            </div>
-          </div>
-          <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col md:px-6 bg-white text-black rounded-2xl relative group">
-            <div className="absolute top-0 right-0">
-              <div className="relative w-[60px] h-[60px]">
-                <Image
-                  src={"/images/new/why7.png"}
-                  fill
-                  alt="Why 3"
-                  className="object-cover"
-                />
-              </div>
-            </div>
-            <div className="z-10 relative">
-              <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
-                100%
-              </h1>
-              <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
-                Data Security
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="p-5 md:p-10" id="how-it-works">
-        <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
-          How It Works
-        </h1>
-        <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          Simple <span className="text-[#2DB787]">3-Step</span> Process
-        </h1>
-        <div className="hidden md:flex flex-col p-5 mt-5 md:flex-row gap-10 justify-center items-center">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="p-0.5 w-[80%] md:w-[30%] rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
-            >
-              <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
-                <div className="flex gap-2 justify-start w-full items-end">
-                  <div className="text-[#2DB787] text-[50px] md:text-[60px] leading-[0.8]">
-                    0<span>{index + 1}</span>
-                  </div>
-                  {[...Array(3)].map((_, i) => (
-                    <div
-                      key={i}
-                      className={`w-2 h-2 rounded-full ${
-                        i <= index ? "bg-[#2DB787]" : "bg-black"
-                      }`}
-                    ></div>
-                  ))}
+            {isVideoPlay && (
+              <div className="fixed px-3 inset-0 bg-[#02030B]/60 flex flex-col z-[1100] gap-5 items-center justify-center">
+                <button
+                  className="p-2 mx-auto bg-white rounded-full"
+                  onClick={() => setIsVedioPlay(false)}
+                >
+                  <FaXmark size={30} />
+                </button>
+                <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[60%]">
+                  <p className="text-[15px] md:text-[20px] indent-10 mt-1 leading-relaxed">
+                    AstroKids.ai is a platform that integrates Vedic Astrology,
+                    Ayurveda, and Yoga to provide parents with personalized
+                    insights into their children’s unique potentials. By
+                    analyzing astrological profiles, the platform offers
+                    guidance on nurturing a child’s mental, emotional, and
+                    physical well-being.
+                  </p>
+                  <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
+                    <span className="text-[#FFEB3B] font-semibold">
+                      Personalized Astrology Reports
+                    </span>
+                    : Tailored to each child’s astrological profile, these
+                    reports offer insights into personality traits, health
+                    predictions, and developmental guidance.
+                  </p>
+                  <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
+                    <span className="text-[#FFEB3B] font-semibold">
+                      Holistic Parenting Guidance
+                    </span>
+                    : Combining ancient wisdom with modern practices,
+                    AstroKids.ai provides advice on nutrition, sleep routines,
+                    and activities aligned with a child’s astrological makeup.
+                  </p>
                 </div>
-                <h1 className="text-[32px] md:text-[46px] font-semibold leading-[1.2] capitalize">
-                  {step.title}
-                </h1>
-                <div className="relative w-[100px] self-end h-[100px]">
+              </div>
+            )}
+          </div>
+        </div>
+        <div className="p-5 md:p-10">
+          <h1 className="title font-bold leading-[1.2] text-center capitalize">
+            Real Stories from AstroKids Families
+          </h1>
+          <h1 className="text-[16px] mb-5 md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+            See How{" "}
+            <span className="text-[#2DB787] font-bold">5,000+ Parents </span>{" "}
+            Found{" "}
+            <span className="text-[#2DB787] font-bold">
+              {" "}
+              Clarity in the Stars
+            </span>{" "}
+            ✨
+          </h1>
+          <EmblaCarousel slides={slides} options={OPTIONS} />
+          <div>
+            <h1 className="text-[16px] md:text-[24px] leading-[1.2] mt-2 font-[500] text-center capitalize">
+              Join the <span className="text-[#2DB787]">232 parents</span> who{" "}
+              <span className="text-[#2DB787]">Transformed</span> their
+              parenting journey last five months.
+            </h1>
+            <button
+              className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+              onClick={() => router.push("/plans")}
+            >
+              Start Your journey Now
+              <ArrowUpRight size={20} className="group-hover:animate-intro" />
+            </button>
+          </div>
+        </div>
+        <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
+          <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
+            Astrokids Report Benefits
+          </h1>
+          <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
+            <div
+              className="w-[45%] py-4 px-3 flex flex-col md:py-8 group cursor-pointer overflow-hidden  md:px-6 new-gradient rounded-2xl relative group"
+              onClick={() => router.push("/plans")}
+            >
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
                   <Image
-                    src={step.image}
+                    src={"/images/new/spark.png"}
                     fill
-                    alt={step.title}
+                    alt="Why 1"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[80px] h-[80px]">
+                  <Image
+                    src={"/images/new/why1.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                  1800+
+                </h1>
+                <p className="w-[80%] text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Happy Kids & Parents
+                </p>
+              </div>
+              <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+                <ArrowUpRight
+                  size={30}
+                  className="group-hover:rotate-45 transition duration-200"
+                />
+              </button>
+            </div>
+            <div
+              className="w-[45%] py-4 flex flex-col md:py-8 group cursor-pointer overflow-hidden px-3 md:px-6 new-gradient rounded-2xl relative group"
+              onClick={() => router.push("/plans")}
+            >
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={"/images/new/spark.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[80px] h-[80px]">
+                  <Image
+                    src={"/images/new/why2.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
+                  95%
+                </h1>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Parents See Happier Kids
+                </p>
+              </div>
+              <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+                <ArrowUpRight
+                  size={30}
+                  className="group-hover:rotate-45 transition duration-200"
+                />
+              </button>
+            </div>
+            <div
+              className="w-[95%] md:w-[50%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
+              onClick={() => router.push("/plans")}
+            >
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={"/images/new/spark.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[60px] h-[60px]">
+                  <Image
+                    src={"/images/new/why3.png"}
+                    fill
+                    alt="Why 3"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                  5,000-year-old
+                </h1>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Ancient Wisdom + Modern Science
+                </p>
+              </div>
+              <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+                <ArrowUpRight
+                  size={30}
+                  className="group-hover:rotate-45 transition duration-200"
+                />
+              </button>
+            </div>
+            <div className="w-[45%] md:w-[40%] py-8 overflow-hidden px-6 bg-gradient-to-tr from-[#1B1F3B] via-[#011498] to-[#6F8BEF] text-white rounded-2xl relative group">
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={"/images/new/spark.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[80px] h-[80px]">
+                  <Image
+                    src={"/images/new/why4.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                  15-Mins
+                </h1>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Insights, Lifetime Impact
+                </p>
+              </div>
+              <div className="absolute bottom-2 -right-5">
+                <div className="relative w-[80px] h-[80px]">
+                  <Image
+                    src={"/images/new/why5.png"}
+                    fill
+                    alt="Why 1"
                     className="object-contain"
                   />
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-        <div className="block md:hidden p-5 w-[90%] mx-auto my-5">
-          <Carousel opts={{ align: "start" }}>
-            <CarouselContent>
-              {steps.map((step, index) => (
-                <CarouselItem key={index}>
-                  <div
-                    key={index}
-                    className="p-0.5 w-[90%] mx-auto rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
-                  >
-                    <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
-                      <div className="flex gap-2 justify-start w-full items-end">
-                        <div className="text-[#2DB787] text-[30px] leading-[0.8]">
-                          0<span>{index + 1}</span>
-                        </div>
-                        {[...Array(3)].map((_, i) => (
-                          <div
-                            key={i}
-                            className={`w-2 h-2 rounded-full ${
-                              i <= index ? "bg-[#2DB787]" : "bg-black"
-                            }`}
-                          ></div>
-                        ))}
-                      </div>
-                      <h1 className="text-[23px] font-semibold leading-[1.2] capitalize">
-                        {step.title}
-                      </h1>
-                      <div className="relative w-[100px] self-end h-[100px]">
-                        <Image
-                          src={step.image}
-                          fill
-                          alt={step.title}
-                          className="object-contain"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="translate-x-[50%]" />
-            <CarouselNext className="translate-x-[-50%]" />
-          </Carousel>
-        </div>
-        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          It's like having a parenting manual written{" "}
-          <span className="text-[#2DB787]"> just for your child.</span>
-        </h1>
-        <button
-          className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5"
-          onClick={() => router.push("/plans")}
-        >
-          Unlock Their Potential
-          <ArrowUpRight size={20} />
-        </button>
-      </div>
-      <div className="p-5 md:p-10" id="choose-your-plan">
-        <h1 className="title  font-bold leading-[1.2] text-center capitalize">
-          Choose your child's plan
-        </h1>
-        <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          Because Every <span className="text-[#2DB787]"> Child's </span> Path
-          is <span className="text-[#2DB787]">Diffirent</span> 🌟
-        </h1>
-        <div className="grid px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
-          {plans.map((p, ind) => (
             <div
-              key={ind}
-              className="bg-[#FFEB3B] relative p-5 rounded-xl border border-black"
+              className="w-[45%] md:w-[30%] py-4 px-3 flex flex-col md:py-8 overflow-hidden cursor-pointer md:px-6 bg-gradient-to-br from-[#2B2B2B] to-[#3E3E3E] text-white rounded-2xl relative group"
+              onClick={() => router.push("/plans")}
             >
-              <h1 className="text-[24px] font-bold leading-[1.2] mt-4">
-                {p.title}
-              </h1>
-              <div className="my-3 flex items-center gap-2">
-                <h2 className="text-[26px] font-bold leading-[1.2]">
-                  {p.price}
-                </h2>
-                <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
-              </div>
-              <p className="text-[16px]">{p.content}</p>
-              <div className="w-[60%] mt-3 mx-auto aspect-square relative">
-                <Image
-                  alt={p.title}
-                  src={`/images/book-cover${ind}.png`}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="py-2"></div>
-              <button
-                className={`absolute rounded-xl flex justify-center text-white py-2 items-center gap-2 bg-black
-                    hover:new-gradient text-[18px] font-semibold hover:brightness-110 transition-all w-max px-5 h-max -translate-y-1 left-1/2 -translate-x-1/2`}
-                onClick={() => router.push("/plans")}
-              >
-                Compare Plans
-                <ArrowUpRight size={20} />
-              </button>
-              {ind === 0 && (
-                <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
-                  Parent's Most Explored
-                </div>
-              )}
-              {ind === 2 && (
-                <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
-                  Parents' Choice
-                </div>
-              )}
-              {ind === 1 && (
-                <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
-                  Popular
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="p-5 md:p-10" id="blog">
-        <h1 className="title font-bold leading-[1.2] text-center capitalize">
-          Freebie for better parenting
-        </h1>
-        <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
-          Because{" "}
-          <span className="text-[#2DB787] font-bold">Great Parenting </span>{" "}
-          Starts with{" "}
-          <span className="text-[#2DB787] font-bold">Small Steps</span> 🌟
-        </h1>
-        <div className="hidden md:grid grid-cols-1 mt-7 mb-8 xl:mt-14 xl:mb-16 px-8 xl:px-16 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10">
-          {blogs.map((blog, index) => (
-            <div
-              key={index}
-              className={`${
-                index == 1 && "xl:row-span-2 xl:h-full"
-              } relative w-full`}
-            >
-              <Link
-                href={`/blogs/${blog.link}`}
-                className="w-full h-full relative group"
-              >
-                <div
-                  className={`${
-                    index != 1
-                      ? "xl:w-[80%] aspect-video mx-auto"
-                      : "xl:w-[90%] h-[90%] mx-auto"
-                  } relative max-md:w-full max-md:aspect-video`}
-                >
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
                   <Image
-                    src={`/images/new/blog${index + 1}.png`}
+                    src={"/images/new/spark.png"}
                     fill
-                    alt={blog.title}
-                    className="object-cover rounded-xl"
+                    alt="Why 1"
+                    className="object-cover"
                   />
-                  {index === 0 && (
-                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                      Popular
-                    </div>
-                  )}
-                  {index === 1 && (
-                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                      Most Viewed
-                    </div>
-                  )}
-                  {index === 4 && (
-                    <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
-                      Recently Added
-                    </div>
-                  )}
                 </div>
-                <h1
-                  className={`text-[20px] font-normal leading-[1.2] mt-2 ${
-                    index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
-                  }`}
-                >
-                  {blog.title}.{" "}
-                  <span
-                    className="text-sm text-gray-700
-                  "
-                  >
-                    Read More...
-                  </span>
+              </div>
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[60px] h-[60px]">
+                  <Image
+                    src={"/images/new/why6.png"}
+                    fill
+                    alt="Why 3"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] leading-[1.2] font-bold">
+                  78%
                 </h1>
-              </Link>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Better Academic
+                </p>
+              </div>
+              <button className="relative md:absolute self-end mt-2 md:bottom-5 md:right-5 p-1 group-hover:bg-white group-hover:text-black bg-white/30 rounded-full">
+                <ArrowUpRight
+                  size={30}
+                  className="group-hover:rotate-45 transition duration-200"
+                />
+              </button>
             </div>
-          ))}
+            <div className="w-[45%] md:w-[32.5%] md:py-8 py-4 px-3 flex flex-col overflow-hidden md:px-6 new-gradient rounded-2xl relative group">
+              <div className="absolute top-0 left-0 w-full h-full">
+                <div className="relative w-full h-full">
+                  <Image
+                    src={"/images/new/spark.png"}
+                    fill
+                    alt="Why 1"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="absolute top-0 -right-3">
+                <div className="relative w-[70px] h-[70px]">
+                  <Image
+                    src={"/images/new/why7.png"}
+                    fill
+                    alt="Why 3"
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                  24/7
+                </h1>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Expert Support
+                </p>
+              </div>
+            </div>
+            <div className="w-[45%] md:w-[25%] overflow-hidden md:py-8 py-4 px-3 flex flex-col md:px-6 bg-white text-black rounded-2xl relative group">
+              <div className="absolute top-0 right-0">
+                <div className="relative w-[60px] h-[60px]">
+                  <Image
+                    src={"/images/new/why7.png"}
+                    fill
+                    alt="Why 3"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <div className="z-10 relative">
+                <h1 className="text-[30px] md:text-[60px] font-bold leading-[1.2]">
+                  100%
+                </h1>
+                <p className="text-[16px] md:text-[30px] leading-[1.2] font-bold">
+                  Data Security
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <Carousel
-          opts={{ align: "start" }}
-          className="w-[90%] mx-auto block md:hidden mt-5"
-        >
-          <CarouselContent className="w-[90%] mx-auto">
+        <div className="p-5 md:p-10" id="how-it-works">
+          <h1 className="text-[40px] font-bold leading-[1.2] text-center capitalize">
+            How It Works
+          </h1>
+          <h1 className="text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
+            Simple <span className="text-[#2DB787]">3-Step</span> Process
+          </h1>
+          <div className="hidden md:flex flex-col p-5 mt-5 md:flex-row gap-10 justify-center items-center">
+            {steps.map((step, index) => (
+              <div
+                key={index}
+                className="p-0.5 w-[80%] md:w-[30%] rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
+              >
+                <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
+                  <div className="flex gap-2 justify-start w-full items-end">
+                    <div className="text-[#2DB787] text-[50px] md:text-[60px] leading-[0.8]">
+                      0<span>{index + 1}</span>
+                    </div>
+                    {[...Array(3)].map((_, i) => (
+                      <div
+                        key={i}
+                        className={`w-2 h-2 rounded-full ${
+                          i <= index ? "bg-[#2DB787]" : "bg-black"
+                        }`}
+                      ></div>
+                    ))}
+                  </div>
+                  <h1 className="text-[32px] md:text-[46px] font-semibold leading-[1.2] capitalize">
+                    {step.title}
+                  </h1>
+                  <div className="relative w-[100px] self-end h-[100px]">
+                    <Image
+                      src={step.image}
+                      fill
+                      alt={step.title}
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="block md:hidden p-5 w-[90%] mx-auto my-5">
+            <Carousel opts={{ align: "start" }}>
+              <CarouselContent>
+                {steps.map((step, index) => (
+                  <CarouselItem key={index}>
+                    <div
+                      key={index}
+                      className="p-0.5 w-[90%] mx-auto rounded-lg bg-gradient-to-br from-[#2DB787] to-[#FFEB3B]"
+                    >
+                      <div className="flex px-5 py-3 bg-white rounded-lg flex-col gap-5">
+                        <div className="flex gap-2 justify-start w-full items-end">
+                          <div className="text-[#2DB787] text-[30px] leading-[0.8]">
+                            0<span>{index + 1}</span>
+                          </div>
+                          {[...Array(3)].map((_, i) => (
+                            <div
+                              key={i}
+                              className={`w-2 h-2 rounded-full ${
+                                i <= index ? "bg-[#2DB787]" : "bg-black"
+                              }`}
+                            ></div>
+                          ))}
+                        </div>
+                        <h1 className="text-[23px] font-semibold leading-[1.2] capitalize">
+                          {step.title}
+                        </h1>
+                        <div className="relative w-[100px] self-end h-[100px]">
+                          <Image
+                            src={step.image}
+                            fill
+                            alt={step.title}
+                            className="object-contain"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="translate-x-[50%]" />
+              <CarouselNext className="translate-x-[-50%]" />
+            </Carousel>
+          </div>
+          <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
+            It's like having a parenting manual written{" "}
+            <span className="text-[#2DB787]"> just for your child.</span>
+          </h1>
+          <button
+            className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all mt-5"
+            onClick={() => router.push("/plans")}
+          >
+            Unlock Their Potential
+            <ArrowUpRight size={20} />
+          </button>
+        </div>
+        <div className="p-5 md:p-10" id="choose-your-plan">
+          <h1 className="title  font-bold leading-[1.2] text-center capitalize">
+            Choose your child's plan
+          </h1>
+          <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
+            Because Every <span className="text-[#2DB787]"> Child's </span> Path
+            is <span className="text-[#2DB787]">Diffirent</span> 🌟
+          </h1>
+          <div className="grid px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
+            {plans.map((p, ind) => (
+              <div
+                key={ind}
+                className="bg-[#FFEB3B] relative p-5 rounded-xl border border-black"
+              >
+                <h1 className="text-[24px] font-bold leading-[1.2] mt-4">
+                  {p.title}
+                </h1>
+                <div className="my-3 flex items-center gap-2">
+                  <h2 className="text-[26px] font-bold leading-[1.2]">
+                    {p.price}
+                  </h2>
+                  <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
+                </div>
+                <p className="text-[16px]">{p.content}</p>
+                <div className="w-[60%] mt-3 mx-auto aspect-square relative">
+                  <Image
+                    alt={p.title}
+                    src={`/images/book-cover${ind}.png`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="py-2"></div>
+                <button
+                  className={`absolute rounded-xl flex justify-center text-white py-2 items-center gap-2 bg-black
+                    hover:new-gradient text-[18px] font-semibold hover:brightness-110 transition-all w-max px-5 h-max -translate-y-1 left-1/2 -translate-x-1/2`}
+                  onClick={() => router.push("/plans")}
+                >
+                  Compare Plans
+                  <ArrowUpRight size={20} />
+                </button>
+                {ind === 0 && (
+                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
+                    Parent's Most Explored
+                  </div>
+                )}
+                {ind === 2 && (
+                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
+                    Parents' Choice
+                  </div>
+                )}
+                {ind === 1 && (
+                  <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 new-gradient text-white text-[16px]">
+                    Popular
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="p-5 md:p-10" id="blog">
+          <h1 className="title font-bold leading-[1.2] text-center capitalize">
+            Freebie for better parenting
+          </h1>
+          <h1 className="text-[16px] md:text-[24px] mt-2 font-medium leading-[1.2] text-center capitalize">
+            Because{" "}
+            <span className="text-[#2DB787] font-bold">Great Parenting </span>{" "}
+            Starts with{" "}
+            <span className="text-[#2DB787] font-bold">Small Steps</span> 🌟
+          </h1>
+          <div className="hidden md:grid grid-cols-1 mt-7 mb-8 xl:mt-14 xl:mb-16 px-8 xl:px-16 md:grid-cols-2 xl:grid-cols-3 max-md:gap-10">
             {blogs.map((blog, index) => (
-              <CarouselItem key={index} className="w-[80%] relative">
+              <div
+                key={index}
+                className={`${
+                  index == 1 && "xl:row-span-2 xl:h-full"
+                } relative w-full`}
+              >
                 <Link
                   href={`/blogs/${blog.link}`}
                   className="w-full h-full relative group"
                 >
-                  <div className="relative max-md:w-full max-md:aspect-video">
+                  <div
+                    className={`${
+                      index != 1
+                        ? "xl:w-[80%] aspect-video mx-auto"
+                        : "xl:w-[90%] h-[90%] mx-auto"
+                    } relative max-md:w-full max-md:aspect-video`}
+                  >
                     <Image
                       src={`/images/new/blog${index + 1}.png`}
                       fill
@@ -852,74 +802,126 @@ const NewPage = () => {
                     </span>
                   </h1>
                 </Link>
-              </CarouselItem>
+              </div>
             ))}
-          </CarouselContent>
-          <CarouselPrevious className="translate-x-[50%]" />
-          <CarouselNext className="translate-x-[-50%]" />
-        </Carousel>
-        <button
-          className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
-          onClick={() => router.push("/resources")}
-        >
-          Explore More Resources
-          <ArrowUpRight size={20} className="group-hover:animate-intro" />
-        </button>
-      </div>
-      <div className="p-5 md:p-10">
-        <h1 className="title font-semibold leading-[1.2] text-center capitalize">
-          What parents say
-        </h1>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
-          {reviews.map((review, index) => (
-            <div
-              key={index}
-              className={`w-[100%] mx-auto ${
-                index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
-              } ${
-                shapes[index]
-              } aspect-square overflow-hidden relative cursor-pointer group`}
-            >
-              <div className="absolute inset-0 transition-transform duration-500 group-hover:translate-y-full">
-                <Image
-                  src={`/images/new/say${index}.png`}
-                  fill
-                  alt="Parent"
-                  className="object-contain absolute translate-y-[5%]"
-                />
-              </div>
-
-              <div
-                className={`opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0 flex flex-col justify-center p-4 text-center items-center gap-2 translate-y-[-100%] ${
-                  index % 2 == 0 ? "text-white" : "text-black"
-                } group-hover:translate-y-0 ${
-                  index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
-                } ${shapes[index]} justify-between py-10`}
-              >
-                <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
-                  <span>⭐</span> {review.rating}
-                </div>
-                <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
-                  {review.review}
-                </h1>
-                <h1 className="font-normal text-[12px] md:text-[18px]">
-                  - {review.name}
-                </h1>
-              </div>
-            </div>
-          ))}
+          </div>
+          <Carousel
+            opts={{ align: "start" }}
+            className="w-[90%] mx-auto block md:hidden mt-5"
+          >
+            <CarouselContent className="w-[90%] mx-auto">
+              {blogs.map((blog, index) => (
+                <CarouselItem key={index} className="w-[80%] relative">
+                  <Link
+                    href={`/blogs/${blog.link}`}
+                    className="w-full h-full relative group"
+                  >
+                    <div className="relative max-md:w-full max-md:aspect-video">
+                      <Image
+                        src={`/images/new/blog${index + 1}.png`}
+                        fill
+                        alt={blog.title}
+                        className="object-cover rounded-xl"
+                      />
+                      {index === 0 && (
+                        <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                          Popular
+                        </div>
+                      )}
+                      {index === 1 && (
+                        <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                          Most Viewed
+                        </div>
+                      )}
+                      {index === 4 && (
+                        <div className="absolute px-3 rounded-bl-xl rounded-tr-xl top-0 right-0 bg-[#FFEB3B] text-[16px]">
+                          Recently Added
+                        </div>
+                      )}
+                    </div>
+                    <h1
+                      className={`text-[20px] font-normal leading-[1.2] mt-2 ${
+                        index != 1 ? "xl:w-[80%] mx-auto" : "xl:w-full"
+                      }`}
+                    >
+                      {blog.title}.{" "}
+                      <span
+                        className="text-sm text-gray-700
+                  "
+                      >
+                        Read More...
+                      </span>
+                    </h1>
+                  </Link>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="translate-x-[50%]" />
+            <CarouselNext className="translate-x-[-50%]" />
+          </Carousel>
+          <button
+            className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+            onClick={() => router.push("/resources")}
+          >
+            Explore More Resources
+            <ArrowUpRight size={20} className="group-hover:animate-intro" />
+          </button>
         </div>
-        <button
-          className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
-          onClick={() => router.push("/plans")}
-        >
-          Start Your journey Now
-          <ArrowUpRight size={20} className="group-hover:animate-intro" />
-        </button>
+        <div className="p-5 md:p-10">
+          <h1 className="title font-semibold leading-[1.2] text-center capitalize">
+            What parents say
+          </h1>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-20 py-10">
+            {reviews.map((review, index) => (
+              <div
+                key={index}
+                className={`w-[100%] mx-auto ${
+                  index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
+                } ${
+                  shapes[index]
+                } aspect-square overflow-hidden relative cursor-pointer group`}
+              >
+                <div className="absolute inset-0 transition-transform duration-500 group-hover:translate-y-full">
+                  <Image
+                    src={`/images/new/say${index}.png`}
+                    fill
+                    alt="Parent"
+                    className="object-contain absolute translate-y-[5%]"
+                  />
+                </div>
+
+                <div
+                  className={`opacity-0 group-hover:opacity-100 transition-all duration-500 absolute inset-0 flex flex-col justify-center p-4 text-center items-center gap-2 translate-y-[-100%] ${
+                    index % 2 == 0 ? "text-white" : "text-black"
+                  } group-hover:translate-y-0 ${
+                    index % 2 === 0 ? "bg-[#2DB787]" : "bg-[#FFEB3B]"
+                  } ${shapes[index]} justify-between py-10`}
+                >
+                  <div className="bg-white text-[12px] md:text-[18px] text-black px-2 rounded-xl">
+                    <span>⭐</span> {review.rating}
+                  </div>
+                  <h1 className="font-normal leading-[1.2] text-[11px] capitalize md:text-[18px]">
+                    {review.review}
+                  </h1>
+                  <h1 className="font-normal text-[12px] md:text-[18px]">
+                    - {review.name}
+                  </h1>
+                </div>
+              </div>
+            ))}
+          </div>
+          <button
+            className="px-4 mx-auto py-2 group font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all text-[18px] mt-5"
+            onClick={() => router.push("/plans")}
+          >
+            Start Your journey Now
+            <ArrowUpRight size={20} className="group-hover:animate-intro" />
+          </button>
+        </div>
+        <EnquiryAutomation />
+        <NewFooter />
       </div>
-      <EnquiryAutomation />
-      <NewFooter />
-    </div>
+    </>
   );
 };
 
