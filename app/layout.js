@@ -181,34 +181,66 @@ export default function RootLayout({ children }) {
               mainEntity: [
                 {
                   "@type": "Question",
-                  name: "What is AstroKids?",
+                  name: "How does Astro Kids create a child’s astrology report?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "AstroKids is a platform offering personalized child astrology reports that help parents understand their child's strengths, emotions, and future potential through Vedic astrology.",
+                    text: "Astro Kids uses your child’s birth details—date, time, and place—to generate a personalized Vedic astrology chart. This helps decode your child’s personality, emotions, learning style, strengths, and growth path.",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "What does the Child Astrology Report include?",
+                  name: "When will I receive the report after purchase?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "The report includes insights into your child’s health, education, emotional behavior, talents, and potential career paths.",
+                    text: "You will receive your child’s personalized astrology report within 12 to 24 hours of placing your order. The report will be sent to your email.",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "Is AstroKids based on Vedic Astrology?",
+                  name: " Is this suitable for children of all age groups?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Yes, AstroKids uses Vedic Astrology to create accurate and personalized reports for children.",
+                    text: "Yes. Whether your child is an infant, toddler, school-age, or teenager, the insights are tailored to support their specific developmental stage and emotional needs.",
                   },
                 },
                 {
                   "@type": "Question",
-                  name: "How can this help with parenting?",
+                  name: "Do I need astrology knowledge to understand the report?",
                   acceptedAnswer: {
                     "@type": "Answer",
-                    text: "Astrology-based parenting helps parents better understand their child's emotional needs, communication style, and natural strengths—making parenting more mindful and supportive.",
+                    text: "Not at all. The report is written in clear, easy-to-understand language for modern parents. No astrology background is required—just a desire to connect more deeply with your child.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "How is healing incorporated into the report?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Each report integrates personalized healing techniques like affirmations, yoga-inspired practices, and mindful parenting tools aligned with your child’s birth chart to nurture their emotional and energetic balance.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I order reports for more than one child?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Absolutely. Each child’s report is uniquely crafted. Just submit the birth details individually to receive personalized insights for each child.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does Astro Kids offer continuing parenting guidance?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes! With select packages, you can receive ongoing daily or weekly WhatsApp affirmations and mindful parenting tips, aligned with your child’s evolving astrological phases.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is the Astro Kids report scientifically validated?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Astro Kids is based on the Vedic astrology system, a centuries-old wisdom tradition. While it is not a science in the modern sense, it provides time-tested insights for parenting with intuition, empathy, and awareness.",
                   },
                 },
               ],
@@ -221,75 +253,89 @@ export default function RootLayout({ children }) {
             __html: JSON.stringify([
               {
                 "@context": "https://schema.org",
-                "@type": "Product",
-                name: "Free Parenting Plan",
+                "@type": "Service",
+                name: "Starter Parenting",
                 description:
                   "A free astrology-based parenting guide to understand your child's strengths, emotions, and basic traits.",
-                brand: {
-                  "@type": "Brand",
+                provider: {
+                  "@type": "Organization",
                   name: "AstroKids",
+                  url: "https://www.astrokids.ai",
                 },
+                serviceType: "Child Astrology Report",
+
                 offers: {
                   "@type": "Offer",
                   priceCurrency: "INR",
-                  price: "0",
+                  price: "0.00",
                   availability: "https://schema.org/InStock",
                   url: "https://www.astrokids.ai/plans",
                 },
+                image:
+                  "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover0.png&w=1920&q=75",
               },
               {
                 "@context": "https://schema.org",
-                "@type": "Product",
-                name: "Pro Parenting Plan",
+                "@type": "Service",
+                name: "Pro Parenting",
                 description:
                   "A detailed parenting plan powered by Vedic astrology, offering deeper insights into child wellness and education.",
-                brand: {
-                  "@type": "Brand",
+                provider: {
+                  "@type": "Organization",
                   name: "AstroKids",
+                  url: "https://www.astrokids.ai",
                 },
                 offers: {
                   "@type": "Offer",
                   priceCurrency: "INR",
-                  price: "499",
+                  price: "499.00",
                   availability: "https://schema.org/InStock",
                   url: "https://www.astrokids.ai/plans",
                 },
+                image:
+                  "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover1.png&w=1920&q=75",
               },
               {
                 "@context": "https://schema.org",
-                "@type": "Product",
-                name: "Ultimate Parenting Plan",
+                "@type": "Service",
+                name: "Ultimate Parenting",
                 description:
                   "Comprehensive report covering emotional guidance, talents, challenges, and future career insights.",
-                brand: {
-                  "@type": "Brand",
+                provider: {
+                  "@type": "Organization",
                   name: "AstroKids",
+                  url: "https://www.astrokids.ai",
                 },
                 offers: {
                   "@type": "Offer",
                   priceCurrency: "INR",
-                  price: "999",
+                  price: "999.00",
                   availability: "https://schema.org/InStock",
                   url: "https://www.astrokids.ai/plans",
                 },
+                image:
+                  "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover2.png&w=1920&q=75",
               },
               {
                 "@context": "https://schema.org",
-                "@type": "Product",
-                name: "Master Parenting Plan",
+                "@type": "Service",
+                name: "Master Parenting",
                 description:
                   "All-in-one personalized astrology and parenting plan for holistic child development and parental support.",
-                brand: {
-                  "@type": "Brand",
+                provider: {
+                  "@type": "Organization",
                   name: "AstroKids",
+                  url: "https://www.astrokids.ai",
                 },
                 offers: {
                   "@type": "Offer",
                   priceCurrency: "INR",
-                  price: "1299",
+                  price: "1299.00",
                   availability: "https://schema.org/InStock",
                   url: "https://www.astrokids.ai/plans",
                 },
+                image:
+                  "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover3.png&w=1920&q=75",
               },
             ]),
           }}
