@@ -235,7 +235,7 @@ const NewPage = () => {
                   <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
 
                   <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                    Unloack Your Free Report
+                    Unlock Your Free Report
                   </span>
 
                   <ArrowRightIcon
