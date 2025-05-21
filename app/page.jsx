@@ -683,7 +683,7 @@ const NewPage = () => {
           </h1>
           <h1 className="text-[16px] md:text-[28px] mt-2 font-medium leading-[1.2] text-center capitalize">
             Because Every <span className="text-[#2DB787]"> Child's </span> Path
-            is <span className="text-[#2DB787]">Diffirent</span> 🌟
+            is <span className="text-[#2DB787]">different</span> 🌟
           </h1>
           <div className="grid px-5 md:px-10 py-10 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-0 md:mt-10">
             {plans.map((p, ind) => (
