@@ -1,24 +1,7 @@
 "use client";
 import BlogFormatContent from "@/components/BlogFormatContent";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { use } from "react";
-
-export async function generateMetadata({ params }) {
-  const post = await fetch(`/api/getPost?slug=${slug}`, {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  });
-
-  return {
-    title: post.metaTitle,
-    description: post.metaDescription,
-    openGraph: {
-      title: post.metaTitle,
-      description: post.metaDescription,
-    },
-  };
-}
+import { use, useEffect, useState } from "react";
 
 export default function BlogPage({ params }) {
   const slug = use(params).slug;
