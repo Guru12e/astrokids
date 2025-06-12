@@ -18,6 +18,8 @@ const Admin = () => {
   const [displayIndex, setDisplayIndex] = useState(0);
   const [displayData, setDisplayData] = useState([]);
   const [blogTitle, setBlogTitle] = useState("");
+  const [blogMetaTitle, setBlogMetaTitle] = useState("");
+  const [blogMetaDescription, setBlogMetaDescription] = useState("");
   const [blogImage, setBlogImage] = useState("");
   const [blogSlug, setBlogSlug] = useState("");
   const [blogType, setBlogType] = useState(0);
@@ -83,6 +85,8 @@ const Admin = () => {
       setLoading(true);
       const updatedBlog = {
         title: blogTitle,
+        metaTitle: blogMetaTitle,
+        metaDescription: blogMetaDescription,
         slug: blogSlug,
         type: blogType,
         content: blogContent,
@@ -101,6 +105,8 @@ const Admin = () => {
         );
         setEditingBlog(null);
         setBlogTitle("");
+        setBlogMetaTitle("");
+        setBlogMetaDescription("");
         setBlogSlug("");
         setBlogType(0);
         setBlogContent([{ type: "title", content: "" }]);
@@ -376,6 +382,8 @@ const Admin = () => {
     try {
       const blogData = {
         title: blogTitle,
+        metaTitle: blogMetaTitle,
+        metaDescription: blogMetaDescription,
         image: blogImage,
         slug: blogSlug,
         type: blogType,
@@ -396,6 +404,8 @@ const Admin = () => {
         });
 
         setBlogTitle("");
+        setBlogMetaTitle("");
+        setBlogMetaDescription("");
         setBlogImage("");
         setBlogSlug("");
         setBlogType(1);
@@ -553,6 +563,32 @@ const Admin = () => {
                           type="text"
                           value={blogTitle}
                           onChange={(e) => setBlogTitle(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700">
+                          Meta Title
+                        </label>
+                        <input
+                          type="text"
+                          value={blogMetaTitle}
+                          onChange={(e) => setBlogMetaTitle(e.target.value)}
+                          className="w-full p-2 border border-gray-300 rounded mt-1"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-gray-700">
+                          Meta Description
+                        </label>
+                        <input
+                          type="text"
+                          value={blogMetaDescription}
+                          onChange={(e) =>
+                            setBlogMetaDescription(e.target.value)
+                          }
                           className="w-full p-2 border border-gray-300 rounded mt-1"
                           required
                         />
@@ -1539,6 +1575,8 @@ const Admin = () => {
                             onClick={() => {
                               setEditingBlog(null);
                               setBlogTitle("");
+                              setBlogMetaTitle("");
+                              setBlogMetaDescription("");
                               setBlogImage("");
                               setBlogSlug("");
                               setBlogType(1);
@@ -1568,6 +1606,8 @@ const Admin = () => {
                                 onClick={() => {
                                   setEditingBlog(blog);
                                   setBlogTitle(blog.title);
+                                  setBlogMetaTitle(blog.metaTitle);
+                                  setBlogMetaDescription(blog.metaDescription);
                                   setBlogImage(blog.image);
                                   setBlogSlug(blog.slug);
                                   setBlogType(blog.type);
@@ -1636,6 +1676,27 @@ const Admin = () => {
                         type="text"
                         value={blogTitle}
                         onChange={(e) => setBlogTitle(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Meta Title</label>
+                      <input
+                        type="text"
+                        value={blogMetaTitle}
+                        onChange={(e) => setBlogMetaTitle(e.target.value)}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">
+                        Meta Description
+                      </label>
+                      <textarea
+                        value={blogMetaDescription}
+                        onChange={(e) => setBlogMetaDescription(e.target.value)}
                         className="w-full p-2 border border-gray-300 rounded mt-1"
                         required
                       />
