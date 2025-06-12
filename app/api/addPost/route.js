@@ -6,10 +6,25 @@ const client = new MongoClient(uri);
 
 export async function POST(request) {
   try {
-    const { title, slug, type, image, content, createdAt } =
-      await request.json();
+    const {
+      title,
+      slug,
+      type,
+      image,
+      content,
+      createdAt,
+      metaTitle,
+      metaDescription,
+    } = await request.json();
 
-    if (!title || !slug || !content || !image) {
+    if (
+      !title ||
+      !slug ||
+      !content ||
+      !image ||
+      !metaTitle ||
+      !metaDescription
+    ) {
       return NextResponse.json(
         { message: "Missing required fields" },
         { status: 400 }
@@ -30,6 +45,8 @@ export async function POST(request) {
 
     await collection.insertOne({
       title,
+      metaTitle,
+      metaDescription,
       image,
       slug,
       type: type || 1,

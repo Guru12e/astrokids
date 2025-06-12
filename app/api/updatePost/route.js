@@ -6,7 +6,15 @@ const client = new MongoClient(uri);
 
 export async function PUT(request) {
   try {
-    const { title, slug, type, content, createdAt } = await request.json();
+    const {
+      title,
+      slug,
+      type,
+      content,
+      createdAt,
+      metaTitle,
+      metaDescription,
+    } = await request.json();
 
     if (!title || !slug || !content) {
       return NextResponse.json(
@@ -21,7 +29,17 @@ export async function PUT(request) {
 
     const result = await collection.updateOne(
       { slug },
-      { $set: { title, slug, type, content, createdAt } },
+      {
+        $set: {
+          title,
+          slug,
+          type,
+          content,
+          createdAt,
+          metaTitle,
+          metaDescription,
+        },
+      },
       { upsert: false }
     );
 
