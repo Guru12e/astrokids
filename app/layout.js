@@ -93,49 +93,6 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: "What is AstroKids?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "AstroKids is a platform offering personalized child astrology reports that help parents understand their child's strengths, emotions, and future potential through Vedic astrology.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "What does the Child Astrology Report include?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "The report includes insights into your child’s health, education, emotional behavior, talents, and potential career paths.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "Is AstroKids based on Vedic Astrology?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Yes, AstroKids uses Vedic Astrology to create accurate and personalized reports for children.",
-                  },
-                },
-                {
-                  "@type": "Question",
-                  name: "How can this help with parenting?",
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Astrology-based parenting helps parents better understand their child's emotional needs, communication style, and natural strengths—making parenting more mindful and supportive.",
-                  },
-                },
-              ],
-            }),
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
                 {
