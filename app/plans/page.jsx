@@ -2,6 +2,7 @@
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
 import { ArrowUpRight, Check, MinusIcon, PlusIcon, X } from "lucide-react";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -133,6 +134,94 @@ const AboutPage = () => {
 
   const [showMore, setShowMore] = useState(false);
 
+  const servicesStructuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Starter Parenting",
+      description:
+        "A free astrology-based parenting guide to understand your child's strengths, emotions, and basic traits.",
+      provider: {
+        "@type": "Organization",
+        name: "AstroKids",
+        url: "https://www.astrokids.ai",
+      },
+      serviceType: "Child Astrology Report",
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: "0.00",
+        availability: "https://schema.org/InStock",
+        url: "https://www.astrokids.ai/plans",
+      },
+      image:
+        "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover0.png&w=1920&q=75",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Pro Parenting",
+      description:
+        "A detailed parenting plan powered by Vedic astrology, offering deeper insights into child wellness and education.",
+      provider: {
+        "@type": "Organization",
+        name: "AstroKids",
+        url: "https://www.astrokids.ai",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: "499.00",
+        availability: "https://schema.org/InStock",
+        url: "https://www.astrokids.ai/plans",
+      },
+      image:
+        "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover1.png&w=1920&q=75",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Ultimate Parenting",
+      description:
+        "Comprehensive report covering emotional guidance, talents, challenges, and future career insights.",
+      provider: {
+        "@type": "Organization",
+        name: "AstroKids",
+        url: "https://www.astrokids.ai",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: "999.00",
+        availability: "https://schema.org/InStock",
+        url: "https://www.astrokids.ai/plans",
+      },
+      image:
+        "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover2.png&w=1920&q=75",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      name: "Master Parenting",
+      description:
+        "All-in-one personalized astrology and parenting plan for holistic child development and parental support.",
+      provider: {
+        "@type": "Organization",
+        name: "AstroKids",
+        url: "https://www.astrokids.ai",
+      },
+      offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: "1299.00",
+        availability: "https://schema.org/InStock",
+        url: "https://www.astrokids.ai/plans",
+      },
+      image:
+        "https://www.astrokids.ai/_next/image?url=%2Fimages%2Fbook-cover3.png&w=1920&q=75",
+    },
+  ];
+
   const faq = [
     {
       title: "How does Astro Kids create a child’s astrology report?",
@@ -178,6 +267,14 @@ const AboutPage = () => {
 
   return (
     <>
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesStructuredData),
+          }}
+        />
+      </Head>
       <div>
         <Header />
         <div className="w-screen h-[60vh] md:h-screen relative">
