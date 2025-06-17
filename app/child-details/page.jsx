@@ -36,19 +36,10 @@ const NewChildDetails = () => {
   const edit = useSearchParams().get("fieldEdit") || false;
   const paymentEdit = useSearchParams().get("paymentEdit") || false;
   const orderId = useSearchParams().get("orderId");
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [noCity, setNoCity] = useState(false);
-  const [countryInput, setCountryInput] = useState("");
-  const [stateInput, setStateInput] = useState("");
-  const [cityInput, setCityInput] = useState("");
-  const [filteredCountries, setFilteredCountries] = useState([]);
-  const [filteredStates, setFilteredStates] = useState([]);
-  const [filteredCities, setFilteredCities] = useState([]);
+  const [locationInput, setLocationInput] = useState("");
+  const [filteredLocations, setFilteredLocations] = useState([]);
   const [otpVerifyLoading, setOtpVerifyLoading] = useState(false);
-  const stateInputRef = useRef(null);
-  const cityInputRef = useRef(null);
+  const locationInputRef = useRef(null);
   const formRef = useRef(null);
   const inputsRef = useRef([]);
   const [api, setApi] = useState(null);
@@ -245,91 +236,32 @@ const NewChildDetails = () => {
     e.target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleCountryInputChange = (e) => {
-    setFilteredStates([]);
-    setFilteredCities([]);
+  const handleLocationInputChange = (e) => {
     const value = e.target.value;
-    setCountryInput(value);
-    if (value) {
-      setFilteredCountries(
-        Object.keys(locationData).filter((country) =>
-          country.toLowerCase().includes(value.toLowerCase())
-        )
-      );
+    setLocationInput(value);
+    if (value.length >= 2) {
+      const indiaData = locationData["India"];
+      const locations = [];
+      Object.keys(indiaData).forEach((state) => {
+        indiaData[state].forEach((city) => {
+          const fullLocation = `${city.name}, ${state}, India`;
+          if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
+            locations.push({ ...city, state, fullLocation });
+          }
+        });
+      });
+      setFilteredLocations(locations);
     } else {
-      setFilteredCountries([]);
+      setFilteredLocations([]);
     }
   };
 
-  const handleCountrySelect = (country) => {
-    setSelectedCountry(country);
-    setCountryInput(country);
-    setFilteredCountries([]);
-    setStateInput("");
-    setCityInput("");
-    setFilteredCities([]);
-    setSelectedState("");
-    setSelectedCity("");
-    stateInputRef.current?.focus();
-  };
-
-  const handleStateInputChange = (e) => {
-    setFilteredCities([]);
-    const value = e.target.value;
-    setStateInput(value);
-    if (value) {
-      setFilteredStates(
-        Object.keys(locationData[selectedCountry]).filter((state) =>
-          state.toLowerCase().includes(value.toLowerCase())
-        )
-      );
-    } else {
-      setFilteredStates([]);
-    }
-  };
-
-  const handleStateSelect = (state) => {
-    setSelectedState(state);
-    setStateInput(state);
-    setFilteredStates([]);
-    setCityInput("");
-    setFilteredCities(
-      locationData[selectedCountry][state].map((city) => city.name)
-    );
-    const data = locationData[selectedCountry][state];
-    if (data.length === 0) {
-      setNoCity(true);
-      setPlace(`${state} , ${selectedCountry}`);
-    } else {
-      setNoCity(false);
-    }
-    setSelectedCity("");
-    cityInputRef.current?.focus();
-  };
-
-  const handleCityInputChange = (e) => {
-    const value = e.target.value;
-    setCityInput(value);
-    if (value) {
-      setFilteredCities(
-        locationData[selectedCountry][selectedState]
-          .map((city) => city.name)
-          .filter((city) => city.toLowerCase().includes(value.toLowerCase()))
-      );
-    } else {
-      setFilteredCities([]);
-    }
-  };
-
-  const handleCitySelect = (city) => {
-    setSelectedCity(city);
-    setCityInput(city);
-    setPlace(`${city}, ${selectedState} , ${selectedCountry}`);
-    const selected = locationData[selectedCountry][selectedState].find(
-      (c) => c.name === city
-    );
-    setLatLon({ lat: selected.lat, lon: selected.lon });
-    setFilteredCities([]);
+  const handleLocationSelect = (location) => {
+    const fullLocation = `${location.name}, ${location.state}, India`;
+    setLocationInput(fullLocation);
+    setPlace(fullLocation);
+    setLatLon({ lat: location.lat, lon: location.lon });
+    setFilteredLocations([]);
   };
 
   const handleChange = (value, index) => {
@@ -359,18 +291,6 @@ const NewChildDetails = () => {
   };
 
   useEffect(() => {
-    if (edit || paymentEdit) return;
-    const india = Object.keys(locationData).filter((country) =>
-      country.toLowerCase().includes("India".toLowerCase())
-    );
-    if (india.length > 0) {
-      setSelectedCountry(india[1]);
-      setCountryInput(india[1]);
-      setFilteredCountries([]);
-    }
-  }, [edit, paymentEdit]);
-
-  useEffect(() => {
     if (localStorage.getItem("email")) {
       setParentEmail(localStorage.getItem("email"));
       setEmailVerified(true);
@@ -385,12 +305,6 @@ const NewChildDetails = () => {
       return () => clearInterval(timerId);
     }
   }, [resendTimer]);
-
-  useEffect(() => {
-    if (selectedState && cityInputRef.current) {
-      cityInputRef.current.focus();
-    }
-  }, [selectedState]);
 
   useEffect(() => {
     const fetchDetails = async () => {
@@ -411,12 +325,7 @@ const NewChildDetails = () => {
           setPlace(data.childDetails.place);
           setGender(data.childDetails.gender);
           setNumber(data.childDetails.number);
-          setSelectedCountry(data.childDetails.place.split(",")[2].trim());
-          setSelectedState(data.childDetails.place.split(",")[1].trim());
-          setSelectedCity(data.childDetails.place.split(",")[0].trim());
-          setCountryInput(data.childDetails.place.split(",")[2]);
-          setStateInput(data.childDetails.place.split(",")[1]);
-          setCityInput(data.childDetails.place.split(",")[0]);
+          setLocationInput(data.childDetails.place);
         } else if (res.status === 400) {
           const data = await res.json();
           toast.error(data.message, { position: "top-right" });
@@ -437,12 +346,7 @@ const NewChildDetails = () => {
       setPlace(childDetails.place);
       setGender(childDetails.gender);
       setNumber(childDetails.number);
-      setSelectedCountry(childDetails.place.split(",")[2].trim());
-      setSelectedState(childDetails.place.split(",")[1].trim());
-      setSelectedCity(childDetails.place.split(",")[0].trim());
-      setCountryInput(childDetails.place.split(",")[2]);
-      setStateInput(childDetails.place.split(",")[1]);
-      setCityInput(childDetails.place.split(",")[0]);
+      setLocationInput(childDetails.place);
     }
   }, [edit]);
 
@@ -559,7 +463,7 @@ const NewChildDetails = () => {
       method: "POST",
       body: JSON.stringify({
         encryptedOtp: adminOtp,
-        otp: userOtp,
+        userOtp,
       }),
     });
 
@@ -621,13 +525,6 @@ const NewChildDetails = () => {
     }
   };
 
-  const handleWhatsAppClick = () => {
-    const phoneNumber = "+919597867340";
-    const message = encodeURIComponent("Hello!");
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
-    setIsMenuOpen(false);
-  };
-
   return (
     <>
       {loading ? (
@@ -656,28 +553,16 @@ const NewChildDetails = () => {
                   : "bg-gradient-to-b from-[#2DB787]/20 to-[#FFEB3B]/20 p-5 md:p-8 flex items-end justify-end"
               }`}
             >
-              <div className="flex-1 w-[90%] mx-auto flex flex-col gap-4">
+              <div className="flex-1 w-[90%] mx-auto flex flex-col justify-center gap-4">
                 {otpSend ? (
                   <h1 className="font-extrabold text-center text-black text-4xl">
                     astrokids
                     <span className="text-xs px-0.5 text-[#5DF2CF]">✦</span>ai
                   </h1>
                 ) : (
-                  <>
-                    <h1 className="mt-0 md:mt-5 text-[24px] font-bold leading-[1.2]">
-                      Join our community of 10,000+ super parents
-                    </h1>
-                    <h1>
-                      For Parents outside India, please connect with us on{" "}
-                      <span
-                        onClick={handleWhatsAppClick}
-                        className="underline cursor-pointer text-[#2DB787]"
-                      >
-                        Whatsapp
-                      </span>
-                      .
-                    </h1>
-                  </>
+                  <h1 className="mt-0 md:mt-5 text-[24px] font-bold leading-[1.2]">
+                    Join our community of 10,000+ super parents
+                  </h1>
                 )}
                 {otpSend ? (
                   <div className="w-full flex flex-col gap-4">
@@ -690,6 +575,7 @@ const NewChildDetails = () => {
 
                     <form
                       onSubmit={handleOtpVerify}
+                      autoComplete="off"
                       className="w-full flex flex-col gap-4"
                     >
                       <div className="flex w-[80%] mx-auto justify-center items-center">
@@ -756,6 +642,7 @@ const NewChildDetails = () => {
                 ) : (
                   <form
                     id="child-details"
+                    autoComplete="off"
                     ref={formRef}
                     onSubmit={
                       paymentEdit
@@ -811,93 +698,32 @@ const NewChildDetails = () => {
                       </div>
                       <div className="w-full relative">
                         <label className="block text-[14px] font-normal mb-1">
-                          Country
+                          Location
                         </label>
                         <input
                           type="text"
-                          value={countryInput}
+                          value={locationInput}
                           onFocus={handleFocus}
-                          placeholder="Type First Two letters"
-                          onChange={handleCountryInputChange}
+                          placeholder="Birth Location"
+                          onChange={handleLocationInputChange}
+                          ref={locationInputRef}
                           required
                           className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
                         />
-                        {filteredCountries.length > 0 && (
+                        {filteredLocations.length > 0 && (
                           <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
-                            {filteredCountries.map((country, index) => (
+                            {filteredLocations.map((location, index) => (
                               <li
                                 key={index}
                                 className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
-                                onClick={() => handleCountrySelect(country)}
+                                onClick={() => handleLocationSelect(location)}
                               >
-                                {country}
+                                {location.fullLocation}
                               </li>
                             ))}
                           </ul>
                         )}
                       </div>
-                    </div>
-                    <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                      {selectedCountry && (
-                        <div className="relative">
-                          <label className="block text-[14px] font-normal mb-1">
-                            State
-                          </label>
-                          <input
-                            ref={stateInputRef}
-                            type="text"
-                            required
-                            onFocus={handleFocus}
-                            value={stateInput}
-                            placeholder="Type First Two letter"
-                            onChange={handleStateInputChange}
-                            className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
-                          />
-                          {filteredStates.length > 0 && (
-                            <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
-                              {filteredStates.map((state, index) => (
-                                <li
-                                  key={index}
-                                  className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
-                                  onClick={() => handleStateSelect(state)}
-                                >
-                                  {state}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      )}
-                      {selectedState && !noCity && (
-                        <div className="relative">
-                          <label className="block text-[14px] font-normal mb-1">
-                            City
-                          </label>
-                          <input
-                            type="text"
-                            onFocus={handleFocus}
-                            ref={cityInputRef}
-                            value={cityInput}
-                            required
-                            placeholder="Type First Two letter"
-                            onChange={handleCityInputChange}
-                            className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
-                          />
-                          {filteredCities.length > 0 && (
-                            <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
-                              {filteredCities.map((city, index) => (
-                                <li
-                                  key={index}
-                                  className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
-                                  onClick={() => handleCitySelect(city)}
-                                >
-                                  {city}
-                                </li>
-                              ))}
-                            </ul>
-                          )}
-                        </div>
-                      )}
                     </div>
                     <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                       <div className="w-full">
