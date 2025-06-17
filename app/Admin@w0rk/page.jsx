@@ -296,6 +296,7 @@ const Admin = () => {
           gender: item.gender,
           name: item.name,
           input: plans.indexOf(item.plan) + 1,
+          email: item.email,
         }),
       }
     );
