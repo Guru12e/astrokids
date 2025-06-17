@@ -329,7 +329,7 @@ const NewPage = () => {
         </div>
         <div className="bg-[#02030B] text-white md:p-10" id="why-astrokids">
           <h1 className="text-[24px] px-3 py-2 md:text-[40px] leading-[1.2] font-semibold text-center capitalize">
-            Astrokid Report Benefits
+            Astrokids Report Benefits
           </h1>
           <div className="flex justify-center items-center flex-wrap py-5 gap-5 md:gap-10 px-2">
             <div
