@@ -463,7 +463,7 @@ const NewChildDetails = () => {
       method: "POST",
       body: JSON.stringify({
         encryptedOtp: adminOtp,
-        userOtp,
+        otp: userOtp,
       }),
     });
 
