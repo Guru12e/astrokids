@@ -7,7 +7,29 @@ export async function POST(request) {
   try {
     const encryptionKey = process.env.ENCRYPTION_KEY;
 
+    if (!encryptionKey) {
+      return NextResponse.json(
+        { error: "Server error: Missing ENCRYPTION_KEY environment variable." },
+        { status: 500 }
+      );
+    }
+
+    if (!encryptedOtp || !otp) {
+      return NextResponse.json(
+        { error: "Missing OTP or encrypted OTP in request body." },
+        { status: 400 }
+      );
+    }
+
     const [ivHex, encryptedOtpHex] = encryptedOtp.split(":");
+
+    if (!ivHex || !encryptedOtpHex) {
+      return NextResponse.json(
+        { error: "Invalid encryptedOtp format. Expected 'iv:encrypted'" },
+        { status: 400 }
+      );
+    }
+
     const iv = Buffer.from(ivHex, "hex");
     const encryptedBuffer = Buffer.from(encryptedOtpHex, "hex");
 
@@ -34,7 +56,7 @@ export async function POST(request) {
       );
     }
   } catch (err) {
-    console.log(err);
+    console.error("OTP verification error:", err);
     return NextResponse.json(
       { error: `Error: ${err.message}` },
       { status: 500 }
