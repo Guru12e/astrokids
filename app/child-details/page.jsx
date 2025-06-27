@@ -168,42 +168,24 @@ const NewChildDetails = () => {
           });
         }
       } else {
-        const res = await fetch("/api/checkChildDetails", {
-          method: "POST",
-          body: JSON.stringify({
-            email: parentEmail,
+        localStorage.setItem(
+          "childDetails",
+          JSON.stringify({
             name,
             dob,
             time,
             place,
             gender,
             number,
-          }),
-        });
-        if (res.status === 200) {
-          localStorage.setItem(
-            "childDetails",
-            JSON.stringify({
-              name,
-              dob,
-              time,
-              place,
-              gender,
-              number,
-              lat: latLon.lat,
-              lon: latLon.lon,
-            })
-          );
+            lat: latLon.lat,
+            lon: latLon.lon,
+          })
+        );
 
-          if (currentIndex != 0) {
-            paymentFunction();
-          } else {
-            router.push("/free-report");
-          }
+        if (currentIndex != 0) {
+          paymentFunction();
         } else {
-          toast.error("Child Details with this Name is Already found", {
-            position: "top-right",
-          });
+          router.push("/free-report");
         }
       }
       setEditLoading(false);
@@ -381,19 +363,6 @@ const NewChildDetails = () => {
       return;
     }
 
-    const checkRes = await fetch("/api/checkChildDetails", {
-      method: "POST",
-      body: JSON.stringify({
-        email: parentEmail,
-        name,
-        dob,
-        time,
-        place,
-        gender,
-        number,
-      }),
-    });
-
     localStorage.setItem(
       "childDetails",
       JSON.stringify({
@@ -408,10 +377,7 @@ const NewChildDetails = () => {
       })
     );
 
-    if (
-      checkRes.status === 200 ||
-      (currentIndex === 0 && checkRes.status == 400)
-    ) {
+    if (currentIndex === 0 && checkRes.status == 400) {
       if (currentIndex === 0) {
         await fetch("https://report-api-0fic.onrender.com/freeReport", {
           method: "POST",
