@@ -377,6 +377,19 @@ const NewChildDetails = () => {
       })
     );
 
+    await fetch("/api/checkChildDetails", {
+      method: "POST",
+      body: JSON.stringify({
+        email: parentEmail,
+        name,
+        dob,
+        time,
+        place,
+        gender,
+        number,
+      }),
+    });
+
     if (currentIndex === 0) {
       await fetch("https://report-api-0fic.onrender.com/freeReport", {
         method: "POST",
