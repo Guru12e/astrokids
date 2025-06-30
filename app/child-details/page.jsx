@@ -377,46 +377,43 @@ const NewChildDetails = () => {
       })
     );
 
-    if (currentIndex === 0 && checkRes.status == 400) {
-      if (currentIndex === 0) {
-        await fetch("https://report-api-0fic.onrender.com/freeReport", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            dob: `${dob} ${time}:00`,
-            location: place.split(",")[0],
-            lat: parseFloat(latLon.lat),
-            lon: parseFloat(latLon.lon),
-            gender: gender,
-            name: name,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) =>
-            localStorage.setItem("freeReport", JSON.stringify(data))
-          )
-          .catch((error) => console.error("Error:", error));
+    if (currentIndex === 0) {
+      await fetch("https://report-api-0fic.onrender.com/freeReport", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          dob: `${dob} ${time}:00`,
+          location: place.split(",")[0],
+          lat: parseFloat(latLon.lat),
+          lon: parseFloat(latLon.lon),
+          gender: gender,
+          name: name,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) =>
+          localStorage.setItem("freeReport", JSON.stringify(data))
+        )
+        .catch((error) => console.error("Error:", error));
 
-        router.push("/free-report");
+      router.push("/free-report");
+    } else {
+      const res = await fetch("/api/otpVerify", {
+        method: "POST",
+        body: JSON.stringify({ email: parentEmail }),
+      });
+      if (res.status === 200) {
+        setOtpSend(true);
+        const data = await res.json();
+        setAdminOtp(data.message);
+        setResendTimer(30);
       } else {
-        const res = await fetch("/api/otpVerify", {
-          method: "POST",
-          body: JSON.stringify({ email: parentEmail }),
-        });
-        if (res.status === 200) {
-          setOtpSend(true);
-          const data = await res.json();
-          setAdminOtp(data.message);
-          setResendTimer(30);
-        } else {
-          toast.error("Check Email", { position: "top-right" });
-        }
+        toast.error("Check Email", { position: "top-right" });
       }
-    } else if (checkRes.status === 400) {
-      toast.error("Child Details already exists!");
     }
+
     setLoading(false);
   };
 
