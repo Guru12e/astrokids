@@ -1,6 +1,6 @@
 "use client";
-import { DeleteIcon, Pencil, Trash2 } from "lucide-react";
-import { set } from "mongoose";
+import { Pencil, Trash2 } from "lucide-react";
+import locationData from "@/constant/processed_places.json";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -27,6 +27,18 @@ const Admin = () => {
     { type: "title", content: "" },
   ]);
   const [insertIndex, setInsertIndex] = useState(blogContent.length);
+  const [reportDetails, setReportDetails] = useState({
+    name: "",
+    dob: "",
+    time: "",
+    place: "",
+    gender: "",
+    lat: "",
+    lon: "",
+    plan: "",
+    mail: "",
+  });
+  const [filteredLocations, setFilteredLocations] = useState([]);
 
   useEffect(() => {
     if (editingBlog) {
@@ -306,6 +318,68 @@ const Admin = () => {
     }
   };
 
+  const handleLocationInputChange = (e) => {
+    const value = e.target.value;
+    setReportDetails({
+      ...reportDetails,
+      place: value,
+    });
+    if (value.length >= 2) {
+      const indiaData = locationData["India"];
+      const locations = [];
+      Object.keys(indiaData).forEach((state) => {
+        indiaData[state].forEach((city) => {
+          const fullLocation = `${city.name}, ${state}, India`;
+          if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
+            locations.push({ ...city, state, fullLocation });
+          }
+        });
+      });
+      setFilteredLocations(locations);
+    } else {
+      setFilteredLocations([]);
+    }
+  };
+
+  const handleLocationSelect = (location) => {
+    const fullLocation = `${location.name}, ${location.state}, India`;
+    setReportDetails({
+      ...reportDetails,
+      place: fullLocation,
+      lat: location.lat,
+      lon: location.lon,
+    });
+    setFilteredLocations([]);
+  };
+
+  const generateReport = async () => {
+    setLoading(true);
+    const res = await fetch(
+      "https://report-api-0fic.onrender.com/generate_report",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          dob: `${reportDetails.dob} ${reportDetails.time}:00`,
+          location: reportDetails.place.split(",")[0],
+          lat: parseFloat(reportDetails.lat),
+          lon: parseFloat(reportDetails.lon),
+          gender: reportDetails.gender,
+          name: reportDetails.name,
+          input: plans.indexOf(reportDetails.plan) + 1,
+          email:
+            reportDetails.mail.trim() == ""
+              ? "guruvijay1925@gmail.com"
+              : reportDetails.mail.trim(),
+        }),
+      }
+    );
+    setLoading(false);
+    if (res.status == 200) {
+      alert("Check Mail");
+    }
+  };
+
   const processState = (time, status) => {
     if (displayData == 1) return "Report Generated";
     const date = new Date(time);
@@ -546,8 +620,163 @@ const Admin = () => {
               >
                 All Blogs ({allBlogs.length})
               </button>
+              <button
+                onClick={() => {
+                  setDisplayIndex(8);
+                  setDisplayData([]);
+                }}
+                className={`${
+                  displayIndex === 8 ? "text-blue-500" : "text-black"
+                }`}
+              >
+                Generate Report
+              </button>
             </div>
             <div className="overflow-y-scroll flex-1 pb-10 flex flex-col">
+              {displayIndex === 8 && (
+                <div className="p-6">
+                  <h2 className="text-2xl font-bold mb-4">Generate Report</h2>
+                  <form
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      generateReport();
+                    }}
+                    className="space-y-4"
+                  >
+                    <div>
+                      <label className="block text-gray-700">Name</label>
+                      <input
+                        type="text"
+                        value={reportDetails.name}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            name: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">DOB</label>
+                      <input
+                        type="date"
+                        value={reportDetails.dob}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            dob: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Time</label>
+                      <input
+                        type="time"
+                        value={reportDetails.time}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            time: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Place</label>
+                      <input
+                        type="text"
+                        value={reportDetails.place}
+                        onChange={handleLocationInputChange}
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                      {reportDetails.place && (
+                        <div className="mt-2 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
+                          {filteredLocations.map((location) => (
+                            <div
+                              key={location.fullLocation}
+                              className="p-2 hover:bg-gray-100 cursor-pointer"
+                              onClick={() => handleLocationSelect(location)}
+                            >
+                              {location.fullLocation}
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Gender</label>
+                      <select
+                        value={reportDetails.gender}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            gender: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                      >
+                        <option value="">Select</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Plan</label>
+                      <select
+                        value={reportDetails.plan}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            plan: e.target.value,
+                          })
+                        }
+                        onSelect={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            plan: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                      >
+                        <option value="">Select Plan</option>
+                        {plans.map((plan, index) => (
+                          <option key={index} value={plan}>
+                            {plan}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-gray-700">Email</label>
+                      <input
+                        type="email"
+                        value={reportDetails.mail}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            mail: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition-colors"
+                    >
+                      Generate Report
+                    </button>
+                  </form>
+                </div>
+              )}
               {displayIndex === 7 ? (
                 <div className="p-6">
                   <h2 className="text-2xl font-bold mb-4">All Blogs</h2>
