@@ -353,7 +353,7 @@ const Admin = () => {
   };
 
   const generateReport = async () => {
-    setLoading(true);
+    setPageLoading(true);
     const res = await fetch(
       "https://report-api-0fic.onrender.com/generate_report",
       {
@@ -374,7 +374,7 @@ const Admin = () => {
         }),
       }
     );
-    setLoading(false);
+    setPageLoading(false);
     if (res.status == 200) {
       alert("Check Mail");
     }
