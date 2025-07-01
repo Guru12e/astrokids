@@ -1,6 +1,6 @@
 "use client";
-import { DeleteIcon, Pencil, Trash2 } from "lucide-react";
-import { set } from "mongoose";
+import { Pencil, Trash2 } from "lucide-react";
+import locationData from "@/constant/processed_places.json";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -27,6 +27,17 @@ const Admin = () => {
     { type: "title", content: "" },
   ]);
   const [insertIndex, setInsertIndex] = useState(blogContent.length);
+  const [reportDetails, setReportDetails] = useState({
+    name: "",
+    dob: "",
+    time: "",
+    place: "",
+    lat: "",
+    lon: "",
+    plan: 0,
+    email: "",
+  });
+  const [filteredLocations, setFilteredLocations] = useState([]);
 
   useEffect(() => {
     if (editingBlog) {
@@ -426,6 +437,72 @@ const Admin = () => {
     setLoading(false);
   };
 
+  const reportGenerate = async () => {
+    setLoading(true);
+    const res = await fetch(
+      "https://report-api-0fic.onrender.com/generate_report",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          dob: `${reportDetails.dob} ${reportDetails.time}:00`,
+          location: reportDetails.place.split(",")[0],
+          lat: parseFloat(reportDetails.lat),
+          lon: parseFloat(reportDetails.lon),
+          gender: reportDetails.gender,
+          name: reportDetails.name,
+          input: plans.indexOf(reportDetails.plan) + 1,
+          email: "guruvijay1925@gmail.com",
+        }),
+      }
+    );
+    setLoading(false);
+    if (res.status === 200) {
+      toast.success("Check Mail", {
+        position: "top-right",
+        autoClose: 3000,
+      });
+    }
+  };
+
+  const handleFocus = (e) => {
+    e.target.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleLocationInputChange = (e) => {
+    const value = e.target.value;
+    setReportDetails({
+      ...reportDetails,
+      place: value,
+    });
+    if (value.length >= 2) {
+      const indiaData = locationData["India"];
+      const locations = [];
+      Object.keys(indiaData).forEach((state) => {
+        indiaData[state].forEach((city) => {
+          const fullLocation = `${city.name}, ${state}, India`;
+          if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
+            locations.push({ ...city, state, fullLocation });
+          }
+        });
+      });
+      setFilteredLocations(locations);
+    } else {
+      setFilteredLocations([]);
+    }
+  };
+
+  const handleLocationSelect = (location) => {
+    const fullLocation = `${location.name}, ${location.state}, India`;
+    setReportDetails({
+      ...reportDetails,
+      place: fullLocation,
+      lat: location.lat,
+      lon: location.lon,
+    });
+    setFilteredLocations([]);
+  };
+
   return (
     <div>
       {pageLoading ? (
@@ -545,6 +622,17 @@ const Admin = () => {
                 }`}
               >
                 All Blogs ({allBlogs.length})
+              </button>
+              <button
+                onClick={() => {
+                  setDisplayIndex(8);
+                  setDisplayData([]);
+                }}
+                className={`${
+                  displayIndex === 8 ? "text-blue-500" : "text-black"
+                }`}
+              >
+                Report Generate
               </button>
             </div>
             <div className="overflow-y-scroll flex-1 pb-10 flex flex-col">
@@ -2829,9 +2917,128 @@ const Admin = () => {
                   </div>
                 ))
               ) : (
-                <p className="w-full text-center">
+                <p
+                  className={`w-full text-center ${
+                    displayIndex == 8 && "hidden"
+                  }`}
+                >
                   No child details available.
                 </p>
+              )}
+              {displayIndex == 8 && (
+                <div className="p-4">
+                  <form
+                    onSubmit={reportGenerate}
+                    className="bg-white p-6 rounded shadow-lg"
+                  >
+                    <h2 className="text-2xl mb-4 text-center">
+                      Generate Report
+                    </h2>
+                    <div className="mb-4">
+                      <label className="block text-gray-700">Name</label>
+                      <input
+                        type="text"
+                        value={reportDetails.name}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            name: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-700">
+                        Date of Birth
+                      </label>
+                      <input
+                        type="date"
+                        value={reportDetails.dob}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            dob: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-700">
+                        Time of Birth
+                      </label>
+                      <input
+                        type="time"
+                        value={reportDetails.time}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            time: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      />
+                    </div>
+                    <div className="mb-4 relative">
+                      <label className="block text-[14px] font-normal mb-1">
+                        Location
+                      </label>
+                      <input
+                        type="text"
+                        value={reportDetails.place}
+                        onFocus={handleFocus}
+                        placeholder="Birth Location"
+                        onChange={handleLocationInputChange}
+                        required
+                        className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
+                      />
+                      {filteredLocations.length > 0 && (
+                        <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
+                          {filteredLocations.map((location, index) => (
+                            <li
+                              key={index}
+                              className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
+                              onClick={() => handleLocationSelect(location)}
+                            >
+                              {location.fullLocation}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                    <div className="mb-4">
+                      <label className="block text-gray-700">Plan</label>
+                      <select
+                        value={reportDetails.plan}
+                        onChange={(e) =>
+                          setReportDetails({
+                            ...reportDetails,
+                            plan: e.target.value,
+                          })
+                        }
+                        className="w-full p-2 border border-gray-300 rounded mt-1"
+                        required
+                      >
+                        {plans.map((plan, index) => (
+                          <option key={index} value={plan}>
+                            {plan}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full bg-blue-500 text-white p-2 rounded mt-4"
+                      disabled={loading}
+                    >
+                      {loading ? "Generating..." : "Generate Report"}
+                    </button>
+                  </form>
+                </div>
               )}
             </div>
           </div>

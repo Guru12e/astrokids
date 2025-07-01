@@ -1,12 +1,8 @@
-import { Suspense } from "react";
 import "./globals.css";
 import localFont from "next/font/local";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Montserrat, Quicksand } from "next/font/google";
-import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import SessionWrapper from "../components/SessionWrapper";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -133,12 +129,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${customFont.variable} ${openSans.variable} ${quicksand.variable}`}
       >
-        <Suspense>
-          {children}
-          <ToastContainer />
-          <Analytics />
-          <SpeedInsights />
-        </Suspense>
+        <SessionWrapper>{children}</SessionWrapper>
       </body>
     </html>
   );
