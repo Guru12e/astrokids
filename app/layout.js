@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Montserrat, Quicksand } from "next/font/google";
 import SessionWrapper from "../components/SessionWrapper";
+import { Suspense } from "react";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -129,7 +130,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${customFont.variable} ${openSans.variable} ${quicksand.variable}`}
       >
-        <SessionWrapper>{children}</SessionWrapper>
+        <Suspense>
+          <SessionWrapper>{children}</SessionWrapper>
+        </Suspense>
       </body>
     </html>
   );

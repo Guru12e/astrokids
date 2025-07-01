@@ -1,6 +1,6 @@
 "use client";
 import { pricing } from "@/constant/constant";
-import { ArrowLeft, Download, DownloadIcon } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
