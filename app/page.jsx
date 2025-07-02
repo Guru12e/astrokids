@@ -244,58 +244,8 @@ const NewPage = () => {
                     size={30}
                   />
                 </button>
-
-                {/* <button
-                className="relative w-max flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
-                onClick={() => setIsVedioPlay(true)}
-              >
-                <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>
-                <span className="px-2 z-20 transition-colors duration-300 ease-in-out group-hover:text-white">
-                  What is Astrokids.ai?
-                </span>
-                <ArrowRightIcon
-                  className="z-20 text-white transition-all duration-300 ease-in-out group-hover:-rotate-45"
-                  size={30}
-                />
-              </button> */}
               </div>
             </div>
-            {isVideoPlay && (
-              <div className="fixed px-3 inset-0 bg-[#02030B]/60 flex flex-col z-[1100] gap-5 items-center justify-center">
-                <button
-                  className="p-2 mx-auto bg-white rounded-full"
-                  onClick={() => setIsVedioPlay(false)}
-                >
-                  <FaXmark size={30} />
-                </button>
-                <div className="relative bg-black/80 text-white rounded-xl px-5 py-3 w-[90%] md:w-[60%]">
-                  <p className="text-[15px] md:text-[20px] indent-10 mt-1 leading-relaxed">
-                    AstroKids.ai is a platform that integrates Vedic Astrology,
-                    Ayurveda, and Yoga to provide parents with personalized
-                    insights into their children’s unique potentials. By
-                    analyzing astrological profiles, the platform offers
-                    guidance on nurturing a child’s mental, emotional, and
-                    physical well-being.
-                  </p>
-                  <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
-                    <span className="text-[#FFEB3B] font-semibold">
-                      Personalized Astrology Reports
-                    </span>
-                    : Tailored to each child’s astrological profile, these
-                    reports offer insights into personality traits, health
-                    predictions, and developmental guidance.
-                  </p>
-                  <p className="text-[15px] md:text-[20px] mt-3 leading-relaxed">
-                    <span className="text-[#FFEB3B] font-semibold">
-                      Holistic Parenting Guidance
-                    </span>
-                    : Combining ancient wisdom with modern practices,
-                    AstroKids.ai provides advice on nutrition, sleep routines,
-                    and activities aligned with a child’s astrological makeup.
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
         </div>
         <div className="p-5 md:p-10">
