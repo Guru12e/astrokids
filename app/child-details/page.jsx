@@ -49,77 +49,91 @@ const NewChildDetails = () => {
 
   const paymentFunction = async () => {
     let res;
+    if (!window.Razorpay) {
+      toast.error("Razorpay SDK failed to load. Please try again.", {
+        position: "top-right",
+      });
+      setLoading(false);
+      return;
+    }
+    try {
+      res = await fetch("/api/createOrder", {
+        method: "POST",
+        body: JSON.stringify({
+          amount: parseInt(pricing[currentIndex].price) * 100,
+          currency: "INR",
+        }),
+      });
 
-    res = await fetch("/api/createOrder", {
-      method: "POST",
-      body: JSON.stringify({
-        amount: parseInt(pricing[currentIndex].price) * 100,
-        currency: "INR",
-      }),
-    });
+      const dataId = await res.json();
+      console.log("Create Order Response:", dataId);
 
-    const dataId = await res.json();
+      const paymentData = {
+        key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        order_id: dataId.id,
 
-    const paymentData = {
-      key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-      order_id: dataId.id,
-
-      handler: async function (response) {
-        setLoading(true);
-        const res = await fetch("/api/verifyOrder", {
-          method: "POST",
-          body: JSON.stringify({
-            orderId: response.razorpay_order_id,
-            razorpayPaymentId: response.razorpay_payment_id,
-            razorpaySignature: response.razorpay_signature,
-          }),
-        });
-
-        const res1 = await fetch("/api/addChildDetails", {
-          method: "POST",
-          body: JSON.stringify({
-            email: parentEmail,
-            name: name,
-            dob: dob,
-            time: time,
-            place: place,
-            gender: gender,
-            number: number,
-            lat: latLon.lat,
-            lon: latLon.lon,
-            orderId: dataId.id,
-            plan: pricing[currentIndex].title,
-          }),
-        });
-
-        if (res1.status === 200) {
-          localStorage.removeItem("childDetails");
-          toast.success("Payment Success Check Mail For Updates", {
-            position: "top-right",
-            autoClose: 3000,
+        handler: async function (response) {
+          setLoading(true);
+          const res = await fetch("/api/verifyOrder", {
+            method: "POST",
+            body: JSON.stringify({
+              orderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
+            }),
           });
-          router.push(
-            `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
-          );
-        } else {
-          toast.error("Error. Try Again", {
-            position: "top-right",
-            autoClose: 3000,
+
+          const res1 = await fetch("/api/addChildDetails", {
+            method: "POST",
+            body: JSON.stringify({
+              email: parentEmail,
+              name: name,
+              dob: dob,
+              time: time,
+              place: place,
+              gender: gender,
+              number: number,
+              lat: latLon.lat,
+              lon: latLon.lon,
+              orderId: dataId.id,
+              plan: pricing[currentIndex].title,
+            }),
           });
-        }
-      },
 
-      prefill: {
-        name: name,
-        email: parentEmail,
-        contact: number,
-      },
-    };
+          if (res1.status === 200) {
+            localStorage.removeItem("childDetails");
+            toast.success("Payment Success Check Mail For Updates", {
+              position: "top-right",
+              autoClose: 3000,
+            });
+            router.push(
+              `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
+            );
+          } else {
+            toast.error("Error. Try Again", {
+              position: "top-right",
+              autoClose: 3000,
+            });
+          }
+        },
 
-    const payment = new window.Razorpay(paymentData);
+        prefill: {
+          name: name,
+          email: parentEmail,
+          contact: number,
+        },
+      };
 
-    setLoading(false);
-    payment.open();
+      const payment = new window.Razorpay(paymentData);
+      payment.open();
+      setLoading(false);
+    } catch (error) {
+      console.error("Payment error:", error);
+      toast.error("Error initiating payment. Please try again.", {
+        position: "top-right",
+      });
+      setLoading(false);
+    }
   };
 
   const createOrder = async () => {
