@@ -136,7 +136,8 @@ const NewChildDetails = () => {
     }
   };
 
-  const createOrder = async () => {
+  const createOrder = async (e) => {
+    e.preventDefault();
     setLoading(true);
 
     if (emailVerified) {
