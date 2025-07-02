@@ -34,9 +34,14 @@ const NewChildDetails = ({ session }) => {
   const locationInputRef = useRef(null);
   const formRef = useRef(null);
   const [api, setApi] = useState(null);
-  const orderIndex = useSearchParams().get("productIndex") || 0;
-  const product = useSearchParams().get("product") || false;
-  const [currentIndex, setCurrentIndex] = useState(orderIndex);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const savedIndex = localStorage.getItem("orderIndex");
+    if (savedIndex) {
+      setCurrentIndex(Number(savedIndex));
+    }
+  }, []);
 
   const paymentFunction = async () => {
     let res;
@@ -204,7 +209,7 @@ const NewChildDetails = ({ session }) => {
   useEffect(() => {
     if (!api) return;
 
-    const initialIndex = parseInt(orderIndex, 10);
+    const initialIndex = parseInt(currentIndex, 10);
     if (
       !isNaN(initialIndex) &&
       initialIndex >= 0 &&

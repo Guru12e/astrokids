@@ -229,7 +229,8 @@ const NewPage = () => {
                 <button
                   className="relative flex items-center justify-between gap-2 p-0.5 font-bold text-black bg-white rounded-full transition-all overflow-hidden group hover:bg-transparent"
                   onClick={() => {
-                    router.push("/child-details?product=true&productIndex=0");
+                    localStorage.setItem("orderIndex", 0);
+                    router.push("/child-details");
                   }}
                 >
                   <div className="absolute right-0.5 w-8 h-8 transition-all duration-300 ease-in-out rounded-full z-10 new-gradient group-hover:w-full group-hover:h-full group-hover:right-0"></div>

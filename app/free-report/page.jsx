@@ -580,13 +580,10 @@ const PanchangDisplay = () => {
                     </p>
                     <button
                       className="w-full bg-[#2DB787] text-white py-3 rounded-lg cursor-pointer transition-all duration-300"
-                      onClick={() =>
-                        router.push(
-                          `/child-details?product=true&productIndex=${
-                            index + 1
-                          }`
-                        )
-                      }
+                      onClick={() => {
+                        localStorage.setItem("orderIndex", index + 1);
+                        router.push(`/child-details`);
+                      }}
                     >
                       Buy Now
                     </button>

@@ -342,9 +342,8 @@ const AboutPage = () => {
                   <button
                     className="px-4 mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 bg-[#2DB787] transition-all text-white mt-5"
                     onClick={() => {
-                      router.push(
-                        `/child-details?product=true&productIndex=${ind}`
-                      );
+                      localStorage.setItem("orderIndex", ind);
+                      router.push(`/child-details`);
                     }}
                   >
                     Start the plan
@@ -439,9 +438,8 @@ const AboutPage = () => {
                 <button
                   className="w-full px-6 py-3 bg-gradient-to-r from-[#2DB787] to-[#239670] text-white font-semibold rounded-lg hover:from-[#239670] hover:to-[#1D7A5A] transition-all duration-300 flex items-center justify-center gap-2 shadow-md"
                   onClick={() => {
-                    router.push(
-                      `/child-details?product=true&productIndex=${detailsOpen}`
-                    );
+                    localStorage.setItem("orderIndex", detailsOpen);
+                    router.push(`/child-details`);
                   }}
                 >
                   Get Started with this Plan
