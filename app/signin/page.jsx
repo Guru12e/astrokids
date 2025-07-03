@@ -14,7 +14,7 @@ export default function SignIn() {
   }, [callbackUrl]);
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-br from-purple-600 to-indigo-900 text-white">
+    <div className="flex flex-col items-center justify-center h-screen new-gradient text-white">
       <Image
         src="/images/logo3.png"
         alt="Astrokids.ai Logo"
