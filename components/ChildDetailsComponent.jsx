@@ -183,7 +183,7 @@ const NewChildDetails = ({ session }) => {
       await fetch("/api/checkChildDetails", {
         method: "POST",
         body: JSON.stringify({
-          email: parentEmail,
+          email: session.user.email,
           name,
           dob,
           time,
