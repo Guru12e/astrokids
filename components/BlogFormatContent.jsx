@@ -31,6 +31,32 @@ const BlogFormatContent = ({ content }) => {
 
     fetchRecentPosts();
   }, []);
+
+  const BlogFormatContent = (text) => {
+    let link = text.match(/<a href="([^"]+)">([^<]+)<\/a>/);
+    if (link) {
+      return (
+        <p className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4">
+          {text.split(link[0])[0]}
+          <a
+            href={link[1]}
+            className="text-[#2DB787] hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {link[2]}
+          </a>
+          {text.split(link[0])[1]}
+        </p>
+      );
+    } else {
+      return (
+        <p className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4">
+          {text}
+        </p>
+      );
+    }
+  };
   return (
     <div className="w-screen h-full">
       <Header />
@@ -69,14 +95,7 @@ const BlogFormatContent = ({ content }) => {
                   </h2>
                 );
               case "para":
-                return (
-                  <p
-                    key={index}
-                    className="text-[#6F6C90] indent-10 text-justify leading-relaxed mb-4 text-[16px] md:text-[18px]"
-                  >
-                    {block.content}
-                  </p>
-                );
+                return BlogFormatContent(block.content);
               case "image":
                 return (
                   <div key={index} className="my-6">
