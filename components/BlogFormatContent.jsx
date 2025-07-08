@@ -38,12 +38,7 @@ const BlogFormatContent = ({ content }) => {
       return (
         <p className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4">
           {text.split(link[0])[0]}
-          <a
-            href={link[1]}
-            className="text-[#2DB787] hover:underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href={link[1]} className="text-[#2DB787] hover:underline">
             {link[2]}
           </a>
           {text.split(link[0])[1]}
