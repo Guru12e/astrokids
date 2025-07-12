@@ -740,3 +740,160 @@ export const constitutionRatio = {
     Kapha: 5,
   },
 };
+
+export const shapes = [
+  "rounded-full",
+  "rounded-tl-full rounded-tr-full",
+  "rounded-xl",
+  "rounded-full",
+];
+
+export const steps = [
+  {
+    title: "Select Your Plan",
+    image: "/images/new/step1.png",
+  },
+  {
+    title: "Input Child's Birth Details",
+    image: "/images/new/step2.png",
+  },
+  {
+    title: "Receive Cosmic Insights",
+    image: "/images/new/step3.png",
+  },
+];
+
+export const plans = [
+  {
+    title: "Starter Parenting",
+    price: "Free",
+    content: "Foundational astrology insights for new parents.",
+  },
+  {
+    title: "Pro Parenting",
+    price: "₹499",
+    content: "Nurture your child's cosmic well-being with deeper insights.",
+  },
+  {
+    title: "Ultimate Parenting",
+    price: "₹999",
+    content: "Academic, personal, and celestial growth for young minds.",
+  },
+  {
+    title: "Master Parenting",
+    price: "₹1299",
+    content: "The ultimate roadmap for astrological success!",
+  },
+];
+
+export const blogs = [
+  {
+    title: "5-Minute Bedtime Yoga for Kids (Free Routine)",
+    link: "5-minute-bedtime-yoga-for-kids",
+  },
+  {
+    title:
+      "The Secret to Raising Confident Kids: Aligning Parenting Styles with Their Zodiac Sign",
+    link: "the-secret-to-raising-confident-kids",
+  },
+  {
+    title: "Pancha Bhoota Diet Cheat Sheet",
+    link: "pancha-bhoota-diet-cheat-sheet",
+  },
+  {
+    title: "Decode Your Child's Birth Chart in 3 Steps",
+    link: "decode-your-childs-birth-chart-in-3-steps",
+  },
+  {
+    title: "Ayurvedic Remedies for Hyperactive Kids",
+    link: "ayurvedic-remedies-for-hyperactive-kids",
+  },
+];
+
+export const slides = [
+  {
+    image: "/images/new/test1.png",
+    title: "Aarav - Age 8",
+    concern: "Bedtime tantrums",
+    points: [
+      {
+        hilight: "Dominant Earth Element:",
+        text: "Made him crave routine but resist sudden changes.",
+      },
+      {
+        hilight: "Blocked Heart Chakra:",
+        text: "Caused nighttime separation anxiety.",
+      },
+    ],
+    parent:
+      "Within 2 months, Aarav's teacher called him 'the most improved student!' Now, we bond over bedtime star-gazing instead of bedtime battles.",
+    parentName: "Neha (Mom)",
+  },
+  {
+    image: "/images/new/test2.png",
+    title: "Vihaan - Age 4",
+    concern: "struggled with focus & anger outbursts",
+    points: [
+      {
+        hilight: "Morning yoga poses",
+        text: "to channel his energy.",
+      },
+      {
+        hilight: "Ayurvedic snacks",
+        text: "to cool his fiery temper.",
+      },
+      {
+        hilight: "Moon phase-based study schedules",
+        text: "to boost focus.",
+      },
+    ],
+    parent:
+      "Now, bedtime is our bonding time. Last week, he even said, Papa, let's look at MY stars!",
+    parentName: "Rajesh (Dad)",
+  },
+  {
+    image: "/images/new/test3.png",
+    title: "Meera - Age 6",
+    concern: "Quiet child & she'd cry during group activities.",
+    points: [
+      {
+        hilight: "Ayurvedic herbal teas",
+        text: "to calm her digestion.",
+      },
+      {
+        hilight: "Storytelling exercises",
+        text: "aligned with her Nakshatra strengths.",
+      },
+    ],
+    parent:
+      "Within 6 weeks, Meera volunteered for a school play! Now, she's the 'class storyteller' — and I finally understand how to nurture her quiet strength.",
+    parentName: "Priya (Mom)",
+  },
+];
+
+export const reviews = [
+  {
+    rating: 4.8,
+    review:
+      "My child sleeps better, stays focused longer, and is much calmer throughout the day.",
+    name: "Ravi",
+  },
+  {
+    rating: 4.9,
+    review:
+      "Practical remedies improved my child’s learning, emotional balance, and daily habits.",
+    name: "Priya",
+  },
+  {
+    rating: 4.7,
+    review:
+      "Noticed a big difference in my child’s behavior—more discipline, better focus, and a positive attitude.",
+    name: "Arun",
+  },
+  {
+    rating: 4.6,
+    review:
+      "Sleep issues and concentration struggles are gone! My child is more energetic and engaged.",
+    name: "Sita",
+  },
+];
