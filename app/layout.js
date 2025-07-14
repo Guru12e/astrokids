@@ -4,6 +4,8 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import { Montserrat, Quicksand } from "next/font/google";
 import SessionWrapper from "../components/SessionWrapper";
 import { Suspense } from "react";
+import Clarity from "@microsoft/clarity";
+import ClarityWrapper from "@/components/ClarityWrapper";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -37,12 +39,15 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  Clarity.init("sdlo5wowr6");
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/images/logo3.png" type="image/png" />
         <GoogleAnalytics gtmId="G-82PQ2WCYGX" />
         <GoogleTagManager gtmId="GTM-MDK2KCGP" />
+        <ClarityWrapper />
+
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
