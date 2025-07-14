@@ -1,9 +1,11 @@
 import { reviews, shapes } from "@/constant/constant";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Section7 = () => {
+  const router = useRouter();
   return (
     <div className="p-5 md:p-10">
       <h1 className="title font-semibold leading-[1.2] text-center capitalize">

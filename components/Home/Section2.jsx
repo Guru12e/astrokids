@@ -2,9 +2,11 @@ import React from "react";
 import EmblaCarousel from "../ui/EmblaCarousel";
 import { ArrowUpRight } from "lucide-react";
 import { slides } from "@/constant/constant";
+import { useRouter } from "next/navigation";
 
 const Section2 = () => {
   const OPTIONS = { containScroll: false };
+  const router = useRouter();
   return (
     <div className="p-5 md:p-10">
       <h1 className="title font-bold leading-[1.2] text-center capitalize">

@@ -9,8 +9,10 @@ import {
 } from "../ui/carousel";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const Section4 = () => {
+  const router = useRouter();
   return (
     <div
       className="w-screen min-h-screen scroll-mt-16 xl:scroll-mt-10"

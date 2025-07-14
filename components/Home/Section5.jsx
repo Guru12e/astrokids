@@ -1,9 +1,11 @@
 import { plans } from "@/constant/constant";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Section5 = () => {
+  const router = useRouter();
   return (
     <div
       className="w-screen min-h-screen scroll-mt-16 xl:scroll-mt-10"

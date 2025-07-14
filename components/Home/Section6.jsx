@@ -10,8 +10,10 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { blogs } from "@/constant/constant";
+import { useRouter } from "next/navigation";
 
 const Section6 = () => {
+  const router = useRouter();
   return (
     <div
       className="w-screen min-h-screen scroll-mt-16 xl:scroll-mt-10"
