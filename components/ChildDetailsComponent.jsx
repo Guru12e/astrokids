@@ -245,6 +245,15 @@ const NewChildDetails = ({ session }) => {
     e.target.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  useEffect(() => {
+    if (locationInputRef.current) {
+      locationInputRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  });
+
   const handleLocationInputChange = (e) => {
     const value = e.target.value;
     setLocationInput(value);

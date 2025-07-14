@@ -22,7 +22,7 @@ export default function RedirectPage() {
         height={120}
         className="mb-6 animate-pulse"
       />
-      <h1 className="text-3xl font-bold mb-4">Redirecting you to the star…</h1>
+      <h1 className="text-3xl font-bold mb-4">Redirecting you to the stars…</h1>
       <p className="text-lg text-center max-w-md">
         We’re preparing your personalized cosmic experience on{" "}
         <strong>Astrokids.ai</strong>.<br />
