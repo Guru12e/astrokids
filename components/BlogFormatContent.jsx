@@ -32,11 +32,14 @@ const BlogFormatContent = ({ content }) => {
     fetchRecentPosts();
   }, []);
 
-  const BlogFormatContent = (text) => {
+  const BlogFormatContent = (text, index) => {
     let link = text.match(/<a href="([^"]+)">([^<]+)<\/a>/);
     if (link) {
       return (
-        <p className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4">
+        <p
+          key={index}
+          className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4"
+        >
           {text.split(link[0])[0]}
           <a href={link[1]} className="text-[#2DB787] hover:underline">
             {link[2]}
@@ -46,7 +49,10 @@ const BlogFormatContent = ({ content }) => {
       );
     } else {
       return (
-        <p className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4">
+        <p
+          key={index}
+          className="text-[#6F6C90] text-[16px] md:text-[18px] leading-relaxed mb-4"
+        >
           {text}
         </p>
       );
@@ -90,7 +96,7 @@ const BlogFormatContent = ({ content }) => {
                   </h2>
                 );
               case "para":
-                return BlogFormatContent(block.content);
+                return BlogFormatContent(block.content, index);
               case "image":
                 return (
                   <div key={index} className="my-6">

@@ -1,10 +1,12 @@
 "use client";
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const Section1 = () => {
   const [imageIndex, setImageIndex] = useState(1);
+  const router = useRouter();
 
   useEffect(() => {
     const interval = setInterval(() => {
