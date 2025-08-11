@@ -220,6 +220,7 @@ const PanchangDisplay = () => {
                 autoClose: 3000,
               }
             );
+            router.push("/");
           }
         } catch (error) {
           console.error("Error:", error);
