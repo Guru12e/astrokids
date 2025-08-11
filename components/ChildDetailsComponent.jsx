@@ -394,6 +394,7 @@ const NewChildDetails = ({ session }) => {
                       <input
                         type="text"
                         value={locationInput}
+                        onFocus={handleFocus}
                         placeholder="Birth Location"
                         onChange={handleLocationInputChange}
                         ref={locationInputRef}
