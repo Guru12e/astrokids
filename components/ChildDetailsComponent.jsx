@@ -241,10 +241,6 @@ const NewChildDetails = ({ session }) => {
     });
   }, [api]);
 
-  const handleFocus = (e) => {
-    e.target.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
-
   useEffect(() => {
     if (locationInputRef.current) {
       locationInputRef.current.scrollIntoView({
