@@ -9,7 +9,6 @@ export default function SessionWrapper({ children }) {
   return (
     <SessionProvider>
       {children}
-      <ToastContainer />
       <Analytics />
       <SpeedInsights />
     </SessionProvider>

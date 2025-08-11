@@ -6,6 +6,7 @@ import SessionWrapper from "../components/SessionWrapper";
 import { Suspense } from "react";
 import Clarity from "@microsoft/clarity";
 import ClarityWrapper from "@/components/ClarityWrapper";
+import { ToastContainer } from "react-toastify";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -136,7 +137,10 @@ export default function RootLayout({ children }) {
         className={`${customFont.variable} ${openSans.variable} ${quicksand.variable}`}
       >
         <Suspense>
-          <SessionWrapper>{children}</SessionWrapper>
+          <SessionWrapper>
+            {children}
+            <ToastContainer />
+          </SessionWrapper>
         </Suspense>
       </body>
     </html>

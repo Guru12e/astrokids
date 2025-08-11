@@ -212,6 +212,7 @@ const PanchangDisplay = () => {
             setPanchangData(data);
             setUserDetails(childDetails);
             setName(childDetails.name.split(" ")[0]);
+            setDisplayContent();
           } else {
             toast.warn(
               "We are unable to fetch the report at this time. We will notify you through email once it's available.",
@@ -248,10 +249,6 @@ const PanchangDisplay = () => {
 
     fetchPanchang();
   }, []);
-
-  useEffect(() => {
-    setDisplayContent();
-  }, [userDetails, panchangData]);
 
   const handleLoaderComplete = () => {
     setLoading(false);
