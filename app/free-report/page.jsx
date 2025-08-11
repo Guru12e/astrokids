@@ -224,10 +224,25 @@ const PanchangDisplay = () => {
           }
         } catch (error) {
           console.error("Error:", error);
+          toast.warn(
+            "We are unable to fetch the report at this time. We will notify you through email once it's available.",
+            {
+              position: "top-right",
+              autoClose: 3000,
+            }
+          );
+          router.push("/");
         }
       } else {
         setLoading(false);
-        router.push("/child-detials");
+        toast.warn(
+          "We are unable to fetch the report at this time. We will notify you through email once it's available.",
+          {
+            position: "top-right",
+            autoClose: 3000,
+          }
+        );
+        router.push("/");
       }
     };
 
