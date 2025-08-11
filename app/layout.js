@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import Clarity from "@microsoft/clarity";
 import ClarityWrapper from "@/components/ClarityWrapper";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const openSans = Montserrat({
   subsets: ["latin"],
