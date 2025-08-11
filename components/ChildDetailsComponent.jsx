@@ -241,14 +241,14 @@ const NewChildDetails = ({ session }) => {
     });
   }, [api]);
 
-  useEffect(() => {
-    if (locationInputRef.current.focus) {
+  const handleFocus = () => {
+    if (locationInputRef.current) {
       locationInputRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
     }
-  }, [locationInputRef]);
+  };
 
   const handleLocationInputChange = (e) => {
     const value = e.target.value;
