@@ -16,7 +16,7 @@ const Section6 = () => {
   const router = useRouter();
   return (
     <div
-      className="w-screen min-h-screen scroll-mt-16 xl:scroll-mt-10"
+      className="w-screen md:min-h-screen scroll-mt-16 xl:scroll-mt-10"
       id="blog"
     >
       <div className="p-5 md:p-10">
