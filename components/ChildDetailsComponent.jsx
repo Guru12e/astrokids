@@ -196,7 +196,7 @@ const NewChildDetails = ({ session }) => {
       if (currentIndex != 0) {
         paymentFunction();
       } else {
-        await fetch("https://report-api-0fic.onrender.com/freeReport", {
+        await fetch("https://report-api-chfd.onrender.com/freeReport", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

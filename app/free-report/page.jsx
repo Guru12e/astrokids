@@ -190,7 +190,7 @@ const PanchangDisplay = () => {
       if (childDetails) {
         try {
           const response = await fetch(
-            "https://report-api-0fic.onrender.com/freeReport",
+            "https://report-api-chfd.onrender.com/freeReport",
             {
               method: "POST",
               headers: {

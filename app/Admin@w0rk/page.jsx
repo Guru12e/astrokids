@@ -296,7 +296,7 @@ const Admin = () => {
   const HandleReport = async (item) => {
     setLoading(true);
     const res = await fetch(
-      "https://report-api-0fic.onrender.com/generate_report",
+      "https://report-api-chfd.onrender.com/generate_report",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -355,7 +355,7 @@ const Admin = () => {
   const generateReport = async () => {
     setPageLoading(true);
     const res = await fetch(
-      "https://report-api-0fic.onrender.com/generate_report",
+      "https://report-api-chfd.onrender.com/generate_report",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
