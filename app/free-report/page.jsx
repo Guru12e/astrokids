@@ -21,6 +21,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const Loader = ({ steps, onComplete }) => {
   const [progress, setProgress] = useState(0);
@@ -205,10 +206,21 @@ const PanchangDisplay = () => {
               }),
             }
           );
-          const data = await response.json();
-          setPanchangData(data);
-          setUserDetails(childDetails);
-          setName(childDetails.name.split(" ")[0]);
+
+          if (response.status == 200) {
+            const data = await response.json();
+            setPanchangData(data);
+            setUserDetails(childDetails);
+            setName(childDetails.name.split(" ")[0]);
+          } else {
+            toast.warn(
+              "We are unable to fetch the report at this time. We will notify you through email once it's available.",
+              {
+                position: "top-right",
+                autoClose: 3000,
+              }
+            );
+          }
         } catch (error) {
           console.error("Error:", error);
         }
