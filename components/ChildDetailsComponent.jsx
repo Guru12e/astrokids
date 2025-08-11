@@ -358,7 +358,6 @@ const NewChildDetails = ({ session }) => {
                       </label>
                       <input
                         type="text"
-                        onFocus={handleFocus}
                         value={name}
                         placeholder="Child's Name"
                         onChange={(e) => setName(e.target.value)}
@@ -372,7 +371,6 @@ const NewChildDetails = ({ session }) => {
                       </label>
                       <input
                         type="date"
-                        onFocus={handleFocus}
                         value={dob}
                         onChange={(e) => setDob(e.target.value)}
                         className="w-full p-2 border text-gray-700 bg-white outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
@@ -388,7 +386,6 @@ const NewChildDetails = ({ session }) => {
                       <input
                         type="time"
                         value={time}
-                        onFocus={handleFocus}
                         onChange={(e) => setTime(e.target.value)}
                         className="w-full p-2 border text-gray-700 bg-white outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
                         required
@@ -401,7 +398,6 @@ const NewChildDetails = ({ session }) => {
                       <input
                         type="text"
                         value={locationInput}
-                        onFocus={handleFocus}
                         placeholder="Birth Location"
                         onChange={handleLocationInputChange}
                         ref={locationInputRef}
@@ -430,7 +426,6 @@ const NewChildDetails = ({ session }) => {
                       </label>
                       <select
                         value={gender}
-                        onFocus={handleFocus}
                         onChange={(e) => setGender(e.target.value)}
                         className="w-full py-3 px-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
                         required
@@ -453,7 +448,6 @@ const NewChildDetails = ({ session }) => {
                         type="number"
                         step={0}
                         value={number}
-                        onFocus={handleFocus}
                         minLength={10}
                         maxLength={10}
                         onChange={(e) => setNumber(e.target.value)}
