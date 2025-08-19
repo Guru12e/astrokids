@@ -29,19 +29,18 @@ const Loader = ({ steps, onComplete }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          onComplete();
-          return 100;
-        }
-        return prev + 100 / steps.length;
-      });
+      setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
       setCurrentStep((prev) => (prev < steps.length - 1 ? prev + 1 : prev));
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [steps.length, onComplete]);
+  }, [steps.length]);
+
+  useEffect(() => {
+    if (progress >= 100) {
+      onComplete();
+    }
+  }, [progress, onComplete]);
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 bg-opacity-90 z-50">
@@ -104,6 +103,7 @@ const PanchangDisplay = () => {
   ];
 
   const setDisplayContent = () => {
+    console.log(userDetails + " " + panchangData);
     if (userDetails && panchangData) {
       const ninthHouseLord =
         zodiac_lord[
