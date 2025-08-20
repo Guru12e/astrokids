@@ -43,11 +43,11 @@ const NewFooter = () => {
     },
     {
       media: <FaYoutube />,
-      link: "https://www.youtube.com/@the_astro_kids",
+      link: "https://www.youtube.com/@astrokids_ai",
     },
     {
       media: <FaInstagram />,
-      link: "https://www.instagram.com/the_astro_kids/",
+      link: "https://www.instagram.com/astro_kids_ai/",
     },
   ];
 

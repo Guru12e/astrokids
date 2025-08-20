@@ -83,9 +83,9 @@ export default function RootLayout({ children }) {
               logo: "https://astrokids.ai/logo.png",
               sameAs: [
                 "https://www.facebook.com/profile.php?id=61568876184036",
-                "https://www.instagram.com/the_astro_kids/",
+                "https://www.instagram.com/astro_kids_ai/",
                 "https://www.linkedin.com/company/astrokids/",
-                "https://www.youtube.com/@the_astro_kids",
+                "https://www.youtube.com/@astrokids_ai",
                 "https://in.pinterest.com/theastrokids/",
                 "https://sharechat.com/profile/Astro_kids?d=n",
               ],
