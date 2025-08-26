@@ -14,6 +14,7 @@ export async function PUT(request) {
       createdAt,
       metaTitle,
       metaDescription,
+      id,
     } = await request.json();
 
     if (!title || !slug || !content) {
@@ -28,7 +29,7 @@ export async function PUT(request) {
     const collection = database.collection("blogs");
 
     const result = await collection.updateOne(
-      { slug },
+      { id: id },
       {
         $set: {
           title,

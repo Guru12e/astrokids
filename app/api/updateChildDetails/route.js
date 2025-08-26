@@ -1,4 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
+import { MongoClient } from "mongodb";
 
 const uri = process.env.MONGO_URL;
 const client = new MongoClient(uri);
@@ -10,8 +10,6 @@ export async function PUT(request) {
     await client.connect();
     const database = client.db("AstroKids");
     const collection = database.collection("childDetails");
-
-    console.log(email, isChecked, orderId);
 
     const updateResult = await collection.updateOne(
       { email: email, "childDetails.orderId": orderId },

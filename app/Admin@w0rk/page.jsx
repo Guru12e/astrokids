@@ -103,6 +103,7 @@ const Admin = () => {
         type: blogType,
         content: blogContent,
         createdAt: editingBlog.createdAt,
+        id: editingBlog.id,
       };
 
       const res = await fetch("/api/updatePost", {
