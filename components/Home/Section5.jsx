@@ -1,3 +1,5 @@
+"use client";
+
 import { plans } from "@/constant/constant";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";

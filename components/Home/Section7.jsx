@@ -1,8 +1,9 @@
+"use client";
+
 import { reviews, shapes } from "@/constant/constant";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
 
 const Section7 = () => {
   const router = useRouter();

@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import EmblaCarousel from "../ui/EmblaCarousel";
 import { ArrowUpRight } from "lucide-react";
 import { slides } from "@/constant/constant";

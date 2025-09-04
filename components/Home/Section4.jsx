@@ -1,5 +1,6 @@
+"use client";
+
 import { steps } from "@/constant/constant";
-import React from "react";
 import {
   Carousel,
   CarouselContent,
