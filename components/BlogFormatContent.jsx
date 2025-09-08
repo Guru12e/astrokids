@@ -3,6 +3,7 @@ import Image from "next/image";
 import Header from "./Header";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { sampleBlogs } from "@/constant/constant";
 
 const BlogFormatContent = ({ content }) => {
   const [recentPosts, setRecentPosts] = useState([]);
@@ -17,9 +18,7 @@ const BlogFormatContent = ({ content }) => {
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const response = await fetch("/api/getAllPosts");
-        const data = await response.json();
-        const sortedPosts = data
+        const sortedPosts = sampleBlogs
           .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .slice(0, 3);
 
@@ -33,6 +32,7 @@ const BlogFormatContent = ({ content }) => {
   }, []);
 
   const BlogFormatContent = (text, index) => {
+    text = text.replace("herf", "href");
     let link = text.match(/<a href="([^"]+)">([^<]+)<\/a>/);
     if (link) {
       return (
@@ -62,7 +62,7 @@ const BlogFormatContent = ({ content }) => {
     <div className="w-screen h-full">
       <Header />
       <div className="px-5 mt-12 flex flex-col md:flex-row gap-10">
-        <div className="px-10 flex-2/3 w-full md:px-0">
+        <div className="md:px-10 flex-2/3 w-full">
           {content.map((block, index) => {
             switch (block.type) {
               case "title":
@@ -314,19 +314,19 @@ const BlogFormatContent = ({ content }) => {
             }
           })}
         </div>
-        <div className="w-full md:w-1/3 px-5">
+        <div className="w-full md:w-1/3 md:px-5">
           <h2 className="text-2xl font-semibold text-[#2DB787] mb-6 leading-[1.2] capitalize">
             Recent <span className="text-[#FFEB3B]">Posts</span>
           </h2>
-          <div className="space-y-6">
+          <div className="flex flex-col gap-5">
             {recentPosts.length > 0 ? (
-              recentPosts.map((blog, index) => (
+              recentPosts.map((blog) => (
                 <Link
                   key={blog._id}
                   href={`/blogs/${blog.slug}`}
                   className="w-full"
                 >
-                  <div className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center">
+                  <div className="w-full h-full bg-[#F7F7F7] rounded-xl flex flex-col justify-center items-center">
                     <div className="w-full aspect-video relative rounded-t-xl">
                       <Image
                         src={`https://drive.usercontent.google.com/download?id=${blog.image}`}

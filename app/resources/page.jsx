@@ -1,10 +1,10 @@
 "use client";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
-import { ChevronRight } from "lucide-react";
+import { sampleBlogs } from "@/constant/constant";
 import Image from "next/image";
-import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import React, { useState, useEffect, use } from "react";
 
 const BlogsPage = () => {
   const buttons = [
@@ -16,9 +16,9 @@ const BlogsPage = () => {
     "Success Stories",
   ];
   const [isSelect, setIsSelect] = useState(0);
-  const [blogs, setBlogs] = useState([]);
-  const [displayBlogs, setDisplayBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [blogs, setBlogs] = useState(sampleBlogs);
+  const [displayBlogs, setDisplayBlogs] = useState(sampleBlogs);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -31,7 +31,6 @@ const BlogsPage = () => {
         if (res.status === 200) {
           const data = await res.json();
           setBlogs(data);
-          setIsLoading(false);
           setIsSelect(0);
           setDisplayBlogs(data);
         } else {
@@ -39,7 +38,6 @@ const BlogsPage = () => {
         }
       } catch (error) {
         console.log("Error fetching blogs:", error);
-        setIsLoading(false);
       }
     };
 
@@ -50,14 +48,6 @@ const BlogsPage = () => {
     const imageSection = content.find((section) => section.type === "image");
     return imageSection ? imageSection.image : "/images/new/blog.png";
   };
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <p className="text-gray-600">Loading blogs...</p>
-      </div>
-    );
-  }
 
   return (
     <div>
@@ -101,10 +91,13 @@ const BlogsPage = () => {
           {displayBlogs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 place-items-center mt-5">
               {displayBlogs.map((blog) => (
-                <Link
+                <div
                   key={blog._id}
-                  href={`/blogs/${blog.slug}`}
-                  className="w-full"
+                  onClick={() => {
+                    localStorage.setItem("currentBlog", JSON.stringify(blog));
+                    router.push(`/blogs/${blog.slug}`);
+                  }}
+                  className="w-full cursor-pointer"
                 >
                   <div className="w-full h-full bg-[#F7F7F7] rounded-xl p-5 flex flex-col justify-center items-center">
                     <div className="w-full aspect-video relative rounded-t-xl">
@@ -127,7 +120,7 @@ const BlogsPage = () => {
                       </h1>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
           ) : (

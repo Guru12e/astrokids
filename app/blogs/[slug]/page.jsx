@@ -1,38 +1,27 @@
 "use client";
 import BlogFormatContent from "@/components/BlogFormatContent";
 import { useRouter } from "next/navigation";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
-export default function BlogPage({ params }) {
-  const slug = use(params).slug;
-  const router = useRouter();
+export default function BlogPage() {
   const [blogData, setBlogData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchBlogData = async () => {
-      try {
-        const res = await fetch(`/api/getPost?slug=${slug}`, {
-          method: "GET",
-          headers: { "Content-Type": "application/json" },
-        });
-
-        if (res.status === 200) {
-          const data = await res.json();
-          setBlogData(data.content);
-        } else {
-          setTimeout(() => router.push("/resources"), 0);
-        }
-      } catch (error) {
-        console.error("Error fetching blog data:", error);
-        setTimeout(() => router.push("/resources"), 0);
-      } finally {
+      const storedBlog = localStorage.getItem("currentBlog");
+      if (storedBlog) {
+        setBlogData(JSON.parse(storedBlog).content);
         setIsLoading(false);
+        return;
+      } else {
+        router.push("/resources");
       }
     };
 
     fetchBlogData();
-  }, [slug, router]);
+  }, []);
 
   if (isLoading) {
     return (
