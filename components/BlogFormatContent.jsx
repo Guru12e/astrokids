@@ -338,7 +338,7 @@ const BlogFormatContent = ({ content }) => {
                     localStorage.setItem("currentBlog", JSON.stringify(blog));
                     router.push(`/blogs/${blog.slug}`);
                   }}
-                  className="w-full"
+                  className="w-full cursor-pointer"
                 >
                   <div className="w-full h-full bg-[#F7F7F7] rounded-xl flex flex-col justify-center items-center">
                     <div className="w-full aspect-video relative rounded-t-xl">
