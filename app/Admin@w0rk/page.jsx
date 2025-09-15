@@ -79,13 +79,22 @@ const Admin = () => {
       if (res.status === 200) {
         setAllBlogs(allBlogs.filter((blog) => blog.slug !== slug));
         setDeletingBlog(null);
-        alert("Blog deleted successfully!");
+        toast.success("Blog deleted successfully!", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       } else {
-        alert("Failed to delete blog");
+        toast.error("Failed to delete blog", {
+          position: "top-right",
+          autoClose: 3000,
+        });
       }
     } catch (error) {
       console.error("Error deleting blog:", error);
-      alert("Error deleting blog");
+      toast.error("Error deleting blog", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     } finally {
       setLoading(false);
     }
@@ -136,7 +145,10 @@ const Admin = () => {
       }
     } catch (error) {
       console.error("Error updating blog:", error);
-      alert("Error updating blog");
+      toast.error("Error updating blog", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     } finally {
       setLoading(false);
     }
@@ -269,7 +281,10 @@ const Admin = () => {
       setDisplayData(pendingOrder);
       setDisplayIndex(0);
     } else {
-      alert("Invalid Credentials");
+      toast.error("Invalid Credentials", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
     setLoading(false);
   };
@@ -315,7 +330,10 @@ const Admin = () => {
     );
     setLoading(false);
     if (res.status == 200) {
-      alert("Check Mail");
+      toast.success("Check Mail", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -377,7 +395,10 @@ const Admin = () => {
     );
     setPageLoading(false);
     if (res.status == 200) {
-      alert("Check Mail");
+      toast.success("Check Mail", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -495,7 +516,10 @@ const Admin = () => {
       }
     } catch (error) {
       console.error("Error adding blog post:", error);
-      alert("An error occurred while adding the blog post");
+      toast.error("An error occurred while adding the blog post", {
+        position: "top-right",
+        autoClose: 3000,
+      });
     }
 
     setLoading(false);
@@ -1827,67 +1851,74 @@ const Admin = () => {
                         allBlogs.map((blog) => (
                           <div
                             key={blog._id}
-                            className="p-4 border-b border-gray-300 flex justify-between items-center"
+                            className="p-4 border-b border-gray-300 flex flex-col gap-2"
                           >
-                            <h3 className="text-lg font-semibold">
-                              {blog.title}
-                            </h3>
-                            <div className="flex gap-4">
-                              <button
-                                onClick={() => {
-                                  setEditingBlog(blog);
-                                  setBlogTitle(blog.title);
-                                  setBlogMetaTitle(blog.metaTitle);
-                                  setBlogMetaDescription(blog.metaDescription);
-                                  setBlogImage(blog.image);
-                                  setBlogSlug(blog.slug);
-                                  setBlogType(blog.type);
-                                  setBlogContent(blog.content);
-                                }}
-                                className="text-blue-500"
-                              >
-                                <Pencil />
-                              </button>
-                              <button
-                                onClick={() => setDeletingBlog(blog)}
-                                className="text-red-500"
-                                disabled={loading}
-                              >
-                                <Trash2 />
-                              </button>
+                            <div className="w-full flex justify-between items-center">
+                              <h3 className="text-lg font-semibold">
+                                {blog.title}
+                              </h3>
+                              <div className="flex gap-4">
+                                <button
+                                  onClick={() => {
+                                    setEditingBlog(blog);
+                                    setBlogTitle(blog.title);
+                                    setBlogMetaTitle(blog.metaTitle);
+                                    setBlogMetaDescription(
+                                      blog.metaDescription
+                                    );
+                                    setBlogImage(blog.image);
+                                    setBlogSlug(blog.slug);
+                                    setBlogType(blog.type);
+                                    setBlogContent(blog.content);
+                                  }}
+                                  className="text-blue-500"
+                                >
+                                  <Pencil />
+                                </button>
+                                <button
+                                  onClick={() => setDeletingBlog(blog)}
+                                  className="text-red-500"
+                                  disabled={loading}
+                                >
+                                  <Trash2 />
+                                </button>
+                              </div>
                             </div>
+                            {deletingBlog &&
+                              deletingBlog.title === blog.title && (
+                                <div className="mt-4 p-4 self-end border border-red-300 rounded">
+                                  <p>
+                                    Are you sure you want to delete "
+                                    {deletingBlog.title}"?
+                                  </p>
+                                  <div className="flex gap-4 mt-2">
+                                    <button
+                                      onClick={() =>
+                                        handleDeleteBlog(deletingBlog.slug)
+                                      }
+                                      className="bg-red-500 text-white px-4 py-2 rounded"
+                                      disabled={loading}
+                                    >
+                                      {loading
+                                        ? "Deleting..."
+                                        : "Confirm Delete"}
+                                    </button>
+                                    <button
+                                      onClick={() => setDeletingBlog(null)}
+                                      className="bg-gray-500 text-white px-4 py-2 rounded"
+                                      disabled={loading}
+                                    >
+                                      Cancel
+                                    </button>
+                                  </div>
+                                </div>
+                              )}
                           </div>
                         ))
                       ) : (
                         <p className="w-full text-center">
                           No blogs available.
                         </p>
-                      )}
-                      {deletingBlog && (
-                        <div className="mt-4 p-4 border border-red-300 rounded">
-                          <p>
-                            Are you sure you want to delete "
-                            {deletingBlog.title}"?
-                          </p>
-                          <div className="flex gap-4 mt-2">
-                            <button
-                              onClick={() =>
-                                handleDeleteBlog(deletingBlog.slug)
-                              }
-                              className="bg-red-500 text-white px-4 py-2 rounded"
-                              disabled={loading}
-                            >
-                              {loading ? "Deleting..." : "Confirm Delete"}
-                            </button>
-                            <button
-                              onClick={() => setDeletingBlog(null)}
-                              className="bg-gray-500 text-white px-4 py-2 rounded"
-                              disabled={loading}
-                            >
-                              Cancel
-                            </button>
-                          </div>
-                        </div>
                       )}
                     </div>
                   )}

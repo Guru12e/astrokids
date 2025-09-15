@@ -2,11 +2,12 @@
 import Image from "next/image";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { sampleBlogs } from "@/constant/constant";
+import { useRouter } from "next/navigation";
 
 const BlogFormatContent = ({ content }) => {
   const [recentPosts, setRecentPosts] = useState([]);
+  const router = useRouter();
   const buttons = [
     "Recents",
     "Parenting Tips",
@@ -18,11 +19,21 @@ const BlogFormatContent = ({ content }) => {
   useEffect(() => {
     const fetchRecentPosts = async () => {
       try {
-        const sortedPosts = sampleBlogs
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          .slice(0, 3);
+        const res = await fetch("/api/getAllPosts", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
 
-        setRecentPosts(sortedPosts);
+        if (res.status === 200) {
+          const data = await res.json();
+          const sortedPosts = data
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .slice(0, 3);
+
+          setRecentPosts(sortedPosts);
+        } else {
+          console.log("Failed to fetch posts");
+        }
       } catch (error) {
         console.log("Error fetching posts:", error);
       }
@@ -321,9 +332,12 @@ const BlogFormatContent = ({ content }) => {
           <div className="flex flex-col gap-5">
             {recentPosts.length > 0 ? (
               recentPosts.map((blog) => (
-                <Link
+                <div
                   key={blog._id}
-                  href={`/blogs/${blog.slug}`}
+                  onClick={() => {
+                    localStorage.setItem("currentBlog", JSON.stringify(blog));
+                    router.push(`/blogs/${blog.slug}`);
+                  }}
                   className="w-full"
                 >
                   <div className="w-full h-full bg-[#F7F7F7] rounded-xl flex flex-col justify-center items-center">
@@ -345,7 +359,7 @@ const BlogFormatContent = ({ content }) => {
                       </h1>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))
             ) : (
               <p className="text-[#6F6C90] text-[16px]">
