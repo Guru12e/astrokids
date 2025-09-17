@@ -42,7 +42,9 @@ const BlogFormatContent = ({ content }) => {
   }, []);
 
   const BlogFormatContent = (text, index) => {
+    text = text.replace("<a herf=", "<a href=");
     let link = text.match(/<a href="([^"]+)">([^<]+)<\/a>/);
+    console.log(link);
     if (link) {
       return (
         <p
