@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Header from "./Header";
 import { useEffect, useState } from "react";
-import { sampleBlogs } from "@/constant/constant";
 import { useRouter } from "next/navigation";
 
 const BlogFormatContent = ({ content }) => {
@@ -43,7 +42,6 @@ const BlogFormatContent = ({ content }) => {
   }, []);
 
   const BlogFormatContent = (text, index) => {
-    text = text.replace("herf", "href");
     let link = text.match(/<a href="([^"]+)">([^<]+)<\/a>/);
     if (link) {
       return (
