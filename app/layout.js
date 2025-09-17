@@ -80,7 +80,7 @@ export default function RootLayout({ children }) {
               "@type": "Organization",
               name: "AstroKids",
               url: "https://astrokids.ai/",
-              logo: "https://astrokids.ai/logo4.png",
+              logo: "https://astrokids.ai/images/logo4.png",
               sameAs: [
                 "https://www.facebook.com/profile.php?id=61568876184036",
                 "https://www.instagram.com/astro_kids_ai/",
