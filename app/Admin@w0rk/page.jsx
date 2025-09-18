@@ -27,6 +27,9 @@ const Admin = () => {
     { type: "title", content: "" },
   ]);
   const [insertIndex, setInsertIndex] = useState(blogContent.length);
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [deletingBlog, setDeletingBlog] = useState(null);
   const [reportDetails, setReportDetails] = useState({
     name: "",
     dob: "",
@@ -48,9 +51,6 @@ const Admin = () => {
     }
   }, [blogContent]);
 
-  const [allBlogs, setAllBlogs] = useState([]);
-  const [editingBlog, setEditingBlog] = useState(null);
-  const [deletingBlog, setDeletingBlog] = useState(null);
 
   const fetchAllBlogs = async () => {
     try {
@@ -112,7 +112,7 @@ const Admin = () => {
         type: blogType,
         content: blogContent,
         createdAt: editingBlog.createdAt,
-        id: editingBlog.id,
+        _id: editingBlog._id,
       };
 
       const res = await fetch("/api/updatePost", {

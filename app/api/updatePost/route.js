@@ -1,4 +1,4 @@
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 import { NextResponse } from "next/server";
 
 const uri = process.env.MONGO_URL;
@@ -14,7 +14,7 @@ export async function PUT(request) {
       createdAt,
       metaTitle,
       metaDescription,
-      id,
+      _id,
     } = await request.json();
 
     if (!title || !slug || !content) {
@@ -29,7 +29,7 @@ export async function PUT(request) {
     const collection = database.collection("blogs");
 
     const result = await collection.updateOne(
-      { id: id },
+      { _id: new ObjectId(String(_id)) },
       {
         $set: {
           title,
@@ -40,8 +40,7 @@ export async function PUT(request) {
           metaTitle,
           metaDescription,
         },
-      },
-      { upsert: false }
+      }
     );
 
     if (result.matchedCount === 1) {
