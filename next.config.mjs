@@ -6,6 +6,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "drive.usercontent.google.com",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      }
     ],
   },
 };
