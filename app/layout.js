@@ -48,7 +48,6 @@ export default function RootLayout({ children }) {
         <link rel="icon" href="/images/logo4.png" type="image/png" />
         <GoogleAnalytics gtmId="G-82PQ2WCYGX" />
         <GoogleTagManager gtmId="GTM-MDK2KCGP" />
-        <ClarityWrapper />
 
         <script type="application/ld+json">
           {JSON.stringify({
@@ -137,6 +136,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${customFont.variable} ${openSans.variable} ${quicksand.variable}`}
       >
+        <ClarityWrapper />
         <Suspense>
           <SessionWrapper>
             {children}

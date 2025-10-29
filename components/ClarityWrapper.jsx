@@ -4,7 +4,7 @@ import Clarity from "@microsoft/clarity";
 
 export default function ClarityWrapper() {
   useEffect(() => {
-    Clarity.init("sdlo5wowr6");
+    Clarity.init("twnbfuotyc");
   }, []);
 
   return null;
