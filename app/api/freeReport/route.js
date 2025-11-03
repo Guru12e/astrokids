@@ -483,8 +483,6 @@ const days = [
 export async function POST(req) {
   try {
     const { date, lat, lon } = await req.json();
-
-    console.log(date, lat, lon);
     const planets = findPlanets(date, lat, lon);
     const { sunrise, sunset } = getSunriseSunset(lat, lon, date);
     const dateObj = new Date(date);
