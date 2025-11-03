@@ -196,26 +196,19 @@ const NewChildDetails = ({ session }) => {
       if (currentIndex != 0) {
         paymentFunction();
       } else {
-        await fetch("https://report-api-chfd.onrender.com/freeReport", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            dob: `${dob} ${time}:00`,
-            location: place.split(",")[0],
-            lat: parseFloat(latLon.lat),
-            lon: parseFloat(latLon.lon),
-            gender: gender,
-            name: name,
-          }),
-        })
-          .then((response) => response.json())
-          .then((data) =>
-            localStorage.setItem("freeReport", JSON.stringify(data))
-          )
-          .catch((error) => console.error("Error:", error));
-
+        localStorage.setItem(
+          "childDetails",
+          JSON.stringify({
+            name,
+            dob,
+            time,
+            place,
+            gender,
+            number,
+            lat: latLon.lat,
+            lon: latLon.lon,
+          })
+        );
         router.push("/free-report");
       }
     }

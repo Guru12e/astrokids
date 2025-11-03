@@ -102,8 +102,7 @@ const PanchangDisplay = () => {
     "Generating report",
   ];
 
-  const setDisplayContent = () => {
-    console.log(userDetails + " " + panchangData);
+  const setDisplayContent = (userDetails, panchangData) => {
     if (userDetails && panchangData) {
       const ninthHouseLord =
         zodiac_lord[
@@ -189,30 +188,25 @@ const PanchangDisplay = () => {
       const childDetails = JSON.parse(localStorage.getItem("childDetails"));
       if (childDetails) {
         try {
-          const response = await fetch(
-            "https://report-api-chfd.onrender.com/freeReport",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                dob: `${childDetails.dob} ${childDetails.time}:00`,
-                location: childDetails.place.split(",")[0],
-                lat: parseFloat(childDetails.lat),
-                lon: parseFloat(childDetails.lon),
-                gender: childDetails.gender,
-                name: childDetails.name,
-              }),
-            }
-          );
+          const response = await fetch("api/freeReport", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              date: `${childDetails.dob} ${childDetails.time}:00`,
+              lat: parseFloat(childDetails.lat),
+              lon: parseFloat(childDetails.lon),
+            }),
+          });
 
-          if (response.status == 200) {
+          if (response.ok) {
             const data = await response.json();
+            console.log(data);
             setPanchangData(data);
             setUserDetails(childDetails);
             setName(childDetails.name.split(" ")[0]);
-            setDisplayContent();
+            setDisplayContent(childDetails, data);
           } else {
             toast.warn(
               "We are unable to fetch the report at this time. We will notify you through email once it's available.",
@@ -300,9 +294,9 @@ const PanchangDisplay = () => {
               </h1>
               <p className="text-[16px] text-black mt-4 text-center leading-[1.2]">
                 The Precious Child Born on the auspicious day{" "}
-                <span>{formatDob(userDetails.dob)}</span> at{" "}
-                <span>{formatTime(userDetails.time)}</span>, in{" "}
-                <span>{userDetails.place}</span>.
+                <span>{userDetails.dob && formatDob(userDetails.dob)}</span> at{" "}
+                <span>{userDetails.time && formatTime(userDetails.time)}</span>,
+                in <span>{userDetails.place}</span>.
               </p>
             </section>
 

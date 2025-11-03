@@ -6355,3 +6355,158 @@ export const sampleBlogs = [
     metaTitle: "Parenting Guide for Swati  Nakshatra Children",
   },
 ];
+
+export const heroComponent = [
+  { title: "Temple Services" },
+  {
+    title: "Astrology Consultations",
+    subContent: [
+      "Natal Chart Reading",
+      "Compatibility Analysis",
+      "Career Guidance",
+      "Health Predictions",
+    ],
+  },
+  {
+    title: "Spiritual Guidance",
+    subContent: ["Meditation Sessions", "Chakra Balancing", "Energy Healing"],
+  },
+  {
+    title: "Store",
+    subContent: ["Rudraksha", "Spiritual Artifacts", "Meditation Aids"],
+  },
+];
+
+// Rudraksha- 12 Faces
+// ₹ 17850
+// Buy Now Add to Cart
+// Ruled by the Sun (Surya), this Rudraksha radiates leadership, vitality, and confidence. It enhances personal magnetism, empowers wise decisions, and uplifts the soul’s light. Ideal for those in public life, business, or seeking spiritual royalty and Divine authority.
+
+// Rudraksha- 11 Faces
+// Rudraksha- 11 Faces
+// ₹ 14350
+// Buy Now Add to Cart
+// Blessed by the 11 Rudras and ruled by Mars, this sacred bead boosts inner strength, willpower, and protection. It empowers speech, enhances concentration, and supports success in leadership and spiritual practices. It is especially beneficial for those seeking spiritual growth and inner strength.
+
+// Rudraksha- 9 Faces
+// Rudraksha- 9 Faces
+// ₹ 9100
+// Buy Now Add to Cart
+// Empowered by Goddess Durga and associated with Rahu, this Rudraksha instills fearlessness, dynamism, and Divine protection. It wards off negative influences, neutralizes Rahu’s malefic effects, and energizes the wearer with spiritual courage and power.
+
+// Rudraksha- 8 Faces
+// Rudraksha- 8 Faces
+// ₹ 9100
+// Buy Now Add to Cart
+// Ruled by Ketu and presided over by Ganesha, the remover of obstacles, this Rudraksha clears karmic blocks, ensures smooth progress, and enhances discernment. It supports clarity of direction, successful ventures, and freedom from limitations—both inner and outer.
+
+// Rudraksha- 7 Faces
+// Rudraksha- 7 Faces
+// ₹ 2100
+// Buy Now Add to Cart
+// Governed by Saturn and blessed by Goddess Mahalakshmi, this Rudraksha invites prosperity, abundance, and financial strength. It helps dissolve debts, relieve stress, and build steady growth. Ideal for those seeking wealth and long-term stability.
+
+// Rudraksha- 6 Faces
+// Rudraksha- 6 Faces
+// ₹ 700
+// Buy Now Add to Cart
+// Ruled by Venus and blessed by Muruga (Kartikeya), this Rudraksha enhances self-worth, learning, and emotional balance. It helps remove fear, anxiety, and mental turbulence while supporting artistic talents, education, and professional success.
+
+// Rudraksha- 5 Faces
+// Rudraksha- 5 Faces
+// ₹ 385
+// Buy Now Add to Cart
+// Ruled by Jupiter and blessed by Kalagni Rudra, this is the most commonly worn Rudraksha—and a powerful one. It calms the mind, purifies the aura, and harmonizes the five elements. Recommended for everyone, it promotes wisdom, inner peace, good health, and spiritual progress.
+
+// Rudraksha- 4 Faces
+// Rudraksha- 4 Faces
+// ₹ 700
+// Buy Now Add to Cart
+// Connected to Brahma, the Creator, and ruled by Mercury, this Rudraksha enhances knowledge, creativity, and communication. It sharpens memory, increases mental clarity, and supports spiritual learning. Ideal for students, teachers, artists, and seekers of divine wisdom.
+
+// Rudraksha- 3 Faces
+// Rudraksha- 3 Faces
+// ₹ 2100
+// Buy Now Add to Cart
+// Blessed by Agni (Fire God) and ruled by Mars, this bead burns karmic baggage, purifies energy, and inspires transformation. It revitalizes confidence, motivation, and personal strength—helping release guilt, overcome stagnation, and step into new beginnings.
+
+// Rudraksha- 2 Faces
+// Rudraksha- 2 Faces
+// ₹ 1750
+// Buy Now Add to Cart
+// Symbolizing Ardhanarishwara, the sacred union of Shiva and Parvati, this Rudraksha balances dualities—masculine and feminine, inner and outer. Ruled by the Moon, it promotes emotional stability, harmony in relationships, and peace in the home. Ideal for resolving conflicts and fostering unity.
+
+// Rudraksha- 1 Face
+// Rudraksha- 1 Face
+// ₹ 8750
+// Buy Now Add to Cart
+// Ruled by Shiva and governed by the Sun, this rare bead represents absolute oneness and pure consciousness. It dissolves ego, awakens spiritual clarity, and connects the wearer with Supreme Divine grace. Ideal for those seeking enlightenment, liberation, and deep inner peace.
+
+export const rudrakshas = [
+  {
+    faces: 12,
+    price: 17850,
+    description:
+      "Ruled by the Sun (Surya), this Rudraksha radiates leadership, vitality, and confidence. It enhances personal magnetism, empowers wise decisions, and uplifts the soul’s light. Ideal for those in public life, business, or seeking spiritual royalty and Divine authority.",
+  },
+  {
+    faces: 11,
+    price: 14350,
+    description:
+      "Ruled by the Moon (Chandra), this Rudraksha embodies intuition, emotions, and nurturing energy. It enhances creativity, supports mental clarity, and fosters harmonious relationships. Ideal for artists, caregivers, and those seeking emotional balance.",
+  },
+  {
+    faces: 9,
+    price: 9100,
+    description:
+      "Empowered by Goddess Durga and associated with Rahu, this Rudraksha instills fearlessness, dynamism, and Divine protection. It wards off negative influences, neutralizes Rahu’s malefic effects, and energizes the wearer with spiritual courage and power.",
+  },
+  {
+    faces: 8,
+    price: 9100,
+    description:
+      "Ruled by Ketu and presided over by Ganesha, the remover of obstacles, this Rudraksha clears karmic blocks, ensures smooth progress, and enhances discernment. It supports clarity of direction, successful ventures, and freedom from limitations—both inner and outer.",
+  },
+  {
+    faces: 7,
+    price: 2100,
+    description:
+      "Governed by Saturn and blessed by Goddess Mahalakshmi, this Rudraksha invites prosperity, abundance, and financial strength. It helps dissolve debts, relieve stress, and build steady growth. Ideal for those seeking wealth and long-term stability.",
+  },
+  {
+    faces: 6,
+    price: 700,
+    description:
+      "Ruled by Venus and blessed by Muruga (Kartikeya), this Rudraksha enhances self-worth, learning, and emotional balance. It helps remove fear, anxiety, and mental turbulence while supporting artistic talents, education, and professional success.",
+  },
+  {
+    faces: 5,
+    price: 385,
+    description:
+      "Ruled by Jupiter and blessed by Kalagni Rudra, this is the most commonly worn Rudraksha—and a powerful one. It calms the mind, purifies the aura, and harmonizes the five elements. Recommended for everyone, it promotes wisdom, inner peace, good health, and spiritual progress.",
+  },
+  {
+    faces: 4,
+    price: 700,
+    description:
+      "Connected to Brahma, the Creator, and ruled by Mercury, this Rudraksha enhances knowledge, creativity, and communication. It sharpens memory, increases mental clarity, and supports spiritual learning. Ideal for students, teachers, artists, and seekers of divine wisdom.",
+  },
+  {
+    faces: 3,
+    price: 2100,
+    description:
+      "Blessed by Agni (Fire God) and ruled by Mars, this bead burns karmic baggage, purifies energy, and inspires transformation. It revitalizes confidence, motivation, and personal strength—helping release guilt, overcome stagnation, and step into new beginnings.",
+  },
+  {
+    faces: 2,
+    price: 1750,
+    description:
+      "Symbolizing Ardhanarishwara, the sacred union of Shiva and Parvati, this Rudraksha balances dualities—masculine and feminine, inner and outer. Ruled by the Moon, it promotes emotional stability, harmony in relationships, and peace in the home. Ideal for resolving conflicts and fostering unity.",
+  },
+  {
+    faces: 1,
+    price: 8750,
+    description:
+      "Ruled by Shiva and governed by the Sun, this rare bead represents absolute oneness and pure consciousness. It dissolves ego, awakens spiritual clarity, and connects the wearer with Supreme Divine grace. Ideal for those seeking enlightenment, liberation, and deep inner peace.",
+  },
+];
