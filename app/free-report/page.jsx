@@ -167,7 +167,7 @@ const PanchangDisplay = () => {
     const fetchPanchang = async () => {
       const childDetails = JSON.parse(localStorage.getItem("childDetails"));
       setUserDetails(childDetails);
-      setCurrentStep(1);
+      setCurrentStep(0);
       setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
       if (childDetails) {
         try {
@@ -187,14 +187,20 @@ const PanchangDisplay = () => {
             const data = await response.json();
             await new Promise((resolve) => setTimeout(resolve, 1000));
             setPanchangData(data);
-            setCurrentStep(2);
+            setCurrentStep(1);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
-
             setName(childDetails.name.split(" ")[0]);
-            setDisplayContent(childDetails, data);
             await new Promise((resolve) => setTimeout(resolve, 1000));
+            setCurrentStep(2);
+            setDisplayContent(childDetails, data);
+            setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
+            await new Promise((resolve) => setTimeout(resolve, 500));
             setCurrentStep(3);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            setCurrentStep(4);
+            setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
+            setProgress(100);
             setLoading(false);
           }
         } catch (error) {
