@@ -187,13 +187,13 @@ const PanchangDisplay = () => {
             const data = await response.json();
             setPanchangData(data);
             setCurrentStep(2);
+            console.log(data);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
 
             setName(childDetails.name.split(" ")[0]);
             setDisplayContent(childDetails, data);
             setCurrentStep(3);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
-
             setLoading(false);
           }
         } catch (error) {
@@ -207,7 +207,9 @@ const PanchangDisplay = () => {
   }, []);
 
   if (loading) {
-    return <Loader steps={steps} progress={progress} currentStep={currentStep}/>;
+    return (
+      <Loader steps={steps} progress={progress} currentStep={currentStep} />
+    );
   }
 
   const months = [
