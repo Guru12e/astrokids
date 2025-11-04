@@ -263,6 +263,105 @@ const YOGAS = [
   "Indra",
   "Vaidhriti",
 ];
+
+const KARANAS = [
+  ["Kinstughna", "Bava"],
+  ["Balava", "Kaulava"],
+  ["Taitila", "Garaja"],
+  ["Vanija", "Vishti"],
+  ["Bava", "Balava"],
+  ["Kaulava", "Taitila"],
+  ["Garaja", "Vanija"],
+  ["Vishti", "Bava"],
+  ["Balava", "Kaulava"],
+  ["Taitila", "Garaja"],
+  ["Vanija", "Vishti"],
+  ["Bava", "Balava"],
+  ["Kaulava", "Taitila"],
+  ["Garaja", "Vanija"],
+  ["Vishti", "Shakuni"],
+  ["Balava", "Kaulava"],
+  ["Taitila", "Garaja"],
+  ["Vanija", "Vishti"],
+  ["Bava", "Balava"],
+  ["Kaulava", "Taitila"],
+  ["Garaja", "Vanija"],
+  ["Vishti", "Bava"],
+  ["Balava", "Kaulava"],
+  ["Taitila", "Garaja"],
+  ["Vanija", "Vishti"],
+  ["Bava", "Balava"],
+  ["Kaulava", "Taitila"],
+  ["Garaja", "Vanija"],
+  ["Vishti", "Shakuni"],
+  ["Chatushpada", "Nagava"],
+];
+
+const ganam_nakshatras = {
+  Deva_Ganam: [
+    "Ashwini",
+    "Mrigashira",
+    "Punarvasu",
+    "Pushya",
+    "Hasta",
+    "Swati",
+    "Anuradha",
+    "Shravana",
+    "Revati",
+  ],
+  Manushya_Ganam: [
+    "Bharani",
+    "Rohini",
+    "Ardra",
+    "Purva Phalguni",
+    "Uttara Phalguni",
+    "Purva Ashadha",
+    "Uttara Ashadha",
+    "Purva Bhadrapada",
+    "Uttara Bhadrapada",
+  ],
+  Rakshasa_Ganam: [
+    "Krittika",
+    "Ashlesha",
+    "Magha",
+    "Chitra",
+    "Vishakha",
+    "Jyeshtha",
+    "Mula",
+    "Dhanishta",
+    "Shatabhisha",
+  ],
+};
+
+const nakshatra_yoni = {
+  Ashwini: "Horse",
+  Bharani: "Elephant",
+  Krittika: "Sheep",
+  Rohini: "Snake",
+  Mrigashira: "Snake",
+  Ardra: "Dog",
+  Punarvasu: "Cat",
+  Pushya: "Sheep",
+  Ashlesha: "Cat",
+  Magha: "Rat",
+  "Purva Phalguni": "Rat",
+  "Uttara Phalguni": "Cow",
+  Hasta: "Buffalo",
+  Chitra: "Tiger",
+  Swati: "Buffalo",
+  Vishakha: "Tiger",
+  Anuradha: "Deer",
+  Jyeshtha: "Deer",
+  Mula: "Dog",
+  "Purva Ashadha": "Monkey",
+  "Uttara Ashadha": "Mongoose",
+  Shravana: "Monkey",
+  Dhanishta: "Lion",
+  Shatabhisha: "Horse",
+  "Purva Bhadrapada": "Lion",
+  "Uttara Bhadrapada": "Cow",
+  Revati: "Elephant",
+};
 function calculateTithi(sunLon, moonLon) {
   let diff = normalize(moonLon - sunLon);
   let tithiNum = Math.ceil(diff / 12);
@@ -280,19 +379,47 @@ function calculateYoga(sunLon, moonLon) {
   const index = Math.floor(sum / 13.3333333) % 27;
   return [YOGAS[index], index + 1];
 }
-function calculatePanchang(sun, moon, sunrise, sunset, weekday) {
-  const [tithi, tnum, paksha] = calculateTithi(sun, moon);
-  const [nakshatra] = calculateNakshatra(moon);
-  const [yoga] = calculateYoga(sun, moon);
-  return {
+function calculateKarana(tithiNumber, sunLon, moonLon) {
+  let diff = normalize(moonLon - sunLon);
+  const value = diff / 12.0;
+  const roundedValue = Math.round(value * 100) / 100;
+  const decimalPart = Math.round((roundedValue * 100) % 100);
+  const pair = KARANAS[tithiNumber - 1] || KARANAS[0];
+  if (decimalPart > 50) {
+    return [pair[1], tithiNumber * 2];
+  } else {
+    return [pair[0], tithiNumber * 2 - 1];
+  }
+}
+function calculateGanam(nakshatraName) {
+  if (ganam_nakshatras.Deva_Ganam.includes(nakshatraName)) return "Deva";
+  if (ganam_nakshatras.Manushya_Ganam.includes(nakshatraName))
+    return "Manushya";
+  return "Rakshasa";
+}
+function calculatePanchang(sunLon, moonLon, sunrise, sunset, weekday) {
+  const [tithi, tithiNumber, paksha] = calculateTithi(sunLon, moonLon);
+  const [nakshatra, nakIndex] = calculateNakshatra(moonLon);
+  const [yoga, yogaIndex] = calculateYoga(sunLon, moonLon);
+  const [karana, karanaIndex] = calculateKarana(tithiNumber, sunLon, moonLon);
+  const panchang = {
     tithi,
+    tithi_number: tithiNumber,
     paksha,
     nakshatra,
+    nakshatra_number: nakIndex + 1,
     yoga,
-    sunrise,
-    sunset,
-    weekday,
+    yoga_index: yogaIndex,
+    karana,
+    karana_number: karanaIndex,
+    sunrise: sunrise,
+    sunset: sunset,
+    ganam: calculateGanam(nakshatra),
+    yoni: nakshatra_yoni[nakshatra] || null,
+    week_day: weekday,
   };
+
+  return panchang;
 }
 
 export async function POST(req) {

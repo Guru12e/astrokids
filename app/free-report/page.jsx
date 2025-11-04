@@ -118,9 +118,9 @@ const PanchangDisplay = () => {
         nakshatra: panchangData.panchang.nakshatra,
         rasi: panchangData.planets[2].sign,
         lagna: `${panchangData.planets[0].sign} , ${panchangData.planets[0].zodiac_lord}`,
-        tithi: panchangData.panchang.thithi,
+        tithi: panchangData.panchang.tithi,
         nithyaYogam: panchangData.panchang.yoga,
-        karanam: panchangData.panchang.karanam,
+        karanam: panchangData.panchang.karana,
         weekDay: panchangData.panchang.week_day,
         ishtaDevatha: ista_devatas[isthadevathaLord],
         favourableNakshatra: favourableNakshatra.join(", "),
@@ -185,13 +185,14 @@ const PanchangDisplay = () => {
 
           if (response.ok) {
             const data = await response.json();
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             setPanchangData(data);
             setCurrentStep(2);
-            console.log(data);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
 
             setName(childDetails.name.split(" ")[0]);
             setDisplayContent(childDetails, data);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
             setCurrentStep(3);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
             setLoading(false);
@@ -411,7 +412,15 @@ const PanchangDisplay = () => {
 
               {constitution && (
                 <section className="bg-white rounded-3xl shadow-2xl p-8">
-                  <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
+                  <div className="relative w-[50%] md:w-[20%] aspect-video mx-auto mb-4">
+                    <Image
+                      src={`/images/new/${constitutionType}.png`}
+                      alt={constitutionType}
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <h2 className="text-[24px] font-bold leading-[1.2] text-[#6F8BEF] mb-6 text-center">
                     {name}'s Body is Dominated By {constitutionType} Nature
                   </h2>
                   <div className="flex flex-wrap gap-4 mb-6 justify-center">
