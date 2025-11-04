@@ -1,4 +1,3 @@
-// app/api/astro/route.js  (or wherever your POST handler is)
 import {
   Body,
   Ecliptic,
@@ -9,6 +8,7 @@ import {
   SearchRiseSet,
 } from "astronomy-engine";
 import { NextResponse } from "next/server";
+import moment from "moment-timezone";
 
 const LAHIRI_AYANAMSHA = 23.852;
 
@@ -86,39 +86,20 @@ function normalize(deg) {
   return ((deg % 360) + 360) % 360;
 }
 
-// ------------------ CRITICAL: Robust date parsing ------------------
-// If dateStr already includes timezone (Z or +hh:mm), use it.
-// If it does NOT include timezone, we will *treat it as IST* by appending +05:30.
-// This makes server and local behavior identical if client is providing local IST times.
 function toDateWithISTFallback(dateStr) {
-  if (!dateStr) return new Date(); // fallback to now
+  if (!dateStr) return new Date();
 
-  // Recognize ISO with timezone or Z
-  const isoTzRegex =
-    /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:\d{2})$/;
-  const isoNoTzRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?$/;
+  const hasTZ = /[Zz]|[+\-]\d{2}:\d{2}$/.test(dateStr);
+  if (hasTZ) return new Date(dateStr);
 
-  if (isoTzRegex.test(dateStr)) {
-    return new Date(dateStr); // has timezone info
-  } else if (isoNoTzRegex.test(dateStr)) {
-    // no timezone provided — assume IST (+05:30)
-    return new Date(dateStr + "+05:30");
-  } else {
-    // try Date parsing fallback (handles e.g. "2025-11-04")
-    const parsed = new Date(dateStr);
-    if (!isNaN(parsed)) return parsed;
-    // ultimate fallback: now
-    return new Date();
-  }
+  const istMoment = moment.tz(dateStr, "YYYY-MM-DD HH:mm:ss", "Asia/Kolkata");
+  return istMoment.toDate();
 }
 
-// Convert JS Date -> AstroTime consistently
 function astroTimeFromDate(dateObj) {
-  // astronomy-engine accepts JS Date in AstroTime constructor
   return new AstroTime(dateObj);
 }
 
-// ------------------ Sidereal helpers (tropical -> Lahiri sidereal) ------------------
 function tropicalToSidereal(deg) {
   return (deg - LAHIRI_AYANAMSHA + 720) % 360;
 }
@@ -127,11 +108,7 @@ function degreeToSign(tropicalDeg) {
   const deg = tropicalToSidereal(tropicalDeg);
   for (const [sign, start, end] of SIGNS) {
     if (deg >= start && deg < end) {
-      return {
-        sign,
-        norm_degree: deg - start,
-        zodiac_lord: SIGN_LORDS[sign],
-      };
+      return { sign, norm_degree: deg - start, zodiac_lord: SIGN_LORDS[sign] };
     }
   }
   return { sign: "Unknown", norm_degree: deg, zodiac_lord: "Unknown" };
@@ -153,44 +130,34 @@ function getHousePosition(planetSiderealDeg, ascSiderealDeg) {
   return Math.floor(diff / 30) + 1;
 }
 
-// ------------------ Retrograde check (keeps your original method) ------------------
 function isRetrograde(planet, astroTime) {
   if (planet === Body.Sun || planet === Body.Moon) return false;
-  // small dt in days — 0.1 day = 2.4 hours
   const dtDays = 0.1;
-  const time1 = astroTime;
   const time2 = new AstroTime(
     new Date(astroTime.date.getTime() + dtDays * 24 * 3600 * 1000)
   );
-  const lon1 = Ecliptic(GeoVector(planet, time1, true)).elon;
+  const lon1 = Ecliptic(GeoVector(planet, astroTime, true)).elon;
   const lon2 = Ecliptic(GeoVector(planet, time2, true)).elon;
   const dLon = ((lon2 - lon1 + 540) % 360) - 180;
   return dLon < 0;
 }
 
-// ------------------ Ascendant calculation (tropical then convert to sidereal) ------------------
 function calculateAscendantTropical(dateObj, lat, lon) {
   const at = astroTimeFromDate(dateObj);
-  let gmst = SiderealTime(at); // in hours
-  let lmst = gmst + lon / 15.0;
-  lmst = (lmst + 24) % 24;
-  const ramc = lmst * 15; // degrees
-
-  const obl = 23.43929111111111; // approximate mean obliquity
+  let gmst = SiderealTime(at);
+  let lmst = (gmst + lon / 15 + 24) % 24;
+  const ramc = lmst * 15;
+  const obl = 23.43929111111111;
   const latRad = (lat * Math.PI) / 180;
   const ramcRad = (ramc * Math.PI) / 180;
   const oblRad = (obl * Math.PI) / 180;
-
   const tanAsc =
     -Math.cos(ramcRad) /
     (Math.sin(ramcRad) * Math.cos(oblRad) +
       Math.tan(latRad) * Math.sin(oblRad));
   let asc = Math.atan(tanAsc) * (180 / Math.PI);
-
   if (Math.sin(ramcRad) > 0) asc += 180;
-  asc = (asc + 360) % 360;
-
-  return asc + 3;
+  return (asc + 3 + 360) % 360;
 }
 
 function calculateAscendantSidereal(dateObj, lat, lon) {
@@ -198,11 +165,9 @@ function calculateAscendantSidereal(dateObj, lat, lon) {
   return tropicalToSidereal(ascTropical);
 }
 
-// ------------------ Planetary positions ------------------
 function getPlanetaryPositions(dateObj) {
   const time = astroTimeFromDate(dateObj);
-
-  const planetList = [
+  const planets = [
     Body.Sun,
     Body.Moon,
     Body.Mercury,
@@ -211,19 +176,14 @@ function getPlanetaryPositions(dateObj) {
     Body.Jupiter,
     Body.Saturn,
   ];
-
-  const positions = [];
-
-  for (const planet of planetList) {
+  return planets.map((planet) => {
     const vec = GeoVector(planet, time, true);
     const ecl = Ecliptic(vec);
     const tropicalLon = (ecl.elon + 360) % 360;
     const siderealLon = tropicalToSidereal(tropicalLon);
-
     const signInfo = degreeToSign(tropicalLon);
     const nakInfo = getNakshatra(tropicalLon);
-
-    positions.push({
+    return {
       Name: BODY_NAMES[planet],
       full_degree: siderealLon,
       norm_degree: signInfo.norm_degree,
@@ -233,20 +193,14 @@ function getPlanetaryPositions(dateObj) {
       nakshatra: nakInfo.nakshatra,
       nakshatra_lord: nakInfo.nakshatra_lord,
       pada: nakInfo.pada,
-    });
-  }
-
-  return positions;
+    };
+  });
 }
 
-// ------------------ Sunrise / Sunset using SearchRiseSet ------------------
 function getSunriseSunset(dateObj, lat, lon) {
   const obs = new Observer(lat, lon, 0);
-  const startDate = dateObj;
-  // astronomy-engine SearchRiseSet accepts JS Date as start time in this binding
-  const rise = SearchRiseSet(Body.Sun, obs, +1, startDate, 300);
-  const set = SearchRiseSet(Body.Sun, obs, -1, startDate, 300);
-
+  const rise = SearchRiseSet(Body.Sun, obs, +1, dateObj, 300);
+  const set = SearchRiseSet(Body.Sun, obs, -1, dateObj, 300);
   const toISTString = (d) =>
     d
       ? new Date(d).toLocaleTimeString("en-GB", {
@@ -257,14 +211,12 @@ function getSunriseSunset(dateObj, lat, lon) {
           second: "2-digit",
         })
       : null;
-
   return {
     sunrise: rise ? toISTString(rise.date) : null,
     sunset: set ? toISTString(set.date) : null,
   };
 }
 
-// ------------------ Panchang helpers (kept from your code) ------------------
 const TITHIS = [
   "Pratipada",
   "Ditiya",
@@ -282,7 +234,6 @@ const TITHIS = [
   "Chaturdashi",
   "Purnima",
 ];
-
 const YOGAS = [
   "Vishkambha",
   "Priti",
@@ -312,106 +263,6 @@ const YOGAS = [
   "Indra",
   "Vaidhriti",
 ];
-
-const KARANAS = [
-  ["Kinstughna", "Bava"],
-  ["Balava", "Kaulava"],
-  ["Taitila", "Garaja"],
-  ["Vanija", "Vishti"],
-  ["Bava", "Balava"],
-  ["Kaulava", "Taitila"],
-  ["Garaja", "Vanija"],
-  ["Vishti", "Bava"],
-  ["Balava", "Kaulava"],
-  ["Taitila", "Garaja"],
-  ["Vanija", "Vishti"],
-  ["Bava", "Balava"],
-  ["Kaulava", "Taitila"],
-  ["Garaja", "Vanija"],
-  ["Vishti", "Shakuni"],
-  ["Balava", "Kaulava"],
-  ["Taitila", "Garaja"],
-  ["Vanija", "Vishti"],
-  ["Bava", "Balava"],
-  ["Kaulava", "Taitila"],
-  ["Garaja", "Vanija"],
-  ["Vishti", "Bava"],
-  ["Balava", "Kaulava"],
-  ["Taitila", "Garaja"],
-  ["Vanija", "Vishti"],
-  ["Bava", "Balava"],
-  ["Kaulava", "Taitila"],
-  ["Garaja", "Vanija"],
-  ["Vishti", "Shakuni"],
-  ["Chatushpada", "Nagava"],
-];
-
-const ganam_nakshatras = {
-  Deva_Ganam: [
-    "Ashwini",
-    "Mrigashira",
-    "Punarvasu",
-    "Pushya",
-    "Hasta",
-    "Swati",
-    "Anuradha",
-    "Shravana",
-    "Revati",
-  ],
-  Manushya_Ganam: [
-    "Bharani",
-    "Rohini",
-    "Ardra",
-    "Purva Phalguni",
-    "Uttara Phalguni",
-    "Purva Ashadha",
-    "Uttara Ashadha",
-    "Purva Bhadrapada",
-    "Uttara Bhadrapada",
-  ],
-  Rakshasa_Ganam: [
-    "Krittika",
-    "Ashlesha",
-    "Magha",
-    "Chitra",
-    "Vishakha",
-    "Jyeshtha",
-    "Mula",
-    "Dhanishta",
-    "Shatabhisha",
-  ],
-};
-
-const nakshatra_yoni = {
-  Ashwini: "Horse",
-  Bharani: "Elephant",
-  Krittika: "Sheep",
-  Rohini: "Snake",
-  Mrigashira: "Snake",
-  Ardra: "Dog",
-  Punarvasu: "Cat",
-  Pushya: "Sheep",
-  Ashlesha: "Cat",
-  Magha: "Rat",
-  "Purva Phalguni": "Rat",
-  "Uttara Phalguni": "Cow",
-  Hasta: "Buffalo",
-  Chitra: "Tiger",
-  Swati: "Buffalo",
-  Vishakha: "Tiger",
-  Anuradha: "Deer",
-  Jyeshtha: "Deer",
-  Mula: "Dog",
-  "Purva Ashadha": "Monkey",
-  "Uttara Ashadha": "Mongoose",
-  Shravana: "Monkey",
-  Dhanishta: "Lion",
-  Shatabhisha: "Horse",
-  "Purva Bhadrapada": "Lion",
-  "Uttara Bhadrapada": "Cow",
-  Revati: "Elephant",
-};
-
 function calculateTithi(sunLon, moonLon) {
   let diff = normalize(moonLon - sunLon);
   let tithiNum = Math.ceil(diff / 12);
@@ -420,144 +271,82 @@ function calculateTithi(sunLon, moonLon) {
   const paksha = tithiNum <= 15 ? "Shukla Paksha" : "Krishna Paksha";
   return [name, tithiNum, paksha];
 }
-
 function calculateNakshatra(moonLon) {
-  const deg = normalize(moonLon);
-  const index = Math.floor(deg / 13.333333333333334) % 27;
+  const index = Math.floor(normalize(moonLon) / 13.3333333) % 27;
   return [NAKSHATRAS[index][0], index];
 }
-
 function calculateYoga(sunLon, moonLon) {
   const sum = normalize(sunLon + moonLon);
-  const index = Math.floor(sum / 13.333333333333334) % 27;
+  const index = Math.floor(sum / 13.3333333) % 27;
   return [YOGAS[index], index + 1];
 }
-
-function calculateKarana(tithiNumber, sunLon, moonLon) {
-  let diff = normalize(moonLon - sunLon);
-  const value = diff / 12.0;
-  const roundedValue = Math.round(value * 100) / 100;
-  const decimalPart = Math.round((roundedValue * 100) % 100);
-  const pair = KARANAS[tithiNumber - 1] || KARANAS[0];
-  if (decimalPart > 50) {
-    return [pair[1], tithiNumber * 2];
-  } else {
-    return [pair[0], tithiNumber * 2 - 1];
-  }
-}
-
-function calculateGanam(nakshatraName) {
-  if (ganam_nakshatras.Deva_Ganam.includes(nakshatraName)) return "Deva";
-  if (ganam_nakshatras.Manushya_Ganam.includes(nakshatraName))
-    return "Manushya";
-  return "Rakshasa";
-}
-
-function calculatePanchangJS(sun_pos, moon_pos, sunrise, sunset, weekday) {
-  const sunLon = normalize(Number(sun_pos));
-  const moonLon = normalize(Number(moon_pos));
-
-  const [tithi, tithiNumber, paksha] = calculateTithi(sunLon, moonLon);
-  const [nakshatra, nakIndex] = calculateNakshatra(moonLon);
-  const [yoga, yogaIndex] = calculateYoga(sunLon, moonLon);
-  const [karana, karanaIndex] = calculateKarana(tithiNumber, sunLon, moonLon);
-  const panchang = {
+function calculatePanchang(sun, moon, sunrise, sunset, weekday) {
+  const [tithi, tnum, paksha] = calculateTithi(sun, moon);
+  const [nakshatra] = calculateNakshatra(moon);
+  const [yoga] = calculateYoga(sun, moon);
+  return {
     tithi,
-    tithi_number: tithiNumber,
     paksha,
     nakshatra,
-    nakshatra_number: nakIndex + 1,
     yoga,
-    yoga_index: yogaIndex,
-    karana,
-    karana_number: karanaIndex,
-    sunrise: sunrise,
-    sunset: sunset,
-    ganam: calculateGanam(nakshatra),
-    yoni: nakshatra_yoni[nakshatra] || null,
-    week_day: weekday,
+    sunrise,
+    sunset,
+    weekday,
   };
-
-  return panchang;
 }
 
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-// ------------------ MAIN API ------------------
 export async function POST(req) {
   try {
     const { date, lat, lon } = await req.json();
-
-    // 1) parse date robustly (IST fallback if no TZ provided)
     const dateObj = toDateWithISTFallback(date);
-
-    // 2) calculate ascendant (sidereal)
     const ascSid = calculateAscendantSidereal(dateObj, lat, lon);
     const ascTrop = calculateAscendantTropical(dateObj, lat, lon);
-
-    const ascSignInfo = degreeToSign(ascTrop);
+    const ascSign = degreeToSign(ascTrop);
     const ascNak = getNakshatra(ascTrop);
 
-    const ascendantObj = {
+    const ascendant = {
       Name: "Ascendant",
       full_degree: ascSid,
-      norm_degree: ascSignInfo.norm_degree,
-      sign: ascSignInfo.sign,
-      zodiac_lord: ascSignInfo.zodiac_lord,
+      norm_degree: ascSign.norm_degree,
+      sign: ascSign.sign,
+      zodiac_lord: ascSign.zodiac_lord,
       isRetro: false,
       nakshatra: ascNak.nakshatra,
       nakshatra_lord: ascNak.nakshatra_lord,
       pada: ascNak.pada,
     };
 
-    // 3) planets
     const planets = getPlanetaryPositions(dateObj);
+    const all = [ascendant, ...planets];
+    all.forEach(
+      (p) => (p.pos_from_asc = getHousePosition(p.full_degree, ascSid))
+    );
 
-    const all = [ascendantObj, ...planets];
-
-    // 4) pos_from_asc
-    all.forEach((obj) => {
-      obj.pos_from_asc = getHousePosition(obj.full_degree, ascSid);
-    });
-
-    // 5) sunrise/sunset
     const { sunrise, sunset } = getSunriseSunset(dateObj, lat, lon);
-
-    // 6) panchang (use Sun = planets[0] and Moon = planets[1] if ordering matches — ensure indices)
-    // In our `planets` ordering: Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn
     const sunSid = planets.find((p) => p.Name === "Sun").full_degree;
     const moonSid = planets.find((p) => p.Name === "Moon").full_degree;
 
-    // Note: the panchang calculations in your code used tropical longitudes originally.
-    // We will use *sidereal* longitudes (this matches your other outputs) — if you need tropical here instead,
-    // change to using the ecliptic .elon values (before lahiri conversion).
-    const panchang = calculatePanchangJS(
+    const panchang = calculatePanchang(
       sunSid,
       moonSid,
       sunrise,
       sunset,
-      days[dateObj.getDay()]
+      [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ][dateObj.getDay()]
     );
 
+    return NextResponse.json({ planets: all, panchang }, { status: 200 });
+  } catch (err) {
+    console.error("Error calculating free report:", err);
     return NextResponse.json(
-      {
-        planets: all,
-        panchang: panchang,
-      },
-      { status: 200 }
-    );
-  } catch (error) {
-    console.error("Error calculating free report:", error);
-    return NextResponse.json(
-      { message: "Error calculating free report", error: String(error) },
+      { message: "Error calculating free report", error: String(err) },
       { status: 500 }
     );
   }
