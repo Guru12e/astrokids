@@ -125,8 +125,15 @@ function isRetrograde(planet, time) {
   return dLon < 0;
 }
 
+function parseDateToIST(dateStr) {
+  const date = new Date(dateStr);
+  const utc = date.getTime() + date.getTimezoneOffset() * 60000;
+  const istTime = new Date(utc + 5.5 * 3600000);
+  return istTime;
+}
+
 function calculateAscendantTropical(dateStr, lat, lon) {
-  const time = new AstroTime(new Date(dateStr));
+  const time = new AstroTime(parseDateToIST(dateStr));
 
   let gmst = SiderealTime(time);
   let lmst = gmst + lon / 15;
