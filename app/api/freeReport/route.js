@@ -1,3 +1,4 @@
+// app/api/astro/route.js  (or wherever your POST handler is)
 import {
   Body,
   Ecliptic,
@@ -81,6 +82,43 @@ const BODY_NAMES = {
   [Body.Saturn]: "Saturn",
 };
 
+function normalize(deg) {
+  return ((deg % 360) + 360) % 360;
+}
+
+// ------------------ CRITICAL: Robust date parsing ------------------
+// If dateStr already includes timezone (Z or +hh:mm), use it.
+// If it does NOT include timezone, we will *treat it as IST* by appending +05:30.
+// This makes server and local behavior identical if client is providing local IST times.
+function toDateWithISTFallback(dateStr) {
+  if (!dateStr) return new Date(); // fallback to now
+
+  // Recognize ISO with timezone or Z
+  const isoTzRegex =
+    /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+\-]\d{2}:\d{2})$/;
+  const isoNoTzRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?$/;
+
+  if (isoTzRegex.test(dateStr)) {
+    return new Date(dateStr); // has timezone info
+  } else if (isoNoTzRegex.test(dateStr)) {
+    // no timezone provided — assume IST (+05:30)
+    return new Date(dateStr + "+05:30");
+  } else {
+    // try Date parsing fallback (handles e.g. "2025-11-04")
+    const parsed = new Date(dateStr);
+    if (!isNaN(parsed)) return parsed;
+    // ultimate fallback: now
+    return new Date();
+  }
+}
+
+// Convert JS Date -> AstroTime consistently
+function astroTimeFromDate(dateObj) {
+  // astronomy-engine accepts JS Date in AstroTime constructor
+  return new AstroTime(dateObj);
+}
+
+// ------------------ Sidereal helpers (tropical -> Lahiri sidereal) ------------------
 function tropicalToSidereal(deg) {
   return (deg - LAHIRI_AYANAMSHA + 720) % 360;
 }
@@ -115,33 +153,30 @@ function getHousePosition(planetSiderealDeg, ascSiderealDeg) {
   return Math.floor(diff / 30) + 1;
 }
 
-function isRetrograde(planet, time) {
+// ------------------ Retrograde check (keeps your original method) ------------------
+function isRetrograde(planet, astroTime) {
   if (planet === Body.Sun || planet === Body.Moon) return false;
-  const dt = 0.1;
-  const lon1 = Ecliptic(GeoVector(planet, time, true)).elon;
-  const t2 = new AstroTime(time.tt + dt);
-  const lon2 = Ecliptic(GeoVector(planet, t2, true)).elon;
+  // small dt in days — 0.1 day = 2.4 hours
+  const dtDays = 0.1;
+  const time1 = astroTime;
+  const time2 = new AstroTime(
+    new Date(astroTime.date.getTime() + dtDays * 24 * 3600 * 1000)
+  );
+  const lon1 = Ecliptic(GeoVector(planet, time1, true)).elon;
+  const lon2 = Ecliptic(GeoVector(planet, time2, true)).elon;
   const dLon = ((lon2 - lon1 + 540) % 360) - 180;
   return dLon < 0;
 }
 
-function parseDateToIST(dateStr) {
-  const date = new Date(dateStr);
-  const utc = date.getTime() + date.getTimezoneOffset() * 60000;
-  const istTime = new Date(utc + 5.5 * 3600000);
-  return istTime;
-}
-
-function calculateAscendantTropical(dateStr, lat, lon) {
-  const time = new AstroTime(parseDateToIST(dateStr));
-
-  let gmst = SiderealTime(time);
-  let lmst = gmst + lon / 15;
+// ------------------ Ascendant calculation (tropical then convert to sidereal) ------------------
+function calculateAscendantTropical(dateObj, lat, lon) {
+  const at = astroTimeFromDate(dateObj);
+  let gmst = SiderealTime(at); // in hours
+  let lmst = gmst + lon / 15.0;
   lmst = (lmst + 24) % 24;
-  const ramc = lmst * 15;
+  const ramc = lmst * 15; // degrees
 
-  const obl = 23.4393 - 0.0000004 * ((time.tt - 2451545.0) / 36525.0);
-
+  const obl = 23.43929111111111; // approximate mean obliquity
   const latRad = (lat * Math.PI) / 180;
   const ramcRad = (ramc * Math.PI) / 180;
   const oblRad = (obl * Math.PI) / 180;
@@ -158,14 +193,14 @@ function calculateAscendantTropical(dateStr, lat, lon) {
   return asc + 3;
 }
 
-function calculateAscendant(dateStr, lat, lon) {
-  const tropicalAsc = calculateAscendantTropical(dateStr, lat, lon);
-  return tropicalToSidereal(tropicalAsc);
+function calculateAscendantSidereal(dateObj, lat, lon) {
+  const ascTropical = calculateAscendantTropical(dateObj, lat, lon);
+  return tropicalToSidereal(ascTropical);
 }
 
-function getPlanetaryPositions(dateStr) {
-  const date = new Date(dateStr);
-  const time = new AstroTime(date);
+// ------------------ Planetary positions ------------------
+function getPlanetaryPositions(dateObj) {
+  const time = astroTimeFromDate(dateObj);
 
   const planetList = [
     Body.Sun,
@@ -204,59 +239,32 @@ function getPlanetaryPositions(dateStr) {
   return positions;
 }
 
-function findPlanets(dateStr, lat, lon) {
-  const ascSid = calculateAscendant(dateStr, lat, lon);
-  const ascTrop = calculateAscendantTropical(dateStr, lat, lon);
+// ------------------ Sunrise / Sunset using SearchRiseSet ------------------
+function getSunriseSunset(dateObj, lat, lon) {
+  const obs = new Observer(lat, lon, 0);
+  const startDate = dateObj;
+  // astronomy-engine SearchRiseSet accepts JS Date as start time in this binding
+  const rise = SearchRiseSet(Body.Sun, obs, +1, startDate, 300);
+  const set = SearchRiseSet(Body.Sun, obs, -1, startDate, 300);
 
-  const ascSign = degreeToSign(ascTrop);
-  const ascNak = getNakshatra(ascTrop);
+  const toISTString = (d) =>
+    d
+      ? new Date(d).toLocaleTimeString("en-GB", {
+          timeZone: "Asia/Kolkata",
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      : null;
 
-  const ascendantObj = {
-    Name: "Ascendant",
-    full_degree: ascSid,
-    norm_degree: ascSign.norm_degree,
-    sign: ascSign.sign,
-    zodiac_lord: ascSign.zodiac_lord,
-    isRetro: false,
-    nakshatra: ascNak.nakshatra,
-    nakshatra_lord: ascNak.nakshatra_lord,
-    pada: ascNak.pada,
+  return {
+    sunrise: rise ? toISTString(rise.date) : null,
+    sunset: set ? toISTString(set.date) : null,
   };
-
-  const planets = getPlanetaryPositions(dateStr);
-
-  const all = [ascendantObj, ...planets];
-
-  all.forEach((obj) => {
-    obj.pos_from_asc = getHousePosition(obj.full_degree, ascSid);
-  });
-
-  return all;
 }
 
-function toISTString(date) {
-  return date.toLocaleTimeString("en-GB", {
-    timeZone: "Asia/Kolkata",
-    hour12: false,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  });
-}
-
-function getSunriseSunset(lat, lon, dateStr = null) {
-  const date = dateStr ? new Date(dateStr) : new Date();
-
-  const observer = new Observer(lat, lon, 0);
-  const rise = SearchRiseSet(Body.Sun, observer, +1, date, 300);
-  const set = SearchRiseSet(Body.Sun, observer, -1, date, 300);
-
-  const sunrise = rise ? toISTString(rise.date) : null;
-  const sunset = set ? toISTString(set.date) : null;
-
-  return { sunrise, sunset };
-}
-
+// ------------------ Panchang helpers (kept from your code) ------------------
 const TITHIS = [
   "Pratipada",
   "Ditiya",
@@ -404,10 +412,6 @@ const nakshatra_yoni = {
   Revati: "Elephant",
 };
 
-function normalize(deg) {
-  return ((deg % 360) + 360) % 360;
-}
-
 function calculateTithi(sunLon, moonLon) {
   let diff = normalize(moonLon - sunLon);
   let tithiNum = Math.ceil(diff / 12);
@@ -487,16 +491,57 @@ const days = [
   "Saturday",
 ];
 
+// ------------------ MAIN API ------------------
 export async function POST(req) {
   try {
     const { date, lat, lon } = await req.json();
-    const planets = findPlanets(date, lat, lon);
-    const { sunrise, sunset } = getSunriseSunset(lat, lon, date);
-    const dateObj = new Date(date);
 
+    // 1) parse date robustly (IST fallback if no TZ provided)
+    const dateObj = toDateWithISTFallback(date);
+
+    // 2) calculate ascendant (sidereal)
+    const ascSid = calculateAscendantSidereal(dateObj, lat, lon);
+    const ascTrop = calculateAscendantTropical(dateObj, lat, lon);
+
+    const ascSignInfo = degreeToSign(ascTrop);
+    const ascNak = getNakshatra(ascTrop);
+
+    const ascendantObj = {
+      Name: "Ascendant",
+      full_degree: ascSid,
+      norm_degree: ascSignInfo.norm_degree,
+      sign: ascSignInfo.sign,
+      zodiac_lord: ascSignInfo.zodiac_lord,
+      isRetro: false,
+      nakshatra: ascNak.nakshatra,
+      nakshatra_lord: ascNak.nakshatra_lord,
+      pada: ascNak.pada,
+    };
+
+    // 3) planets
+    const planets = getPlanetaryPositions(dateObj);
+
+    const all = [ascendantObj, ...planets];
+
+    // 4) pos_from_asc
+    all.forEach((obj) => {
+      obj.pos_from_asc = getHousePosition(obj.full_degree, ascSid);
+    });
+
+    // 5) sunrise/sunset
+    const { sunrise, sunset } = getSunriseSunset(dateObj, lat, lon);
+
+    // 6) panchang (use Sun = planets[0] and Moon = planets[1] if ordering matches — ensure indices)
+    // In our `planets` ordering: Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn
+    const sunSid = planets.find((p) => p.Name === "Sun").full_degree;
+    const moonSid = planets.find((p) => p.Name === "Moon").full_degree;
+
+    // Note: the panchang calculations in your code used tropical longitudes originally.
+    // We will use *sidereal* longitudes (this matches your other outputs) — if you need tropical here instead,
+    // change to using the ecliptic .elon values (before lahiri conversion).
     const panchang = calculatePanchangJS(
-      planets[1].full_degree,
-      planets[2].full_degree,
+      sunSid,
+      moonSid,
       sunrise,
       sunset,
       days[dateObj.getDay()]
@@ -504,7 +549,7 @@ export async function POST(req) {
 
     return NextResponse.json(
       {
-        planets: planets,
+        planets: all,
         panchang: panchang,
       },
       { status: 200 }
@@ -512,7 +557,7 @@ export async function POST(req) {
   } catch (error) {
     console.error("Error calculating free report:", error);
     return NextResponse.json(
-      { message: "Error calculating free report" },
+      { message: "Error calculating free report", error: String(error) },
       { status: 500 }
     );
   }
