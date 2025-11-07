@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
 import {
+  atma_names,
   bodyConsitutions,
   constitutionRatio,
   ista_devatas,
@@ -21,7 +22,6 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import { set } from "mongoose";
 
 const Loader = ({ steps, progress, currentStep }) => {
   return (
@@ -109,6 +109,9 @@ const PanchangDisplay = () => {
         zodiac_lord[
           ((zodiac.indexOf(panchangData.planets[0].sign) + 5) % 12) - 1
         ];
+      const atma = panchangData.planets.filter(
+        (planet) => planet.order === 1
+      )[0].Name;
 
       setContent({
         name: userDetails.name,
@@ -116,14 +119,19 @@ const PanchangDisplay = () => {
         time: userDetails.time,
         place: userDetails.place,
         nakshatra: panchangData.panchang.nakshatra,
-        rasi: panchangData.planets[2].sign,
         lagna: `${panchangData.planets[0].sign} , ${panchangData.planets[0].zodiac_lord}`,
-        tithi: panchangData.panchang.tithi,
+        tithi:
+          panchangData.panchang.tithi +
+          " (" +
+          panchangData.panchang.paksha +
+          ")",
+        rasi: panchangData.planets[2].sign,
         nithyaYogam: panchangData.panchang.yoga,
         karanam: panchangData.panchang.karana,
         weekDay: panchangData.panchang.week_day,
         ishtaDevatha: ista_devatas[isthadevathaLord],
         favourableNakshatra: favourableNakshatra.join(", "),
+        AtmaKaragam: `${atma} , ${atma_names[atma]}`,
         luckyNumber: luckyNumber.join(", "),
         lifeStone: planetGemstone[panchangData.planets[0].zodiac_lord],
         beneficialStone: planetGemstone[fiveHouseLord],
@@ -290,7 +298,7 @@ const PanchangDisplay = () => {
                       identity: moonIdentity[panchangData.planets[2].sign],
                     },
                     {
-                      title: "Sun (Atma)",
+                      title: "Sun (Identity)",
                       sign: panchangData.planets[1].sign,
                       heading: "Core Identity",
                       identity: sunIdentity[panchangData.planets[1].sign],
