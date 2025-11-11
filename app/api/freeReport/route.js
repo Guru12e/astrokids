@@ -3,9 +3,9 @@ import { getDetails } from "@/lib/details";
 
 export async function POST(req) {
   try {
-    const { date, lat, lon } = await req.json();
+    const { date, lat, lon, timezone } = await req.json();
 
-    const { planets, panchang } = getDetails(date, lat, lon);
+    const { planets, panchang } = getDetails(date, lat, lon, timezone);
 
     return NextResponse.json({ planets, panchang }, { status: 200 });
   } catch (err) {

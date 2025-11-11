@@ -188,6 +188,7 @@ const PanchangDisplay = () => {
               date: `${childDetails.dob} ${childDetails.time}:00`,
               lat: parseFloat(childDetails.lat),
               lon: parseFloat(childDetails.lon),
+              timezone: childDetails.timezone,
             }),
           });
 

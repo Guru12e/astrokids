@@ -16,6 +16,7 @@ export async function POST(request) {
       number,
       lat,
       lon,
+      timezone,
       orderId,
       plan,
     } = await request.json();
@@ -48,6 +49,7 @@ export async function POST(request) {
                   number,
                   lat,
                   lon,
+                  timezone,
                   plan,
                   addedAt: new Date(),
                   isChecked: false,
@@ -72,6 +74,7 @@ export async function POST(request) {
             number,
             lat,
             lon,
+            timezone,
             plan,
             addedAt: new Date(),
             isChecked: false,

@@ -2,7 +2,6 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import locationData from "@/constant/processed_places.json";
 import {
   Carousel,
   CarouselContent,
@@ -15,6 +14,8 @@ import { pricing } from "@/constant/constant";
 import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
 import Script from "next/script";
+import PhoneInput from "./PhoneInput";
+import LocationInput from "./LocationInput";
 
 const NewChildDetails = ({ session }) => {
   const [loading, setLoading] = useState(false);
@@ -24,14 +25,12 @@ const NewChildDetails = ({ session }) => {
   const [place, setPlace] = useState("");
   const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
-  const [latLon, setLatLon] = useState({ lat: 0, lon: 0 });
+  const [latLon, setLatLon] = useState({ lat: 0, lon: 0, timezone: "" });
   const router = useRouter();
   const edit = useSearchParams().get("fieldEdit") || false;
   const paymentEdit = useSearchParams().get("paymentEdit") || false;
   const orderId = useSearchParams().get("orderId");
   const [locationInput, setLocationInput] = useState("");
-  const [filteredLocations, setFilteredLocations] = useState([]);
-  const locationInputRef = useRef(null);
   const formRef = useRef(null);
   const [api, setApi] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,6 +82,7 @@ const NewChildDetails = ({ session }) => {
               number: number,
               lat: latLon.lat,
               lon: latLon.lon,
+              timezone: latLon.timezone,
               orderId: dataId.id,
               plan: pricing[currentIndex].title,
             }),
@@ -177,6 +177,7 @@ const NewChildDetails = ({ session }) => {
           number,
           lat: latLon.lat,
           lon: latLon.lon,
+          timezone: latLon.timezone,
         })
       );
 
@@ -207,6 +208,7 @@ const NewChildDetails = ({ session }) => {
             number,
             lat: latLon.lat,
             lon: latLon.lon,
+            timezone: latLon.timezone,
           })
         );
         router.push("/free-report");
@@ -233,43 +235,6 @@ const NewChildDetails = ({ session }) => {
       setCurrentIndex(api.selectedScrollSnap());
     });
   }, [api]);
-
-  const handleFocus = () => {
-    if (locationInputRef.current) {
-      locationInputRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  };
-
-  const handleLocationInputChange = (e) => {
-    const value = e.target.value;
-    setLocationInput(value);
-    if (value.length >= 2) {
-      const indiaData = locationData["India"];
-      const locations = [];
-      Object.keys(indiaData).forEach((state) => {
-        indiaData[state].forEach((city) => {
-          const fullLocation = `${city.name}, ${state}, India`;
-          if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
-            locations.push({ ...city, state, fullLocation });
-          }
-        });
-      });
-      setFilteredLocations(locations);
-    } else {
-      setFilteredLocations([]);
-    }
-  };
-
-  const handleLocationSelect = (location) => {
-    const fullLocation = `${location.name}, ${location.state}, India`;
-    setLocationInput(fullLocation);
-    setPlace(fullLocation);
-    setLatLon({ lat: location.lat, lon: location.lon });
-    setFilteredLocations([]);
-  };
 
   const handleSlideChange = (index) => {
     setCurrentIndex(index);
@@ -384,29 +349,12 @@ const NewChildDetails = ({ session }) => {
                       <label className="block text-[14px] font-normal mb-1">
                         Location
                       </label>
-                      <input
-                        type="text"
-                        value={locationInput}
-                        onFocus={handleFocus}
-                        placeholder="Birth Location"
-                        onChange={handleLocationInputChange}
-                        ref={locationInputRef}
-                        required
-                        className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
+                      <LocationInput
+                        locationInput={locationInput}
+                        setLocationInput={setLocationInput}
+                        setPlace={setPlace}
+                        setLatLon={setLatLon}
                       />
-                      {filteredLocations.length > 0 && (
-                        <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
-                          {filteredLocations.map((location, index) => (
-                            <li
-                              key={index}
-                              className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
-                              onClick={() => handleLocationSelect(location)}
-                            >
-                              {location.fullLocation}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
                     </div>
                   </div>
                   <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -432,17 +380,11 @@ const NewChildDetails = ({ session }) => {
                       <label className="block text-[14px] font-normal mb-1">
                         Phone Number
                       </label>
-                      <input
-                        placeholder="Phone Number"
-                        id="phone"
-                        type="number"
-                        step={0}
+                      <PhoneInput
                         value={number}
-                        minLength={10}
-                        maxLength={10}
-                        onChange={(e) => setNumber(e.target.value)}
-                        className="w-full p-2 border text-gray-700 bg-white placeholder:text-black outline-none border-gray-300 rounded focus:ring focus:ring-purple-300 transition-all"
-                        required
+                        onChange={(value) => setNumber(value)}
+                        className="bg-white dark:bg-slate-800/50 border-white/20 dark:border-slate-700/50 text-slate-900 dark:text-white placeholder:text-slate-500 dark:placeholder:text-slate-400"
+                        placeholder="Enter phone number"
                       />
                     </div>
                   </div>
