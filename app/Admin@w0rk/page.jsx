@@ -1,6 +1,5 @@
 "use client";
 import { Pencil, Trash2 } from "lucide-react";
-import locationData from "@/constant/processed_places.json";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -50,7 +49,6 @@ const Admin = () => {
       setInsertIndex(blogContent.length + 1);
     }
   }, [blogContent]);
-
 
   const fetchAllBlogs = async () => {
     try {
@@ -337,28 +335,28 @@ const Admin = () => {
     }
   };
 
-  const handleLocationInputChange = (e) => {
-    const value = e.target.value;
-    setReportDetails({
-      ...reportDetails,
-      place: value,
-    });
-    if (value.length >= 2) {
-      const indiaData = locationData["India"];
-      const locations = [];
-      Object.keys(indiaData).forEach((state) => {
-        indiaData[state].forEach((city) => {
-          const fullLocation = `${city.name}, ${state}, India`;
-          if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
-            locations.push({ ...city, state, fullLocation });
-          }
-        });
-      });
-      setFilteredLocations(locations);
-    } else {
-      setFilteredLocations([]);
-    }
-  };
+  // const handleLocationInputChange = (e) => {
+  //   const value = e.target.value;
+  //   setReportDetails({
+  //     ...reportDetails,
+  //     place: value,
+  //   });
+  //   if (value.length >= 2) {
+  //     const indiaData = locationData["India"];
+  //     const locations = [];
+  //     Object.keys(indiaData).forEach((state) => {
+  //       indiaData[state].forEach((city) => {
+  //         const fullLocation = `${city.name}, ${state}, India`;
+  //         if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
+  //           locations.push({ ...city, state, fullLocation });
+  //         }
+  //       });
+  //     });
+  //     setFilteredLocations(locations);
+  //   } else {
+  //     setFilteredLocations([]);
+  //   }
+  // };
 
   const handleLocationSelect = (location) => {
     const fullLocation = `${location.name}, ${location.state}, India`;
@@ -715,13 +713,13 @@ const Admin = () => {
                     </div>
                     <div>
                       <label className="block text-gray-700">Place</label>
-                      <input
+                      {/* <input
                         type="text"
                         value={reportDetails.place}
                         onChange={handleLocationInputChange}
                         className="w-full p-2 border border-gray-300 rounded mt-1"
                         required
-                      />
+                      /> */}
                       {reportDetails.place && (
                         <div className="mt-2 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
                           {filteredLocations.map((location) => (
