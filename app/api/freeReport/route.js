@@ -3,11 +3,18 @@ import { getDetails } from "@/lib/details";
 
 export async function POST(req) {
   try {
-    const { date, lat, lon, timezone } = await req.json();
+    const { date, lat, lon, timezone, name, location } = await req.json();
 
-    const { planets, panchang } = getDetails(date, lat, lon, timezone);
+    const { planets, panchang, images } = await getDetails(
+      date,
+      lat,
+      lon,
+      timezone,
+      name,
+      location
+    );
 
-    return NextResponse.json({ planets, panchang }, { status: 200 });
+    return NextResponse.json({ planets, panchang, images }, { status: 200 });
   } catch (err) {
     console.error("Error calculating free report:", err);
     return NextResponse.json(

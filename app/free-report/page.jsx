@@ -189,6 +189,8 @@ const PanchangDisplay = () => {
               lat: parseFloat(childDetails.lat),
               lon: parseFloat(childDetails.lon),
               timezone: childDetails.timezone,
+              name: childDetails.name,
+              location: childDetails.place,
             }),
           });
 
@@ -424,6 +426,42 @@ const PanchangDisplay = () => {
                   </div>
                 )}
               </section>
+
+              {panchangData.images && (
+                <section className="bg-white rounded-3xl shadow-2xl p-8">
+                  <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
+                    {name}'s Birth Charts
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <h3 className="text-center font-semibold text-xl mb-4">
+                        Birth Chart
+                      </h3>
+                      <div className="relative w-full aspect-square">
+                        <Image
+                          src={`/generated/charts/${panchangData.images.birth_chart}`}
+                          alt={`${name}'s Birth Chart`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-center font-semibold text-xl mb-4">
+                        Navamsa Chart
+                      </h3>
+                      <div className="relative w-full aspect-square">
+                        <Image
+                          src={`/generated/charts/${panchangData.images.navamsa_chart}`}
+                          alt={`${name}'s Navamsa Chart`}
+                          fill
+                          className="object-contain"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
 
               {constitution && (
                 <section className="bg-white rounded-3xl shadow-2xl p-8">
