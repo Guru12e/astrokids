@@ -9,23 +9,23 @@ import { generateReport } from "@/lib/report";
 
 export async function POST(request) {
   try {
-    const { dob, location, lat, lon, gender, name, input, email } =
+    const { dob, location, lat, lon, timezone, gender, name, input, email } =
       await request.json();
 
-    const { planets, panchang } = getDetails(dob, lat, lon);
-    const mainPath = path.join(process.cwd(), "public");
-
-    const images = await generateBirthNavamsaChart(
-      planets,
-      mainPath,
+    const { planets, panchang, images } = await getDetails(
       dob,
-      location,
-      name
+      lat,
+      lon,
+      timezone,
+      name,
+      location
     );
+
+    const mainPath = path.join(process.cwd(), "public");
 
     const dasa = calculateDasa(dob, planets[2]);
 
-    const report = generateReport(
+    const report = await generateReport(
       mainPath,
       planets,
       panchang,

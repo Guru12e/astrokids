@@ -286,7 +286,7 @@ const PanchangDisplay = () => {
                 <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                   {name}'s True Self
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {[
                     {
                       title: "Ascendant (Lagna)",
@@ -306,6 +306,10 @@ const PanchangDisplay = () => {
                       heading: "Core Identity",
                       identity: sunIdentity[panchangData.planets[1].sign],
                     },
+                    {
+                      title: "Nakshatra",
+                      sign: panchangData.panchang.nakshatra,
+                    },
                   ].map((item, index) => (
                     <div
                       key={index}
@@ -316,10 +320,14 @@ const PanchangDisplay = () => {
                       </h3>
                       <div className="relative w-36 h-36 mx-auto mb-4">
                         <Image
-                          src={`/images/new/${item.sign}.png`}
+                          src={
+                            item.title === "Nakshatra"
+                              ? `/images/new/nakshatra/${panchangData.panchang.nakshatra_number}.jpg`
+                              : `/images/new/${item.sign}.png`
+                          }
                           alt={item.title}
                           fill
-                          className="object-contain"
+                          className="object-contain rounded-xl"
                         />
                       </div>
                       <p className="text-[16px] capitalize font-medium text-[#6F6C90]">
