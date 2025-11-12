@@ -439,7 +439,7 @@ const PanchangDisplay = () => {
                       </h3>
                       <div className="relative w-full aspect-square">
                         <Image
-                          src={`/generated/charts/${panchangData.images.birth_chart}`}
+                          src={`/tmp/charts/${panchangData.images.birth_chart}`}
                           alt={`${name}'s Birth Chart`}
                           fill
                           className="object-contain"
