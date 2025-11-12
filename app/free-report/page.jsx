@@ -427,7 +427,7 @@ const PanchangDisplay = () => {
                 )}
               </section>
 
-              {panchangData.images && (
+              {panchangData.charts && (
                 <section className="bg-white rounded-3xl shadow-2xl p-8">
                   <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                     {name}'s Birth Charts
@@ -439,7 +439,7 @@ const PanchangDisplay = () => {
                       </h3>
                       <div className="relative w-full aspect-square">
                         <Image
-                          src={`/tmp/charts/${panchangData.images.birth_chart}`}
+                          src={panchangData.charts.birth_chart}
                           alt={`${name}'s Birth Chart`}
                           fill
                           className="object-contain"
@@ -452,7 +452,7 @@ const PanchangDisplay = () => {
                       </h3>
                       <div className="relative w-full aspect-square">
                         <Image
-                          src={`/generated/charts/${panchangData.images.navamsa_chart}`}
+                          src={panchangData.charts.navamsa_chart}
                           alt={`${name}'s Navamsa Chart`}
                           fill
                           className="object-contain"

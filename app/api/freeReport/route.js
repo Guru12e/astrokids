@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getDetails } from "@/lib/details";
+import fs from "fs";
 
 export async function POST(req) {
   try {
@@ -14,7 +15,19 @@ export async function POST(req) {
       location
     );
 
-    return NextResponse.json({ planets, panchang, images }, { status: 200 });
+    const birthChartBase64 = fs
+      .readFileSync("tmp/charts/" + images.birth_chart)
+      .toString("base64");
+    const navamsaChartBase64 = fs
+      .readFileSync("tmp/charts/" + images.navamsa_chart)
+      .toString("base64");
+
+    const charts = {
+      birth_chart: "data:image/png;base64," + birthChartBase64,
+      navamsa_chart: "data:image/png;base64," + navamsaChartBase64,
+    };
+
+    return NextResponse.json({ planets, panchang, charts }, { status: 200 });
   } catch (err) {
     console.error("Error calculating free report:", err);
     return NextResponse.json(
