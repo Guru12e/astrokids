@@ -16,10 +16,10 @@ export async function POST(req) {
     );
 
     const birthChartBase64 = fs
-      .readFileSync("tmp/charts/" + images.birth_chart)
+      .readFileSync("/tmp/charts/" + images.birth_chart)
       .toString("base64");
     const navamsaChartBase64 = fs
-      .readFileSync("tmp/charts/" + images.navamsa_chart)
+      .readFileSync("/tmp/charts/" + images.navamsa_chart)
       .toString("base64");
 
     const charts = {
