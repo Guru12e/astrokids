@@ -54,7 +54,7 @@ export default function FlipCards({ panchangData, name }) {
       },
       {
         threshold: 0,
-        rootMargin: "-20% 0px -80% 0px",
+        rootMargin: "-40% 0px -80% 0px",
       }
     );
 

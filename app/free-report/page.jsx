@@ -573,7 +573,7 @@ const PanchangDisplay = () => {
               </section>
             </div>
 
-            <aside className="w-full md:w-1/3">
+            <aside className="w-full md:w-1/3 px-5 md:px-0">
               <div className="sticky top-20 space-y-8">
                 <h2 className="text-[24px] font-bold text-[#2DB787] mb-6 text-center">
                   Unlock More Insights
