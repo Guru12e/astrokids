@@ -561,7 +561,7 @@ const PanchangDisplay = () => {
                 </section>
               )}
 
-              <section className="new-gradient text-white rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
+              <section className="new-gradient text-white rounded-none md:rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
                 <p className="text-[26px] capitalize font-semibold text-center leading-[1.2] mb-6">
                   be the best mom and dad your child deserves 💛
                 </p>
