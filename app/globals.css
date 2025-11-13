@@ -411,6 +411,7 @@
   -webkit-transform-style: preserve-3d;
 }
 
+.flip-card.flipped .flip-card-inner,
 .flip-card:hover .flip-card-inner,
 .flip-card:focus-within .flip-card-inner {
   transform: rotateY(180deg);

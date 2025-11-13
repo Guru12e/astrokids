@@ -1,3 +1,5 @@
+"use client";
+
 import {
   lagnaIdentity,
   moonIdentity,
@@ -5,6 +7,7 @@ import {
   sunIdentity,
 } from "@/constant/constant";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export default function FlipCards({ panchangData, name }) {
   const items = [
@@ -34,10 +37,40 @@ export default function FlipCards({ panchangData, name }) {
     },
   ];
 
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    if (window.innerWidth > 768) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const target = entry.target;
+          if (entry.isIntersecting) {
+            target.classList.add("flipped");
+          } else {
+            target.classList.remove("flipped");
+          }
+        });
+      },
+      {
+        threshold: 0,
+        rootMargin: "-20% 0px -80% 0px",
+      }
+    );
+
+    cardRefs.current.forEach((ref) => ref && observer.observe(ref));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       {items.map((item, idx) => (
-        <div key={idx} className="flip-card cursor-pointer">
+        <div
+          key={idx}
+          ref={(el) => (cardRefs.current[idx] = el)}
+          className="flip-card cursor-pointer"
+        >
           <div className="flip-card-inner">
             <div className="flip-card-front">
               <h3 className="text-[18px] font-semibold text-[#6F8BEF] mb-3">
