@@ -89,9 +89,7 @@ const PanchangDisplay = () => {
   const setDisplayContent = (userDetails, panchangData) => {
     if (userDetails && panchangData) {
       const ninthHouseLord =
-        zodiac_lord[
-          ((zodiac.indexOf(panchangData.planets[0].sign) + 9) % 12) - 1
-        ];
+        zodiac_lord[(zodiac.indexOf(panchangData.planets[0].sign) + 9) % 12];
 
       const isthadevathaLord = panchangData.planets.filter(
         (planet) => planet.Name === ninthHouseLord
