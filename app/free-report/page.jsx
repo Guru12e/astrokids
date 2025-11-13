@@ -9,6 +9,7 @@ import {
   ista_devatas,
   lagnaIdentity,
   moonIdentity,
+  nakshatraIdentity,
   nakshatraNumber,
   nakshatras,
   planetGemstone,
@@ -22,6 +23,7 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import FlipCards from "@/components/Flipcards";
 
 const Loader = ({ steps, progress, currentStep }) => {
   return (
@@ -88,8 +90,10 @@ const PanchangDisplay = () => {
 
   const setDisplayContent = (userDetails, panchangData) => {
     if (userDetails && panchangData) {
-      const ninthHouseLord =
-        zodiac_lord[(zodiac.indexOf(panchangData.planets[0].sign) + 9) % 12];
+      const wrapIndex = (i) => ((i % 12) + 12) % 12;
+      let asc_index = zodiac.indexOf(panchangData.planets[0].sign);
+
+      const ninthHouseLord = zodiac_lord[wrapIndex(((asc_index + 9) % 12) - 1)];
 
       const isthadevathaLord = panchangData.planets.filter(
         (planet) => planet.Name === ninthHouseLord
@@ -263,7 +267,7 @@ const PanchangDisplay = () => {
     <>
       <Header />
       {content && (
-        <div className="w-screen min-h-screen bg-white py-16 px-5 md:px-10">
+        <div className="w-screen min-h-screen bg-white py-16 px-0 md:px-10">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-12">
             <div className="w-full md:w-2/3 space-y-12">
               <section className="bg-white rounded-3xl shadow-2xl p-8 hover:shadow-2xl transition-all duration-1000">
@@ -285,56 +289,8 @@ const PanchangDisplay = () => {
                 <h2 className="text-[24px] font-bold text-[#6F8BEF] mb-6 text-center">
                   {name}'s True Self
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {[
-                    {
-                      title: "Ascendant (Lagna)",
-                      sign: panchangData.planets[0].sign,
-                      heading: "Personality",
-                      identity: lagnaIdentity[panchangData.planets[0].sign],
-                    },
-                    {
-                      title: "Moon (Rasi)",
-                      sign: panchangData.planets[2].sign,
-                      heading: "Emotions",
-                      identity: moonIdentity[panchangData.planets[2].sign],
-                    },
-                    {
-                      title: "Sun (Identity)",
-                      sign: panchangData.planets[1].sign,
-                      heading: "Core Identity",
-                      identity: sunIdentity[panchangData.planets[1].sign],
-                    },
-                    {
-                      title: "Nakshatra",
-                      sign: panchangData.panchang.nakshatra,
-                    },
-                  ].map((item, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-xl p-6 text-center shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-                    >
-                      <h3 className="text-[18px] font-semibold text-[#6F8BEF] mb-3">
-                        {item.title}
-                      </h3>
-                      <div className="relative w-36 h-36 mx-auto mb-4">
-                        <Image
-                          src={
-                            item.title === "Nakshatra"
-                              ? `/images/new/nakshatra/${panchangData.panchang.nakshatra_number}.jpg`
-                              : `/images/new/${item.sign}.png`
-                          }
-                          alt={item.title}
-                          fill
-                          className="object-contain rounded-xl"
-                        />
-                      </div>
-                      <p className="text-[16px] capitalize font-medium text-[#6F6C90]">
-                        {item.sign}
-                      </p>
-                    </div>
-                  ))}
-                </div>
+                <FlipCards panchangData={panchangData} name={name} />
+
                 <button
                   className="px-4 py-2 mt-5 mx-auto font-medium rounded-lg flex justify-center items-center gap-2 border border-[#6F8BEF] text-[#6F8BEF] hover:bg-[#6F8BEF] hover:text-white transition-all duration-300"
                   onClick={() => setIsTrueSelfOpen(true)}
@@ -345,7 +301,7 @@ const PanchangDisplay = () => {
 
               {isTrueSelfOpen && (
                 <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-                  <div className="bg-white rounded-3xl p-8 w-[95%] md:w-[60%] max-h-[80vh] overflow-y-auto relative shadow-2xl border border-gray-100">
+                  <div className="bg-white rounded-3xl p-8 w-[95%] md:w-[80%] max-h-[80vh] overflow-y-auto relative shadow-2xl border border-gray-100">
                     <div className="sticky top-0 flex justify-end z-10">
                       <button
                         className="text-[#6F6C90] hover:text-[#6F8BEF] transition-colors duration-200"
@@ -357,25 +313,36 @@ const PanchangDisplay = () => {
                     <h2 className="text-[28px] font-bold text-[#6F8BEF] mb-6 text-center">
                       {name}'s True Self 🌟
                     </h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 z-5">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 z-5">
                       {[
                         {
                           title: "Ascendant (Lagna)",
                           sign: panchangData.planets[0].sign,
-                          heading: "Personality",
+                          heading:
+                            "Defines life direction, personality, and appearance.",
                           identity: lagnaIdentity[panchangData.planets[0].sign],
                         },
                         {
                           title: "Moon (Rasi)",
                           sign: panchangData.planets[2].sign,
-                          heading: "Emotions",
+                          heading:
+                            "Governs emotions, feelings, and moods, reactions.",
                           identity: moonIdentity[panchangData.planets[2].sign],
                         },
                         {
                           title: "Sun (Identity)",
                           sign: panchangData.planets[1].sign,
-                          heading: "Core Identity",
+                          heading:
+                            "Represents core identity, purpose, and vitality.",
                           identity: sunIdentity[panchangData.planets[1].sign],
+                        },
+                        {
+                          title: "Nakshatra",
+                          sign: panchangData.panchang.nakshatra,
+                          heading:
+                            "Reveals Inner instincts, Life Path, and spiritual drive.",
+                          identity:
+                            nakshatraIdentity[panchangData.panchang.nakshatra],
                         },
                       ].map((item, index) => (
                         <div
@@ -387,7 +354,11 @@ const PanchangDisplay = () => {
                           </h3>
                           <div className="relative w-36 h-36 mx-auto mb-4">
                             <Image
-                              src={`/images/new/${item.sign}.png`}
+                              src={
+                                item.title === "Nakshatra"
+                                  ? `/images/new/nakshatra/${panchangData.panchang.nakshatra_number}.jpg`
+                                  : `/images/new/${item.sign}.png`
+                              }
                               alt={item.title}
                               fill
                               className="object-contain"
@@ -398,7 +369,7 @@ const PanchangDisplay = () => {
                           </p>
                           <div className="mt-4">
                             <h4 className="text-[16px] font-semibold text-[#6F8BEF] mb-2">
-                              {name}'s {item.heading}
+                              {item.heading}
                             </h4>
                             <p className="text-[14px] capitalize text-[#8F8F8F]">
                               {item.identity

@@ -9,11 +9,11 @@ export const pricing = [
     title: "Starter Parenting",
     price: "199",
     content:
-      "Perfect for parents who want to learn about their child’s astrology, planetary positions, dominant chakra, body type, and Pancha Bhoota constitution.",
+      "Perfect for parents who want to learn about their child's astrology, planetary positions, dominant chakra, body type, and Pancha Bhoota constitution.",
     what: [
       {
         title: "Astrological Profile",
-        content: "Decode your child’s unique astrology.",
+        content: "Decode your child's unique astrology.",
       },
       {
         title: "Birth Chart Analysis",
@@ -41,11 +41,11 @@ export const pricing = [
     title: "Pro Parenting",
     price: "499",
     content:
-      "Ideal for parents seeking deeper insights into their child’s health, emotional well-being, and personality. Child Inner Worlds, Outer Personality, Health Predictions.",
+      "Ideal for parents seeking deeper insights into their child's health, emotional well-being, and personality. Child Inner Worlds, Outer Personality, Health Predictions.",
     what: [
       {
         title: "Astrological Profile",
-        content: "Decode your child’s unique astrology.",
+        content: "Decode your child's unique astrology.",
       },
       {
         title: "Birth Chart Analysis",
@@ -93,11 +93,11 @@ export const pricing = [
     title: "Ultimate Parenting",
     price: "999",
     content:
-      "For parents who want a roadmap to guide their child’s academic, career, and talent growth. Academic Success, Successful Career & Professions.",
+      "For parents who want a roadmap to guide their child's academic, career, and talent growth. Academic Success, Successful Career & Professions.",
     what: [
       {
         title: "Astrological Profile",
-        content: "Decode your child’s unique astrology.",
+        content: "Decode your child's unique astrology.",
       },
       {
         title: "Birth Chart Analysis",
@@ -169,11 +169,11 @@ export const pricing = [
     title: "Master Parenting",
     price: "1299",
     content:
-      "A complete guide for parents who want comprehensive insights into their child’s life journey and future milestones. Next 5 years Development Milestone Prediction, Child’s Life Insights.",
+      "A complete guide for parents who want comprehensive insights into their child's life journey and future milestones. Next 5 years Development Milestone Prediction, Child's Life Insights.",
     what: [
       {
         title: "Astrological Profile",
-        content: "Decode your child’s unique astrology.",
+        content: "Decode your child's unique astrology.",
       },
       {
         title: "Birth Chart Analysis",
@@ -253,7 +253,7 @@ export const pricing = [
       },
       {
         title: "Parenting Guides",
-        content: "Personalised checklists tailored to your child’s astrology.",
+        content: "Personalised checklists tailored to your child's astrology.",
       },
       {
         title: "Celebrity Comparisons",
@@ -261,7 +261,7 @@ export const pricing = [
       },
       {
         title: "Life Prediction Summary",
-        content: "A complete overview of your child’s path.",
+        content: "A complete overview of your child's path.",
       },
     ],
   },
@@ -269,80 +269,80 @@ export const pricing = [
 
 export const sunIdentity = {
   Aries:
-    "child, born with Sun in Mesha (Aries) has a strong and confident core identity. Child is energetic, independent, and eager to take on new challenges. The desire to lead and start new things shapes child's sense of self. Child's personality is bold, and child is not afraid to act quickly. Child's natural courage and enthusiasm drive actions and decisions, making child a go-getter.",
+    "Courageous and pioneering, child radiates confidence and drive. child's core identity thrives on action, independence, and new beginnings. child leads with passion and inspires others through boldness and enthusiasm.",
   Taurus:
-    "child, born with Sun in Vrishabha (Taurus) has a steady and grounded core identity. Child values stability, comfort, and material security. Determination and persistence drive child to work hard for goals. Child's approach to life is patient and methodical, seeking lasting rewards. Child thrives on reliability, and emotional security forms the foundation of personal identity.",
+    "Grounded and dependable, child embodies stability and endurance. child's purpose lies in creating security, comfort, and beauty. child moves steadily toward goals and values loyalty, patience, and lasting rewards.",
   Gemini:
-    "child, born with Sun in Mithuna (Gemini) has an adaptable and curious core identity. Child is intellectually driven, always seeking knowledge and new experiences. Child's identity is shaped by communication and social interactions, making child versatile and quick-witted. Child's ability to connect with others and adapt to different environments defines core nature.",
+    "Curious and versatile, child lives to learn, communicate, and connect. child's vitality comes from mental stimulation and fresh ideas. Adaptable and witty, child shines through words, movement, and creativity.",
   Cancer:
-    "child, born with Sun in Karka (Cancer) has a sensitive and nurturing core identity. Child's sense of self is closely tied to family and home life. Emotions guide child's decisions and actions, with a strong desire to care for others. Child's identity is rooted in deep emotional connections, loyalty, and the need to protect loved ones.",
-  Leo: "child, born with Sun in Simha (Leo) has a confident and vibrant core identity. Child craves attention, recognition, and creative self-expression. Child's identity is built on self-esteem, personal achievements, and the desire to inspire others. Child's natural leadership abilities shine through, and the spotlight fuels inner confidence.",
+    "Emotional and protective, child is guided by care and intuition. child's identity is rooted in empathy, family, and emotional connection. child nurtures others naturally and draws strength from an inner world of feeling.",
+  Leo: "Radiant and confident, child expresses life through creativity and joy. child's soul seeks recognition, leadership, and authenticity. child inspires with generosity and warmth, embodying the spirit of the Sun itself.",
   Virgo:
-    "child, born with Sun in Kanya (Virgo) has a practical and analytical core identity. Child is focused on details and constantly strives for self-improvement. Child's identity is shaped by a strong sense of duty and desire to be of service. Child's self-worth comes from helping others and solving problems with precision.",
+    "Practical and perceptive, child lives with purpose through service and improvement. child's vitality shines in details, discipline, and helpfulness. child seeks to refine life and make everything around better.",
   Libra:
-    "child, born with Sun in Tula (Libra) has a balanced and harmonious core identity. Child values relationships, fairness, and beauty in life. A strong desire for harmony and peace shapes child's sense of self. Child's identity is formed through partnerships, and the need for social interaction and compromise guides decisions.",
+    "Graceful and fair-minded, child seeks balance, harmony, and connection. child's core identity thrives in partnership and beauty. child radiates charm and diplomacy, bringing peace and elegance wherever life goes.",
   Scorpio:
-    "child, born with Sun in Vrischika (Scorpio) has a powerful and intense core identity. Child's identity is driven by passion, determination, and a deep need for transformation. Child is not afraid to confront challenges and explore the unknown. Emotional depth and resilience define child's sense of self and personal power.",
+    "Powerful and transformative, child lives with depth and emotional truth. child's identity is forged through intensity, mystery, and regeneration. child embodies resilience, passion, and the courage to evolve.",
   Sagittarius:
-    "child, born with Sun in Dhanu (Sagittarius) has an adventurous and philosophical core identity. Child's sense of self is defined by a love for freedom, exploration, and knowledge. Optimism and a desire to expand horizons guide child's path. Child values truth and strives for growth, both intellectually and spiritually.",
+    "Adventurous and optimistic, child radiates freedom and wisdom. child's purpose is to explore life — through travel, learning, or philosophy. child's fiery spirit inspires growth, truth, and expansion.",
   Capricorn:
-    "child, born with Sun in Makara (Capricorn) has a disciplined and ambitious core identity. Child's identity is shaped by a strong sense of responsibility and determination to succeed. Child values hard work and is focused on achieving long-term goals. Practicality and perseverance drive child's sense of self and personal growth.",
+    "Ambitious and disciplined, child embodies perseverance and purpose. child's identity revolves around building success and earning respect. child thrives on responsibility, patience, and long-term vision.",
   Aquarius:
-    "child, born with Sun in Kumbha (Aquarius) has an independent and innovative core identity. Child's sense of self is shaped by a desire for individuality and a deep connection to humanity. Intellectual curiosity and a strong sense of social justice guide child's path. Child is driven by the need to bring change and new ideas to the world.",
+    "Innovative and independent, child is driven by ideals and originality. child's purpose is to bring progress and inspire change. child shines through vision, individuality, and commitment to the collective good.",
   Pisces:
-    "child, born with Sun in Meena (Pisces) has a compassionate and imaginative core identity. Child's identity is deeply connected to emotions, dreams, and spirituality. Intuition and empathy define child's sense of self, and a desire to help others is a central part of child's nature. Artistic expression and a rich inner world are essential for child's personal fulfillment.",
+    "Compassionate and imaginative, child lives through emotion and intuition. child's soul seeks unity, healing, and artistic expression. child glows with empathy, spirituality, and the wisdom of deep feeling.",
 };
 
 export const moonIdentity = {
   Aries:
-    "child's Rashi Sign is Mesham A Mesha Rashi (Aries Moon Sign) child is always energetic, quick to act, and emotionally expressive. Child experiences emotions intensely and reacts quickly to situations. Emotional nature is often spontaneous, leading to both excitement and frustration. Child has a strong desire for independence and can feel frustrated when restricted. However, child's enthusiasm helps overcome emotional challenges, bringing a positive and dynamic energy to daily life.",
+    "Emotionally fiery, direct, and spontaneous, child feels emotions intensely and acts quickly on feelings. child craves excitement and independence, often expressing emotions boldly and honestly.",
   Taurus:
-    "child's Rashi Sign is Vrishabha Rashi (Taurus Moon Sign) child is always calm, stable, and emotionally grounded. Child values security and comfort, often seeking peace in familiar surroundings. Emotions are steady, and child is slow to anger, but when upset, emotions can linger for a while. Child has a strong attachment to loved ones and feels safe in nurturing relationships.",
+    "Emotionally steady, loyal, and comfort-seeking, child values peace, routine, and security. child processes feelings slowly but deeply, finding solace in beauty, touch, and familiar surroundings.",
   Gemini:
-    "child's Rashi Sign is Mithuna Rashi (Gemini Moon Sign) child is always curious, communicative, and emotionally versatile. Child's emotions are constantly changing, reflecting a need for mental stimulation. Child expresses feelings easily, but may quickly move on to other emotions. Child enjoys social interactions and feels emotionally energized through conversation and sharing ideas.",
+    "Emotionally curious, adaptable, and communicative, child intellectualizes feelings and needs mental stimulation to stay balanced. child expresses emotions through words, humor, and connection.",
   Cancer:
-    "child's Rashi Sign is Karka Rashi (Cancer Moon Sign) child is always sensitive, nurturing, and emotionally protective. Child's emotions are deep and influenced by family and home life. Intuitive and empathetic, child can sense the moods of others and is highly attuned to emotional needs. When upset, child seeks comfort in familiar surroundings and close relationships.",
-  Leo: "child's Rashi Sign is Simha Rashi (Leo Moon Sign) child is always confident, warm-hearted, and emotionally expressive. Child's emotions are strong, and child craves attention and appreciation. Child's emotional state is often tied to recognition and praise, feeling joyful when admired and hurt when ignored. Child's positive attitude and enthusiasm light up the environment.",
+    "Emotionally nurturing, sensitive, and protective, child feels deeply and seeks emotional safety. child is empathetic, family-oriented, and moods ebb and flow like the tides.",
+  Leo: "Emotionally expressive, proud, and warm-hearted, child thrives on appreciation and love. child feels best when emotions are seen and valued and radiates positivity when confident.",
   Virgo:
-    "child's Rashi Sign is Kanya Rashi (Virgo Moon Sign) child is always practical, analytical, and emotionally reserved. Child's emotions are often controlled, and child seeks logical solutions to emotional challenges. Sensitivity is directed toward others' needs, with child tending to offer care and support. Child may feel anxious or worried when things are disorganized or uncertain.",
+    "Emotionally analytical, practical, and service-minded, child seeks emotional order and clarity. child processes feelings quietly, preferring to help and improve rather than dramatize.",
   Libra:
-    "child's Rashi Sign is Tula Rashi (Libra Moon Sign) child is always balanced, harmonious, and emotionally diplomatic. Child seeks fairness in all relationships and can be easily affected by conflict. Emotions are balanced, with child striving for peace and avoiding emotional confrontations. Child is happiest when surrounded by beauty and harmony.",
+    "Emotionally harmonious, charming, and partnership-oriented, child craves balance and connection in relationships. child dislikes conflict and feels secure when surrounded by peace and beauty.",
   Scorpio:
-    "child's Rashi Sign is Vrischika Rashi (Scorpio Moon Sign) child is always intense, passionate, and emotionally profound. Child experiences emotions deeply and may struggle to express them at times. Child's emotional world is private, but when feelings are shared, they are intense and transformative. Trust is essential for child to open up emotionally.",
+    "Emotionally intense, private, and transformative, child experiences feelings at great depth and values emotional honesty. child craves deep bonds and faces inner change fearlessly.",
   Sagittarius:
-    "child's Rashi Sign is Dhanu Rashi (Sagittarius Moon Sign) child is always optimistic, adventurous, and emotionally independent. Child's emotions are free-spirited and tend to be linked to a desire for exploration and new experiences. Emotional reactions are quick but not lasting, with child seeking freedom to express feelings openly and without restriction.",
+    "Emotionally adventurous, optimistic, and freedom-loving, child reacts with enthusiasm and humor. child processes feelings through exploration, learning, and keeping a positive perspective.",
   Capricorn:
-    "child's Rashi Sign is Makara Rashi (Capricorn Moon Sign) child is always disciplined, reserved, and emotionally strong. Child's emotions are steady, but child tends to hide vulnerabilities and may not easily express feelings. Child feels secure through structure and achievement and may become upset if personal goals are disrupted. Emotional stability is a key trait.",
+    "Emotionally disciplined, composed, and self-reliant, child manages feelings through control and responsibility. child values stability and expresses care through practical support.",
   Aquarius:
-    "child's Rashi Sign is Kumbha Rashi (Aquarius Moon Sign) child is always intellectual, independent, and emotionally detached. Child's emotions are often influenced by logical thinking and the desire for individuality. Child may struggle with expressing emotions in conventional ways and seeks mental stimulation over emotional connection. Child values personal space and freedom.",
+    "Emotionally detached, inventive, and idealistic, child processes feelings through logic and vision. child cares deeply about humanity but needs space to understand personal emotions.",
   Pisces:
-    "child's Rashi Sign is Meena Rashi (Pisces Moon Sign) child is always compassionate, dreamy, and emotionally sensitive. Child's emotions are deep and often clouded by imagination. Child can easily absorb the emotions of others, making them empathetic but also vulnerable. Sensitive nature leads to emotional fluctuations, with child often seeking comfort and retreat in solitude or creative expression.",
+    "Emotionally sensitive, dreamy, and compassionate, child absorbs others' feelings easily and needs emotional boundaries. child finds comfort in imagination, art, and spiritual connection.",
 };
 
 export const lagnaIdentity = {
   Aries:
-    "child's Born Lagna is Mesha Lagna. child is always energetic, confident, and independent. Child has a natural ability to lead and take initiative. Strong drive helps child face challenges with courage. Child's enthusiasm and vitality inspire others to act. Adventurous spirit pushes child to explore new experiences and overcome obstacles.",
+    "Dynamic, bold, and pioneering, child is a natural leader with strong willpower and enthusiasm. child approaches life head-on, loves challenges, and appears energetic, athletic, and youthful.",
   Taurus:
-    "child's Born Lagna is Vrishabha Lagna. child is always calm, reliable, and practical. Child has a strong connection to stability and enjoys comfort. Persistent nature helps child achieve goals with patience and consistency. Child's love for beauty and harmony creates peace and balance in surroundings.",
+    "Calm, steady, and comfort-loving, child values stability, beauty, and material security. child has a grounded presence, pleasant appearance, and enjoys life's finer pleasures with patience and persistence.",
   Gemini:
-    "child's Born Lagna is Mithuna Lagna. child is always curious, communicative, and adaptable. Child enjoys learning new things and has a natural ability to express ideas. Social and quick-thinking nature helps child connect easily with others. Versatility allows child to thrive in various situations.",
+    "Curious, witty, and expressive, child is a quick thinker and versatile communicator. child appears youthful and lively, often juggling multiple interests or roles while thriving on mental stimulation.",
   Cancer:
-    "child's Born Lagna is Karka Lagna. child is always nurturing, sensitive, and protective. Child forms strong emotional bonds with family and friends. Intuitive nature helps child understand the feelings of others. Caring personality motivates child to protect and care for loved ones.",
-  Leo: "child's Born Lagna is Simha Lagna. child is always confident, creative, and charismatic. Child has natural leadership qualities and loves being in the spotlight. Courageous nature drives child to pursue big dreams and achieve greatness. Child's strong sense of self-worth and loyalty inspires others.",
+    "Sensitive, nurturing, and protective, child leads with heart and intuition. child has a soft, caring presence, and moods deeply influence child's life direction.",
+  Leo: "Confident, radiant, and proud, child naturally attracts attention with charisma and dignity. child expresses leadership, creativity, and warmth, carrying a regal and inspiring presence.",
   Virgo:
-    "child's Born Lagna is Kanya Lagna. child is always intelligent, detail-oriented, and organized. Child has a sharp mind and enjoys tasks that require critical thinking. Analytical nature helps child excel in planning and problem-solving. Child's practical approach makes them reliable and efficient.",
+    "Analytical, refined, and service-oriented, child notices details others miss and strives for order and improvement. child's demeanor is modest yet intelligent, with a preference for simplicity and cleanliness.",
   Libra:
-    "child's Born Lagna is Tula Lagna. child is always charming, diplomatic, and fair-minded. Child values balance and seeks harmony in relationships. Ability to see all perspectives helps child mediate conflicts. Child's love for beauty and art brings creativity and aesthetics to life.",
+    "Charming, balanced, and diplomatic, child seeks harmony and beauty in every aspect of life. child has a graceful presence and excels in relationships, often acting as a peacemaker and lover of aesthetics.",
   Scorpio:
-    "child's Born Lagna is Vrischika Lagna. child is always intense, passionate, and determined. Child has a deep curiosity about life and seeks to uncover hidden truths. Resilient nature helps child overcome obstacles and stay focused on goals. Powerful will enables child to achieve great success.",
+    "Intense, mysterious, and powerful, child exudes emotional depth and magnetic strength. child is private yet passionate, drawn toward transformation, truth, and self-mastery.",
   Sagittarius:
-    "child's Born Lagna is Dhanu Lagna. child is always optimistic, adventurous, and philosophical. Child has a strong desire for freedom and exploration. Enthusiastic nature drives child to seek new knowledge and experiences. Positive outlook and thirst for growth inspire those around them.",
+    "Optimistic, adventurous, and philosophical, child embraces life with an open and forward-looking spirit. child loves exploring new ideas, places, and cultures, radiating enthusiasm and wisdom.",
   Capricorn:
-    "child's Born Lagna is Makara Lagna. child is always disciplined, responsible, and ambitious. Child has a strong sense of duty and works hard to achieve long-term goals. Persistent nature helps child overcome challenges. Practical approach and determination drive child toward success.",
+    "Disciplined, responsible, and ambitious, child moves steadily toward goals with patience and persistence. child's composed appearance reflects maturity, determination, and a practical mindset.",
   Aquarius:
-    "child's Born Lagna is Kumbha Lagna. child is always innovative, independent, and humanitarian. Child values individuality and enjoys exploring new ideas. Intellectual and open-minded nature drives child to bring about change. Child's desire to improve the world motivates them to act in unique ways.",
+    "Independent, visionary, and unconventional, child is a forward-thinking soul who values originality and freedom. child carries a cool, unique aura and a progressive approach to life and community.",
   Pisces:
-    "child's Born Lagna is Meena Lagna. child is always compassionate, imaginative, and intuitive. Child has a strong connection to emotions and a deep sense of empathy. Creative nature drives child to explore artistic or spiritual pursuits. Sensitive personality makes child understanding and caring toward others.",
+    "Compassionate, imaginative, and gentle, child lives through intuition and empathy. child's dreamy nature and artistic charm make child a sensitive soul seeking emotional and spiritual connection.",
 };
 
 export const zodiac = [
@@ -492,7 +492,7 @@ export const bodyConsitutions = {
       },
       {
         title: "Focused on Goals",
-        con: "child doesn’t just dream but plans and works to make success happen.",
+        con: "child doesn't just dream but plans and works to make success happen.",
       },
     ],
     strengthNote:
@@ -504,7 +504,7 @@ export const bodyConsitutions = {
       },
       {
         title: "Anger and Frustration",
-        con: "When things don’t go as expected, child may experience emotional outbursts.",
+        con: "When things don't go as expected, child may experience emotional outbursts.",
       },
       {
         title: "Taking Criticism Too Personally",
@@ -533,7 +533,7 @@ export const bodyConsitutions = {
       },
       {
         title: "Offer Pitta-Balancing Foods",
-        con: "Support child’s mood with sweet, cooling foods like cucumbers, melons, and coconut water. Both Ayurveda and modern nutrition agree that diet directly impacts emotional health.",
+        con: "Support child's mood with sweet, cooling foods like cucumbers, melons, and coconut water. Both Ayurveda and modern nutrition agree that diet directly impacts emotional health.",
       },
       {
         title: "Create a Safe Space for Mistakes",
@@ -881,13 +881,13 @@ export const reviews = [
   {
     rating: 4.9,
     review:
-      "Practical remedies improved my child’s learning, emotional balance, and daily habits.",
+      "Practical remedies improved my child's learning, emotional balance, and daily habits.",
     name: "Priya",
   },
   {
     rating: 4.7,
     review:
-      "Noticed a big difference in my child’s behavior—more discipline, better focus, and a positive attitude.",
+      "Noticed a big difference in my child's behavior—more discipline, better focus, and a positive attitude.",
     name: "Arun",
   },
   {
@@ -917,9 +917,9 @@ export const sampleBlogs = [
       {
         type: "image",
         content:
-          "When you understand your child’s nature, parenting becomes less of a struggle and more of a journey together.”",
+          "When you understand your child's nature, parenting becomes less of a struggle and more of a journey together.”",
         image: "1ZUIIm5fEWU_21kQxcVxq-OZ9Gh08Rhpb",
-        alt: "Vishakha Nakshatra child learning through play with parent’s guidance",
+        alt: "Vishakha Nakshatra child learning through play with parent's guidance",
       },
       {
         type: "para",
@@ -929,7 +929,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "We bring together the wisdom of Vedic astrology and real-life parenting insights. This isn’t superstition — it’s a roadmap to understand your child’s nature, emotions, and learning style, so you can parent with confidence every day.",
+          "We bring together the wisdom of Vedic astrology and real-life parenting insights. This isn't superstition — it's a roadmap to understand your child's nature, emotions, and learning style, so you can parent with confidence every day.",
       },
       {
         type: "subtitle",
@@ -952,12 +952,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Vishakha children often surprise parents with their determination. Once they set their eyes on something, they don’t easily give up. I remember when my son kept trying to solve a tricky Lego model. For hours he refused to leave it unfinished, and when he finally completed it, the joy on his face said it all — that’s Vishakha energy.",
+          "Vishakha children often surprise parents with their determination. Once they set their eyes on something, they don't easily give up. I remember when my son kept trying to solve a tricky Lego model. For hours he refused to leave it unfinished, and when he finally completed it, the joy on his face said it all — that's Vishakha energy.",
       },
       {
         type: "para",
         content:
-          "These children also carry a magnetic charm. Teachers notice them in class, and peers enjoy being around them. They naturally attract attention, but what makes them special is their ability to stand firm even when challenged. They don’t just follow — they want to lead.",
+          "These children also carry a magnetic charm. Teachers notice them in class, and peers enjoy being around them. They naturally attract attention, but what makes them special is their ability to stand firm even when challenged. They don't just follow — they want to lead.",
       },
       { type: "subtitle", content: "Emotional and Physical Health Support" },
       {
@@ -966,7 +966,7 @@ export const sampleBlogs = [
         rows: [
           [
             "Emotions",
-            " Frustration when goals aren’t met ",
+            " Frustration when goals aren't met ",
             "Teach patience and celebrate small progress",
           ],
           [
@@ -993,7 +993,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Vishakha children thrive when their learning is tied to goals or achievements. If you frame a lesson as a challenge, they’ll engage with full focus. For example, when I turned a math worksheet into a “mission” where my child had to unlock levels, suddenly the same numbers felt like an exciting game.",
+          "Vishakha children thrive when their learning is tied to goals or achievements. If you frame a lesson as a challenge, they'll engage with full focus. For example, when I turned a math worksheet into a “mission” where my child had to unlock levels, suddenly the same numbers felt like an exciting game.",
       },
       {
         type: "para",
@@ -1033,8 +1033,7 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'At AstroKids, we help parents like you understand your child’s deeper personality, learning style, and emotional needs through Personalized <a herf="https://www.astrokids.ai/blogs/child-astrology-report">Child Astrology Reports </a>. These insights make parenting smoother, reduce daily struggles, and help you guide your child with clarity and confidence.',
+        content: `At AstroKids, we help parents like you understand your child's deeper personality, learning style, and emotional needs through Personalized <a herf="https://www.astrokids.ai/blogs/child-astrology-report">Child Astrology Reports </a>. These insights make parenting smoother, reduce daily struggles, and help you guide your child with clarity and confidence.`,
       },
     ],
     createdAt: "2025-09-04T06:04:14.360Z",
@@ -1068,7 +1067,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we believe parenting becomes easier when you understand your child’s natural personality. This isn’t about superstition; it’s about combining ancient wisdom from Vedic astrology with practical, everyday parenting tips. By learning about your child’s strengths, sensitivities, and learning style, you can raise them with confidence and reduce daily struggles.",
+          "At AstroKids, we believe parenting becomes easier when you understand your child's natural personality. This isn't about superstition; it's about combining ancient wisdom from Vedic astrology with practical, everyday parenting tips. By learning about your child's strengths, sensitivities, and learning style, you can raise them with confidence and reduce daily struggles.",
       },
       {
         type: "subtitle",
@@ -1090,8 +1089,7 @@ export const sampleBlogs = [
       { type: "title", content: "Parenting Tips for Chitra Nakshatra Child" },
       {
         type: "image",
-        content:
-          '"A parent’s gentle words today become a child’s strength tomorrow.”',
+        content: `"A parent's gentle words today become a child's strength tomorrow.”`,
         image: "1apUtCO0V0McDD1oxiCqff269XkVHbuL8",
         alt: "Parenting tips for Chitra Nakshatra child – nurturing creativity, learning, and emotional balance with astrology guidance.",
       },
@@ -1103,7 +1101,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we use the wisdom of Vedic astrology along with practical parenting advice. This is not about superstition; it’s about knowing your child’s nature, emotions, and learning style. so that you can raise them with clarity every day.",
+          "At AstroKids, we use the wisdom of Vedic astrology along with practical parenting advice. This is not about superstition; it's about knowing your child's nature, emotions, and learning style. so that you can raise them with clarity every day.",
       },
       {
         type: "subtitle",
@@ -1135,7 +1133,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Independence is another hallmark of a Chitra child. They often prefer to do things their own way rather than follow strict rules. This doesn’t mean they are disobedient — it means they value freedom and self-expression. At the same time, they are emotionally sensitive. Words matter to them, and they thrive on encouragement rather than pressure.",
+          "Independence is another hallmark of a Chitra child. They often prefer to do things their own way rather than follow strict rules. This doesn't mean they are disobedient — it means they value freedom and self-expression. At the same time, they are emotionally sensitive. Words matter to them, and they thrive on encouragement rather than pressure.",
       },
       {
         type: "para",
@@ -1213,8 +1211,7 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'At AstroKids, we help parents understand their child’s unique personality through personalized <a href="https://www.astrokids.ai/blogs/child-astrology-report"> Child Astrology Reports </a>. These reports provide deeper insights into your child’s strengths, emotional needs, and learning style, helping you parent with clarity and confidence.',
+        content: `At AstroKids, we help parents understand their child's unique personality through personalized <a href="https://www.astrokids.ai/blogs/child-astrology-report"> Child Astrology Reports </a>. These reports provide deeper insights into your child's strengths, emotional needs, and learning style, helping you parent with clarity and confidence.`,
       },
     ],
     createdAt: "2025-08-25T06:49:49.449Z",
@@ -1238,7 +1235,7 @@ export const sampleBlogs = [
       {
         type: "image",
         content:
-          "Your child’s hands are building more than crafts — they’re building confidence, joy, and a beautiful future.",
+          "Your child's hands are building more than crafts — they're building confidence, joy, and a beautiful future.",
         image: "1YZSYDTEUA4XCg7cBF-RM33hiDSyQ1N9k",
         alt: "Parents guiding a creative child with love and encouragement",
       },
@@ -1250,7 +1247,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we turn ancient wisdom into practical parenting tips to help you guide your child with confidence. This guide will help you understand your Hasta child’s personality, emotions, and learning style — making your parenting journey easier and more joyful.",
+          "At AstroKids, we turn ancient wisdom into practical parenting tips to help you guide your child with confidence. This guide will help you understand your Hasta child's personality, emotions, and learning style — making your parenting journey easier and more joyful.",
       },
       {
         type: "subtitle",
@@ -1370,7 +1367,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Encourage Creativity: Give them tools for art, crafts, or building activities.",
-          "Teach Self-Care: Show them it’s okay to rest and not help everyone all the time.",
+          "Teach Self-Care: Show them it's okay to rest and not help everyone all the time.",
           "Guide with Kindness: They listen better to gentle correction than harsh words.",
           "Celebrate Small Wins: Acknowledge their efforts to keep their confidence strong.",
           "Balance Fun and Responsibility: Structure helps them, but so does playtime.",
@@ -1386,7 +1383,7 @@ export const sampleBlogs = [
       {
         type: "checklist",
         items: [
-          " Understand their child’s unique personality blueprint",
+          " Understand their child's unique personality blueprint",
           "Design routines that match their strengths",
           " Handle challenges with insight and confidence",
         ],
@@ -1394,7 +1391,7 @@ export const sampleBlogs = [
       {
         type: "subtitle1",
         content:
-          "Want to discover your child’s hidden strengths and potential?",
+          "Want to discover your child's hidden strengths and potential?",
       },
       {
         type: "para",
@@ -1434,7 +1431,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we turn timeless Vedic insights into everyday parenting wisdom. In this guide, we’ll help you understand your Uttara Phalguni child’s personality, learning style, and emotional needs — so you can raise them with clarity, confidence, and deep connection.",
+          "At AstroKids, we turn timeless Vedic insights into everyday parenting wisdom. In this guide, we'll help you understand your Uttara Phalguni child's personality, learning style, and emotional needs — so you can raise them with clarity, confidence, and deep connection.",
       },
       {
         type: "subtitle",
@@ -1587,12 +1584,12 @@ export const sampleBlogs = [
           {
             title: "5. Balance discipline with affection",
             content:
-              "These children thrive when parents combine firm boundaries with emotional warmth. A hug after a correction reassures them that they’re still loved unconditionally.",
+              "These children thrive when parents combine firm boundaries with emotional warmth. A hug after a correction reassures them that they're still loved unconditionally.",
           },
           {
             title: "6. Foster teamwork at home",
             content:
-              "Get them involved in group activities like cooking or cleaning as a family. This helps them learn cooperation and respect for others’ contributions",
+              "Get them involved in group activities like cooking or cleaning as a family. This helps them learn cooperation and respect for others' contributions",
           },
           {
             title: "7. Provide emotional reassurance during transitions",
@@ -1605,7 +1602,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Raising an Uttara Phalguni Nakshatra child means guiding a heart that is naturally generous and a mind that’s built for responsibility. With the right mix of appreciation, structure, and gentle encouragement, these children blossom into confident, compassionate, and capable young leaders.",
+          "Raising an Uttara Phalguni Nakshatra child means guiding a heart that is naturally generous and a mind that's built for responsibility. With the right mix of appreciation, structure, and gentle encouragement, these children blossom into confident, compassionate, and capable young leaders.",
       },
       {
         type: "para",
@@ -1618,7 +1615,7 @@ export const sampleBlogs = [
   {
     _id: "689b158d6acf1e4be228de2e",
     title:
-      "Raising a Happy & Confident Purva Phalguni Nakshatra Child – A Parent’s Guide",
+      "Raising a Happy & Confident Purva Phalguni Nakshatra Child – A Parent's Guide",
     metaTitle: "Parenting a Purva Phalguni Nakshatra Child",
     metaDescription:
       "Understand the personality traits of a Purva Phalguni Nakshatra child and explore practical parenting tips to encourage their creativity, leadership, and emotional balance.",
@@ -1629,12 +1626,11 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "Raising a Happy & Confident Purva Phalguni Nakshatra Child – A Parent’s Guide",
+          "Raising a Happy & Confident Purva Phalguni Nakshatra Child – A Parent's Guide",
       },
       {
         type: "image",
-        content:
-          '"A Purva Phalguni child’s heart is a garden — your kindness is the sunlight."',
+        content: `"A Purva Phalguni child's heart is a garden — your kindness is the sunlight."`,
         image: "1o_kWKqDfApY6ewBeZX8STIrHBcUO7_CZ",
         alt: "Smiling child playing under the sun – Purva Phalguni Nakshatra personality and parenting tips.",
       },
@@ -1646,7 +1642,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we transform ancient astrological wisdom into practical, everyday parenting guidance. In this guide, we’ll help you understand and support your Purva Phalguni child’s emotional world, learning style, and unique strengths — so you can raise them with confidence, joy, and deep connection.",
+          "At AstroKids, we transform ancient astrological wisdom into practical, everyday parenting guidance. In this guide, we'll help you understand and support your Purva Phalguni child's emotional world, learning style, and unique strengths — so you can raise them with confidence, joy, and deep connection.",
       },
       {
         type: "subtitle",
@@ -1829,7 +1825,7 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Want to know your Purva Phalguni child’s full potential?",
+        content: "Want to know your Purva Phalguni child's full potential?",
       },
       {
         type: "para",
@@ -1868,7 +1864,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we believe that parenting guided by Vedic wisdom can help you better understand your child's emotional needs, natural talents, and hidden challenges. In this blog, let’s explore the personality of a Magha Nakshatra child and how you can lovingly support their journey.",
+          "At AstroKids, we believe that parenting guided by Vedic wisdom can help you better understand your child's emotional needs, natural talents, and hidden challenges. In this blog, let's explore the personality of a Magha Nakshatra child and how you can lovingly support their journey.",
       },
       { type: "subtitle", content: "About  Magha Nakshatra Child" },
       {
@@ -1923,7 +1919,7 @@ export const sampleBlogs = [
           "Respect is mutual (they admire grown-ups who “walk the talk”)",
           "Rules are fair and consistently followed",
           "There's room to express emotions and talk about fears",
-          "They’re acknowledged for efforts—not just outcomes",
+          "They're acknowledged for efforts—not just outcomes",
         ],
       },
       {
@@ -1959,7 +1955,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Although each child is unique, children under Magha Nakshatra may have sensitivities in specific areas. Here’s a gentle health table for parents to consider:",
+          "Although each child is unique, children under Magha Nakshatra may have sensitivities in specific areas. Here's a gentle health table for parents to consider:",
       },
       {
         type: "table",
@@ -1992,12 +1988,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Raising a magha nakshatra child is delicate on the outside but incredibly resilient at the core. These children are born with depth, empathy, and intuition that can guide their life’s purpose beautifully—if supported gently.At AstroKids, we’re here to help you:",
+          "Raising a magha nakshatra child is delicate on the outside but incredibly resilient at the core. These children are born with depth, empathy, and intuition that can guide their life's purpose beautifully—if supported gently.At AstroKids, we're here to help you:",
       },
       {
         type: "checklist",
         items: [
-          " Understand your child’s emotional blueprint ",
+          " Understand your child's emotional blueprint ",
           "Design routines that align with their sensitive nature ",
           "Navigate challenging moments with confidence and calm",
         ],
@@ -2005,7 +2001,7 @@ export const sampleBlogs = [
       {
         type: "subtitle1",
         content:
-          " Want to know more about your child’s unique strengths and hidden potential?",
+          " Want to know more about your child's unique strengths and hidden potential?",
       },
       {
         type: "para",
@@ -2020,7 +2016,7 @@ export const sampleBlogs = [
     title: "Ashlesha Nakshatra Child Traits & How Parents Can Support Them",
     metaTitle: "Parenting an Ashlesha Nakshatra Child",
     metaDescription:
-      "Discover your child’s emotional world through Ashlesha Nakshatra. A parenting guide filled with insights, traits, and mindful support strategies.",
+      "Discover your child's emotional world through Ashlesha Nakshatra. A parenting guide filled with insights, traits, and mindful support strategies.",
     image: "1Y4yOJEk2K90icCZV-eA3jTqqhuPR0ZSc",
     slug: "ashlesha-nakshatra-child",
     type: 1,
@@ -2045,7 +2041,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we help parents turn ancient insights into everyday parenting wisdom. In this guide, we’ll walk you through how to understand and nurture your Ashlesha child’s emotional world, learning style, and overall well-being with clarity, empathy, and encouragement.",
+          "At AstroKids, we help parents turn ancient insights into everyday parenting wisdom. In this guide, we'll walk you through how to understand and nurture your Ashlesha child's emotional world, learning style, and overall well-being with clarity, empathy, and encouragement.",
       },
       {
         type: "subtitle",
@@ -2077,7 +2073,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Ashlesha children are emotional sponges—they absorb the energy of their surroundings. They’re highly intuitive, often sensing what others feel but don’t say. This gives them great emotional depth, but it also means they need healthy outlets to express what’s going on inside.",
+          "Ashlesha children are emotional sponges—they absorb the energy of their surroundings. They're highly intuitive, often sensing what others feel but don't say. This gives them great emotional depth, but it also means they need healthy outlets to express what's going on inside.",
       },
       {
         type: "subtitle",
@@ -2092,7 +2088,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Observe more than they speak ",
-          "Read people’s moods instantly  ",
+          "Read people's moods instantly  ",
           "Retreat into their shell when overwhelmed ",
           "Be highly imaginative and emotionally sensitive ",
           "Show bursts of creativity through art, storytelling, or daydreaming",
@@ -2141,7 +2137,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Ashlesha kids learn through emotional connection. They’re not passive learners—they absorb stories, meanings, and subtle emotional cues from their environment. They often do well when allowed to explore ideas at their own pace.",
+          "Ashlesha kids learn through emotional connection. They're not passive learners—they absorb stories, meanings, and subtle emotional cues from their environment. They often do well when allowed to explore ideas at their own pace.",
       },
       { type: "subtitle1", content: "Learning Tips for Ashlesha Children:" },
       {
@@ -2213,7 +2209,7 @@ export const sampleBlogs = [
           {
             title: "3.Teach Energy Boundaries:",
             content:
-              " Help them understand that it's not their job to fix everyone’s problems. They need to protect their energy, too.",
+              " Help them understand that it's not their job to fix everyone's problems. They need to protect their energy, too.",
           },
           {
             title: "4.Slow, Predictable Transitions:",
@@ -2231,13 +2227,13 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Raising an Ashlesha Nakshatra child is like nurturing a rare orchid—delicate on the outside but incredibly resilient at the core. These children are born with depth, empathy, and intuition that can guide their life’s purpose beautifully—if supported gently.",
+          "Raising an Ashlesha Nakshatra child is like nurturing a rare orchid—delicate on the outside but incredibly resilient at the core. These children are born with depth, empathy, and intuition that can guide their life's purpose beautifully—if supported gently.",
       },
-      { type: "para", content: "At AstroKids, we’re here to help you:" },
+      { type: "para", content: "At AstroKids, we're here to help you:" },
       {
         type: "checklist",
         items: [
-          "Understand your child’s emotional blueprint",
+          "Understand your child's emotional blueprint",
           "Design routines that align with their sensitive nature ",
           "Navigate challenging moments with confidence and calm",
         ],
@@ -2245,7 +2241,7 @@ export const sampleBlogs = [
       {
         type: "subtitle1",
         content:
-          "Want to know more about your child’s unique strengths and hidden potential?",
+          "Want to know more about your child's unique strengths and hidden potential?",
       },
       {
         type: "para",
@@ -2272,20 +2268,19 @@ export const sampleBlogs = [
       },
       {
         type: "image",
-        content:
-          '"A Pushya child’s love is quiet, but they holds the whole family together."',
+        content: `"A Pushya child's love is quiet, but they holds the whole family together."`,
         image: "1T0e9YoRGIHdVJwhywITW0yM0Kyvqe6YZ",
         alt: "Illustration of a calm and nurturing child under the moon, symbolizing Pushya Nakshatra traits in Vedic astrology parenting.",
       },
       {
         type: "para",
         content:
-          "If you're parenting a child born under Pushya Nakshatra, you're not just raising a child—you’re guiding a gentle yet powerful soul with an inborn sense of duty, loyalty, and compassion. These children have old souls, carry unspoken wisdom, and often put others before themselves—sometimes even too early in life.",
+          "If you're parenting a child born under Pushya Nakshatra, you're not just raising a child—you're guiding a gentle yet powerful soul with an inborn sense of duty, loyalty, and compassion. These children have old souls, carry unspoken wisdom, and often put others before themselves—sometimes even too early in life.",
       },
       {
         type: "para",
         content:
-          "At AstroKids, we help parents decode their child’s nakshatra energy and turn ancient insights into real-world parenting strategies. Let’s walk you through what makes your Pushya child unique and how you can support their growth with calm, clarity, and confidence.",
+          "At AstroKids, we help parents decode their child's nakshatra energy and turn ancient insights into real-world parenting strategies. Let's walk you through what makes your Pushya child unique and how you can support their growth with calm, clarity, and confidence.",
       },
       { type: "subtitle", content: " About Pushya Nakshatra" },
       {
@@ -2301,14 +2296,14 @@ export const sampleBlogs = [
             " Brings discipline, structure, and maturity",
           ],
           ["Zodiac Sign ", "Cancer "],
-          ["Symbol ", " Cow’s udder -Symbol of nourishment, giving, and care"],
+          ["Symbol ", " Cow's udder -Symbol of nourishment, giving, and care"],
           ["Element ", "Water – Reflective, intuitive, and emotionally deep"],
         ],
       },
       {
         type: "para",
         content:
-          "Pushya-born children are quietly dependable. They don’t seek the spotlight but often become the emotional anchors for family and friends. They love helping, guiding, and protecting—and feel lost when they can't.",
+          "Pushya-born children are quietly dependable. They don't seek the spotlight but often become the emotional anchors for family and friends. They love helping, guiding, and protecting—and feel lost when they can't.",
       },
       { type: "subtitle", content: "Personality Traits of Pushya Children" },
       {
@@ -2332,7 +2327,7 @@ export const sampleBlogs = [
           {
             title: "Parenting Tips",
             content:
-              "Your child doesn’t need loud praise. A genuine “I trust you” goes further than a dozen gold stars.\n",
+              "Your child doesn't need loud praise. A genuine “I trust you” goes further than a dozen gold stars.\n",
           },
         ],
       },
@@ -2367,7 +2362,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Pushya kids are not the fastest in class, but they’re incredibly consistent and reliable. They learn through emotional connection, storytelling, and purpose—not pressure.",
+          "Pushya kids are not the fastest in class, but they're incredibly consistent and reliable. They learn through emotional connection, storytelling, and purpose—not pressure.",
       },
       {
         type: "subtitle1",
@@ -2446,7 +2441,7 @@ export const sampleBlogs = [
           {
             title: "4️⃣Teach Healthy Boundaries",
             content:
-              "Pushya children are natural nurturers, but they often feel responsible for everyone’s happiness. Help them understand that it’s okay to say “no” and that their needs matter just as much as others'.",
+              "Pushya children are natural nurturers, but they often feel responsible for everyone's happiness. Help them understand that it's okay to say “no” and that their needs matter just as much as others'.",
           },
           {
             title: "5️⃣ Use Value-Based Teaching:",
@@ -2469,7 +2464,7 @@ export const sampleBlogs = [
       {
         type: "checklist",
         items: [
-          "✔ Understand your child’s emotional and learning patterns",
+          "✔ Understand your child's emotional and learning patterns",
           " ✔ Design routines aligned with their nakshatra energy",
           " ✔ Respond to behavioral challenges with confidence and love",
         ],
@@ -2533,14 +2528,14 @@ export const sampleBlogs = [
         content:
           "Punarvasu children are emotionally sensitive, kind-hearted, and thoughtful. They like to feel safe and valued and often think deeply about the people around them.",
       },
-      { type: "para", content: "Here’s what you may notice:" },
+      { type: "para", content: "Here's what you may notice:" },
       {
         type: "checklist",
         items: [
           "They stay calm in difficult situations and try to comfort others   ",
           " Love telling stories, drawing, or playing imaginatively",
           "Adjust easily when you change routines, school, or environment ",
-          " They don’t like loud voices or sudden arguments at home",
+          " They don't like loud voices or sudden arguments at home",
         ],
       },
       {
@@ -2592,7 +2587,7 @@ export const sampleBlogs = [
         items: [
           "Avoid forcing quick answers—let them process and respond thoughtfully",
           "Encourage creative projects like journaling, drawing, or building things",
-          "Provide a quiet study environment—they’re easily distracted by noise",
+          "Provide a quiet study environment—they're easily distracted by noise",
           "Watch for emotional blocks—they may shut down under harsh feedback",
         ],
       },
@@ -2629,7 +2624,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Raising an Ashlesha child takes patience and gentle structure. Here are five simple tips to help you support your child’s overall growth:",
+          "Raising an Ashlesha child takes patience and gentle structure. Here are five simple tips to help you support your child's overall growth:",
       },
       {
         type: "points",
@@ -2657,7 +2652,7 @@ export const sampleBlogs = [
           {
             title: "5️⃣Help Them Express Feelings",
             content:
-              "Be patient when they feel emotional. Listen without judging and let them share what’s on their mind.\n",
+              "Be patient when they feel emotional. Listen without judging and let them share what's on their mind.\n",
           },
         ],
       },
@@ -2670,7 +2665,7 @@ export const sampleBlogs = [
       {
         type: "checklist",
         items: [
-          "Understand your child’s emotional blueprint",
+          "Understand your child's emotional blueprint",
           "Discover their learning style and behavioral patterns",
           "Follow daily routines tailored to their Nakshatra energy",
         ],
@@ -2709,12 +2704,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "If your child was born under Ardra Nakshatra, you’re blessed with a truly unique soul — a child full of energy, deep curiosity, and strong emotions. Ardra children are ruled by Rudra, the fierce and transformative form of Lord Shiva, known for cleansing and creating new paths.",
+          "If your child was born under Ardra Nakshatra, you're blessed with a truly unique soul — a child full of energy, deep curiosity, and strong emotions. Ardra children are ruled by Rudra, the fierce and transformative form of Lord Shiva, known for cleansing and creating new paths.",
       },
       {
         type: "para",
         content:
-          "Just like refreshing rain after a hot summer day, your Ardra child can bring a wave of change, new ideas, and deep emotional growth into your family. But with this powerful spirit comes the need for mindful, loving guidance. Let’s explore how you can truly understand, support, and nurture your Ardra child on their special journey.",
+          "Just like refreshing rain after a hot summer day, your Ardra child can bring a wave of change, new ideas, and deep emotional growth into your family. But with this powerful spirit comes the need for mindful, loving guidance. Let's explore how you can truly understand, support, and nurture your Ardra child on their special journey.",
       },
       { type: "subtitle", content: "Quick Snapshot: Ardra Nakshatra" },
       {
@@ -2732,7 +2727,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Ardra children are natural thinkers and seekers. Their minds are always active — they’re constantly asking, exploring, and imagining.",
+          "Ardra children are natural thinkers and seekers. Their minds are always active — they're constantly asking, exploring, and imagining.",
       },
       {
         type: "highlight-list",
@@ -2823,7 +2818,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Due to the influence of Rahu and Rudra’s transformative energy, Ardra children might face certain sensitivities:",
+          "Due to the influence of Rahu and Rudra's transformative energy, Ardra children might face certain sensitivities:",
       },
       {
         type: "table",
@@ -2911,7 +2906,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Parenting an Ardra Nakshatra child is a journey filled with wonder, growth, and unexpected discoveries. By guiding them gently and supporting their unique spirit, you’re helping them blossom into their true self — strong, sensitive, and full of light",
+          "Parenting an Ardra Nakshatra child is a journey filled with wonder, growth, and unexpected discoveries. By guiding them gently and supporting their unique spirit, you're helping them blossom into their true self — strong, sensitive, and full of light",
       },
       {
         type: "subtitle1",
@@ -2950,7 +2945,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "If your child was born under Mrigashira Nakshatra, you’re raising a bright, curious, and gentle soul. Like the deer that symbolizes this nakshatra, your child is always moving, always exploring, and always seeking something new.",
+          "If your child was born under Mrigashira Nakshatra, you're raising a bright, curious, and gentle soul. Like the deer that symbolizes this nakshatra, your child is always moving, always exploring, and always seeking something new.",
       },
       {
         type: "para",
@@ -2963,7 +2958,7 @@ export const sampleBlogs = [
         headers: ["Aspect", "Details"],
         rows: [
           ["Planetary Ruler", "Mars"],
-          ["Symbol", "Deer’s head"],
+          ["Symbol", "Deer's head"],
           ["Zodiac Signs", "Taurus (Vrishabha), Gemini (Mithuna)"],
           ["Element", "Air"],
           ["Energy", "Searching, wandering, learning  "],
@@ -2976,12 +2971,12 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content: "Your child’s world is full of wonder and constant discovery.",
+        content: "Your child's world is full of wonder and constant discovery.",
       },
       {
         type: "checklist",
         items: [
-          'Curious & Restless: Always asking "Why?", "How?", and "What’s next?".',
+          `Curious & Restless: Always asking "Why?", "How?", and "What's next?".`,
           "Gentle & Friendly: They bond easily with friends",
           "Creative Thinkers: Drawn to stories, arts, and imaginative play.",
           "Sensitive Hearts: Easily hurt by harsh words or sudden changes.",
@@ -3076,7 +3071,7 @@ export const sampleBlogs = [
           {
             title: "Researcher or scientist",
             content:
-              "Their endless curiosity can lead them to uncover new ideas and inspire the world. Encourage their love for exploring and asking questions — it’s their true strength.",
+              "Their endless curiosity can lead them to uncover new ideas and inspire the world. Encourage their love for exploring and asking questions — it's their true strength.",
           },
           {
             title: "Wildlife conservationist or environmentalist",
@@ -3086,7 +3081,7 @@ export const sampleBlogs = [
           {
             title: "Counselor or teacher",
             content:
-              "Their gentle heart may lead them to support and guide others. Celebrate their caring spirit — it’s a powerful gift that lights up every room.",
+              "Their gentle heart may lead them to support and guide others. Celebrate their caring spirit — it's a powerful gift that lights up every room.",
           },
           {
             title: "Travel or adventure-related fields",
@@ -3108,12 +3103,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Raising a Mrigashira Nakshatra child is like walking through a magical forest — each day brings new discoveries and lessons for both of you.  You’re not just guiding them; you’re holding their hand as they uncover their own magic. Be patient with their wandering spirit. Cherish the endless questions. Their curiosity is a gift to the world — and you are the gentle anchor that keeps them safe.",
+          "Raising a Mrigashira Nakshatra child is like walking through a magical forest — each day brings new discoveries and lessons for both of you.  You're not just guiding them; you're holding their hand as they uncover their own magic. Be patient with their wandering spirit. Cherish the endless questions. Their curiosity is a gift to the world — and you are the gentle anchor that keeps them safe.",
       },
       {
         type: "para",
         content:
-          "At AstroKids, we deeply understand how to support your Mrigashira Nakshatra child emotionally. Our insights aren’t just based on astrology but on heartfelt care, years of observation, and a true love for every child’s journey.",
+          "At AstroKids, we deeply understand how to support your Mrigashira Nakshatra child emotionally. Our insights aren't just based on astrology but on heartfelt care, years of observation, and a true love for every child's journey.",
       },
       {
         type: "subtitle1",
@@ -3153,13 +3148,12 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'Does your child have a gentle, creative, and loving energy that shines through everything they do? If they’re born under Rohini Nakshatra, you’re raising one of the most charming and affectionate souls in the zodiac.In Vedic astrology, each Nakshatra carries a unique energy that shapes a person’s character and life journey. Rohini Nakshatra, known as the "Star of Ascent," is celebrated for its beauty, creativity, and nurturing spirit.',
+        content: `Does your child have a gentle, creative, and loving energy that shines through everything they do? If they're born under Rohini Nakshatra, you're raising one of the most charming and affectionate souls in the zodiac.In Vedic astrology, each Nakshatra carries a unique energy that shapes a person's character and life journey. Rohini Nakshatra, known as the "Star of Ascent," is celebrated for its beauty, creativity, and nurturing spirit.`,
       },
       {
         type: "para",
         content:
-          "In this complete parenting guide, we’ll explore the unique traits of Rohini Nakshatra children, how to support their emotional and physical well-being, and practical tips to help them grow into confident, happy individuals.",
+          "In this complete parenting guide, we'll explore the unique traits of Rohini Nakshatra children, how to support their emotional and physical well-being, and practical tips to help them grow into confident, happy individuals.",
       },
       {
         type: "subtitle",
@@ -3389,8 +3383,7 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'At AstroKids, we offer <a href="https://www.astrokids.ai/plans">personalized astrology reports</a> tailored to your child\'s birth chart.',
+        content: `At AstroKids, we offer <a href="https://www.astrokids.ai/plans">personalized astrology reports</a> tailored to your child\'s birth chart.`,
       },
     ],
     createdAt: "2025-07-01T07:20:27.793Z",
@@ -3410,7 +3403,7 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "Krittika Nakshatra Child: A Parent’s Loving Guide to Traits, Health, and Growth",
+          "Krittika Nakshatra Child: A Parent's Loving Guide to Traits, Health, and Growth",
       },
       {
         type: "image",
@@ -3427,7 +3420,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "As a parent, understanding these special traits can help you support your child with more love, patience, and confidence. In this guide, we’ll explore everything you need to know about raising a Krittika Nakshatra child — from their personality and health to emotional needs, family bonds, and future success.",
+          "As a parent, understanding these special traits can help you support your child with more love, patience, and confidence. In this guide, we'll explore everything you need to know about raising a Krittika Nakshatra child — from their personality and health to emotional needs, family bonds, and future success.",
       },
       {
         type: "subtitle",
@@ -3478,12 +3471,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Krittika children have big dreams and set high goals for themselves. When they cannot reach these goals, they might feel frustrated or sad. As a parent, your role is to remind them that it’s okay to make mistakes and that learning takes time.",
+          "Krittika children have big dreams and set high goals for themselves. When they cannot reach these goals, they might feel frustrated or sad. As a parent, your role is to remind them that it's okay to make mistakes and that learning takes time.",
       },
       {
         type: "para",
         content:
-          "Celebrate their efforts, not just their results. Simple words like “I’m proud of you for trying” can boost their confidence and teach them patience. Encourage them to try creative activities like painting, dancing, or music — these outlets help them express their feelings and develop a sense of inner calm",
+          "Celebrate their efforts, not just their results. Simple words like “I'm proud of you for trying” can boost their confidence and teach them patience. Encourage them to try creative activities like painting, dancing, or music — these outlets help them express their feelings and develop a sense of inner calm",
       },
       { type: "subtitle", content: "Opportunities for  Future Success" },
       {
@@ -3503,7 +3496,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Right now, planetary positions bring positive energy for your Kritthika child’s growth. Jupiter is encouraging learning and curiosity, making it a great time to introduce new books, activities, or classes. Saturn teaches patience and discipline, which are important lessons for them.",
+          "Right now, planetary positions bring positive energy for your Kritthika child's growth. Jupiter is encouraging learning and curiosity, making it a great time to introduce new books, activities, or classes. Saturn teaches patience and discipline, which are important lessons for them.",
       },
       {
         type: "para",
@@ -3529,12 +3522,12 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle1",
-        content: "Want to learn more about your child’s cosmic journey?",
+        content: "Want to learn more about your child's cosmic journey?",
       },
       {
         type: "para",
         content:
-          ' At AstroKids, we offer detailed <a href="https://www.astrokids.ai/blogs/child-astrology-report">personalized child astrology report </a> to help you understand your child\'s unique strengths and guide them with love and confidence.',
+          'At AstroKids, we offer detailed <a href="https://www.astrokids.ai/blogs/child-astrology-report">personalized child astrology report </a> to help you understand your child\'s unique strengths and guide them with love and confidence.',
       },
     ],
     createdAt: "2025-06-28T10:05:32.047Z",
@@ -3566,18 +3559,18 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Is your child full of emotion, fiercely independent, and asking deep questions way beyond their age? Many parents notice something “different” about their child—but can’t quite put their finger on it.  Some children come into the world carrying strong energy. Not just in how they act, but in how they feel. These are often children born under Barani Nakshatra—a birth star known for its emotional depth, creativity, and bold spirit.",
+          "Is your child full of emotion, fiercely independent, and asking deep questions way beyond their age? Many parents notice something “different” about their child—but can't quite put their finger on it.  Some children come into the world carrying strong energy. Not just in how they act, but in how they feel. These are often children born under Barani Nakshatra—a birth star known for its emotional depth, creativity, and bold spirit.",
       },
       {
         type: "para",
         content:
-          "At AstroKids, we understand how parenting a child like this can be beautiful… and sometimes, overwhelming. You want to support them, but you're not sure how to handle the meltdowns, the questions, or the pushback.  Let’s We explore what makes Barani Nakshatra children so special—and how you, as a parent, can lovingly guide them through childhood with patience, clarity, and confidence.",
+          "At AstroKids, we understand how parenting a child like this can be beautiful… and sometimes, overwhelming. You want to support them, but you're not sure how to handle the meltdowns, the questions, or the pushback.  Let's We explore what makes Barani Nakshatra children so special—and how you, as a parent, can lovingly guide them through childhood with patience, clarity, and confidence.",
       },
       { type: "subtitle", content: "Key Traits of Barani Nakshatra Children" },
       {
         type: "para",
         content:
-          "These children feel deeply. Whether they’re laughing, crying, or thinking out loud, they pour their whole heart into the moment.",
+          "These children feel deeply. Whether they're laughing, crying, or thinking out loud, they pour their whole heart into the moment.",
       },
       { type: "subtitle1", content: "What you might notice:" },
       {
@@ -3585,8 +3578,8 @@ export const sampleBlogs = [
         items: [
           "They get upset easily if something feels “unfair”",
           "They ask serious questions at a young age",
-          "They don’t always follow rules—but not to be bad, just because they want to understand “why”",
-          "They’re highly imaginative and often love to draw, write, or tell stories",
+          "They don't always follow rules—but not to be bad, just because they want to understand “why”",
+          "They're highly imaginative and often love to draw, write, or tell stories",
           "They want freedom—but also need lots of emotional support",
         ],
       },
@@ -3596,20 +3589,19 @@ export const sampleBlogs = [
           {
             title: "Example:",
             content:
-              "Your 6-year-old might burst into tears because a friend didn’t share a toy—but also spend hours drawing a picture to make that same friend smile the next day. That’s Barani energy—intense, emotional, and full of heart.",
+              "Your 6-year-old might burst into tears because a friend didn't share a toy—but also spend hours drawing a picture to make that same friend smile the next day. That's Barani energy—intense, emotional, and full of heart.",
           },
         ],
       },
       {
         type: "para",
-        content:
-          'These kids don’t need to be "fixed." They just need to be seen.',
+        content: `These kids don't need to be "fixed." They just need to be seen.`,
       },
       { type: "subtitle", content: "How They Connect with Family " },
       {
         type: "para",
         content:
-          "Barani children often form very close bonds with parents and siblings—but only when they feel respected.Here’s how to strengthen that bond:",
+          "Barani children often form very close bonds with parents and siblings—but only when they feel respected.Here's how to strengthen that bond:",
       },
       {
         type: "checklist",
@@ -3623,7 +3615,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "They may test your patience sometimes—but it’s only because they’re learning how to handle their huge inner world.",
+          "They may test your patience sometimes—but it's only because they're learning how to handle their huge inner world.",
       },
       { type: "subtitle", content: " Emotional Health and Daily Wellness" },
       {
@@ -3640,14 +3632,14 @@ export const sampleBlogs = [
           "Outdoor play and nature walks",
           "Simple yoga poses or stretches",
           "Warm meals at regular times",
-          "They don’t need perfection. They need rhythm, reassurance, and rest.",
+          "They don't need perfection. They need rhythm, reassurance, and rest.",
         ],
       },
       { type: "subtitle", content: "Talents and Career Potential" },
       {
         type: "para",
         content:
-          "These children are natural creatives and truth-seekers. Don’t be surprised if they question everything—or start dreaming big early in life.  They do well in:",
+          "These children are natural creatives and truth-seekers. Don't be surprised if they question everything—or start dreaming big early in life.  They do well in:",
       },
       {
         type: "checklist",
@@ -3661,13 +3653,13 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "They want their work to mean something. Even in childhood, you’ll notice they’re drawn to causes, ideas, or things they can pour their heart into.",
+          "They want their work to mean something. Even in childhood, you'll notice they're drawn to causes, ideas, or things they can pour their heart into.",
       },
       { type: "subtitle", content: "Money Habits & Learning" },
       {
         type: "para",
         content:
-          "Barani kids may be a bit impulsive with money. If they feel something, they’ll want it—now. But they’re also very giving.You can support them by:",
+          "Barani kids may be a bit impulsive with money. If they feel something, they'll want it—now. But they're also very giving.You can support them by:",
       },
       {
         type: "checklist",
@@ -3676,23 +3668,23 @@ export const sampleBlogs = [
           "Helping them save for things they care about",
           "Showing how to give wisely ",
           "Talking about the value behind what we buy ",
-          "The goal is not control—it’s understanding and choice.",
+          "The goal is not control—it's understanding and choice.",
         ],
       },
       { type: "subtitle", content: " Remedies for Balance" },
       {
         type: "para",
         content:
-          "They are ruled by Venus, Barani children respond beautifully to soothing, natural methods that help them release stress and reconnect.Whether you’re parenting full-time or juggling a job, remember: it’s not about doing everything—it’s about showing up with love.",
+          "They are ruled by Venus, Barani children respond beautifully to soothing, natural methods that help them release stress and reconnect.Whether you're parenting full-time or juggling a job, remember: it's not about doing everything—it's about showing up with love.",
       },
       { type: "subtitle1", content: "Parenting Tips" },
       {
         type: "numbered-list",
         items: [
           "Art therapy: Drawing, music, dance",
-          "Yoga: Child’s pose, breathing games",
+          "Yoga: Child's pose, breathing games",
           "Ayurvedic support: Warm, nourishing foods like ghee, rice, and soups",
-          "Let them lead group activities when they’re ready",
+          "Let them lead group activities when they're ready",
           "Acknowledge their feelings; never brush them off",
         ],
       },
@@ -3704,13 +3696,12 @@ export const sampleBlogs = [
       { type: "subtitle", content: "Final Thoughts" },
       {
         type: "para",
-        content:
-          'Raising a Barani Nakshatra child is a journey of the heart. They will challenge you, move you, and teach you more about emotional intelligence than any book ever could.  As parents, your biggest gift to them isn’t being perfect—it’s being present.  At AstroKids, we help you understand your child through <a href="https://www.astrokids.ai/blogs/Child-astrology-report"> child astrology report</a> . Because when you parent with soul, astrology isn’t just ancient wisdom—it’s your everyday guide.',
+        content: `Raising a Barani Nakshatra child is a journey of the heart. They will challenge you, move you, and teach you more about emotional intelligence than any book ever could.  As parents, your biggest gift to them isn't being perfect—it's being present.  At AstroKids, we help you understand your child through <a href="https://www.astrokids.ai/blogs/Child-astrology-report"> child astrology report</a> . Because when you parent with soul, astrology isn't just ancient wisdom—it's your everyday guide.`,
       },
       {
         type: "para",
         content:
-          "What might change in your home if you started parenting based on your child’s energy, not just their behavior?",
+          "What might change in your home if you started parenting based on your child's energy, not just their behavior?",
       },
     ],
     createdAt: "2025-06-25T07:19:30.651Z",
@@ -3740,18 +3731,18 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Parenting is a journey that’s filled with questions—especially when your child seems more energetic, more emotional, or more independent than others. You might wonder, “Why is my child so restless?” or “Why do they resist rules but care so deeply?” These aren’t just behaviors—they’re clues. And Vedic astrology offers a gentle, ancient way to decode them.Understanding it doesn’t just help you manage daily challenges—it helps you nurture their strengths, guide their emotions, and support their life journey in a positive, meaningful way.",
+          "Parenting is a journey that's filled with questions—especially when your child seems more energetic, more emotional, or more independent than others. You might wonder, “Why is my child so restless?” or “Why do they resist rules but care so deeply?” These aren't just behaviors—they're clues. And Vedic astrology offers a gentle, ancient way to decode them.Understanding it doesn't just help you manage daily challenges—it helps you nurture their strengths, guide their emotions, and support their life journey in a positive, meaningful way.",
       },
       {
         type: "para",
         content:
-          "At AstroKids, we’re here to help parents like you embrace astrology not as superstition, but as a mindful parenting tool that brings more calm, clarity, and connection to your home.",
+          "At AstroKids, we're here to help parents like you embrace astrology not as superstition, but as a mindful parenting tool that brings more calm, clarity, and connection to your home.",
       },
       { type: "subtitle", content: " Understanding Ashwini Nakshatra " },
       {
         type: "para",
         content:
-          "Ashwini Nakshatra is the very first of the 27 nakshatras in Vedic astrology. It spans from 0° to 13°20' in the Aries zodiac sign (Mesha Rashi) and is ruled by the shadow planet Ketu, which brings intuitive intelligence, speed, and detachment.  Its symbol—a horse’s head—perfectly reflects its qualities: movement, power, agility, and healing. Children born under Ashwini Nakshatra often exhibit these traits from a very early age.  They are here to start things, to lead, to inspire change. But that also means they move fast, think quickly, and feel intensely—sometimes more than they know how to express.",
+          "Ashwini Nakshatra is the very first of the 27 nakshatras in Vedic astrology. It spans from 0° to 13°20' in the Aries zodiac sign (Mesha Rashi) and is ruled by the shadow planet Ketu, which brings intuitive intelligence, speed, and detachment.  Its symbol—a horse's head—perfectly reflects its qualities: movement, power, agility, and healing. Children born under Ashwini Nakshatra often exhibit these traits from a very early age.  They are here to start things, to lead, to inspire change. But that also means they move fast, think quickly, and feel intensely—sometimes more than they know how to express.",
       },
       {
         type: "subtitle",
@@ -3762,16 +3753,16 @@ export const sampleBlogs = [
         type: "numbered-list",
         items: [
           "Ask deep questions early",
-          "Can’t sit still for long",
+          "Can't sit still for long",
           "Jump into new things fearlessly",
           "Act before they fully think it through",
-          "Love helping others but don’t always show emotions openly",
+          "Love helping others but don't always show emotions openly",
         ],
       },
       {
         type: "para",
         content:
-          "They are naturally energetic and emotionally intelligent, but may not always know how to express their feelings or slow themselves down. They often seem older than their age in their thinking but younger in their impulse control.  These children thrive in environments where they are not judged, but gently guided. They don’t need you to hold them back—they need you to help them pace themselves.",
+          "They are naturally energetic and emotionally intelligent, but may not always know how to express their feelings or slow themselves down. They often seem older than their age in their thinking but younger in their impulse control.  These children thrive in environments where they are not judged, but gently guided. They don't need you to hold them back—they need you to help them pace themselves.",
       },
       { type: "subtitle", content: "Compatibility & Family Relationships" },
       {
@@ -3784,8 +3775,8 @@ export const sampleBlogs = [
         items: [
           "They bond best with parents who are patient, open-minded, and flexible.",
           "Rigid discipline can backfire; they respond better to conversations and choices.",
-          "They enjoy helping out at home, especially when they’re trusted with responsibility.",
-          "They don’t like being told what to do—but they love to be shown how to do it. ",
+          "They enjoy helping out at home, especially when they're trusted with responsibility.",
+          "They don't like being told what to do—but they love to be shown how to do it. ",
         ],
       },
       { type: "subtitle", content: "Health, Career & Financial Potential" },
@@ -3793,19 +3784,19 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Children born under Ashwini Nakshatra are often full of energy and vitality. They’re usually active, quick on their feet, and rarely sit still for long. While this makes them strong and enthusiastic, it also means they may be prone to small accidents or bumps—especially during play. Their digestive system may be a bit sensitive, so they do well with warm, nourishing meals and a consistent eating routine. Calming bedtime rituals and outdoor play can help balance their high energy levels. Mindful breathing exercises or simple yoga stretches can also support better focus and emotional stability.",
+          "Children born under Ashwini Nakshatra are often full of energy and vitality. They're usually active, quick on their feet, and rarely sit still for long. While this makes them strong and enthusiastic, it also means they may be prone to small accidents or bumps—especially during play. Their digestive system may be a bit sensitive, so they do well with warm, nourishing meals and a consistent eating routine. Calming bedtime rituals and outdoor play can help balance their high energy levels. Mindful breathing exercises or simple yoga stretches can also support better focus and emotional stability.",
       },
       { type: "subtitle1", content: "💼 Career" },
       {
         type: "para",
         content:
-          "Ashwini children are natural starters. They’re curious, bold, and thrive in environments where quick thinking and action are appreciated. Repetitive or slow-paced tasks can bore them, but challenges bring out their best. They often shine in fields related to health and healing, like medicine, therapy, or fitness. Others may be drawn to fast-paced industries like design, engineering, or entrepreneurship. These children need encouragement to follow their instincts while also learning patience. A supportive environment that values both structure and creativity helps them grow into confident professionals who love what they do.",
+          "Ashwini children are natural starters. They're curious, bold, and thrive in environments where quick thinking and action are appreciated. Repetitive or slow-paced tasks can bore them, but challenges bring out their best. They often shine in fields related to health and healing, like medicine, therapy, or fitness. Others may be drawn to fast-paced industries like design, engineering, or entrepreneurship. These children need encouragement to follow their instincts while also learning patience. A supportive environment that values both structure and creativity helps them grow into confident professionals who love what they do.",
       },
       { type: "subtitle1", content: "💰 Financial Potential" },
       {
         type: "para",
         content:
-          "Ashwini-born kids tend to show confidence around money from a young age. They’re often generous, sometimes impulsive, and may not always think about long-term consequences. Teaching them the value of saving, budgeting, and planning ahead can make a big difference in their future. They’re quick to understand the concept of choices and rewards, so simple financial games or decision-making activities work well. With the right guidance, they can develop a healthy, balanced relationship with money—one that combines their natural boldness with responsibility.",
+          "Ashwini-born kids tend to show confidence around money from a young age. They're often generous, sometimes impulsive, and may not always think about long-term consequences. Teaching them the value of saving, budgeting, and planning ahead can make a big difference in their future. They're quick to understand the concept of choices and rewards, so simple financial games or decision-making activities work well. With the right guidance, they can develop a healthy, balanced relationship with money—one that combines their natural boldness with responsibility.",
       },
       { type: "subtitle", content: "Remedies and Holistic Support" },
       {
@@ -3851,13 +3842,12 @@ export const sampleBlogs = [
       { type: "subtitle", content: " Final Thoughts" },
       {
         type: "para",
-        content:
-          'Raising an Ashwini Nakshatra child is a powerful experience. They are born with the fire to lead, the instinct to heal, and the courage to walk their own path. We provide <a href="https://www.astrokids.ai/blogs/Child-astrology-report">child astrology report </a> that guide, understand, and support them with love. They’ll challenge you—but they’ll also amaze you. With the right balance of structure and freedom, they’ll grow into leaders who inspire others and stay true to themselves. At AstroKids, we believe that understanding your child’s nakshatra opens the door to more joyful, peaceful parenting. You don’t have to guess anymore—you can parent with clarity, rooted in cosmic wisdom.',
+        content: `Raising an Ashwini Nakshatra child is a powerful experience. They are born with the fire to lead, the instinct to heal, and the courage to walk their own path. We provide <a href="https://www.astrokids.ai/blogs/Child-astrology-report">child astrology report </a> that guide, understand, and support them with love. They'll challenge you—but they'll also amaze you. With the right balance of structure and freedom, they'll grow into leaders who inspire others and stay true to themselves. At AstroKids, we believe that understanding your child's nakshatra opens the door to more joyful, peaceful parenting. You don't have to guess anymore—you can parent with clarity, rooted in cosmic wisdom.`,
       },
       {
         type: "para",
         content:
-          "💭 What might change in your parenting if you understood your child’s nature through the stars?",
+          "💭 What might change in your parenting if you understood your child's nature through the stars?",
       },
     ],
     createdAt: "2025-06-20T09:31:33.151Z",
@@ -3865,10 +3855,10 @@ export const sampleBlogs = [
   {
     _id: "68514388ffa40f3e28ac9402",
     title:
-      "7 Chakras and Their Astrological Powers: A Parent’s Guide to Balancing Your Child’s Energy",
+      "7 Chakras and Their Astrological Powers: A Parent's Guide to Balancing Your Child's Energy",
     metaTitle: " How the 7 Chakras Benefit Your Child's Growth & Energy",
     metaDescription:
-      "Learn how each chakra influences your child’s emotional, mental, and spiritual growth. Explore astrology-based tips to balance their energy and boost well-being.\n\n",
+      "Learn how each chakra influences your child's emotional, mental, and spiritual growth. Explore astrology-based tips to balance their energy and boost well-being.\n\n",
     image: "1LRqs6labZDHXqXs__dJmQ-Z52yf3bJ8j",
     slug: " How -the-Seven-Chakras-Benefit-Your-Child's-Growth-Energy",
     type: 1,
@@ -3876,7 +3866,7 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "7 Chakras and Their Astrological Powers: A Parent’s Guide to Balancing Your Child’s Energy",
+          "7 Chakras and Their Astrological Powers: A Parent's Guide to Balancing Your Child's Energy",
       },
       {
         type: "image",
@@ -3888,7 +3878,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "In Vedic astrology, a child’s energy is not only influenced by their birth chart but also by chakras—spiritual energy centers aligned along the spine. These chakras are directly connected with specific planets and signs in Vedic astrology, impacting the child’s emotional, physical, and mental development.  When a chakra is well-balanced, your child feels happy, secure, and aligned. But if there's an imbalance, it can affect their behavior and well-being. Let’s explore how each chakra works and how you, as a parent, can guide your child’s energy using astrology-based insights.",
+          "In Vedic astrology, a child's energy is not only influenced by their birth chart but also by chakras—spiritual energy centers aligned along the spine. These chakras are directly connected with specific planets and signs in Vedic astrology, impacting the child's emotional, physical, and mental development.  When a chakra is well-balanced, your child feels happy, secure, and aligned. But if there's an imbalance, it can affect their behavior and well-being. Let's explore how each chakra works and how you, as a parent, can guide your child's energy using astrology-based insights.",
       },
       { type: "subtitle", content: "1. Root Chakra (Muladhara)" },
       {
@@ -3896,7 +3886,7 @@ export const sampleBlogs = [
         items: [
           "Significance: Grounding, stability, and security",
           "Astrological Insights: Ruled by Mars; connected with Aries and Scorpio sign kids",
-          "It’s an energetic foundation.When this chakra is strong, your child will feel confident and comfortable in their surroundings. But if it’s imbalanced, they might become fearful or anxious, unsure of where they stand.",
+          "It's an energetic foundation.When this chakra is strong, your child will feel confident and comfortable in their surroundings. But if it's imbalanced, they might become fearful or anxious, unsure of where they stand.",
         ],
       },
       { type: "subtitle1", content: "Parenting Tips:" },
@@ -3915,7 +3905,7 @@ export const sampleBlogs = [
         items: [
           "Significance: Creativity, emotions, and relationships",
           "Astrological Insights: Ruled by Venus; connected with Taurus and Libra Sign kids ",
-          " This chakra is the heart of your child’s creativity and joy. When it’s in balance, your child will enjoy expressing themselves through art, play, and emotions. They’ll feel comfortable building friendships and showing affection. An imbalance here might lead to mood swings or shyness in expressing their feelings.",
+          " This chakra is the heart of your child's creativity and joy. When it's in balance, your child will enjoy expressing themselves through art, play, and emotions. They'll feel comfortable building friendships and showing affection. An imbalance here might lead to mood swings or shyness in expressing their feelings.",
         ],
       },
       { type: "subtitle1", content: "Parenting Tips:" },
@@ -3933,7 +3923,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Significance: Personal power, confidence, and self-worth",
-          "Astrological Insights: Ruled by the Sun; Its connected with Leo Sign kids  .  This is where your child’s inner strength lives. The Solar Plexus Chakra gives them the courage to say “I can do it.” A balanced solar plexus chakra brings confidence, leadership, and independence. But if it’s weak, your child might struggle with self-doubt or fear of making mistakes.",
+          "Astrological Insights: Ruled by the Sun; Its connected with Leo Sign kids  .  This is where your child's inner strength lives. The Solar Plexus Chakra gives them the courage to say “I can do it.” A balanced solar plexus chakra brings confidence, leadership, and independence. But if it's weak, your child might struggle with self-doubt or fear of making mistakes.",
         ],
       },
       { type: "subtitle1", content: "Parenting Tips:" },
@@ -3950,7 +3940,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Significance: Love, compassion, and empathy",
-          "Astrological Insights: Ruled by the Moon; connected with Cancer  Sign kids .The Heart Chakra is the emotional center. It helps your child form deep, meaningful connections—with you, with others, and with themselves. When this chakra is open, they’ll show love easily and feel loved in return. An imbalanced heart chakra might lead to emotional distance or sadness.",
+          "Astrological Insights: Ruled by the Moon; connected with Cancer  Sign kids .The Heart Chakra is the emotional center. It helps your child form deep, meaningful connections—with you, with others, and with themselves. When this chakra is open, they'll show love easily and feel loved in return. An imbalanced heart chakra might lead to emotional distance or sadness.",
         ],
       },
       { type: "subtitle1", content: "Parenting tips " },
@@ -3985,7 +3975,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Significance: Intuition, clarity, and focus",
-          "Astrological Insights: Ruled by Jupiter; connected with Sagittarius and Pisces Sign Kids .The Third Eye Chakra helps your child trust their instincts and make wise decisions. It’s their inner guide. A child with a balanced third eye is thoughtful, observant, and has strong concentration. If this chakra is blocked, they may feel confused or disconnected from their own ideas.",
+          "Astrological Insights: Ruled by Jupiter; connected with Sagittarius and Pisces Sign Kids .The Third Eye Chakra helps your child trust their instincts and make wise decisions. It's their inner guide. A child with a balanced third eye is thoughtful, observant, and has strong concentration. If this chakra is blocked, they may feel confused or disconnected from their own ideas.",
         ],
       },
       { type: "subtitle1", content: "Parenting Tips:" },
@@ -4002,7 +3992,7 @@ export const sampleBlogs = [
         type: "checklist",
         items: [
           "Significance: Spiritual connection and higher consciousness",
-          "Astrological Insights: Ruled by Ketu (South Node); connected with Pisces Sign Kids .This is your child’s gateway to a deeper sense of life and wonder. A strong crown chakra connects them to something beyond the physical world—whether it’s spirituality, nature, or a sense of purpose. When balanced, your child feels calm, curious, and inspired. An imbalance might lead to feeling lost or disconnected.",
+          "Astrological Insights: Ruled by Ketu (South Node); connected with Pisces Sign Kids .This is your child's gateway to a deeper sense of life and wonder. A strong crown chakra connects them to something beyond the physical world—whether it's spirituality, nature, or a sense of purpose. When balanced, your child feels calm, curious, and inspired. An imbalance might lead to feeling lost or disconnected.",
         ],
       },
       { type: "subtitle1", content: "Parenting Tips:" },
@@ -4022,12 +4012,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Understanding the 7 chakras through Vedic astrology helps you become more aware of your child’s emotional and spiritual needs. Each chakra plays a unique role in shaping their behavior, emotions, and energy. When you learn to recognize signs of imbalance and nurture each energy center, you support your child’s growth—not just physically, but also mentally and spiritually.",
+          "Understanding the 7 chakras through Vedic astrology helps you become more aware of your child's emotional and spiritual needs. Each chakra plays a unique role in shaping their behavior, emotions, and energy. When you learn to recognize signs of imbalance and nurture each energy center, you support your child's growth—not just physically, but also mentally and spiritually.",
       },
       {
         type: "subtitle1",
         content:
-          "Want to go even deeper into your child’s astrological journey?",
+          "Want to go even deeper into your child's astrological journey?",
       },
       {
         type: "para",
@@ -4063,11 +4053,11 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Parenting is a beautiful journey, but it also comes with emotional ups and downs. Every child is unique, and sometimes, understanding their behavior and emotions can feel overwhelming. That's where astrology steps in.  Astrology offers more than daily horoscopes — it provides deep insight into your child’s natural traits, emotional triggers, learning style, and communication preferences based on their birth chart. Whether you're dealing with tantrums, emotional meltdowns, or communication gaps, astrological parenting can guide you with simple, thoughtful adjustments.  In this blog, you’ll discover practical astrological parenting tips to build a stronger bond with your child — one that’s full of empathy, patience, and love.",
+          "Parenting is a beautiful journey, but it also comes with emotional ups and downs. Every child is unique, and sometimes, understanding their behavior and emotions can feel overwhelming. That's where astrology steps in.  Astrology offers more than daily horoscopes — it provides deep insight into your child's natural traits, emotional triggers, learning style, and communication preferences based on their birth chart. Whether you're dealing with tantrums, emotional meltdowns, or communication gaps, astrological parenting can guide you with simple, thoughtful adjustments.  In this blog, you'll discover practical astrological parenting tips to build a stronger bond with your child — one that's full of empathy, patience, and love.",
       },
       {
         type: "subtitle",
-        content: "Understanding Your Child’s Zodiac Sign: The First Step",
+        content: "Understanding Your Child's Zodiac Sign: The First Step",
       },
       {
         type: "para",
@@ -4149,7 +4139,7 @@ export const sampleBlogs = [
           {
             title: "1. Adapt Your Communication Style",
             content:
-              "Your child’s zodiac sign can indicate how they prefer to express and receive communication. Air signs like\nGemini, Libra, and Aquarius often thrive in open conversations, while water signs like Cancer, Scorpio, and\nPisces may respond better to gentle, empathetic dialogue.",
+              "Your child's zodiac sign can indicate how they prefer to express and receive communication. Air signs like\nGemini, Libra, and Aquarius often thrive in open conversations, while water signs like Cancer, Scorpio, and\nPisces may respond better to gentle, empathetic dialogue.",
           },
           {
             title: "2. Understand Their Emotional Needs",
@@ -4170,7 +4160,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Astrology can be a wonderful guide in understanding your child, but it’s important to use it wisely. While it offers great insight, it should never replace your instinct as a parent.",
+          "Astrology can be a wonderful guide in understanding your child, but it's important to use it wisely. While it offers great insight, it should never replace your instinct as a parent.",
       },
       { type: "subtitle1", content: "Restrictions" },
       {
@@ -4179,7 +4169,7 @@ export const sampleBlogs = [
           {
             title: "1. Forgetting Every Child is Unique",
             content:
-              "Astrology tells us about general traits based on zodiac signs, but remember — your child is one of a kind. Not all Leo kids are bold, and not all Pisces are emotional. Don’t box them into a personality just because of their sign. Always notice their real-life behaviors and feelings.",
+              "Astrology tells us about general traits based on zodiac signs, but remember — your child is one of a kind. Not all Leo kids are bold, and not all Pisces are emotional. Don't box them into a personality just because of their sign. Always notice their real-life behaviors and feelings.",
           },
           {
             title: "2. Missing Out on Emotional Support",
@@ -4195,12 +4185,12 @@ export const sampleBlogs = [
           {
             title: "1. Personalized Parenting with a Cosmic Touch",
             content:
-              "Use astrology as a soft light — not a strict rule. Notice your child’s natural rhythm, preferences, and reactions. Blend what you learn from their birth chart with what you observe in daily life. This creates a more balanced and supportive way to raise them.",
+              "Use astrology as a soft light — not a strict rule. Notice your child's natural rhythm, preferences, and reactions. Blend what you learn from their birth chart with what you observe in daily life. This creates a more balanced and supportive way to raise them.",
           },
           {
             title: "2. Keep Talking, Keep Listening",
             content:
-              "Build a habit of talking openly with your child. Ask them how their day went. Listen even when they don’t say much. The more you communicate, the better you understand what they’re going through. Over time, this trust helps you parent with more clarity and confidence — with or without the stars.",
+              "Build a habit of talking openly with your child. Ask them how their day went. Listen even when they don't say much. The more you communicate, the better you understand what they're going through. Over time, this trust helps you parent with more clarity and confidence — with or without the stars.",
           },
         ],
       },
@@ -4210,15 +4200,14 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'Parenting is not about controlling your child’s path but walking beside them with awareness and love. Astrology adds a layer of understanding that helps you nurture their emotions, personality, and natural gifts.  At AstroKids, we believe that parenting isn’t about perfection — it’s about alignment. We use the ancient wisdom of Vedic Astrology and Ayurveda to create personalized <a href="https://www.astrokids.ai/blogs/Child-astrology-report ">child astrology report for parenting </a> . These offer deep insights into your child’s personality, emotional needs, lifestyle recommendations, and more.  By honoring your child’s zodiac blueprint, you create a home where they feel understood, supported, and free to become their best self — and that’s the real miracle of parenting.',
+        content: `Parenting is not about controlling your child's path but walking beside them with awareness and love. Astrology adds a layer of understanding that helps you nurture their emotions, personality, and natural gifts.  At AstroKids, we believe that parenting isn't about perfection — it's about alignment. We use the ancient wisdom of Vedic Astrology and Ayurveda to create personalized <a href="https://www.astrokids.ai/blogs/Child-astrology-report ">child astrology report for parenting </a> . These offer deep insights into your child's personality, emotional needs, lifestyle recommendations, and more.  By honoring your child's zodiac blueprint, you create a home where they feel understood, supported, and free to become their best self — and that's the real miracle of parenting.`,
       },
     ],
     createdAt: "2025-06-13T08:53:24.483Z",
   },
   {
     _id: "683d5097eb26cb1b4150f4da",
-    title: "How to Support Your Child’s Emotional Well-Being through Astrology",
+    title: "How to Support Your Child's Emotional Well-Being through Astrology",
     image: "1yR-xsbGKaGq421S2qTYDR_2IKaTZHqrZ",
     slug: "support-child-emotions-with-astrology",
     type: 1,
@@ -4226,24 +4215,24 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "How to Support Your Child’s Emotional Well-Being through Astrology",
+          "How to Support Your Child's Emotional Well-Being through Astrology",
       },
       {
         type: "image",
         content:
-          "Decode your child’s emotions through the stars—nurture them with cosmic care.",
+          "Decode your child's emotions through the stars—nurture them with cosmic care.",
         image: "1yR-xsbGKaGq421S2qTYDR_2IKaTZHqrZ",
-        alt: "Support Your Child’s Emotional Well-Being through Astrology",
+        alt: "Support Your Child's Emotional Well-Being through Astrology",
       },
       {
         type: "para",
         content:
-          "As parents, one of our most important roles is to understand and support our child’s emotional world. Have you ever wondered why your child reacts so differently from others—even their siblings? While each child is unique, astrology provides a powerful lens to better understand their emotional needs, reactions, and sensitivities.",
+          "As parents, one of our most important roles is to understand and support our child's emotional world. Have you ever wondered why your child reacts so differently from others—even their siblings? While each child is unique, astrology provides a powerful lens to better understand their emotional needs, reactions, and sensitivities.",
       },
       {
         type: "para",
         content:
-          "At AstroKids, we believe that blending timeless astrological insights with modern parenting approaches can help raise emotionally strong, self-aware, and balanced children.In this article, we’ll explore how astrology—especially your child’s Moon sign and planetary influences—can guide you in nurturing their emotional well-being right from the start.",
+          "At AstroKids, we believe that blending timeless astrological insights with modern parenting approaches can help raise emotionally strong, self-aware, and balanced children.In this article, we'll explore how astrology—especially your child's Moon sign and planetary influences—can guide you in nurturing their emotional well-being right from the start.",
       },
       {
         type: "subtitle",
@@ -4252,7 +4241,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "A child’s emotional development is the foundation of their personality, confidence, learning abilities, and future relationships. When parents understand how their child processes emotions, they are better equipped to support them through everyday challenges like anxiety, frustration, and mood swings.This is where child astrology can help—not by predicting the future, but by helping you better understand your child’s inner emotional world.",
+          "A child's emotional development is the foundation of their personality, confidence, learning abilities, and future relationships. When parents understand how their child processes emotions, they are better equipped to support them through everyday challenges like anxiety, frustration, and mood swings.This is where child astrology can help—not by predicting the future, but by helping you better understand your child's inner emotional world.",
       },
       {
         type: "subtitle",
@@ -4282,7 +4271,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "By knowing your child’s Moon sign, you can create parenting strategies that support their unique emotional rhythm, instead of applying a one-size-fits-all approach.",
+          "By knowing your child's Moon sign, you can create parenting strategies that support their unique emotional rhythm, instead of applying a one-size-fits-all approach.",
       },
       {
         type: "subtitle",
@@ -4291,7 +4280,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Each zodiac sign carries specific emotional traits. Recognizing these traits can help you respond more thoughtfully to your child’s needs.Here’s a brief look at a few signs:",
+          "Each zodiac sign carries specific emotional traits. Recognizing these traits can help you respond more thoughtfully to your child's needs.Here's a brief look at a few signs:",
       },
       {
         type: "checklist",
@@ -4304,7 +4293,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "These insights help you support your child’s natural strengths while addressing their challenges with empathy.",
+          "These insights help you support your child's natural strengths while addressing their challenges with empathy.",
       },
       {
         type: "subtitle",
@@ -4335,12 +4324,12 @@ export const sampleBlogs = [
       {
         type: "subtitle",
         content:
-          "Astrology can enhance your parenting in simple, meaningful ways. Here’s how:",
+          "Astrology can enhance your parenting in simple, meaningful ways. Here's how:",
       },
       {
         type: "checklist",
         items: [
-          "Respond with understanding, not just discipline: When you know your child’s emotional triggers, you can guide rather than scold.",
+          "Respond with understanding, not just discipline: When you know your child's emotional triggers, you can guide rather than scold.",
           "Create environments that support emotional health: For eg: A dreamy Pisces sign child may need quiet time, while a fiery Aries may thrive on activity and independence.",
           "Adapt your communication style: Some signs are open and expressive, while others need space to process emotions before sharing.",
         ],
@@ -4348,19 +4337,19 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "When parents “tune in” to their child’s astrological makeup, it reduces misunderstandings and strengthens emotional bonds.",
+          "When parents “tune in” to their child's astrological makeup, it reduces misunderstandings and strengthens emotional bonds.",
       },
       { type: "subtitle", content: "Final Thoughts" },
       {
         type: "para",
         content:
-          "Parenting doesn’t come with a manual—but astrology offers a helpful map. In a world filled with general advice, Our child astrology report stands out as a personalized and insightful way to support your child’s emotional well-being. It helps you see beyond behavior and connect with your child’s true emotional nature.Astrology is not about labeling your child—it’s about understanding them better, so you can guide them with love, patience, and awareness.Let’s raise emotionally healthy kids—together.",
+          "Parenting doesn't come with a manual—but astrology offers a helpful map. In a world filled with general advice, Our child astrology report stands out as a personalized and insightful way to support your child's emotional well-being. It helps you see beyond behavior and connect with your child's true emotional nature.Astrology is not about labeling your child—it's about understanding them better, so you can guide them with love, patience, and awareness.Let's raise emotionally healthy kids—together.",
       },
     ],
     createdAt: "2025-06-02T07:19:47.250Z",
     metaDescription:
       "Enhance your parenting style with astrological tips, gaining insights into your child's development and fostering a harmonious parent-child relationship.",
-    metaTitle: " Support Your Child’s Emotional Well-Being through Astrology",
+    metaTitle: " Support Your Child's Emotional Well-Being through Astrology",
   },
   {
     _id: "6826ffc11aca56d242e96e91",
@@ -4385,18 +4374,18 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Parenting is a journey filled with love, uncertainty, and questions — especially in the early years.As parents, one of our biggest concerns is shaping our children's future. Why does my child react this way? What does the future hold for my child? Will they be creative, confident, kind? These questions keep us up at night, wondering how we can support our child’s emotional and mental growth.",
+          "Parenting is a journey filled with love, uncertainty, and questions — especially in the early years.As parents, one of our biggest concerns is shaping our children's future. Why does my child react this way? What does the future hold for my child? Will they be creative, confident, kind? These questions keep us up at night, wondering how we can support our child's emotional and mental growth.",
       },
       {
         type: "para",
         content:
-          "We provide a unique way to guide your child’s development — through astrology-based parenting tips in detailed child astrology reports. Our goal is to empower parents to better understand their child’s needs, potential, and challenges from an early age, using ancient astrological wisdom combined with modern techniques like yoga, Ayurveda, and energy healing. In this blog, we’ll explore how astrology can help you provide the best nurturing environment for your child, uncover their strengths, and guide them on their life path. ",
+          "We provide a unique way to guide your child's development — through astrology-based parenting tips in detailed child astrology reports. Our goal is to empower parents to better understand their child's needs, potential, and challenges from an early age, using ancient astrological wisdom combined with modern techniques like yoga, Ayurveda, and energy healing. In this blog, we'll explore how astrology can help you provide the best nurturing environment for your child, uncover their strengths, and guide them on their life path. ",
       },
       { type: "subtitle", content: "The Power of Child Astrology" },
       {
         type: "para",
         content:
-          "Child astrology is about analyzing your child’s birth details -captured at the moment they entered the world.This birth  chart reveals their emotional needs, strengths, growth areas, and even hidden talents.Whether you're navigating mood swings, encouraging their academic journey, or helping them cope with social pressures, astrology offers a meaningful and insightful perspective to guide your parenting with confidence and care.",
+          "Child astrology is about analyzing your child's birth details -captured at the moment they entered the world.This birth  chart reveals their emotional needs, strengths, growth areas, and even hidden talents.Whether you're navigating mood swings, encouraging their academic journey, or helping them cope with social pressures, astrology offers a meaningful and insightful perspective to guide your parenting with confidence and care.",
       },
       { type: "subtitle", content: "Key Elements of a Child Astrology Report" },
       {
@@ -4405,7 +4394,7 @@ export const sampleBlogs = [
           {
             title: "1. Personality Traits",
             content:
-              "Each child is born with unique characteristics that shape how they interact with the world. Astrology reveals your child’s core personality, including their temperament, emotional needs, and behavioral patterns. This helps parents adapt their parenting style to best support their child’s natural disposition.\n\nExample: A child with a dominant Mercury influence may be talkative, curious, and analytical, while a child with a Moon sign in Cancer may require emotional security and nurturing to feel safe.\n\n",
+              "Each child is born with unique characteristics that shape how they interact with the world. Astrology reveals your child's core personality, including their temperament, emotional needs, and behavioral patterns. This helps parents adapt their parenting style to best support their child's natural disposition.\n\nExample: A child with a dominant Mercury influence may be talkative, curious, and analytical, while a child with a Moon sign in Cancer may require emotional security and nurturing to feel safe.\n\n",
           },
           {
             title: "2. Health Insights",
@@ -4415,22 +4404,22 @@ export const sampleBlogs = [
           {
             title: "3.Aptitudes and Talents",
             content:
-              "Every child has natural aptitudes that can be nurtured. Whether it’s sports, music, or academic pursuits, astrology helps uncover your child’s innate talents, guiding you to provide opportunities that align with their abilities and interests.\n",
+              "Every child has natural aptitudes that can be nurtured. Whether it's sports, music, or academic pursuits, astrology helps uncover your child's innate talents, guiding you to provide opportunities that align with their abilities and interests.\n",
           },
           {
             title: "4. Educational and Career Prospects",
             content:
-              "Astrology can give parents insight into the types of learning environments and careers that will best suit their child’s natural strengths and interests. This early awareness can guide educational decisions, helping to shape a more fulfilling career path for the future.\n",
+              "Astrology can give parents insight into the types of learning environments and careers that will best suit their child's natural strengths and interests. This early awareness can guide educational decisions, helping to shape a more fulfilling career path for the future.\n",
           },
           {
             title: "5.Strengths and Weaknesses",
             content:
-              "Knowing your child’s strengths and weaknesses from an early age allows you to nurture their potential and support areas where they may need help. Astrology identifies key areas of growth, making it easier for parents to tailor their approach to maximize their child’s abilities.\n\nExample: A child with a Venus-strong chart may excel in arts and creativity but may need encouragement to build confidence in social settings.\n",
+              "Knowing your child's strengths and weaknesses from an early age allows you to nurture their potential and support areas where they may need help. Astrology identifies key areas of growth, making it easier for parents to tailor their approach to maximize their child's abilities.\n\nExample: A child with a Venus-strong chart may excel in arts and creativity but may need encouragement to build confidence in social settings.\n",
           },
           {
             title: "6. Future Predictions",
             content:
-              "Astrology provides predictions about significant life events and transitions. Knowing what’s ahead can help parents provide emotional support and prepare for critical moments, whether it’s a change in school or a challenging period during adolescence.\n",
+              "Astrology provides predictions about significant life events and transitions. Knowing what's ahead can help parents provide emotional support and prepare for critical moments, whether it's a change in school or a challenging period during adolescence.\n",
           },
         ],
       },
@@ -4446,7 +4435,7 @@ export const sampleBlogs = [
       {
         type: "checklist",
         items: [
-          "Understand their child’s emotional world: Gain insight into how your child thinks and feels.",
+          "Understand their child's emotional world: Gain insight into how your child thinks and feels.",
           "Support growth and development: Use astrology to guide your approach to parenting.",
           "Identify hidden talents: Help your child shine by focusing on their strengths.",
           "Prepare for future challenges: Astrological predictions help you plan for key life events.",
@@ -4459,12 +4448,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we believe in a holistic approach to parenting. We don’t just provide astrology reports; we combine them with proven practices like Ayurveda, yoga, and energy healing. These ancient methods help parents nurture their child’s physical, mental, and emotional well-being. ",
+          "At AstroKids, we believe in a holistic approach to parenting. We don't just provide astrology reports; we combine them with proven practices like Ayurveda, yoga, and energy healing. These ancient methods help parents nurture their child's physical, mental, and emotional well-being. ",
       },
       {
         type: "para",
         content:
-          "Here’s how our astrology-based parenting tips work together with other holistic practices:",
+          "Here's how our astrology-based parenting tips work together with other holistic practices:",
       },
       {
         type: "highlight-list",
@@ -4472,7 +4461,7 @@ export const sampleBlogs = [
           {
             title: "Ayurveda: ",
             content:
-              "Tailor your child’s diet and lifestyle based on their unique dosha (body constitution) for improved health.\n",
+              "Tailor your child's diet and lifestyle based on their unique dosha (body constitution) for improved health.\n",
           },
           {
             title: "Yoga: ",
@@ -4489,14 +4478,14 @@ export const sampleBlogs = [
       { type: "subtitle", content: " How to Get Started" },
       {
         type: "para",
-        content: "Getting your child’s astrology report is simple:",
+        content: "Getting your child's astrology report is simple:",
       },
       {
         type: "numbered-list",
         items: [
           "Share accurate birth details — date, time, and location.  ",
           " Our team prepares a detailed child astrology report.   ",
-          "Receive personalized child astrology report for  parenting  to support your child’s journey.",
+          "Receive personalized child astrology report for  parenting  to support your child's journey.",
         ],
       },
       {
@@ -4507,13 +4496,12 @@ export const sampleBlogs = [
       { type: "subtitle", content: "Final Thoughts" },
       {
         type: "para",
-        content:
-          'Parenting is challenging, so We provide  a <a href="https://www.astrokids.ai/">personalized    Astrology Report for parenting </a>  for your child , you can make more informed, mindful decisions that support your child’s well-being. By understanding their unique emotional needs, strengths, and potential challenges, you’re setting the foundation for a fulfilling and successful future. Let’s raise our children with awareness, love, and balance.',
+        content: `Parenting is challenging, so We provide  a <a href="https://www.astrokids.ai/">personalized    Astrology Report for parenting </a>  for your child , you can make more informed, mindful decisions that support your child's well-being. By understanding their unique emotional needs, strengths, and potential challenges, you're setting the foundation for a fulfilling and successful future. Let's raise our children with awareness, love, and balance.`,
       },
     ],
     createdAt: "2025-05-16T09:05:02.576Z",
     metaDescription:
-      "Explore how child astrology reports reveal personality traits, emotional patterns, and parenting tips tailored to your child’s zodiac and birth chart.",
+      "Explore how child astrology reports reveal personality traits, emotional patterns, and parenting tips tailored to your child's zodiac and birth chart.",
     metaTitle: "Child Astrology Report for Smart Parenting",
   },
   {
@@ -4532,9 +4520,9 @@ export const sampleBlogs = [
       {
         type: "image",
         content:
-          "Unlock Your Child’s True Potential with Astrology and Healing",
+          "Unlock Your Child's True Potential with Astrology and Healing",
         image: "1yUgUHxvPBBNmsib0OzYatmTdhSmMXgN6",
-        alt: "Unlock Your Child’s True Potential with Astrology and Healing",
+        alt: "Unlock Your Child's True Potential with Astrology and Healing",
       },
       { type: "subtitle", content: "Introduction" },
       {
@@ -4549,7 +4537,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Astrology helps in understanding a child’s inherent strengths, weaknesses, and behavioral tendencies. By analyzing their birth chart, parents and educators can:",
+          "Astrology helps in understanding a child's inherent strengths, weaknesses, and behavioral tendencies. By analyzing their birth chart, parents and educators can:",
       },
       {
         type: "checklist",
@@ -4562,7 +4550,7 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Tailored Healing Practices for Children’s Growth",
+        content: "Tailored Healing Practices for Children's Growth",
       },
       {
         type: "para",
@@ -4605,13 +4593,13 @@ export const sampleBlogs = [
       {
         type: "subtitle",
         content:
-          "Combining Astrology, Healing, and Manifestation Practices for Kids’ Self-Development",
+          "Combining Astrology, Healing, and Manifestation Practices for Kids' Self-Development",
       },
       { type: "subtitle1", content: "1. Emotional Intelligence & Well-Being" },
       {
         type: "para",
         content:
-          "By Understanding A Child’s Moon Sign, Parents Can Apply Healing Techniques To Nurture Emotional Security. For Instance:",
+          "By Understanding A Child's Moon Sign, Parents Can Apply Healing Techniques To Nurture Emotional Security. For Instance:",
       },
       {
         type: "checklist",
@@ -4624,7 +4612,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Mercury’s placement in a birth chart influences intelligence and learning abilities. Healing practices such as:",
+          "Mercury's placement in a birth chart influences intelligence and learning abilities. Healing practices such as:",
       },
       {
         type: "checklist",
@@ -4653,7 +4641,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Mars and Jupiter influence a child’s physical energy and immunity. Supportive healing methods include:",
+          "Mars and Jupiter influence a child's physical energy and immunity. Supportive healing methods include:",
       },
       {
         type: "checklist",
@@ -4853,18 +4841,18 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Unlock Your Child’s True Potential with Astro Kids!",
+        content: "Unlock Your Child's True Potential with Astro Kids!",
       },
       {
         type: "para",
         content:
           "Give Your Child The Gift Of Self-awareness, Confidence, And Emotional Balance With A Personalized Astrokids Astrology Report—a Unique Blend Of Astrology, Healing, And Manifestation Techniques Tailored To Support Their Growth.",
       },
-      { type: "subtitle1", content: "🌟 What’s Inside?" },
+      { type: "subtitle1", content: "🌟 What's Inside?" },
       {
         type: "checklist",
         items: [
-          "Personalized Birth Chart Analysis – Understand Your Child’s Strengths, Challenges & Life Path",
+          "Personalized Birth Chart Analysis – Understand Your Child's Strengths, Challenges & Life Path",
           "Healing Remedies – Custom Solutions For Emotional Well-being & Energy Balance",
           "Manifestation Techniques – Empower Your Child To Attract Success & Happiness",
           "Karmic Block Removal Insights – Overcome Fears, Anxieties & Past Life Influences",
@@ -4882,9 +4870,9 @@ export const sampleBlogs = [
     ],
     createdAt: "2025-04-08T18:08:58.983Z",
     metaDescription:
-      " Learn how astrology supports your child’s healing journey by decoding energy blocks, emotional needs, and karmic patterns through their birth chart.",
+      " Learn how astrology supports your child's healing journey by decoding energy blocks, emotional needs, and karmic patterns through their birth chart.",
     metaTitle:
-      "Astrology for Children’s Emotional Healing and Growth|Astrokids",
+      "Astrology for Children's Emotional Healing and Growth|Astrokids",
   },
   {
     _id: "67f5605082c5872b51ebdf1d",
@@ -4901,9 +4889,9 @@ export const sampleBlogs = [
       },
       {
         type: "image",
-        content: "Unlock Your Child’s True Potential with Astrology and Yoga",
+        content: "Unlock Your Child's True Potential with Astrology and Yoga",
         image: "1KU0BXrdY7cw0gGSSJZjemMOdqZEPhKVZ",
-        alt: "Unlock Your Child’s True Potential with Astrology and Yoga",
+        alt: "Unlock Your Child's True Potential with Astrology and Yoga",
       },
       { type: "subtitle", content: "Introduction" },
       {
@@ -4918,7 +4906,7 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "The Power of Yoga in a Child’s Transformation",
+        content: "The Power of Yoga in a Child's Transformation",
       },
       {
         type: "table",
@@ -4953,7 +4941,7 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Understanding the Five Koshas: Layers of a Child’s Growth",
+        content: "Understanding the Five Koshas: Layers of a Child's Growth",
       },
       {
         type: "table",
@@ -5128,8 +5116,8 @@ export const sampleBlogs = [
       {
         type: "checklist",
         items: [
-          "As a parent, you have the power to shape your child’s future by aligning them with cosmic energies and ancient wisdom.",
-          "Discover Your Child’s Astrological Blueprint! Get a personalized AstroKids Child Astrology Report to understand your child’s strengths, challenges, and growth potential.",
+          "As a parent, you have the power to shape your child's future by aligning them with cosmic energies and ancient wisdom.",
+          "Discover Your Child's Astrological Blueprint! Get a personalized AstroKids Child Astrology Report to understand your child's strengths, challenges, and growth potential.",
           "Integrate Yoga for Positive Transformation! Learn how specific yoga practices can balance planetary influences and enhance self-realization.",
           "Remedies To Enhance Health, Confidence, And Focus",
         ],
@@ -5143,13 +5131,13 @@ export const sampleBlogs = [
     ],
     createdAt: "2025-04-08T17:43:41.433Z",
     metaDescription:
-      "Combine astrology and yoga to boost your child’s concentration, calmness, and overall growth. Learn simple parent-friendly techniques that really work.",
-    metaTitle: " Best Yoga & Astrology Practices for Kids’  Focus",
+      "Combine astrology and yoga to boost your child's concentration, calmness, and overall growth. Learn simple parent-friendly techniques that really work.",
+    metaTitle: " Best Yoga & Astrology Practices for Kids'  Focus",
   },
   {
     _id: "67f55af53f65b17de42d8fdf",
     title:
-      "Astrology & Ayurveda: A Holistic Approach To Your Child’s Well-being",
+      "Astrology & Ayurveda: A Holistic Approach To Your Child's Well-being",
     image: "1rc-F5zbmznXugtq-uev2z1kCoKKJo98L",
     slug: "astrology-and-ayurveda",
     type: 3,
@@ -5157,12 +5145,12 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "Astrology & Ayurveda: A Holistic Approach To Your Child’s Well-being",
+          "Astrology & Ayurveda: A Holistic Approach To Your Child's Well-being",
       },
       {
         type: "image",
         content:
-          "Astrology & Ayurveda: A Holistic Approach To Your Child’s Well-being",
+          "Astrology & Ayurveda: A Holistic Approach To Your Child's Well-being",
         image: "1rc-F5zbmznXugtq-uev2z1kCoKKJo98L",
         alt: "Understanding Your Child Through Ancient Wisdom",
       },
@@ -5170,7 +5158,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Parenting Is A Journey Filled With Joy, Challenges, And The Desire To Nurture A Child’s Physical, Emotional, And Mental Well-being. Ancient Sciences Like Astrology And Ayurveda Provide A Deeper Understanding Of A Child’s Nature, Helping Parents Align Their Upbringing With Cosmic And Biological Rhythms.",
+          "Parenting Is A Journey Filled With Joy, Challenges, And The Desire To Nurture A Child's Physical, Emotional, And Mental Well-being. Ancient Sciences Like Astrology And Ayurveda Provide A Deeper Understanding Of A Child's Nature, Helping Parents Align Their Upbringing With Cosmic And Biological Rhythms.",
       },
       {
         type: "para",
@@ -5181,14 +5169,14 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Astrology And Ayurveda Are Two Interconnected Ancient Sciences That Provide A Comprehensive Understanding Of Human Nature And Well-being. While Astrology Reveals A Child’s Mental Tendencies, Emotions, Personality Traits, And Life Path, Ayurveda Explains Their Body Constitution, Health Predispositions, And Natural Inclinations. Together, They Offer Personalized Guidance For Nurturing A Child's Overall Well-being.",
+          "Astrology And Ayurveda Are Two Interconnected Ancient Sciences That Provide A Comprehensive Understanding Of Human Nature And Well-being. While Astrology Reveals A Child's Mental Tendencies, Emotions, Personality Traits, And Life Path, Ayurveda Explains Their Body Constitution, Health Predispositions, And Natural Inclinations. Together, They Offer Personalized Guidance For Nurturing A Child's Overall Well-being.",
       },
       { type: "subtitle", content: "How They Complement Each Other" },
       {
         type: "checklist",
         items: [
-          "Astrology Determines Planetary Influences On A Child’s Temperament, Emotions, Learning Style, And Behavior.",
-          "Ayurveda Classifies A Child’s Body Type (Prakriti) As Vata, Pitta, Or Kapha, Which Affects Their Physical And Mental Health.",
+          "Astrology Determines Planetary Influences On A Child's Temperament, Emotions, Learning Style, And Behavior.",
+          "Ayurveda Classifies A Child's Body Type (Prakriti) As Vata, Pitta, Or Kapha, Which Affects Their Physical And Mental Health.",
           "By Integrating Both Sciences, Parents Can Create A Nurturing Environment, Ensuring Balance In Diet, Lifestyle, And Daily Routines Tailored To The Child's Unique Needs.",
         ],
       },
@@ -5198,7 +5186,7 @@ export const sampleBlogs = [
         headers: [
           "Astrological Factors",
           "Ayurvedic Factors",
-          "Impact on Child’s Health & Mind",
+          "Impact on Child's Health & Mind",
         ],
         rows: [
           [
@@ -5227,7 +5215,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Astrology Helps Parents Decode Their Child’s Strengths, Weaknesses, And Emotional Tendencies. By Analyzing The Planetary Placements In The Child's Birth Chart, Parents Can Enhance Positive Traits And Address Challenges Proactively.",
+          "Astrology Helps Parents Decode Their Child's Strengths, Weaknesses, And Emotional Tendencies. By Analyzing The Planetary Placements In The Child's Birth Chart, Parents Can Enhance Positive Traits And Address Challenges Proactively.",
       },
       {
         type: "subtitle1",
@@ -5275,12 +5263,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Each Planet Affects A Child’s Learning Habits, Behavior, Emotions, And Health, Making It Crucial To Nurture Planetary Strengths While Correcting Imbalances.",
+          "Each Planet Affects A Child's Learning Habits, Behavior, Emotions, And Health, Making It Crucial To Nurture Planetary Strengths While Correcting Imbalances.",
       },
       {
         type: "subtitle",
         content:
-          "Houses in Astrology & Child’s Growth (With Ayurvedic Insights)",
+          "Houses in Astrology & Child's Growth (With Ayurvedic Insights)",
       },
       {
         type: "table",
@@ -5355,7 +5343,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Understanding These Planet-house-ayurveda Connections Helps Parents Support Their Child’s Strengths And Health While Addressing Potential Imbalances.",
+          "Understanding These Planet-house-ayurveda Connections Helps Parents Support Their Child's Strengths And Health While Addressing Potential Imbalances.",
       },
       {
         type: "subtitle",
@@ -5399,12 +5387,12 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Take the Next Step for Your Child’s Holistic Well-Being!",
+        content: "Take the Next Step for Your Child's Holistic Well-Being!",
       },
       {
         type: "subtitle1",
         content:
-          "Download Your Child’s Personalized Astrokids Child Astrology Report To Discover:",
+          "Download Your Child's Personalized Astrokids Child Astrology Report To Discover:",
       },
       {
         type: "checklist",
@@ -5439,14 +5427,14 @@ export const sampleBlogs = [
       },
       {
         type: "image",
-        content: "Nourish Your Child’s Mind, Body & Soul with Ancient Wisdom",
+        content: "Nourish Your Child's Mind, Body & Soul with Ancient Wisdom",
         image: "1n7KocNzvUNF945js_41HiWzHltzJ4xx1",
-        alt: "Nourish Your Child’s Mind, Body & Soul with Ancient Wisdom",
+        alt: "Nourish Your Child's Mind, Body & Soul with Ancient Wisdom",
       },
       {
         type: "para",
         content:
-          "Your child isn’t just a physical being — they are a unique blend of energies, shaped by the five elements (Pancha Bhoothas) and governed by cosmic rhythms. The alignment of these elements at birth, visible through their astrological chart, directly influences their Ayurvedic dosha — Vata, Pitta, or Kapha — which defines their body type, emotional nature, learning style, and even food preferences.",
+          "Your child isn't just a physical being — they are a unique blend of energies, shaped by the five elements (Pancha Bhoothas) and governed by cosmic rhythms. The alignment of these elements at birth, visible through their astrological chart, directly influences their Ayurvedic dosha — Vata, Pitta, or Kapha — which defines their body type, emotional nature, learning style, and even food preferences.",
       },
       {
         type: "para",
@@ -5490,11 +5478,11 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Your child’s Moon sign, ascendant, and planetary dominance help determine which dosha they’re naturally inclined toward.",
+          "Your child's Moon sign, ascendant, and planetary dominance help determine which dosha they're naturally inclined toward.",
       },
       {
         type: "subtitle1",
-        content: "🌱 Step 2: Decoding Your Child’s Dosha & Its Characteristics",
+        content: "🌱 Step 2: Decoding Your Child's Dosha & Its Characteristics",
       },
       { type: "subtitle", content: "1. VATA Child – The Creative Spark" },
       {
@@ -5750,7 +5738,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Note : This is generic chart not recommended for all get your child’s personalized astrology report to know complete suitable diet chart ",
+          "Note : This is generic chart not recommended for all get your child's personalized astrology report to know complete suitable diet chart ",
       },
       {
         type: "subtitle1",
@@ -5759,7 +5747,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "By understanding your child’s elemental nature and dosha, you:",
+          "By understanding your child's elemental nature and dosha, you:",
       },
       {
         type: "checklist",
@@ -5773,7 +5761,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Food becomes medicine, mindfulness, and love—supporting not just the body, but also your child’s spiritual journey and emotional development.",
+          "Food becomes medicine, mindfulness, and love—supporting not just the body, but also your child's spiritual journey and emotional development.",
       },
       {
         type: "subtitle1",
@@ -5782,7 +5770,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "✨ Discover your child’s true nature with a detailed Astro Kids Report, including:",
+          "✨ Discover your child's true nature with a detailed Astro Kids Report, including:",
       },
       {
         type: "checklist",
@@ -5802,7 +5790,7 @@ export const sampleBlogs = [
     ],
     createdAt: "2025-04-05T05:26:31.330Z",
     metaDescription:
-      " Balance your child’s body and mind using the Pancha Bhoota (five elements) diet. Get a free, easy-to-follow cheat sheet for holistic nourishment.",
+      " Balance your child's body and mind using the Pancha Bhoota (five elements) diet. Get a free, easy-to-follow cheat sheet for holistic nourishment.",
     metaTitle:
       "Pancha Bhoota Diet Plan for Kids: Simple Cheat Sheet for Parents",
   },
@@ -5829,7 +5817,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "His grandmother, a wise Ayurvedic healer, didn't see this as a “problem” but as Prakriti in motion—Aarav’s natural constitution just slightly out of balance.",
+          "His grandmother, a wise Ayurvedic healer, didn't see this as a “problem” but as Prakriti in motion—Aarav's natural constitution just slightly out of balance.",
       },
       {
         type: "subtitle1",
@@ -5888,7 +5876,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Aarav’s grandmother explained the Pancha Koshas as layers of a lotus, each needing care:",
+          "Aarav's grandmother explained the Pancha Koshas as layers of a lotus, each needing care:",
       },
       {
         type: "numbered-list",
@@ -5907,7 +5895,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "The mind is not just thoughts—it’s a sacred instrument made of Manas (thinking mind), Buddhi (intellect), Ahamkara (ego), and Chitta (memory). When these are disturbed, even children feel emotional fog, confusion, and restlessness.",
+          "The mind is not just thoughts—it's a sacred instrument made of Manas (thinking mind), Buddhi (intellect), Ahamkara (ego), and Chitta (memory). When these are disturbed, even children feel emotional fog, confusion, and restlessness.",
       },
       {
         type: "para",
@@ -5920,14 +5908,14 @@ export const sampleBlogs = [
           "Chanting simple mantras like Om Namah Shivaya",
           "Moon gazing to soothe Vata",
           "Gratitude practices and evening prayers",
-          "Astro-guided rituals based on the child’s birth chart",
+          "Astro-guided rituals based on the child's birth chart",
         ],
       },
       { type: "subtitle1", content: "🌿 In the End..." },
       {
         type: "para",
         content:
-          "Aarav didn’t need to be “fixed.” He just needed to be understood.",
+          "Aarav didn't need to be “fixed.” He just needed to be understood.",
       },
       {
         type: "para",
@@ -5942,7 +5930,7 @@ export const sampleBlogs = [
       {
         type: "title",
         content:
-          "🌟 Your Child’s Journey is Written in the Stars — Let’s Read It Together 🌟",
+          "🌟 Your Child's Journey is Written in the Stars — Let's Read It Together 🌟",
       },
       {
         type: "para",
@@ -5957,12 +5945,12 @@ export const sampleBlogs = [
       {
         type: "subtitle1",
         content:
-          "🌿 What you’ll receive in your AstroKids Child Astrology Report:",
+          "🌿 What you'll receive in your AstroKids Child Astrology Report:",
       },
       {
         type: "checklist",
         items: [
-          "✨ A complete Vedic Astrological analysis of your child’s personality, emotions, and energy",
+          "✨ A complete Vedic Astrological analysis of your child's personality, emotions, and energy",
           "✨ Customized Ayurvedic lifestyle, food, and herbal suggestions",
           "✨ Dinacharya (daily rhythm) plan based on their dosha and planetary influences",
           "✨ Antahkarana Shuddhi practices for emotional and mental clarity",
@@ -5971,7 +5959,7 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content: "Because parenting isn’t about control—it’s about alignment.",
+        content: "Because parenting isn't about control—it's about alignment.",
       },
       {
         type: "subtitle1",
@@ -6006,12 +5994,12 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Astrology provides valuable insights into a child’s personality, strengths, and potential challenges. By decoding their birth chart using three key astrological components—the Lagna (Rising Sign), Moon Sign, and Sun Sign—you can nurture their confidence and success from an early age. Let's explore how each sign plays a vital role in shaping your child’s growth and how you can use these insights to provide the best guidance.",
+          "Astrology provides valuable insights into a child's personality, strengths, and potential challenges. By decoding their birth chart using three key astrological components—the Lagna (Rising Sign), Moon Sign, and Sun Sign—you can nurture their confidence and success from an early age. Let's explore how each sign plays a vital role in shaping your child's growth and how you can use these insights to provide the best guidance.",
       },
       {
         type: "subtitle",
         content:
-          "Step 1: Understanding the Lagna (Rising Sign) – Your Child’s First Impression and Approach to Life",
+          "Step 1: Understanding the Lagna (Rising Sign) – Your Child's First Impression and Approach to Life",
       },
       {
         type: "para",
@@ -6059,7 +6047,7 @@ export const sampleBlogs = [
       {
         type: "subtitle",
         content:
-          "Step 2: Understanding the Moon Sign – Your Child’s Emotional World and Comfort Zone",
+          "Step 2: Understanding the Moon Sign – Your Child's Emotional World and Comfort Zone",
       },
       {
         type: "para",
@@ -6107,12 +6095,12 @@ export const sampleBlogs = [
       {
         type: "subtitle",
         content:
-          "Step 3: Understanding the Sun Sign – Your Child’s Core Identity and Life Purpose",
+          "Step 3: Understanding the Sun Sign – Your Child's Core Identity and Life Purpose",
       },
       {
         type: "para",
         content:
-          "The Sun Sign represents the essence of your child’s personality, their potential, and how they shine in the world.",
+          "The Sun Sign represents the essence of your child's personality, their potential, and how they shine in the world.",
       },
       {
         type: "subtitle1",
@@ -6160,7 +6148,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "By understanding your child's Lagna (Rising Sign), Moon Sign, and Sun Sign, you gain valuable insights into their personality, emotions, and core identity. Using this knowledge, you can create a supportive environment tailored to their unique needs, helping them grow into confident and successful individuals. Astrology isn’t just about predicting the future—it’s a tool for empowerment and deeper parent-child connection.",
+          "By understanding your child's Lagna (Rising Sign), Moon Sign, and Sun Sign, you gain valuable insights into their personality, emotions, and core identity. Using this knowledge, you can create a supportive environment tailored to their unique needs, helping them grow into confident and successful individuals. Astrology isn't just about predicting the future—it's a tool for empowerment and deeper parent-child connection.",
       },
       {
         type: "para",
@@ -6169,12 +6157,12 @@ export const sampleBlogs = [
       },
       {
         type: "subtitle",
-        content: "Unlock Your Child’s Potential with Astro Kids!",
+        content: "Unlock Your Child's Potential with Astro Kids!",
       },
       {
         type: "para",
         content:
-          "Want to explore your child's birth chart in more detail? Connect with Astro Kids for personalized insights and expert guidance tailored to your child’s unique astrological blueprint. Help them shine brighter with the wisdom of astrology!",
+          "Want to explore your child's birth chart in more detail? Connect with Astro Kids for personalized insights and expert guidance tailored to your child's unique astrological blueprint. Help them shine brighter with the wisdom of astrology!",
       },
     ],
     createdAt: "2025-04-04T17:45:59.321Z",
@@ -6205,7 +6193,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "At AstroKids, we believe parenting becomes easier when you understand your child’s natural personality. This isn’t about superstition; it’s about combining ancient wisdom from Vedic astrology with practical, everyday parenting tips. By learning about your child’s strengths, sensitivities, and learning style, you can raise them with confidence and reduce daily struggles.",
+          "At AstroKids, we believe parenting becomes easier when you understand your child's natural personality. This isn't about superstition; it's about combining ancient wisdom from Vedic astrology with practical, everyday parenting tips. By learning about your child's strengths, sensitivities, and learning style, you can raise them with confidence and reduce daily struggles.",
       },
       {
         type: "subtitle",
@@ -6234,7 +6222,7 @@ export const sampleBlogs = [
           {
             title: "Independent thinkers:",
             content:
-              " Swati children love making their own choices, whether it’s selecting clothes or deciding how to play. This independence builds their confidence and prepares them for future responsibility. As parents, allowing small decisions daily strengthens their problem-solving skills.\n",
+              " Swati children love making their own choices, whether it's selecting clothes or deciding how to play. This independence builds their confidence and prepares them for future responsibility. As parents, allowing small decisions daily strengthens their problem-solving skills.\n",
           },
           {
             title: "Curious explorers:",
@@ -6262,7 +6250,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Swati children’s free-spirited nature can sometimes lead to irregular routines. They may skip meals, resist bedtime, or get restless when confined. Parents can support them with gentle structures instead of rigid rules.",
+          "Swati children's free-spirited nature can sometimes lead to irregular routines. They may skip meals, resist bedtime, or get restless when confined. Parents can support them with gentle structures instead of rigid rules.",
       },
       {
         type: "table",
@@ -6316,7 +6304,7 @@ export const sampleBlogs = [
       {
         type: "para",
         content:
-          "Swati children’s biggest strengths lie in their independence, adaptability, and charm. They inspire others with their ability to think differently and adjust to new situations with ease. Their fairness and kindness also make them loved in social groups.",
+          "Swati children's biggest strengths lie in their independence, adaptability, and charm. They inspire others with their ability to think differently and adjust to new situations with ease. Their fairness and kindness also make them loved in social groups.",
       },
       {
         type: "para",
@@ -6345,8 +6333,7 @@ export const sampleBlogs = [
       },
       {
         type: "para",
-        content:
-          'At AstroKids, we know that parenting often feels overwhelming, especially when each child has such unique needs. That’s why we offer <a href="https://www.astrokids.ai/blogs/child-astrology-report">Child Astrology Reports </a>,designed to give parents deeper insights into their child’s personality, emotional world, and learning style. Our goal is to make parenting easier, helping you raise your child  from newborn to young adult with clarity and confidence.',
+        content: `At AstroKids, we know that parenting often feels overwhelming, especially when each child has such unique needs. That's why we offer <a href="https://www.astrokids.ai/blogs/child-astrology-report">Child Astrology Reports </a>,designed to give parents deeper insights into their child's personality, emotional world, and learning style. Our goal is to make parenting easier, helping you raise your child  from newborn to young adult with clarity and confidence.`,
       },
     ],
     createdAt: "2025-09-02T10:43:15.733Z",
@@ -6377,77 +6364,12 @@ export const heroComponent = [
   },
 ];
 
-// Rudraksha- 12 Faces
-// ₹ 17850
-// Buy Now Add to Cart
-// Ruled by the Sun (Surya), this Rudraksha radiates leadership, vitality, and confidence. It enhances personal magnetism, empowers wise decisions, and uplifts the soul’s light. Ideal for those in public life, business, or seeking spiritual royalty and Divine authority.
-
-// Rudraksha- 11 Faces
-// Rudraksha- 11 Faces
-// ₹ 14350
-// Buy Now Add to Cart
-// Blessed by the 11 Rudras and ruled by Mars, this sacred bead boosts inner strength, willpower, and protection. It empowers speech, enhances concentration, and supports success in leadership and spiritual practices. It is especially beneficial for those seeking spiritual growth and inner strength.
-
-// Rudraksha- 9 Faces
-// Rudraksha- 9 Faces
-// ₹ 9100
-// Buy Now Add to Cart
-// Empowered by Goddess Durga and associated with Rahu, this Rudraksha instills fearlessness, dynamism, and Divine protection. It wards off negative influences, neutralizes Rahu’s malefic effects, and energizes the wearer with spiritual courage and power.
-
-// Rudraksha- 8 Faces
-// Rudraksha- 8 Faces
-// ₹ 9100
-// Buy Now Add to Cart
-// Ruled by Ketu and presided over by Ganesha, the remover of obstacles, this Rudraksha clears karmic blocks, ensures smooth progress, and enhances discernment. It supports clarity of direction, successful ventures, and freedom from limitations—both inner and outer.
-
-// Rudraksha- 7 Faces
-// Rudraksha- 7 Faces
-// ₹ 2100
-// Buy Now Add to Cart
-// Governed by Saturn and blessed by Goddess Mahalakshmi, this Rudraksha invites prosperity, abundance, and financial strength. It helps dissolve debts, relieve stress, and build steady growth. Ideal for those seeking wealth and long-term stability.
-
-// Rudraksha- 6 Faces
-// Rudraksha- 6 Faces
-// ₹ 700
-// Buy Now Add to Cart
-// Ruled by Venus and blessed by Muruga (Kartikeya), this Rudraksha enhances self-worth, learning, and emotional balance. It helps remove fear, anxiety, and mental turbulence while supporting artistic talents, education, and professional success.
-
-// Rudraksha- 5 Faces
-// Rudraksha- 5 Faces
-// ₹ 385
-// Buy Now Add to Cart
-// Ruled by Jupiter and blessed by Kalagni Rudra, this is the most commonly worn Rudraksha—and a powerful one. It calms the mind, purifies the aura, and harmonizes the five elements. Recommended for everyone, it promotes wisdom, inner peace, good health, and spiritual progress.
-
-// Rudraksha- 4 Faces
-// Rudraksha- 4 Faces
-// ₹ 700
-// Buy Now Add to Cart
-// Connected to Brahma, the Creator, and ruled by Mercury, this Rudraksha enhances knowledge, creativity, and communication. It sharpens memory, increases mental clarity, and supports spiritual learning. Ideal for students, teachers, artists, and seekers of divine wisdom.
-
-// Rudraksha- 3 Faces
-// Rudraksha- 3 Faces
-// ₹ 2100
-// Buy Now Add to Cart
-// Blessed by Agni (Fire God) and ruled by Mars, this bead burns karmic baggage, purifies energy, and inspires transformation. It revitalizes confidence, motivation, and personal strength—helping release guilt, overcome stagnation, and step into new beginnings.
-
-// Rudraksha- 2 Faces
-// Rudraksha- 2 Faces
-// ₹ 1750
-// Buy Now Add to Cart
-// Symbolizing Ardhanarishwara, the sacred union of Shiva and Parvati, this Rudraksha balances dualities—masculine and feminine, inner and outer. Ruled by the Moon, it promotes emotional stability, harmony in relationships, and peace in the home. Ideal for resolving conflicts and fostering unity.
-
-// Rudraksha- 1 Face
-// Rudraksha- 1 Face
-// ₹ 8750
-// Buy Now Add to Cart
-// Ruled by Shiva and governed by the Sun, this rare bead represents absolute oneness and pure consciousness. It dissolves ego, awakens spiritual clarity, and connects the wearer with Supreme Divine grace. Ideal for those seeking enlightenment, liberation, and deep inner peace.
-
 export const rudrakshas = [
   {
     faces: 12,
     price: 17850,
     description:
-      "Ruled by the Sun (Surya), this Rudraksha radiates leadership, vitality, and confidence. It enhances personal magnetism, empowers wise decisions, and uplifts the soul’s light. Ideal for those in public life, business, or seeking spiritual royalty and Divine authority.",
+      "Ruled by the Sun (Surya), this Rudraksha radiates leadership, vitality, and confidence. It enhances personal magnetism, empowers wise decisions, and uplifts the soul's light. Ideal for those in public life, business, or seeking spiritual royalty and Divine authority.",
   },
   {
     faces: 11,
@@ -6459,7 +6381,7 @@ export const rudrakshas = [
     faces: 9,
     price: 9100,
     description:
-      "Empowered by Goddess Durga and associated with Rahu, this Rudraksha instills fearlessness, dynamism, and Divine protection. It wards off negative influences, neutralizes Rahu’s malefic effects, and energizes the wearer with spiritual courage and power.",
+      "Empowered by Goddess Durga and associated with Rahu, this Rudraksha instills fearlessness, dynamism, and Divine protection. It wards off negative influences, neutralizes Rahu's malefic effects, and energizes the wearer with spiritual courage and power.",
   },
   {
     faces: 8,
@@ -6510,3 +6432,59 @@ export const rudrakshas = [
       "Ruled by Shiva and governed by the Sun, this rare bead represents absolute oneness and pure consciousness. It dissolves ego, awakens spiritual clarity, and connects the wearer with Supreme Divine grace. Ideal for those seeking enlightenment, liberation, and deep inner peace.",
   },
 ];
+
+export const nakshatraIdentity = {
+  Ashwini:
+    "Energetic, healing, and pioneering. child is a natural helper with a spontaneous spirit. child's life path revolves around initiating action, bringing vitality, and restoring balance to others.",
+  Bharani:
+    "Strong-willed, passionate, and transformative. child explores the power of creation and endurance. child's inner instinct pushes toward mastering responsibility, pleasure, and life's deep lessons.",
+  Krittika:
+    "Sharp, disciplined, and purifying. child is a truth-seeker who cuts through illusion. child's life path involves transformation through clarity, strength, and devotion to what is right.",
+  Rohini:
+    "Creative, attractive, and nurturing. child has magnetic charm and artistic instinct. child's soul seeks beauty, growth, and emotional fulfillment through creation and affection.",
+  Mrigashira:
+    "Curious, searching, and gentle. child is a seeker of truth and connection. child's life path involves exploring new ideas, relationships, and emotional understanding.",
+  Ardra:
+    "Intense, emotional, and renewing. child experiences deep transformation through emotional storms. child's soul purpose is purification — learning to rebuild and find peace after chaos.",
+  Punarvasu:
+    "Hopeful, generous, and restoring. child has an instinct for renewal and abundance. child's life path centers on returning to truth, faith, and inner peace after life's trials.",
+  Pushya:
+    "Nurturing, wise, and disciplined. child embodies care and guidance. child's soul instinct is to protect, teach, and nourish others through selfless service and emotional strength.",
+  Ashlesha:
+    "Mysterious, intuitive, and intense. child has deep psychological insight. child's path involves mastering emotional power, detachment, and spiritual awareness.",
+  Magha:
+    "Regal, ancestral, and dignified. child honors tradition and carries karmic strength. child's inner drive is to uphold legacy and lead with pride, purpose, and reverence for the past.",
+  "Purva Phalguni":
+    "Joyful, artistic, and affectionate. child is drawn to love, creativity, and celebration. child's path is about learning balance between pleasure, generosity, and responsibility.",
+  "Uttara Phalguni":
+    "Supportive, noble, and organized. child brings stability to others. child's inner instinct is service and commitment — building strong partnerships and structures in life.",
+  Hasta:
+    "Skilled, practical, and charming. child has the gift of creation through hand and mind. child's life path focuses on mastery, grace, and uplifting others through tangible results.",
+  Chitra:
+    "Artistic, visionary, and dynamic. child builds beauty and structure in the world. child's soul drive is creation — turning imagination into something enduring and meaningful.",
+  Swati:
+    "Independent, flexible, and balanced. child values freedom and self-development. child's path involves finding inner strength while harmonizing with life's changing winds.",
+  Vishakha:
+    "Ambitious, determined, and devoted. child is a focused achiever. child's inner instinct drives success through perseverance and spiritual focus.",
+  Anuradha:
+    "Loyal, disciplined, and friendly. child builds strong emotional bonds. child's life path revolves around devotion, cooperation, and guiding others with sincerity.",
+  Jyeshtha:
+    "Protective, wise, and authoritative. child holds leadership energy and deep insight. child's instinct is to use power with wisdom and integrity, guiding through experience.",
+  Mula: "Philosophical, fearless, and truth-seeking. child digs to the root of life's mysteries. child's spiritual path involves breaking the illusion and being reborn through self-realization.",
+  "Purva Ashadha":
+    "Optimistic, persuasive, and idealistic. child is inspired by conviction and purpose. child's life path is to uplift others through truth, courage, and vision.",
+  "Uttara Ashadha":
+    "Noble, ethical, and enduring. child has an instinct for leadership and perseverance. child's soul journey is about mastering discipline and achieving lasting success.",
+  Shravana:
+    "Attentive, wise, and communicative. child is a good listener and learner. child's path is one of gaining knowledge, teaching truth, and connecting people through understanding.",
+  Dhanishta:
+    "Rhythmic, prosperous, and generous. child moves with life's natural flow. child's soul instinct leads toward wealth, harmony, and using talent for collective good.",
+  Shatabhisha:
+    "Mysterious, healing, and detached. child is a seeker of truth and science. child's inner drive is to heal through knowledge and explore life's hidden dimensions.",
+  "Purva Bhadrapada":
+    "Intense, idealistic, and visionary. child balances spiritual fire and worldly awareness. child's path involves awakening higher consciousness and inspiring others.",
+  "Uttara Bhadrapada":
+    "Wise, patient, and compassionate. child has a deep connection to inner peace. child's instinct is to stabilize emotions and serve humanity through spiritual maturity.",
+  Revati:
+    "Gentle, giving, and guiding. child carries a kind and protective energy. child's life path is one of completion, compassion, and leading others toward light and wholeness.",
+};
