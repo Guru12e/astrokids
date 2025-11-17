@@ -477,7 +477,7 @@ const PanchangDisplay = () => {
                 </section>
               )}
 
-              <section className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl shadow-2xl relative overflow-hidden">
+              <section className="bg-gradient-to-br from-indigo-50 to-purple-50 p-3 rounded-3xl shadow-2xl relative overflow-hidden">
                 <h2 className="text-[26px] font-black text-[#5D74E4] mb-3 text-center relative z-10 tracking-wide">
                   {name}'s Vimshottari Dasha Timeline 🌌
                 </h2>
