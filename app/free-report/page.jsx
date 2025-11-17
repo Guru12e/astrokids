@@ -477,13 +477,13 @@ const PanchangDisplay = () => {
                 </section>
               )}
 
-              <section className="bg-gradient-to-br from-indigo-50 to-purple-50 p-3 rounded-3xl shadow-2xl relative overflow-hidden">
+              <section className="bg-gradient-to-br from-indigo-50 to-purple-50 px-3 py-6 rounded-3xl shadow-2xl relative overflow-hidden">
                 <h2 className="text-[26px] font-black text-[#5D74E4] mb-3 text-center relative z-10 tracking-wide">
                   {name}'s Vimshottari Dasha Timeline 🌌
                 </h2>
 
                 <p className="text-center text-[#6F6C90] mb-10 relative z-10 text-[15px]">
-                  A celestial roadmap of planetary periods shaping life’s
+                  A celestial roadmap of planetary periods shaping life's
                   journey.
                 </p>
 
@@ -561,6 +561,15 @@ const PanchangDisplay = () => {
                               let months =
                                 bhukti.end_month - bhukti.start_month;
                               if (months < 0) months += 12;
+
+                              if (
+                                bhukti.end_year <
+                                new Date(userDetails.dob).getFullYear()
+                                && bhukti.end_month <
+                                  new Date(userDetails.dob).getMonth() + 1
+                              ) {
+                                return null;
+                              }
 
                               return (
                                 <div
