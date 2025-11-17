@@ -610,10 +610,11 @@ const PanchangDisplay = () => {
 
                                   <div className="relative w-full h-2 rounded-full bg-gray-200 overflow-hidden">
                                     <div
-                                      className={`absolute h-full rounded-full bg-gradient-to-r ${bhuktiTheme.gradient}`}
+                                      className={`absolute h-full rounded-full to-${bhuktiTheme.gradient1}`}
                                       style={{
                                         left: `${duration.offset}%`,
                                         width: `${duration.width}%`,
+                                        background: `linear-gradient(to right, ${bhuktiTheme.gradient}, ${bhuktiTheme.gradient1})`,
                                       }}
                                     ></div>
                                   </div>
