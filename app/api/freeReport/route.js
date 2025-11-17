@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getDetails } from "@/lib/details";
+import { calculateDasa, getDetails } from "@/lib/details";
 import fs from "fs";
 
 export async function POST(req) {
@@ -27,7 +27,12 @@ export async function POST(req) {
       navamsa_chart: "data:image/png;base64," + navamsaChartBase64,
     };
 
-    return NextResponse.json({ planets, panchang, charts }, { status: 200 });
+    const dasa = calculateDasa(date, planets[2]);
+
+    return NextResponse.json(
+      { planets, panchang, charts, dasa },
+      { status: 200 }
+    );
   } catch (err) {
     console.error("Error calculating free report:", err);
     return NextResponse.json(

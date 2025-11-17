@@ -6488,3 +6488,51 @@ export const nakshatraIdentity = {
   Revati:
     "Gentle, giving, and guiding. child carries a kind and protective energy. child's life path is one of completion, compassion, and leading others toward light and wholeness.",
 };
+
+export const PLANET_THEME = {
+  Sun: {
+    color: "#FFA500",
+    gradient: "from-yellow-300 to-orange-500",
+    icon: "/images/new/Sun.png",
+  },
+  Moon: {
+    color: "#A0CFFF",
+    gradient: "from-blue-200 to-indigo-400",
+    icon: "/images/new/Moon.png",
+  },
+  Mars: {
+    color: "#FF4B4B",
+    gradient: "from-red-300 to-red-600",
+    icon: "/images/new/Mars.png",
+  },
+  Mercury: {
+    color: "#3CB371",
+    gradient: "from-green-200 to-emerald-500",
+    icon: "/images/new/Mercury.png",
+  },
+  Jupiter: {
+    color: "#F4C542",
+    gradient: "from-amber-200 to-yellow-600",
+    icon: "/images/new/Jupiter.png",
+  },
+  Venus: {
+    color: "#FF8FD4",
+    gradient: "from-pink-200 to-pink-500",
+    icon: "/images/new/Venus.png",
+  },
+  Saturn: {
+    color: "#6A5ACD",
+    gradient: "from-indigo-300 to-indigo-700",
+    icon: "/images/new/Saturn.png",
+  },
+  Rahu: {
+    color: "#4B4B4B",
+    gradient: "from-gray-300 to-gray-600",
+    icon: "/images/new/Rahu.png",
+  },
+  Ketu: {
+    color: "#E47D2D",
+    gradient: "from-orange-200 to-orange-500",
+    icon: "/images/new/Ketu.png",
+  },
+};

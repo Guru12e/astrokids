@@ -96,12 +96,18 @@ export default function FlipCards({ panchangData, name }) {
             </div>
 
             <div className="flip-card-back flex flex-col justify-between bg-white h-full">
+              <p className="text-xl font-bold text-center capitalize leading-[1.2]">
+                {item.title}: {item.sign}
+              </p>
               <p className="text-xl font-semibold text-center capitalize leading-[1.2] opacity-90">
                 {item.heading}
               </p>
               {item.identity ? (
                 <p className="text-base font-medium text-center italic">
-                  “{item.identity.replace("child", name).replace("Child", name)}
+                  “
+                  {item.identity
+                    .replaceAll("child", name)
+                    .replaceAll("Child", name)}
                   ”
                 </p>
               ) : (

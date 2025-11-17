@@ -12,6 +12,7 @@ import {
   nakshatraIdentity,
   nakshatraNumber,
   nakshatras,
+  PLANET_THEME,
   planetGemstone,
   pricing,
   sunIdentity,
@@ -20,7 +21,7 @@ import {
 } from "@/constant/constant";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import FlipCards from "@/components/Flipcards";
@@ -78,6 +79,7 @@ const PanchangDisplay = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [progress, setProgress] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [currentDasha, setCurrentDasha] = useState(0);
 
   const router = useRouter();
 
@@ -86,6 +88,21 @@ const PanchangDisplay = () => {
     "Calculating houses",
     "Analyzing aspects",
     "Generating report",
+  ];
+
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   const setDisplayContent = (userDetails, panchangData) => {
@@ -233,21 +250,6 @@ const PanchangDisplay = () => {
     );
   }
 
-  const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
-
   const formatTime = (time) => {
     const [hours, minutes] = time.split(":");
     const hourNum = parseInt(hours);
@@ -259,6 +261,40 @@ const PanchangDisplay = () => {
   const formatDob = (dob) => {
     const [year, month, day] = dob.split("-");
     return `${day} ${months[parseInt(month) - 1]} ${year}`;
+  };
+
+  const formatPeriod = (startYear, startMonth, endYear, endMonth) => {
+    const start = `${months[startMonth]} ${startYear}`;
+    const end = `${months[endMonth]} ${endYear}`;
+    return `${start} - ${end}`;
+  };
+
+  const calculateDurationAdvanced = (
+    startYear,
+    startMonth,
+    endYear,
+    endMonth,
+    dasaStartYear,
+    dasaStartMonth,
+    dasaEndYear,
+    dasaEndMonth
+  ) => {
+    const bhuktiStart = startYear * 12 + startMonth;
+    const bhuktiEnd = endYear * 12 + endMonth;
+    const dasaStart = dasaStartYear * 12 + dasaStartMonth;
+    const dasaEnd = dasaEndYear * 12 + dasaEndMonth;
+
+    const totalMonths = dasaEnd - dasaStart;
+    const offset = bhuktiStart - dasaStart;
+    const duration = bhuktiEnd - bhuktiStart;
+
+    return {
+      offset: parseFloat(((offset / totalMonths) * 100).toFixed(2)),
+      width: Math.max(
+        4,
+        parseFloat(((duration / totalMonths) * 100).toFixed(2))
+      ),
+    };
   };
 
   const bgs = ["bg-green-400", "bg-red-400", "bg-yellow-400"];
@@ -440,6 +476,157 @@ const PanchangDisplay = () => {
                   </div>
                 </section>
               )}
+
+              <section className="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl shadow-2xl p-8 relative overflow-hidden">
+                <h2 className="text-[26px] font-black text-[#5D74E4] mb-3 text-center relative z-10 tracking-wide">
+                  {name}'s Vimshottari Dasha Timeline 🌌
+                </h2>
+
+                <p className="text-center text-[#6F6C90] mb-10 relative z-10 text-[15px]">
+                  A celestial roadmap of planetary periods shaping life’s
+                  journey.
+                </p>
+
+                <div className="space-y-6 relative z-10">
+                  {Object.entries(panchangData.dasa).map(
+                    ([dashaKey, bhuktis], dashaIndex) => {
+                      const theme =
+                        PLANET_THEME[dashaKey] || PLANET_THEME["Sun"];
+
+                      return (
+                        <div
+                          key={dashaKey}
+                          onClick={() =>
+                            setCurrentDasha(
+                              currentDasha === dashaIndex ? -1 : dashaIndex
+                            )
+                          }
+                          className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                        >
+                          <div className="flex justify-between items-center">
+                            <h3
+                              className="text-xl font-bold flex items-center gap-3"
+                              style={{ color: theme.color }}
+                            >
+                              <img
+                                src={theme.icon}
+                                className="w-8 h-8 drop-shadow-md"
+                                alt=""
+                              />
+                              {dashaKey} Maha Dasha
+                            </h3>
+
+                            <ChevronDown
+                              className={`transition-transform duration-300 ${
+                                dashaIndex === currentDasha ? "rotate-180" : ""
+                              }`}
+                              style={{ color: theme.color }}
+                            />
+                          </div>
+                          <div
+                            className={`${
+                              dashaIndex === currentDasha ? "block" : "hidden"
+                            } mt-5 space-y-4`}
+                          >
+                            <div className="flex justify-between px-1">
+                              <p className="font-semibold text-gray-700">
+                                Total Period:
+                              </p>
+                              <p className="font-semibold text-gray-800">
+                                {formatPeriod(
+                                  bhuktis[0].start_year,
+                                  bhuktis[0].start_month,
+                                  bhuktis[bhuktis.length - 1].end_year,
+                                  bhuktis[bhuktis.length - 1].end_month
+                                )}
+                              </p>
+                            </div>
+
+                            {bhuktis.map((bhukti, index) => {
+                              const bhuktiTheme =
+                                PLANET_THEME[bhukti.bhukti] ||
+                                PLANET_THEME["Sun"];
+                              const duration = calculateDurationAdvanced(
+                                bhukti.start_year,
+                                bhukti.start_month,
+                                bhukti.end_year,
+                                bhukti.end_month,
+                                bhuktis[0].start_year,
+                                bhuktis[0].start_month,
+                                bhuktis[bhuktis.length - 1].end_year,
+                                bhuktis[bhuktis.length - 1].end_month
+                              );
+
+                              const years = bhukti.end_year - bhukti.start_year;
+                              let months =
+                                bhukti.end_month - bhukti.start_month;
+                              if (months < 0) months += 12;
+
+                              return (
+                                <div
+                                  key={index}
+                                  className="p-4 rounded-xl shadow-sm transition-all duration-300"
+                                  style={{
+                                    background: `linear-gradient(to right, ${bhuktiTheme.color}15, ${bhuktiTheme.color}30)`,
+                                  }}
+                                >
+                                  <div className="flex justify-between items-center mb-2">
+                                    <div className="flex items-center gap-2">
+                                      <img
+                                        src={bhuktiTheme.icon}
+                                        className="w-6 h-6"
+                                        alt=""
+                                      />
+                                      <p
+                                        className="font-semibold"
+                                        style={{ color: bhuktiTheme.color }}
+                                      >
+                                        {bhukti.bhukti} Bhukti
+                                      </p>
+                                    </div>
+
+                                    <p className="font-semibold text-gray-700">
+                                      {years > 0
+                                        ? years === 1
+                                          ? "1 year"
+                                          : `${years} years`
+                                        : ""}{" "}
+                                      {months > 0
+                                        ? months === 1
+                                          ? "1 month"
+                                          : `${months} months`
+                                        : ""}
+                                    </p>
+                                  </div>
+
+                                  <p className="text-sm text-gray-600 mb-2">
+                                    {formatPeriod(
+                                      bhukti.start_year,
+                                      bhukti.start_month,
+                                      bhukti.end_year,
+                                      bhukti.end_month
+                                    )}
+                                  </p>
+
+                                  <div className="relative w-full h-2 rounded-full bg-gray-200 overflow-hidden">
+                                    <div
+                                      className={`absolute h-full rounded-full bg-gradient-to-r ${bhuktiTheme.gradient}`}
+                                      style={{
+                                        left: `${duration.offset}%`,
+                                        width: `${duration.width}%`,
+                                      }}
+                                    ></div>
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </section>
 
               {constitution && (
                 <section className="bg-white rounded-3xl shadow-2xl p-8">
