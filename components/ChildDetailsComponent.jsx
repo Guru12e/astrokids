@@ -460,8 +460,14 @@ const NewChildDetails = ({ session }) => {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="translate-x-[80%]" />
-                    <CarouselNext className="-translate-x-[80%]" />
+                    <CarouselPrevious
+                      className="translate-x-[80%]"
+                      setCurrentIndex={setCurrentIndex}
+                    />
+                    <CarouselNext
+                      className="-translate-x-[80%]"
+                      setCurrentIndex={setCurrentIndex}
+                    />
                   </Carousel>
                   <div className="flex justify-center my-2 space-x-2">
                     {pricing.map((_, index) => (

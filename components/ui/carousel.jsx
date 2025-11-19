@@ -111,8 +111,8 @@ const Carousel = React.forwardRef(
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn("relative", className)}
-          role='region'
-          aria-roledescription='carousel'
+          role="region"
+          aria-roledescription="carousel"
           {...props}
         >
           {children}
@@ -127,7 +127,7 @@ const CarouselContent = React.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
 
   return (
-    <div ref={carouselRef} className='overflow-hidden'>
+    <div ref={carouselRef} className="overflow-hidden">
       <div
         ref={ref}
         className={cn(
@@ -148,8 +148,8 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
   return (
     <div
       ref={ref}
-      role='group'
-      aria-roledescription='slide'
+      role="group"
+      aria-roledescription="slide"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
@@ -162,7 +162,11 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  (
+    { className, variant = "outline", size = "icon", ...props },
+    setCurrentIndex,
+    ref
+  ) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
@@ -178,11 +182,16 @@ const CarouselPrevious = React.forwardRef(
           className
         )}
         disabled={!canScrollPrev}
-        onClick={scrollPrev}
+        onClick={() => {
+          scrollPrev();
+          if (setCurrentIndex) {
+            setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
+          }
+        }}
         {...props}
       >
-        <ArrowLeft className='h-4 w-4' />
-        <span className='sr-only'>Previous slide</span>
+        <ArrowLeft className="h-4 w-4" />
+        <span className="sr-only">Previous slide</span>
       </Button>
     );
   }
@@ -190,7 +199,11 @@ const CarouselPrevious = React.forwardRef(
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef(
-  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
+  (
+    { className, variant = "outline", size = "icon", ...props },
+    setCurrentIndex,
+    ref
+  ) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
@@ -206,11 +219,18 @@ const CarouselNext = React.forwardRef(
           className
         )}
         disabled={!canScrollNext}
-        onClick={scrollNext}
+        onClick={() => {
+          scrollNext();
+          if (setCurrentIndex) {
+            setCurrentIndex((prevIndex) =>
+              prevIndex === 3 ? 0 : prevIndex + 1
+            );
+          }
+        }}
         {...props}
       >
-        <ArrowRight className='h-4 w-4' />
-        <span className='sr-only'>Next slide</span>
+        <ArrowRight className="h-4 w-4" />
+        <span className="sr-only">Next slide</span>
       </Button>
     );
   }
