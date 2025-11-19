@@ -1,6 +1,7 @@
 "use client";
 import { heroComponent } from "@/constant/constant";
-import { ChevronDown } from "lucide-react";
+import { useCart } from "@/context/CardContext";
+import { ChevronDown, ShoppingBag } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
@@ -18,6 +19,7 @@ const Header = ({ status = false }) => {
   const navItems = ["home", "about", "plans", "resources", "contact"];
   const pathName = usePathname().split("/")[1];
   const router = useRouter();
+  const { cart } = useCart();
 
   const menuRef = useRef(null);
   useEffect(() => {
@@ -140,7 +142,7 @@ const Header = ({ status = false }) => {
         </div>
       </div>
       {status && (
-        <div className="w-full hidden xl:flex mt-16 bg-black">
+        <div className="w-full hidden xl:flex items-center py-2 bg-black fixed z-[999]">
           {heroComponent.map((item, index) => (
             <div key={index} className="w-full group relative">
               <div className="flex justify-center items-center">
@@ -166,6 +168,16 @@ const Header = ({ status = false }) => {
               )}
             </div>
           ))}
+
+          <div
+            className="text-white relative cursor-pointer ml-auto mr-10"
+            onClick={() => router.push("/cart")}
+          >
+            <ShoppingBag />
+            <span className="absolute -top-2 -right-2 rounded-full bg-red-600 text-white text-xs w-5 h-5 flex items-center justify-center">
+              {cart.length}
+            </span>
+          </div>
         </div>
       )}
     </div>

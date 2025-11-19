@@ -21,10 +21,11 @@ import {
 } from "@/constant/constant";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown, Edit, Edit3, X } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import FlipCards from "@/components/Flipcards";
+import { Button } from "@/components/ui/button";
 
 const Loader = ({ steps, progress, currentStep }) => {
   return (
@@ -220,7 +221,11 @@ const PanchangDisplay = () => {
             setPanchangData(data);
             setCurrentStep(1);
             setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
-            setName(childDetails.name.split(" ")[0]);
+            setName(
+              childDetails.name.split(" ")[0].length > 1
+                ? childDetails.name.split(" ")[0]
+                : childDetails.name.split(" ")[1]
+            );
             await new Promise((resolve) => setTimeout(resolve, 1000));
             setCurrentStep(2);
             setDisplayContent(childDetails, data);
@@ -564,8 +569,8 @@ const PanchangDisplay = () => {
 
                               if (
                                 bhukti.end_year <
-                                new Date(userDetails.dob).getFullYear()
-                                && bhukti.end_month <
+                                  new Date(userDetails.dob).getFullYear() &&
+                                bhukti.end_month <
                                   new Date(userDetails.dob).getMonth() + 1
                               ) {
                                 return null;
@@ -757,6 +762,14 @@ const PanchangDisplay = () => {
                   </div>
                 </section>
               )}
+
+              <Button
+                className="mx-auto mt-4 bg-[#6F8BEF] hover:bg-[#5D74E4] text-white px-6 py-3 rounded-lg flex items-center gap-2"
+                onClick={() => router.push("/child-details")}
+              >
+                <Edit3 size={20} />
+                Edit Child Details
+              </Button>
 
               <section className="new-gradient text-white rounded-none md:rounded-3xl shadow-2xl p-8 mt-12 hover:shadow-3xl transition-all duration-1000">
                 <p className="text-[26px] capitalize font-semibold text-center leading-[1.2] mb-6">

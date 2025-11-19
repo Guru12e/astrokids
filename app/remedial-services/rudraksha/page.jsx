@@ -1,13 +1,17 @@
+"use client";
+
 import Header from "@/components/Header";
 import { rudrakshas } from "@/constant/constant";
+import { useCart } from "@/context/CardContext";
 import Image from "next/image";
 
 const Rudraksha = () => {
+  const { addToCart } = useCart();
   return (
     <div>
       <Header status={true} />
-      <div className="w-screen flex flex-col md:flex-row gap-5 justify-center items-center">
-        <div className="w-full mt-20 py-5 bg-gradient-to-r px-5 from-[#314867] via-[#314867] to-black md:mt-0 h-full relative flex flex-col-reverse md:flex-row justify-center items-center gap-5 md:gap-0">
+      <div className="w-screen flex mt-16 flex-col md:flex-row gap-5 justify-center items-center">
+        <div className="w-full py-5 bg-gradient-to-r px-5 from-[#314867] via-[#314867] to-black md:mt-0 h-full relative flex flex-col-reverse md:flex-row justify-center items-center gap-5 md:gap-0">
           <div className="flex-1 flex flex-col md:items-start items-center px-5 md:px-8">
             <h2 className="text-[22px] text-center md:text-start md:text-[36px] leading-[1.2] text-[#F5FF00] font-bold capitalize">
               RUDRAKSHA: <br /> SHIVA’S SACRED SEED OF DIVINE TRANSFORMATION
@@ -25,9 +29,9 @@ const Rudraksha = () => {
           <div className="w-[80%] md:w-[30%] aspect-square relative">
             <Image
               src={`/images/remedies/rudraksha-hero.jpg`}
+              alt="Rudraksha Hero"
               fill
               className="object-cover"
-              alt="Hero image"
             />
           </div>
         </div>
@@ -104,9 +108,26 @@ const Rudraksha = () => {
                 <p className="text-[16px] text-center text-[#02030B] font-normal mb-4">
                   {item.description}
                 </p>
-                <button className="bg-[#314867] hover:bg-[#253746] text-white font-bold py-2 px-4 rounded-xl transition-colors duration-300">
-                  Buy Now
-                </button>
+                <div className="flex w-full justify-around items-center">
+                  <button className="bg-[#314867] hover:bg-[#253746] text-white font-bold py-2 px-4 rounded-xl transition-colors duration-300">
+                    Buy Now
+                  </button>
+                  <button
+                    className="bg-[#6F8BEF] hover:bg-[#5D74E4] text-white font-bold py-2 px-4 rounded-xl transition-colors duration-300"
+                    onClick={() =>
+                      addToCart({
+                        id: index,
+                        faces: item.faces,
+                        price: item.price,
+                        title: `Rudraksha - ${item.faces} Faces`,
+                        image: "/images/remedies/rem1.jpg",
+                        quantity: 1,
+                      })
+                    }
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
             ))}
           </div>

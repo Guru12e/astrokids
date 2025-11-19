@@ -13,7 +13,6 @@ import Image from "next/image";
 import { pricing } from "@/constant/constant";
 import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
-import Script from "next/script";
 import PhoneInput from "./PhoneInput";
 import LocationInput from "./LocationInput";
 
@@ -237,6 +236,7 @@ const NewChildDetails = ({ session }) => {
   }, [api]);
 
   const handleSlideChange = (index) => {
+    console.log(index, typeof index);
     setCurrentIndex(index);
   };
 
@@ -388,10 +388,7 @@ const NewChildDetails = ({ session }) => {
                       />
                     </div>
                   </div>
-                  <Script
-                    type="text/javascript"
-                    src="https://checkout.razorpay.com/v1/checkout.js"
-                  />
+
                   <button
                     type="submit"
                     disabled={loading}

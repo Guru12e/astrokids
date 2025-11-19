@@ -8,6 +8,8 @@ import Clarity from "@microsoft/clarity";
 import ClarityWrapper from "@/components/ClarityWrapper";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { CartProvider } from "@/context/CardContext";
+import Script from "next/script";
 
 const openSans = Montserrat({
   subsets: ["latin"],
@@ -139,7 +141,13 @@ export default function RootLayout({ children }) {
         <ClarityWrapper />
         <Suspense>
           <SessionWrapper>
-            {children}
+            <CartProvider>
+              <Script
+                type="text/javascript"
+                src="https://checkout.razorpay.com/v1/checkout.js"
+              />
+              {children}
+            </CartProvider>
             <ToastContainer />
           </SessionWrapper>
         </Suspense>
