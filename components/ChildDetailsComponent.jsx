@@ -15,6 +15,7 @@ import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
 import PhoneInput from "./PhoneInput";
 import LocationInput from "./LocationInput";
+import Freecurrencyapi from "@everapi/freecurrencyapi-js";
 
 const NewChildDetails = ({ session }) => {
   const [loading, setLoading] = useState(false);
@@ -24,7 +25,12 @@ const NewChildDetails = ({ session }) => {
   const [place, setPlace] = useState("");
   const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
-  const [latLon, setLatLon] = useState({ lat: 0, lon: 0, timezone: "" });
+  const [latLon, setLatLon] = useState({
+    lat: 0,
+    lon: 0,
+    timezone: "",
+    currency: "INR",
+  });
   const router = useRouter();
   const edit = useSearchParams().get("fieldEdit") || false;
   const paymentEdit = useSearchParams().get("paymentEdit") || false;
@@ -32,7 +38,7 @@ const NewChildDetails = ({ session }) => {
   const [locationInput, setLocationInput] = useState("");
   const formRef = useRef(null);
   const [api, setApi] = useState(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(null);
 
   useEffect(() => {
     const savedIndex = localStorage.getItem("orderIndex");
@@ -44,12 +50,23 @@ const NewChildDetails = ({ session }) => {
   const paymentFunction = async () => {
     try {
       let res;
+      let amount = parseInt(pricing[currentIndex].price);
+      if (latLon.currency !== "INR") {
+        const client = new Freecurrencyapi(
+          "fca_live_xzKv0gOIo8fTYzmmVQfyIgqX2rhQ394VwfcMMUOk"
+        );
+        res = await client.latest({
+          base_currency: "INR",
+        });
+        const rate = res.data[latLon.currency];
+        amount = Math.round(amount * rate);
+      }
 
       res = await fetch("/api/createOrder", {
         method: "POST",
         body: JSON.stringify({
-          amount: parseInt(pricing[currentIndex].price) * 100,
-          currency: "INR",
+          amount: amount * 100,
+          currency: latLon.currency,
         }),
       });
 
@@ -68,6 +85,8 @@ const NewChildDetails = ({ session }) => {
               razorpaySignature: response.razorpay_signature,
             }),
           });
+
+          console.log(res);
 
           const res1 = await fetch("/api/addChildDetails", {
             method: "POST",
@@ -219,7 +238,7 @@ const NewChildDetails = ({ session }) => {
   useEffect(() => {
     if (!api) return;
 
-    const initialIndex = parseInt(currentIndex, 10);
+    const initialIndex = parseInt(currentIndex);
     if (
       !isNaN(initialIndex) &&
       initialIndex >= 0 &&
@@ -233,7 +252,7 @@ const NewChildDetails = ({ session }) => {
     api.on("select", () => {
       setCurrentIndex(api.selectedScrollSnap());
     });
-  }, [api]);
+  }, [api, currentIndex]);
 
   const handleSlideChange = (index) => {
     setCurrentIndex(index);
@@ -474,39 +493,43 @@ const NewChildDetails = ({ session }) => {
                     ))}
                   </div>
                 </div>
-                <h1 className="text-[16px] font-bold leading-[1.2] text-[#111729] my-5">
-                  {pricing[currentIndex].title}
-                </h1>
-                <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
-                <div className="my-5 flex flex-col gap-3">
-                  <div className="flex w-full justify-between">
-                    <h1 className="text-[16px] font-normal text-[#677489]">
-                      Subtotal
+                {currentIndex != null && (
+                  <>
+                    <h1 className="text-[16px] font-bold leading-[1.2] text-[#111729] my-5">
+                      {pricing[currentIndex].title}
                     </h1>
-                    <p className="text-[16px] text-[#111729] font-normal">
-                      ₹{parseInt(pricing[currentIndex].price) + 200}.00
-                    </p>
-                  </div>
-                  <div className="flex w-full justify-between">
-                    <h1 className="text-[16px] font-normal text-[#677489]">
-                      Flat Discount
-                    </h1>
-                    <p className="text-[16px] text-red-400 font-normal">
-                      -₹{currentIndex === 0 ? "399.00" : "200.00"}
-                    </p>
-                  </div>
-                </div>
-                <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
-                <div className="flex w-full mt-4 justify-between">
-                  <h1 className="text-[16px] font-bold text-[#111729]">
-                    Total
-                  </h1>
-                  <p className="text-[16px] text-[#111729] font-semibold">
-                    {currentIndex === 0
-                      ? "Free"
-                      : `₹${parseInt(pricing[currentIndex].price)}.00`}
-                  </p>
-                </div>
+                    <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
+                    <div className="my-5 flex flex-col gap-3">
+                      <div className="flex w-full justify-between">
+                        <h1 className="text-[16px] font-normal text-[#677489]">
+                          Subtotal
+                        </h1>
+                        <p className="text-[16px] text-[#111729] font-normal">
+                          ₹{parseInt(pricing[currentIndex].price) + 200}.00
+                        </p>
+                      </div>
+                      <div className="flex w-full justify-between">
+                        <h1 className="text-[16px] font-normal text-[#677489]">
+                          Flat Discount
+                        </h1>
+                        <p className="text-[16px] text-red-400 font-normal">
+                          -₹{currentIndex === 0 ? "399.00" : "200.00"}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="bg-[#E3E8EF] w-full h-[1px]"></div>
+                    <div className="flex w-full mt-4 justify-between">
+                      <h1 className="text-[16px] font-bold text-[#111729]">
+                        Total
+                      </h1>
+                      <p className="text-[16px] text-[#111729] font-semibold">
+                        {currentIndex === 0
+                          ? "Free"
+                          : `₹${parseInt(pricing[currentIndex].price)}.00`}
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
           </div>

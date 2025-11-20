@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@everapi/freecurrencyapi-js": "^1.0.1",
     "@microsoft/clarity": "^1.0.0",
     "@next/third-parties": "^15.0.3",
     "@radix-ui/react-avatar": "^1.1.10",

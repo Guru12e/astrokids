@@ -73,6 +73,7 @@ export default function LocationInput({
       lat: city.latitude,
       lon: city.longitude,
       timezone: timezone,
+      currency: selectedCountry.currency,
     });
 
     setFilteredCities([]);
