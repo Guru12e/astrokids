@@ -162,11 +162,7 @@ const CarouselItem = React.forwardRef(({ className, ...props }, ref) => {
 CarouselItem.displayName = "CarouselItem";
 
 const CarouselPrevious = React.forwardRef(
-  (
-    { className, variant = "outline", size = "icon", ...props },
-    setCurrentIndex,
-    ref
-  ) => {
+  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollPrev, canScrollPrev } = useCarousel();
 
     return (
@@ -182,12 +178,7 @@ const CarouselPrevious = React.forwardRef(
           className
         )}
         disabled={!canScrollPrev}
-        onClick={() => {
-          scrollPrev();
-          if (setCurrentIndex) {
-            setCurrentIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-          }
-        }}
+        onClick={scrollPrev}
         {...props}
       >
         <ArrowLeft className="h-4 w-4" />
@@ -199,11 +190,7 @@ const CarouselPrevious = React.forwardRef(
 CarouselPrevious.displayName = "CarouselPrevious";
 
 const CarouselNext = React.forwardRef(
-  (
-    { className, variant = "outline", size = "icon", ...props },
-    setCurrentIndex,
-    ref
-  ) => {
+  ({ className, variant = "outline", size = "icon", ...props }, ref) => {
     const { orientation, scrollNext, canScrollNext } = useCarousel();
 
     return (
@@ -219,14 +206,7 @@ const CarouselNext = React.forwardRef(
           className
         )}
         disabled={!canScrollNext}
-        onClick={() => {
-          scrollNext();
-          if (setCurrentIndex) {
-            setCurrentIndex((prevIndex) =>
-              prevIndex === 3 ? 0 : prevIndex + 1
-            );
-          }
-        }}
+        onClick={scrollNext}
         {...props}
       >
         <ArrowRight className="h-4 w-4" />

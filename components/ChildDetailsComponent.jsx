@@ -39,7 +39,7 @@ const NewChildDetails = ({ session }) => {
     if (savedIndex) {
       setCurrentIndex(Number(savedIndex));
     }
-  });
+  }, []);
 
   const paymentFunction = async () => {
     try {
@@ -236,7 +236,6 @@ const NewChildDetails = ({ session }) => {
   }, [api]);
 
   const handleSlideChange = (index) => {
-    console.log(index, typeof index);
     setCurrentIndex(index);
   };
 
@@ -460,14 +459,8 @@ const NewChildDetails = ({ session }) => {
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious
-                      className="translate-x-[80%]"
-                      setCurrentIndex={setCurrentIndex}
-                    />
-                    <CarouselNext
-                      className="-translate-x-[80%]"
-                      setCurrentIndex={setCurrentIndex}
-                    />
+                    <CarouselPrevious className="translate-x-[80%]" />
+                    <CarouselNext className="-translate-x-[80%]" />
                   </Carousel>
                   <div className="flex justify-center my-2 space-x-2">
                     {pricing.map((_, index) => (
