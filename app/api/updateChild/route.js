@@ -11,8 +11,19 @@ export async function POST(request) {
     const database = client.db("AstroKids");
     const collection = database.collection("childDetails");
 
-    const { email, name, dob, time, place, gender, number, orderId } =
-      await request.json();
+    const {
+      email,
+      name,
+      dob,
+      time,
+      place,
+      gender,
+      number,
+      lat,
+      lon,
+      timezone,
+      orderId,
+    } = await request.json();
 
     const result = await collection.updateOne(
       { "childDetails.orderId": orderId },
@@ -24,6 +35,9 @@ export async function POST(request) {
           "childDetails.$.place": place,
           "childDetails.$.gender": gender,
           "childDetails.$.number": number,
+          "childDetails.$.lat": lat,
+          "childDetails.$.lon": lon,
+          "childDetails.$.timezone": timezone,
           "childDetails.$.isChange": true,
         },
       }

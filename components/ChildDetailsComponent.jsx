@@ -29,10 +29,9 @@ const NewChildDetails = ({ session }) => {
     lat: 0,
     lon: 0,
     timezone: "",
-    currency: "INR",
+    currency: "",
   });
   const router = useRouter();
-  const edit = useSearchParams().get("fieldEdit") || false;
   const paymentEdit = useSearchParams().get("paymentEdit") || false;
   const orderId = useSearchParams().get("orderId");
   const [locationInput, setLocationInput] = useState("");
@@ -51,6 +50,7 @@ const NewChildDetails = ({ session }) => {
     try {
       let res;
       let amount = parseInt(pricing[currentIndex].price);
+      console.log(latLon);
       if (latLon.currency !== "INR") {
         const client = new Freecurrencyapi(
           "fca_live_kus9JodZmsXKJO6g82UdIQreY9HKsejtVnnwSwA7"
@@ -60,7 +60,6 @@ const NewChildDetails = ({ session }) => {
         });
         console.log(res);
         const rate = res.data[latLon.currency];
-
         if (!rate) {
           toast.error("Currency not supported for payment", {
             position: "top-right",
@@ -69,7 +68,7 @@ const NewChildDetails = ({ session }) => {
           setLoading(false);
           return;
         }
-        amount = Math.round(amount * rate);
+        amount = Math.ceil(amount * rate);
       }
 
       const NO_DECIMAL_CURRENCIES = ["JPY", "KRW", "VND"];
@@ -185,6 +184,9 @@ const NewChildDetails = ({ session }) => {
           place,
           gender,
           number,
+          lat: latLon.lat,
+          lon: latLon.lon,
+          timezone: latLon.timezone,
           orderId,
         }),
       });
@@ -298,19 +300,6 @@ const NewChildDetails = ({ session }) => {
       fetchDetails();
     }
   }, [paymentEdit, router]);
-
-  useEffect(() => {
-    if (edit) {
-      const childDetails = JSON.parse(localStorage.getItem("childDetails"));
-      setName(childDetails.name);
-      setDob(childDetails.dob);
-      setTime(childDetails.time);
-      setPlace(childDetails.place);
-      setGender(childDetails.gender);
-      setNumber(childDetails.number);
-      setLocationInput(childDetails.place);
-    }
-  }, [edit]);
 
   return (
     <>

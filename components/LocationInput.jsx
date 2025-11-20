@@ -93,12 +93,16 @@ export default function LocationInput({
       const matchedCity = cities.find(
         (city) => city.name.toLowerCase() === cityName.toLowerCase()
       );
+
       if (matchedCity) {
         setPlace(matchedCity.name + ", " + countryData.name);
+        const timezone = tz_lookup(matchedCity.latitude, matchedCity.longitude);
+
         setLatLon({
           lat: matchedCity.latitude,
           lon: matchedCity.longitude,
-          timezone: matchedCity.timezone,
+          timezone: timezone,
+          currency: countryData.currency,
         });
       }
     }
