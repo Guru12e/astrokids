@@ -71,10 +71,13 @@ const NewChildDetails = ({ session }) => {
         amount = Math.round(amount * rate);
       }
 
+      const NO_DECIMAL_CURRENCIES = ["JPY", "KRW", "VND"];
       res = await fetch("/api/createOrder", {
         method: "POST",
         body: JSON.stringify({
-          amount: amount * 100,
+          amount: NO_DECIMAL_CURRENCIES.includes(latLon.currency)
+            ? amount
+            : amount * 100,
           currency: latLon.currency,
         }),
       });
