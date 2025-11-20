@@ -53,11 +53,12 @@ const NewChildDetails = ({ session }) => {
       let amount = parseInt(pricing[currentIndex].price);
       if (latLon.currency !== "INR") {
         const client = new Freecurrencyapi(
-          "fca_live_xzKv0gOIo8fTYzmmVQfyIgqX2rhQ394VwfcMMUOk"
+          "fca_live_kus9JodZmsXKJO6g82UdIQreY9HKsejtVnnwSwA7"
         );
         res = await client.latest({
           base_currency: "INR",
         });
+        console.log(res);
         const rate = res.data[latLon.currency];
 
         if (!rate) {
