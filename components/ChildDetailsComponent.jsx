@@ -59,6 +59,15 @@ const NewChildDetails = ({ session }) => {
           base_currency: "INR",
         });
         const rate = res.data[latLon.currency];
+
+        if (!rate) {
+          toast.error("Currency not supported for payment", {
+            position: "top-right",
+            autoClose: 3000,
+          });
+          setLoading(false);
+          return;
+        }
         amount = Math.round(amount * rate);
       }
 
