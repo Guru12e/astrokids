@@ -1,4 +1,5 @@
 "use client";
+import LocationInput from "@/components/LocationInput";
 import { Pencil, Trash2 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -40,7 +41,14 @@ const Admin = () => {
     plan: "",
     mail: "",
   });
-  const [filteredLocations, setFilteredLocations] = useState([]);
+  const [locationInput, setLocationInput] = useState("");
+  const [place, setPlace] = useState("");
+  const [latLon, setLatLon] = useState({
+    lat: "",
+    lon: "",
+    timezone: "",
+    currency: "",
+  });
 
   useEffect(() => {
     if (editingBlog) {
@@ -333,62 +341,26 @@ const Admin = () => {
     }
   };
 
-  // const handleLocationInputChange = (e) => {
-  //   const value = e.target.value;
-  //   setReportDetails({
-  //     ...reportDetails,
-  //     place: value,
-  //   });
-  //   if (value.length >= 2) {
-  //     const indiaData = locationData["India"];
-  //     const locations = [];
-  //     Object.keys(indiaData).forEach((state) => {
-  //       indiaData[state].forEach((city) => {
-  //         const fullLocation = `${city.name}, ${state}, India`;
-  //         if (fullLocation.toLowerCase().includes(value.toLowerCase())) {
-  //           locations.push({ ...city, state, fullLocation });
-  //         }
-  //       });
-  //     });
-  //     setFilteredLocations(locations);
-  //   } else {
-  //     setFilteredLocations([]);
-  //   }
-  // };
-
-  const handleLocationSelect = (location) => {
-    const fullLocation = `${location.name}, ${location.state}, India`;
-    setReportDetails({
-      ...reportDetails,
-      place: fullLocation,
-      lat: location.lat,
-      lon: location.lon,
-    });
-    setFilteredLocations([]);
-  };
-
   const generateReport = async () => {
     setPageLoading(true);
-    const res = await fetch(
-      "https://report-api-chfd.onrender.com/generate_report",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          dob: `${reportDetails.dob} ${reportDetails.time}:00`,
-          location: reportDetails.place.split(",")[0],
-          lat: parseFloat(reportDetails.lat),
-          lon: parseFloat(reportDetails.lon),
-          gender: reportDetails.gender,
-          name: reportDetails.name,
-          input: plans.indexOf(reportDetails.plan) + 1,
-          email:
-            reportDetails.mail.trim() == ""
-              ? "guruvijay1925@gmail.com"
-              : reportDetails.mail.trim(),
-        }),
-      }
-    );
+    const res = await fetch("/api/generateReport", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dob: `${reportDetails.dob} ${reportDetails.time}:00`,
+        location: reportDetails.place.split(",")[0],
+        lat: parseFloat(latLon.lat),
+        lon: parseFloat(latLon.lon),
+        gender: reportDetails.gender,
+        name: reportDetails.name,
+        input: plans.indexOf(reportDetails.plan) + 1,
+        email:
+          reportDetails.mail.trim() == ""
+            ? "guruvijay1925@gmail.com"
+            : reportDetails.mail.trim(),
+        timezone: latLon.timezone,
+      }),
+    });
     setPageLoading(false);
     if (res.status == 200) {
       toast.success("Check Mail", {
@@ -709,28 +681,16 @@ const Admin = () => {
                         required
                       />
                     </div>
-                    <div>
-                      <label className="block text-gray-700">Place</label>
-                      {/* <input
-                        type="text"
-                        value={reportDetails.place}
-                        onChange={handleLocationInputChange}
-                        className="w-full p-2 border border-gray-300 rounded mt-1"
-                        required
-                      /> */}
-                      {reportDetails.place && (
-                        <div className="mt-2 bg-white border border-gray-300 rounded shadow-lg max-h-60 overflow-y-auto">
-                          {filteredLocations.map((location) => (
-                            <div
-                              key={location.fullLocation}
-                              className="p-2 hover:bg-gray-100 cursor-pointer"
-                              onClick={() => handleLocationSelect(location)}
-                            >
-                              {location.fullLocation}
-                            </div>
-                          ))}
-                        </div>
-                      )}
+                    <div className="w-full relative">
+                      <label className="block text-[14px] font-normal mb-1">
+                        Location
+                      </label>
+                      <LocationInput
+                        locationInput={locationInput}
+                        setLocationInput={setLocationInput}
+                        setPlace={setPlace}
+                        setLatLon={setLatLon}
+                      />
                     </div>
                     <div>
                       <label className="block text-gray-700">Gender</label>
