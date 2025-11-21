@@ -309,23 +309,21 @@ const Admin = () => {
 
   const HandleReport = async (item) => {
     setLoading(true);
-    const res = await fetch(
-      "https://report-api-chfd.onrender.com/generate_report",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          dob: `${item.dob} ${item.time}:00`,
-          location: item.place.split(",")[0],
-          lat: parseFloat(item.lat),
-          lon: parseFloat(item.lon),
-          gender: item.gender,
-          name: item.name,
-          input: plans.indexOf(item.plan) + 1,
-          email: item.email,
-        }),
-      }
-    );
+    const res = await fetch("/api/generateReport", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        dob: `${item.dob} ${item.time}:00`,
+        location: item.place.split(",")[0],
+        lat: parseFloat(item.lat),
+        lon: parseFloat(item.lon),
+        gender: item.gender,
+        name: item.name,
+        input: plans.indexOf(item.plan) + 1,
+        email: item.email,
+        timezone: item.timezone,
+      }),
+    });
     setLoading(false);
     if (res.status == 200) {
       toast.success("Check Mail", {
