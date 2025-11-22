@@ -74,7 +74,7 @@ export default function LocationInput({
       currency: selectedCountry.currency,
     });
 
-    setTimeout(() => setFilteredCities([]), 200);
+    setFilteredCities([]);
   };
 
   useEffect(() => {
