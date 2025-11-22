@@ -17,7 +17,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { CheckIcon, ChevronsUpDown } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import tz_lookup from "tz-lookup";
@@ -47,7 +46,6 @@ export default function LocationInput({
     ],
   });
   const [filteredCities, setFilteredCities] = useState([]);
-  const locationInputRef = useRef(null);
 
   const handleCitySearch = (value) => {
     setLocationInput(value);
@@ -76,7 +74,7 @@ export default function LocationInput({
       currency: selectedCountry.currency,
     });
 
-    setFilteredCities([]);
+    setTimeout(() => setFilteredCities([]), 200);
   };
 
   useEffect(() => {
@@ -109,36 +107,41 @@ export default function LocationInput({
   }, []);
 
   return (
-    <div className="flex">
+    <div className="flex w-full relative">
       <CountrySelect
         selectedCountry={selectedCountry}
         setSelectedCountry={setSelectedCountry}
         setFilteredCities={setFilteredCities}
         setLocationInput={setLocationInput}
+        className="h-full"
       />
-      <div className="relative flex-1">
-        <Input
-          ref={locationInputRef}
-          type="text"
-          value={locationInput}
-          placeholder={`Search city in ${selectedCountry.name}`}
-          onChange={(e) => handleCitySearch(e.target.value)}
-          className="w-full p-2 flex-1 border text-gray-700 bg-white placeholder:text-gray-500 rounded focus:ring focus:ring-purple-300"
-        />
+      <div className="flex-1">
+        <Command className="w-full flex-1 border text-gray-700 bg-white placeholder:text-gray-500 rounded focus:ring focus:ring-purple-300">
+          <CommandInput
+            type="text"
+            value={locationInput}
+            isSearching={false}
+            placeholder={`Search city in ${selectedCountry.name}`}
+            onInput={(e) => handleCitySearch(e.target.value)}
+          />
 
-        {filteredCities.length > 0 && (
-          <ul className="absolute z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
-            {filteredCities.map((city, index) => (
-              <li
-                key={index}
-                className="p-2 cursor-pointer hover:bg-purple-500 hover:text-white"
-                onClick={() => handleCitySelect(city)}
-              >
-                {city.name}, {selectedCountry.name}
-              </li>
-            ))}
-          </ul>
-        )}
+          {filteredCities.length > 0 && (
+            <CommandList className="absolute top-[100%] left-0 z-10 w-full bg-gray-200 border-gray-300 rounded shadow-md max-h-60 overflow-auto">
+              <CommandEmpty>No city found.</CommandEmpty>
+              <CommandGroup>
+                {filteredCities.map((city, index) => (
+                  <CommandItem
+                    key={index}
+                    onSelect={() => handleCitySelect(city)}
+                    value={city.name}
+                  >
+                    {city.name}, {selectedCountry.name}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          )}
+        </Command>
       </div>
     </div>
   );
@@ -159,6 +162,7 @@ const CountrySelect = ({
     setSelectedCountry(country);
     setFilteredCities([]);
     setLocationInput("");
+    setFilteredCities([]);
     setOpen(false);
   };
 
@@ -173,7 +177,7 @@ const CountrySelect = ({
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          className="flex justify-between w-max py-2 rounded-none text-left"
+          className="flex justify-between h-11 w-max py-2 rounded-none text-left"
         >
           {selectedCountry ? (
             <div className="flex items-center gap-2">
