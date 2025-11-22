@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import FlipCards from "@/components/Flipcards";
 import { Button } from "@/components/ui/button";
+import { dasa_status_table } from "@/constant/report";
 
 const Loader = ({ steps, progress, currentStep }) => {
   return (
@@ -487,10 +488,42 @@ const PanchangDisplay = () => {
                   {name}'s Vimshottari Dasha Timeline 🌌
                 </h2>
 
-                <p className="text-center text-[#6F6C90] mb-10 relative z-10 text-[15px]">
+                <p className="text-center text-[#6F6C90] mb-5 relative z-10 text-[15px]">
                   A celestial roadmap of planetary periods shaping life's
                   journey.
                 </p>
+
+                <div className="grid grid-cols-2 py-4 xl:grid-cols-3 place-items-center gap-3">
+                  {[
+                    {
+                      color: "#DAFFDC",
+                      text: "favourable",
+                    },
+                    {
+                      color: "#FFDADA",
+                      text: "unfavourable",
+                    },
+                    {
+                      color: "#DAE7FF",
+                      text: "neutral",
+                    },
+                  ].map((item, index) => (
+                    <div
+                      key={index}
+                      className={`flex items-center gap-2 ${
+                        index == 2 ? "col-span-2 xl:col-span-1" : ""
+                      }`}
+                    >
+                      <div
+                        className="w-6 h-6 rounded-md border border-black/50"
+                        style={{ backgroundColor: item.color }}
+                      ></div>
+                      <span className="text-sm text-gray-700 capitalize">
+                        {item.text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
 
                 <div className="space-y-6 relative z-10">
                   {Object.entries(panchangData.dasa).map(
@@ -501,14 +534,16 @@ const PanchangDisplay = () => {
                       return (
                         <div
                           key={dashaKey}
-                          onClick={() =>
-                            setCurrentDasha(
-                              currentDasha === dashaIndex ? -1 : dashaIndex
-                            )
-                          }
                           className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
                         >
-                          <div className="flex justify-between items-center">
+                          <div
+                            className="flex justify-between items-center"
+                            onClick={() =>
+                              setCurrentDasha(
+                                currentDasha === dashaIndex ? -1 : dashaIndex
+                              )
+                            }
+                          >
                             <h3
                               className="text-xl font-bold flex items-center gap-3"
                               style={{ color: theme.color }}
@@ -548,9 +583,39 @@ const PanchangDisplay = () => {
                             </div>
 
                             {bhuktis.map((bhukti, index) => {
-                              const bhuktiTheme =
-                                PLANET_THEME[bhukti.bhukti] ||
-                                PLANET_THEME["Sun"];
+                              let bhuktiTheme;
+
+                              if (
+                                dasa_status_table[dashaKey]?.[0]?.includes(
+                                  bhukti.bhukti
+                                )
+                              ) {
+                                bhuktiTheme = {
+                                  color: "#DAFFDC",
+                                  gradient: "#00C853",
+                                  gradient1: "#B9F6CA",
+                                  icon: PLANET_THEME[bhukti.bhukti]?.icon,
+                                };
+                              } else if (
+                                dasa_status_table[dashaKey]?.[1]?.includes(
+                                  bhukti.bhukti
+                                )
+                              ) {
+                                bhuktiTheme = {
+                                  color: "#FFDADA",
+                                  gradient: "#FF5252",
+                                  gradient1: "#FF8A80",
+                                  icon: PLANET_THEME[bhukti.bhukti]?.icon,
+                                };
+                              } else {
+                                bhuktiTheme = {
+                                  color: "#DAE7FF",
+                                  gradient: "#2979FF",
+                                  gradient1: "#82B1FF",
+                                  icon: PLANET_THEME[bhukti.bhukti]?.icon,
+                                };
+                              }
+
                               const duration = calculateDurationAdvanced(
                                 bhukti.start_year,
                                 bhukti.start_month,
@@ -581,7 +646,7 @@ const PanchangDisplay = () => {
                                   key={index}
                                   className="p-4 rounded-xl shadow-sm transition-all duration-300"
                                   style={{
-                                    background: `linear-gradient(to right, ${bhuktiTheme.color}15, ${bhuktiTheme.color}30)`,
+                                    background: `linear-gradient(to right, ${bhuktiTheme.color}50, ${bhuktiTheme.color}70)`,
                                   }}
                                 >
                                   <div className="flex justify-between items-center mb-2">
@@ -591,10 +656,7 @@ const PanchangDisplay = () => {
                                         className="w-6 h-6"
                                         alt=""
                                       />
-                                      <p
-                                        className="font-semibold"
-                                        style={{ color: bhuktiTheme.color }}
-                                      >
+                                      <p className="font-semibold text-black">
                                         {bhukti.bhukti} Bhukti
                                       </p>
                                     </div>
