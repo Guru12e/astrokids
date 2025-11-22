@@ -534,10 +534,10 @@ const PanchangDisplay = () => {
                       return (
                         <div
                           key={dashaKey}
-                          className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
+                          className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300 cursor-pointer"
                         >
                           <div
-                            className="flex justify-between items-center"
+                            className="flex justify-between p-3 items-center"
                             onClick={() =>
                               setCurrentDasha(
                                 currentDasha === dashaIndex ? -1 : dashaIndex
@@ -566,7 +566,7 @@ const PanchangDisplay = () => {
                           <div
                             className={`${
                               dashaIndex === currentDasha ? "block" : "hidden"
-                            } mt-5 space-y-4`}
+                            } mt-5 space-y-4 p-3`}
                           >
                             <div className="flex justify-between px-1">
                               <p className="font-semibold text-gray-700">
