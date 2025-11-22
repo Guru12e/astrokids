@@ -505,7 +505,7 @@ const PanchangDisplay = () => {
                     },
                     {
                       color: "#DAE7FF",
-                      text: "neutral",
+                      text: "moderate",
                     },
                   ].map((item, index) => (
                     <div
@@ -519,7 +519,7 @@ const PanchangDisplay = () => {
                         style={{ backgroundColor: item.color }}
                       ></div>
                       <span className="text-sm text-gray-700 capitalize">
-                        {item.text}
+                        {item.text} Times
                       </span>
                     </div>
                   ))}
