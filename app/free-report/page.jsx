@@ -196,12 +196,17 @@ const PanchangDisplay = () => {
   useEffect(() => {
     const fetchPanchang = async () => {
       const childDetails = JSON.parse(localStorage.getItem("childDetails"));
+      if (!childDetails) {
+        router.push("/child-details");
+        return;
+      }
       setUserDetails(childDetails);
       setCurrentStep(0);
       setProgress((prev) => Math.min(prev + 100 / steps.length, 100));
+
       if (childDetails) {
         try {
-          const response = await fetch("api/freeReport", {
+          const response = await fetch("/api/freeReport", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

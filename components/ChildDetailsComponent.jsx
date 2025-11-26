@@ -1,5 +1,5 @@
 "use client";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckIcon, ChevronsUpDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import {
@@ -10,12 +10,26 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import { pricing } from "@/constant/constant";
+import { currency, pricing } from "@/constant/constant";
 import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
 import PhoneInput from "./PhoneInput";
 import LocationInput from "./LocationInput";
 import Freecurrencyapi from "@everapi/freecurrencyapi-js";
+import { Country } from "country-state-city";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Button } from "./ui/button";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "./ui/command";
+import { ScrollArea } from "./ui/scroll-area";
+import flags from "react-phone-number-input/flags";
+import { Label } from "./ui/label";
 
 const NewChildDetails = ({ session }) => {
   const [loading, setLoading] = useState(false);
@@ -38,6 +52,25 @@ const NewChildDetails = ({ session }) => {
   const formRef = useRef(null);
   const [api, setApi] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
+  const [paymentCountry, setPaymentCountry] = useState({
+    name: "India",
+    isoCode: "IN",
+    flag: "🇮🇳",
+    phonecode: "91",
+    currency: "INR",
+    latitude: "20.00000000",
+    longitude: "77.00000000",
+    timezones: [
+      {
+        zoneName: "Asia/Kolkata",
+        gmtOffset: 19800,
+        gmtOffsetName: "UTC+05:30",
+        abbreviation: "IST",
+        tzName: "Indian Standard Time",
+      },
+    ],
+  });
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     const savedIndex = localStorage.getItem("orderIndex");
@@ -50,16 +83,9 @@ const NewChildDetails = ({ session }) => {
     try {
       let res;
       let amount = parseInt(pricing[currentIndex].price);
-      console.log(latLon);
-      if (latLon.currency !== "INR") {
-        const client = new Freecurrencyapi(
-          "fca_live_kus9JodZmsXKJO6g82UdIQreY9HKsejtVnnwSwA7"
-        );
-        res = await client.latest({
-          base_currency: "INR",
-        });
-        console.log(res);
-        const rate = res.data[latLon.currency];
+
+      if (paymentCountry.currency !== "INR") {
+        const rate = currency[paymentCountry.name];
         if (!rate) {
           toast.error("Currency not supported for payment", {
             position: "top-right",
@@ -75,10 +101,10 @@ const NewChildDetails = ({ session }) => {
       res = await fetch("/api/createOrder", {
         method: "POST",
         body: JSON.stringify({
-          amount: NO_DECIMAL_CURRENCIES.includes(latLon.currency)
+          amount: NO_DECIMAL_CURRENCIES.includes(paymentCountry.currency)
             ? amount
             : amount * 100,
-          currency: latLon.currency,
+          currency: paymentCountry.currency,
         }),
       });
 
@@ -367,7 +393,7 @@ const NewChildDetails = ({ session }) => {
                     </div>
                     <div className="w-full relative">
                       <label className="block text-[14px] font-normal mb-1">
-                        Location
+                        Birth Location
                       </label>
                       <LocationInput
                         locationInput={locationInput}
@@ -409,20 +435,53 @@ const NewChildDetails = ({ session }) => {
                     </div>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-4 w-full mx-auto py-2 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all capitalize mt-5"
+                  <div
+                    className={`grid grid-cols-1 w-full gap-5 mb-4 place-items-end ${
+                      currentIndex != null && currentIndex > 0
+                        ? "md:grid-cols-2"
+                        : "mb-6"
+                    }`}
                   >
-                    {loading
-                      ? "Loading..."
-                      : paymentEdit
-                      ? "Update Details"
-                      : currentIndex == 0
-                      ? "Unlock Free Report"
-                      : "Proceed to Pay"}
-                    <ArrowRight size={20} />
-                  </button>
+                    {currentIndex != null && currentIndex > 0 && (
+                      <div className="w-full relative">
+                        <div className="w-full">
+                          <label className="block text-[14px] font-normal mb-1">
+                            Payment Country
+                          </label>
+                          <div
+                            className="flex items-center bg-white rounded-lg"
+                            onClick={() => setOpen(!open)}
+                          >
+                            <CountrySelect
+                              paymentCountry={paymentCountry}
+                              setpaymentCountry={setPaymentCountry}
+                              open={open}
+                              setOpen={setOpen}
+                            />
+                            <Label className="px-4 bg-white block text-[16px] font-semibold">
+                              {paymentCountry.name}
+                            </Label>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <div className="w-full">
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="px-4 w-full flex-1 mx-auto py-1 font-bold rounded-lg flex justify-center items-center gap-2 new-gradient hover:brightness-110 transition-all capitalize"
+                      >
+                        {loading
+                          ? "Loading..."
+                          : paymentEdit
+                          ? "Update Details"
+                          : currentIndex == 0
+                          ? "Unlock Free Report"
+                          : "Proceed to Pay"}
+                        <ArrowRight size={20} />
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>
@@ -542,3 +601,104 @@ const NewChildDetails = ({ session }) => {
 };
 
 export default NewChildDetails;
+
+const CountrySelect = ({
+  paymentCountry,
+  setpaymentCountry,
+  open,
+  setOpen,
+}) => {
+  const [searchValue, setSearchValue] = useState("");
+  const scrollAreaRef = useRef(null);
+  const countries = Country.getAllCountries();
+
+  const handleSelect = (country) => {
+    setpaymentCountry(country);
+    setOpen(false);
+  };
+
+  return (
+    <Popover
+      open={open}
+      onOpenChange={(v) => {
+        setOpen(v);
+        if (v) setSearchValue("");
+      }}
+    >
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          className="flex justify-between h-11 w-max py-2 rounded-none text-left"
+        >
+          {paymentCountry ? (
+            <div className="flex items-center gap-2">
+              <FlagComponent
+                country={paymentCountry.isoCode}
+                countryName={paymentCountry.name}
+              />
+            </div>
+          ) : (
+            <></>
+          )}
+          <ChevronsUpDown className="size-4 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+
+      <PopoverContent className="w-[300px] p-0">
+        <Command>
+          <CommandInput
+            placeholder="Search country..."
+            value={searchValue}
+            onValueChange={(v) => {
+              setSearchValue(v);
+              setTimeout(() => {
+                if (scrollAreaRef.current) {
+                  const viewportElement = scrollAreaRef.current.querySelector(
+                    "[data-radix-scroll-area-viewport]"
+                  );
+                  if (viewportElement) viewportElement.scrollTop = 0;
+                }
+              }, 0);
+            }}
+          />
+          <CommandList>
+            <ScrollArea ref={scrollAreaRef} className="h-72">
+              <CommandEmpty>No country found.</CommandEmpty>
+              <CommandGroup>
+                {countries.map((country) => (
+                  <CommandItem
+                    key={country.isoCode}
+                    className="gap-2"
+                    onSelect={() => handleSelect(country)}
+                  >
+                    <FlagComponent
+                      country={country.isoCode}
+                      countryName={country.name}
+                    />
+                    <span className="flex-1 text-sm">{country.name}</span>
+                    <CheckIcon
+                      className={`ml-auto size-4 ${
+                        paymentCountry?.isoCode === country.isoCode
+                          ? "opacity-100"
+                          : "opacity-0"
+                      }`}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </ScrollArea>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+};
+
+const FlagComponent = ({ country, countryName }) => {
+  const Flag = flags[country];
+  return (
+    <span className="flex h-4 w-6 overflow-hidden rounded-sm bg-foreground/20 [&_svg:not([class*='size-'])]:size-full">
+      {Flag && <Flag title={countryName} />}
+    </span>
+  );
+};
