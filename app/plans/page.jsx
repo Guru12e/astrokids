@@ -1,6 +1,10 @@
 "use client";
+import { CountrySelect } from "@/components/ChildDetailsComponent";
 import Header from "@/components/Header";
 import NewFooter from "@/components/NewFooter";
+import { Label } from "@/components/ui/label";
+import { currency } from "@/constant/constant";
+import { getSymbolFromCode } from "currency-code-symbol-map";
 import { ArrowUpRight, Check, MinusIcon, PlusIcon, X } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -265,6 +269,33 @@ const AboutPage = () => {
     },
   ];
 
+  const [open, setOpen] = useState(false);
+  const [paymentCountry, setPaymentCountry] = useState({
+    name: "India",
+    isoCode: "IN",
+    flag: "🇮🇳",
+    phonecode: "91",
+    currency: "INR",
+    latitude: "20.00000000",
+    longitude: "77.00000000",
+    timezones: [
+      {
+        zoneName: "Asia/Kolkata",
+        gmtOffset: 19800,
+        gmtOffsetName: "UTC+05:30",
+        abbreviation: "IST",
+        tzName: "Indian Standard Time",
+      },
+    ],
+  });
+
+  const ConvertPrice = (price) => {
+    let curr = Math.round(price * currency[paymentCountry.name]);
+    return getSymbolFromCode(paymentCountry.currency)
+      ? getSymbolFromCode(paymentCountry.currency) + " " + curr
+      : paymentCountry.currency + " " + curr;
+  };
+
   return (
     <>
       <Head>
@@ -304,6 +335,42 @@ const AboutPage = () => {
           </div>
         </div>
 
+        <div className="py-10 w-full flex flex-col items-center justify-center gap-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-center">
+            Select Your Country
+          </h1>
+
+          <p className="text-gray-500 text-md md:text-lg text-center max-w-lg">
+            Choose your country to see local pricing and available payment
+            options.
+          </p>
+
+          <div
+            onClick={() => setOpen(!open)}
+            className="flex items-center justify-between w-full max-w-md px-4 py-3 bg-white border rounded-xl shadow-sm hover:shadow-md cursor-pointer transition-all duration-300"
+          >
+            <div className="flex items-center gap-3">
+              <CountrySelect
+                paymentCountry={paymentCountry}
+                setpaymentCountry={setPaymentCountry}
+                open={open}
+                setOpen={setOpen}
+                isBordered={false}
+              />
+
+              <Label className="text-[16px] font-semibold">
+                {paymentCountry.name}
+              </Label>
+            </div>
+
+            <span
+              className={`transition-transform ${open ? "rotate-180" : ""}`}
+            >
+              ▼
+            </span>
+          </div>
+        </div>
+
         <div id="plan-benefits">
           <div className="grid px-10 py-3 grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10 mt-10">
             {newPricing.map((p, ind) => (
@@ -317,7 +384,9 @@ const AboutPage = () => {
                   </h1>
                   <div className="my-3 flex items-center gap-2">
                     <h2 className="text-[26px] font-bold leading-[1.2]">
-                      {p.price}
+                      {p.price === "Free"
+                        ? "Free"
+                        : ConvertPrice(parseInt(p.price.replace("₹", "")))}
                     </h2>
                     <p className="text-[#6F6C90] text-[16px]">/ Life Time</p>
                   </div>

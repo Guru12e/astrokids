@@ -30,6 +30,7 @@ import {
 import { ScrollArea } from "./ui/scroll-area";
 import flags from "react-phone-number-input/flags";
 import { Label } from "./ui/label";
+import { getSymbolFromCode } from "currency-code-symbol-map";
 
 const NewChildDetails = ({ session }) => {
   const [loading, setLoading] = useState(false);
@@ -327,6 +328,13 @@ const NewChildDetails = ({ session }) => {
     }
   }, [paymentEdit, router]);
 
+  const ConvertPrice = (price) => {
+    let curr = Math.round(price * currency[paymentCountry.name]);
+    return getSymbolFromCode(paymentCountry.currency)
+      ? getSymbolFromCode(paymentCountry.currency) + " " + curr
+      : paymentCountry.currency + " " + curr;
+  };
+
   return (
     <>
       {loading ? (
@@ -566,7 +574,10 @@ const NewChildDetails = ({ session }) => {
                           Subtotal
                         </h1>
                         <p className="text-[16px] text-[#111729] font-normal">
-                          ₹{parseInt(pricing[currentIndex].price) + 200}.00
+                          {ConvertPrice(
+                            parseInt(pricing[currentIndex].price) + 200
+                          )}
+                          .00
                         </p>
                       </div>
                       <div className="flex w-full justify-between">
@@ -574,7 +585,10 @@ const NewChildDetails = ({ session }) => {
                           Flat Discount
                         </h1>
                         <p className="text-[16px] text-red-400 font-normal">
-                          -₹{currentIndex === 0 ? "399.00" : "200.00"}
+                          -
+                          {currentIndex === 0
+                            ? `${ConvertPrice(399)}.00`
+                            : `${ConvertPrice(200)}.00`}
                         </p>
                       </div>
                     </div>
@@ -586,7 +600,9 @@ const NewChildDetails = ({ session }) => {
                       <p className="text-[16px] text-[#111729] font-semibold">
                         {currentIndex === 0
                           ? "Free"
-                          : `₹${parseInt(pricing[currentIndex].price)}.00`}
+                          : `${ConvertPrice(
+                              parseInt(pricing[currentIndex].price)
+                            )}.00`}
                       </p>
                     </div>
                   </>
@@ -602,11 +618,12 @@ const NewChildDetails = ({ session }) => {
 
 export default NewChildDetails;
 
-const CountrySelect = ({
+export const CountrySelect = ({
   paymentCountry,
   setpaymentCountry,
   open,
   setOpen,
+  isBordered = true,
 }) => {
   const [searchValue, setSearchValue] = useState("");
   const scrollAreaRef = useRef(null);
@@ -627,8 +644,10 @@ const CountrySelect = ({
     >
       <PopoverTrigger asChild>
         <Button
-          variant="outline"
-          className="flex justify-between h-11 w-max py-2 rounded-none text-left"
+          variant={isBordered ? "outline" : "default"}
+          className={`flex justify-between bg-white hover:bg-white h-11 w-max py-2 rounded-none text-left ${
+            isBordered ? "border" : ""
+          }`}
         >
           {paymentCountry ? (
             <div className="flex items-center gap-2">
