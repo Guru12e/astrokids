@@ -335,7 +335,7 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <div className="py-10 w-full flex flex-col items-center justify-center gap-6">
+        <div className="pt-10 py-3 w-full flex flex-col items-center justify-center gap-6">
           <h1 className="text-2xl md:text-3xl font-bold text-center">
             Select Your Country
           </h1>
