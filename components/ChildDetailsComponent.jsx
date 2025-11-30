@@ -15,7 +15,6 @@ import { toast } from "react-toastify";
 import Loader from "@/components/Loader";
 import PhoneInput from "./PhoneInput";
 import LocationInput from "./LocationInput";
-import Freecurrencyapi from "@everapi/freecurrencyapi-js";
 import { Country } from "country-state-city";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Button } from "./ui/button";
@@ -75,8 +74,12 @@ const NewChildDetails = ({ session }) => {
 
   useEffect(() => {
     const savedIndex = localStorage.getItem("orderIndex");
+    const paymentCountryData = localStorage.getItem("paymentCountryData");
     if (savedIndex) {
       setCurrentIndex(Number(savedIndex));
+    }
+    if (paymentCountryData) {
+      setPaymentCountry(JSON.parse(paymentCountryData));
     }
   }, []);
 
@@ -109,68 +112,76 @@ const NewChildDetails = ({ session }) => {
         }),
       });
 
-      const dataId = await res.json();
-      const paymentData = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-        order_id: dataId.id,
+      if (res.status === 200) {
+        const dataId = await res.json();
+        const paymentData = {
+          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+          order_id: dataId.id,
 
-        handler: async function (response) {
-          setLoading(true);
-          const res = await fetch("/api/verifyOrder", {
-            method: "POST",
-            body: JSON.stringify({
-              orderId: response.razorpay_order_id,
-              razorpayPaymentId: response.razorpay_payment_id,
-              razorpaySignature: response.razorpay_signature,
-            }),
-          });
-
-          console.log(res);
-
-          const res1 = await fetch("/api/addChildDetails", {
-            method: "POST",
-            body: JSON.stringify({
-              email: session.user.email,
-              name: name,
-              dob: dob,
-              time: time,
-              place: place,
-              gender: gender,
-              number: number,
-              lat: latLon.lat,
-              lon: latLon.lon,
-              timezone: latLon.timezone,
-              orderId: dataId.id,
-              plan: pricing[currentIndex].title,
-            }),
-          });
-
-          if (res1.status === 200) {
-            localStorage.removeItem("childDetails");
-            toast.success("Payment Success Check Mail For Updates", {
-              position: "top-right",
-              autoClose: 3000,
+          handler: async function (response) {
+            setLoading(true);
+            const res = await fetch("/api/verifyOrder", {
+              method: "POST",
+              body: JSON.stringify({
+                orderId: response.razorpay_order_id,
+                razorpayPaymentId: response.razorpay_payment_id,
+                razorpaySignature: response.razorpay_signature,
+              }),
             });
-            router.push(
-              `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
-            );
-          } else {
-            toast.error("Error. Try Again", {
-              position: "top-right",
-              autoClose: 3000,
+
+            console.log(res);
+
+            const res1 = await fetch("/api/addChildDetails", {
+              method: "POST",
+              body: JSON.stringify({
+                email: session.user.email,
+                name: name,
+                dob: dob,
+                time: time,
+                place: place,
+                gender: gender,
+                number: number,
+                lat: latLon.lat,
+                lon: latLon.lon,
+                timezone: latLon.timezone,
+                orderId: dataId.id,
+                plan: pricing[currentIndex].title,
+              }),
             });
-          }
-        },
 
-        prefill: {
-          name: name,
-          email: session.user.email,
-          contact: number,
-        },
-      };
+            if (res1.status === 200) {
+              localStorage.removeItem("childDetails");
+              toast.success("Payment Success Check Mail For Updates", {
+                position: "top-right",
+                autoClose: 3000,
+              });
+              router.push(
+                `/payment-success?orderIndex=${currentIndex}&orderId=${dataId.id}`
+              );
+            } else {
+              toast.error("Error. Try Again", {
+                position: "top-right",
+                autoClose: 3000,
+              });
+            }
+          },
 
-      const payment = new window.Razorpay(paymentData);
-      payment.open();
+          prefill: {
+            name: name,
+            email: session.user.email,
+            contact: number,
+          },
+        };
+
+        const payment = new window.Razorpay(paymentData);
+        payment.open();
+      } else {
+        toast.error("We are unable to process your payment at the moment.", {
+          position: "top-right",
+          autoClose: 3000,
+        });
+      }
+
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -631,6 +642,7 @@ export const CountrySelect = ({
 
   const handleSelect = (country) => {
     setpaymentCountry(country);
+    localStorage.setItem("paymentCountryData", JSON.stringify(country));
     setOpen(false);
   };
 

@@ -9,7 +9,7 @@ import { ArrowUpRight, Check, MinusIcon, PlusIcon, X } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const AboutPage = () => {
   const [isOpen, setIsOpen] = useState(0);
@@ -288,6 +288,13 @@ const AboutPage = () => {
       },
     ],
   });
+
+  useEffect(() => {
+    const paymentCountryData = localStorage.getItem("paymentCountryData");
+    if (paymentCountryData) {
+      setPaymentCountry(JSON.parse(paymentCountryData));
+    }
+  }, []);
 
   const ConvertPrice = (price) => {
     let curr = Math.round(price * currency[paymentCountry.name]);
